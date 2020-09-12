@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { Navbar } from "./components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
@@ -8,14 +9,14 @@ library.add(faInfinity, faDotCircle);
 
 const theme = {
   fontColor: {
-    mainDark: "#3f3b3b", // almost black
+    mainDark: "#ce967e", // almost black
     mainLight: "#f3f3f1", // light gray
     secondary: "#0c2cbb", // dark blue
     alternate: "#dc8b18", // orange
     warning: "#d90e00" // red
   },
   backgroundColor: {
-    mainDark: "#c7c8cc", // gray/blue-ish
+    mainDark: "#d8d597", // gray/blue-ish
     mainLight: "#f3f3f1", // almost white
     secondary: "#0c2cbb", // dark blue
     alternate: "#dc8b18", // orange
@@ -90,10 +91,12 @@ const GlobalStyle = createGlobalStyle`
 // ReactGA.pageview("/");
 
 const App = () => {
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
       <GlobalStyle />
+      <Navbar />
       <Switch>
         <Route exact path="/" />
       </Switch>

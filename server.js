@@ -1,8 +1,9 @@
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const helmet = require("helmet");
+const mongoose = require("mongoose");
 
 require("dotenv").config();
 
@@ -14,9 +15,24 @@ app.use(helmet({
   contentSecurityPolicy: false,
 }));
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(publicPath));
+
+mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true }, 
+  (error) => {
+    if (error) {
+      throw error;
+    } else {
+      console.log("Connected to your MongoDB database");
+    }
+  });
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
+
+app.use("/users", require("./routes/userRoute"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
