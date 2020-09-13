@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import AuthOptions from "../layoutcomponents/userauthentication/AuthOptions";
 
 const ComponentContainer = styled.div`
   color: ${props => props.theme.fontColor.mainDark};
-  background-color: ${props => props.theme.backgroundColor.mainDark};
+  background-color: ${props => props.theme.backgroundColor.mainLight};
   font-size: ${props => props.theme.fontSize.large};
   height: 5rem;
   display: flex;

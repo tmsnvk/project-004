@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  loginname: {
+  loginName: {
     type: String,
+    unique: true,
     required: true
   },
   password: {
     type: String,
     required: true,
-    minLength: 6
   }
 }, { collection: "evrallas_database" });
 
