@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-// import { useForm } from "react-hook-form";
 import axios from "axios";
 import UserContext from "context/UserContext";
 import { useHistory } from "react-router-dom";
+// import { useForm } from "react-hook-form";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
 `;
 
 const ContainerForm = styled.form`
@@ -60,10 +60,10 @@ const FormInputSubmit = styled.input`
   }
 `;
 
-const FormLogin = () => {
+const UserLogin = () => {
   // const { register, handleSubmit, errors } = useForm();
-  const [loginName, setLoginName] = useState();
-  const [password, setPassword] = useState();
+  const [loginName, setLoginName] = useState("");
+  const [password, setPassword] = useState("");
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
@@ -77,8 +77,9 @@ const FormLogin = () => {
     setUserData({ token: loginRes.data.token, user: loginRes.data.user });
 
     localStorage.setItem("auth-token", loginRes.data.token);
-    history.push("/");
+    history.push("/useraccount");
   };
+
 
   return (
     <ContainerComponent>
@@ -93,4 +94,4 @@ const FormLogin = () => {
   );
 };
 
-export default FormLogin;
+export default UserLogin;

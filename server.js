@@ -28,10 +28,6 @@ mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlP
     }
   });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
-
 app.use("/users", require("./routes/userRoute"));
 
 if (process.env.NODE_ENV === "production") {

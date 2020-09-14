@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "context/UserContext";
 import styled from "styled-components";
-import AuthOptions from "../layoutcomponents/userauthentication/AuthOptions";
+import { UserLogout } from "components/maincomponents";
 
 const ComponentContainer = styled.div`
   color: ${props => props.theme.fontColor.mainDark};
@@ -30,9 +31,12 @@ const NavbarLinks = styled(Link)`
 `;
 
 const Navbar = () => {
+  const { userData, setUserData } = useContext(UserContext);
+
   return (
     <ComponentContainer>
-      <NavbarLinks to="/myprofile">Account</NavbarLinks>
+      <NavbarLinks to="/useraccount">Account</NavbarLinks>
+      {userData.user ? <UserLogout /> : undefined}
     </ComponentContainer>
   );
 };

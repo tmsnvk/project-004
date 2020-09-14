@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
-import Navbar from "./Navbar";
-import { UserAuthentication } from "layouts";
-import { AuthOptions } from "components/layoutcomponents/userauthentication";
+import { Navbar } from "components/maincomponents";
+import { UserAuthentication, UserAccount, UserRegister } from "layouts";
 import UserContext from "../../context/UserContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faInfinity } from "@fortawesome/free-solid-svg-icons";
@@ -88,7 +87,7 @@ const GlobalStyle = createGlobalStyle`
 // ReactGA.pageview("/");
 
 const App = () => {
-  const [userData, setUserData] = useState({token: undefined, user: undefined });
+  const [userData, setUserData] = useState({ token: undefined, user: undefined });
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -101,7 +100,7 @@ const App = () => {
       const response = await axios.post("/users/tokenIsValid", null, { headers: {"x-auth-token": token }});
       
       if (response.data) {
-        const userResponse = await axios.get("/users", {headers: {"x-auth-token": token }});
+        const userResponse = await axios.get("/users", { headers: { "x-auth-token": token }});
         setUserData({ token, user: userResponse.data});
       }
     
@@ -114,10 +113,12 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <UserContext.Provider value={{userData, setUserData }}>
+      <UserContext.Provider value={{ userData, setUserData }}>
         <Navbar />
         <Switch>
           <Route exact path="/" component={UserAuthentication} />
+          <Route path="/useraccount" component={UserAccount} />
+          <Route path="/userregister" component={UserRegister} />
         </Switch>
       </UserContext.Provider>
       </ThemeProvider>

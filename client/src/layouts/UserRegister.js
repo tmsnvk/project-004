@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "context/UserContext";
 import styled from "styled-components";
-import { UserLogin, IntroText, IntroRegister, IntroAccount } from "components/layoutcomponents/userauthentication";
+import { UserRegister } from "components/layoutcomponents/userregister";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -28,19 +28,14 @@ const ContainerLayout = styled.main`
   }
 `;
 
+
 const UserAuthentication = () => {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory();
 
-  const logout = () => {
-    setUserData({token: undefined, user: undefined });
-    localStorage.setItem("auth-token", "");
-  };
-
   return (
     <ContainerLayout>
-      <IntroText />
-      {!userData.user ? <><IntroRegister /><UserLogin /></> : <IntroAccount />}
+      <UserRegister />
     </ContainerLayout>
   );
 };

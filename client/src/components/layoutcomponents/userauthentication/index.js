@@ -1,6 +1,6 @@
-import AuthOptions from "./AuthOptions";
-import FormLogin from "./FormLogin";
-import UserRegister from "./UserRegister";
-import Welcome from "./Welcome";
+import UserLogin from "./UserLogin";
+import IntroText from "./IntroText";
+import IntroRegister from "./IntroRegister";
+import IntroAccount from "./IntroAccount";
 
-export { Welcome, AuthOptions, FormLogin, UserRegister };
+export { IntroText, UserLogin, IntroRegister, IntroAccount };

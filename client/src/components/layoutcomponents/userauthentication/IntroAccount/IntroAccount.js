@@ -1,12 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { LinkComponentNavigation } from "components/commoncomponents";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
   display: flex;
   flex-direction: column;
 `;
@@ -34,17 +34,30 @@ const ParagraphMessageSub = styled.p`
   padding: 2.5rem 0 2.5rem 0;
 `;
 
-const Welcome = () => {
+const Navigation = styled.span`
+  color: ${props => props.theme.fontColor.alternate};
+  font-size: inherit;
+  cursor: pointer;
+
+  &:hover {
+    color: ${props => props.theme.fontColor.mainDark};
+  }
+`;
+
+const IntroAccount = () => {
+  const history = useHistory();
+
+  const account = () => {
+    history.push("/useraccount")
+  };
+
   return (
     <ContainerComponent>
-      <ParagraphMessageMain>
-        Evrallas is a classic choose-your-adventure type of game where your decision will affect the story's final outcome.
-      </ParagraphMessageMain>
       <ParagraphMessageSub>
-        Sign in below if you are already registered. If not - <LinkComponentNavigation to="/register">click here</LinkComponentNavigation> to register an account!
+        Visit your account & achivements <Navigation onClick={account}>here</Navigation>.
       </ParagraphMessageSub>
     </ContainerComponent>
   );
 };
 
-export default Welcome;
+export default IntroAccount;
