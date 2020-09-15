@@ -11,31 +11,17 @@ const ContainerComponent = styled.div`
   flex-direction: column;
 `;
 
-const ParagraphMessageMain = styled.p`
-  font-size: ${props => props.theme.fontSize.medium};
-  padding: 0 0.5rem 0 0.5rem;
-
-  &:after {
-    content: " ";
-    display: block;
-    padding: 2.5rem 0 0 0;
-    border-bottom: 2px solid ${props => props.theme.fontColor.mainDark};
-    width: 75%;
-    margin: 0 auto;
-  }
+const Message = styled.p`
+  font-size: ${props => props.theme.fontSize.small};
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    padding: 0 2.5rem 0 2.5rem;
-    font-size: ${props => props.theme.fontSize.large};
+    font-size: ${props => props.theme.fontSize.medium};
   }
 `;
 
-const ParagraphMessageSub = styled.p`
-  padding: 2.5rem 0 2.5rem 0;
-`;
-
-const Navigation = styled.span`
+const Navigation = styled.button`
   color: ${props => props.theme.fontColor.alternate};
+  background-color: ${props => props.theme.backgroundColor.mainDark};
   font-size: inherit;
   cursor: pointer;
 
@@ -47,15 +33,13 @@ const Navigation = styled.span`
 const IntroRegister = () => {
   const history = useHistory();
 
-  const register = () => {
-    history.push("/userregister")
-  };
+  const userRegister = () => history.push("/userregister");
 
   return (
     <ContainerComponent>
-      <ParagraphMessageSub>
-        Sign in below if you are already registered. If not - <Navigation onClick={register}>click here</Navigation> to register an account!
-      </ParagraphMessageSub>
+      <Message>
+        Sign in below if you are already registered. If not - <Navigation onClick={userRegister}>click here</Navigation> to register an account!
+      </Message>
     </ContainerComponent>
   );
 };

@@ -16,14 +16,13 @@ const theme = {
     mainLight: "#f3f3f1", // light gray
     secondary: "#2d2d2d", // almost black
     alternate: "#6ab0f3", // blue
-    warning: "#d90e00" // red
+    warning: "#f2777a" // red
   },
   backgroundColor: {
     mainDark: "#2d2d2d", // almost black
     mainLight: "#777c85", // medium gray
     secondary: "#ffd479", // yellow
     alternate: "#6ab0f3", // blue
-    gradient: "radial-gradient(circle, #f3f3f1, #c7c8cc)"
   },
   shadowColor: {
     main: "#424242" // almost black

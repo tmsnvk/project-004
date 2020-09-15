@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import UserContext from "context/UserContext";
 import { useHistory } from "react-router-dom";
-// import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -60,35 +60,63 @@ const FormInputSubmit = styled.input`
   }
 `;
 
+const InputErrorMessage = styled.div`
+  color: ${props => props.theme.fontColor.warning};
+  font-size: ${props => props.theme.fontSize.default};
+  padding: 1rem 0 0 0;
+`;
+
 const UserLogin = () => {
-  // const { register, handleSubmit, errors } = useForm();
+  const { handleSubmit } = useForm();
   const [loginName, setLoginName] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(undefined);
 
   const { setUserData } = useContext(UserContext);
+
   const history = useHistory();
 
-  const submit = async (e) => {
-    e.preventDefault();
-    const loginUser = { loginName, password };
-    
-    const loginRes = await axios.post("/users/login", loginUser );
+  const updateLoginName = (event) => setLoginName(event.target.value);
+  const updatePassword = (event) => setPassword(event.target.value);
 
-    setUserData({ token: loginRes.data.token, user: loginRes.data.user });
-
-    localStorage.setItem("auth-token", loginRes.data.token);
-    history.push("/useraccount");
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      const loginUser = { loginName, password };
+      const loginRes = await axios.post("/users/login", loginUser );
+      
+      setUserData({ token: loginRes.data.token, user: loginRes.data.user });
+      
+      localStorage.setItem("auth-token", loginRes.data.token);
+      history.push("/useraccount");
+    } catch (error) {
+      error.response.data.message && setLoginError(error.response.data.message);
+    }
   };
-
 
   return (
     <ContainerComponent>
-      <ContainerForm onSubmit={submit}>
-        <FormLabel htmlFor="login-loginName">Name</FormLabel>
-        <FormInput type="text" id="login-loginName" autoComplete="off" onChange={e => setLoginName(e.target.value)} />
-        <FormLabel htmlFor="login-password">Password</FormLabel>
-        <FormInput type="password" id="login-password" autoComplete="off" onChange={e => setPassword(e.target.value)} />
+      <ContainerForm method="POST" action="/users/login" id="user-login" onSubmit={handleSubmit(onSubmit)}>
+        <FormLabel htmlFor="loginUserName">Name</FormLabel>
+        <FormInput 
+          type="text"
+          id="loginUserName"
+          name="loginUserName"
+          placeholder="* Your Name"
+          autoComplete="off"
+          onChange={updateLoginName} 
+        />
+        <FormLabel htmlFor="loginUserPassword">Password</FormLabel>
+        <FormInput 
+          type="password"
+          id="loginUserPassword"
+          name="loginUserPassword"
+          placeholder="* Your Password"
+          autoComplete="off"
+          onChange={updatePassword}
+          />
         <FormInputSubmit type="submit" value="Log in" />
+        {loginError ? <InputErrorMessage>{loginError}</InputErrorMessage> : null}
       </ContainerForm>
     </ContainerComponent>
   );
