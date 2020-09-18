@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const userSchema = require("../models/userModel");
 
+// add error message if no server is reached ie no internet
 router.post("/register", async (request, response) => {
   try {
     const { loginName, password, passwordCheck } = request.body;

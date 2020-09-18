@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { ButtonNavigation } from "components/commoncomponents";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -19,17 +20,6 @@ const Message = styled.p`
   }
 `;
 
-const Navigation = styled.button`
-  color: ${props => props.theme.fontColor.alternate};
-  background-color: ${props => props.theme.backgroundColor.mainDark};
-  font-size: inherit;
-  cursor: pointer;
-
-  &:hover {
-    color: ${props => props.theme.fontColor.mainDark};
-  }
-`;
-
 const IntroRegister = () => {
   const history = useHistory();
 
@@ -38,7 +28,7 @@ const IntroRegister = () => {
   return (
     <ContainerComponent>
       <Message>
-        Sign in below if you are already registered. If not - <Navigation onClick={userRegister}>click here</Navigation> to register an account!
+        Sign in below if you are already registered. If not - <ButtonNavigation onClick={userRegister}>click here</ButtonNavigation> to register an account!
       </Message>
     </ContainerComponent>
   );

@@ -4,6 +4,7 @@ import axios from "axios";
 import UserContext from "context/UserContext";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { ErrorMessage, Input, InputSubmit, Label } from "components/commoncomponents/formrelated";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -16,54 +17,6 @@ const ContainerForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const FormLabel = styled.label`
-
-`;
-
-const FormInput = styled.input`
-  width: 15rem;
-  height: 2.5rem;
-  color: ${props => props.theme.fontColor.secondary};
-  font-weight: bold;
-  background-color: ${props => props.theme.backgroundColor.mainLight};
-
-  &:hover {
-    background-color: ${props => props.theme.backgroundColor.secondary};
-  }
-  
-  &:focus {
-    outline: none;
-  }
-`;
-
-const FormInputSubmit = styled.input`
-  background-color: ${props => props.theme.backgroundColor.secondary};
-  color: ${props => props.theme.fontColor.secondary};
-  font-size: ${props => props.theme.fontSize.medium};
-  font-weight: bold;
-  text-align: center;
-  width: 20rem;
-  height: 5rem;
-  margin: 2rem 0 0 0;
-  padding: 1rem 1rem 1rem 1rem;
-  border-radius: 1rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${props => props.theme.backgroundColor.mainDark};
-  }
-  
-  &:focus {
-    outline: none;
-  }
-`;
-
-const InputErrorMessage = styled.div`
-  color: ${props => props.theme.fontColor.warning};
-  font-size: ${props => props.theme.fontSize.default};
-  padding: 1rem 0 0 0;
 `;
 
 const UserLogin = () => {
@@ -84,7 +37,6 @@ const UserLogin = () => {
       console.log(data);
       const loginUser = { loginName, password };
       const loginRes = await axios.post("/users/login", loginUser );
-      
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       
       localStorage.setItem("auth-token", loginRes.data.token);
@@ -97,8 +49,8 @@ const UserLogin = () => {
   return (
     <ContainerComponent>
       <ContainerForm method="POST" action="/users/login" id="user-login" onSubmit={handleSubmit(onSubmit)}>
-        <FormLabel htmlFor="loginUserName">Name</FormLabel>
-        <FormInput 
+        <Label htmlFor="loginUserName">Name</Label>
+        <Input 
           type="text"
           id="loginUserName"
           name="loginUserName"
@@ -106,8 +58,8 @@ const UserLogin = () => {
           autoComplete="off"
           onChange={updateLoginName} 
         />
-        <FormLabel htmlFor="loginUserPassword">Password</FormLabel>
-        <FormInput 
+        <Label htmlFor="loginUserPassword">Password</Label>
+        <Input 
           type="password"
           id="loginUserPassword"
           name="loginUserPassword"
@@ -115,8 +67,8 @@ const UserLogin = () => {
           autoComplete="off"
           onChange={updatePassword}
           />
-        <FormInputSubmit type="submit" value="Log in" />
-        {loginError ? <InputErrorMessage>{loginError}</InputErrorMessage> : null}
+        <InputSubmit type="submit" value="Log in" />
+        {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </ContainerForm>
     </ContainerComponent>
   );

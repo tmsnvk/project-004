@@ -1,3 +1,4 @@
+import ButtonNavigation from "./ButtonNavigation";
 import LinkComponentNavigation from "./LinkComponentNavigation";
 
-export { LinkComponentNavigation };
+export { ButtonNavigation, LinkComponentNavigation };
