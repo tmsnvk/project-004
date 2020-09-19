@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import UserContext from "context/UserContext";
+import React from "react";
 import styled from "styled-components";
-import { UserRegister } from "components/layoutcomponents/userregister";
+import { IntroText, UserRegisterForm } from "components/layoutcomponents/userregister";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -12,8 +10,8 @@ const ContainerLayout = styled.main`
   grid-row-gap: 2.5rem;  
   font-size: ${props => props.theme.fontSize.small};
   text-align: center;
-  width: 85%;
-  margin: 10rem auto;
+  width: 90%;
+  margin: 5rem auto;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
     font-size: ${props => props.theme.fontSize.medium};
@@ -28,16 +26,13 @@ const ContainerLayout = styled.main`
   }
 `;
 
-
-const UserAuthentication = () => {
-  const { userData, setUserData } = useContext(UserContext);
-  const history = useHistory();
-
+const UserRegister = () => {
   return (
     <ContainerLayout>
-      <UserRegister />
+      <IntroText />
+      <UserRegisterForm />
     </ContainerLayout>
   );
 };
 
-export default UserAuthentication;
+export default UserRegister;

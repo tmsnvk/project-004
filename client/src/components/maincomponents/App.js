@@ -12,9 +12,9 @@ library.add(faInfinity, faDotCircle);
 
 const theme = {
   fontColor: {
-    mainDark: "#ffd479", // yellow
-    mainLight: "#f3f3f1", // light gray
-    secondary: "#2d2d2d", // almost black
+    main: "#ffd479", // yellow
+    secondaryDark: "#2d2d2d", // almost black
+    secondaryLight: "#777c85", // medium gray
     alternate: "#6ab0f3", // blue
     warning: "#f2777a" // red
   },
@@ -65,7 +65,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     width: 100vw;
     height: 100vh;
-    color: ${props => props.theme.fontColor.mainDark};
+    color: ${props => props.theme.fontColor.main};
     background-color: ${props => props.theme.backgroundColor.mainDark};
     font-family: ${props => props.theme.fontFamily.main};
     font-size: 62.5%;

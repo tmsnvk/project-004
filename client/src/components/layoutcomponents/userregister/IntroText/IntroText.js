@@ -15,6 +15,7 @@ const IntroText = () => {
     <ContainerComponent>
       <MessageTitle title={componentData.messageTitle} />
       <Message message={componentData.message.paragraphOne} />
+      <Message message={componentData.message.paragraphTwo} />
     </ContainerComponent>
   );
 };

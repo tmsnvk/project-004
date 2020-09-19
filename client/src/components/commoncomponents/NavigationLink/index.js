@@ -1,3 +1,3 @@
 import NavigationLink from "./NavigationLink";
 
-export { NavigationLink };
+export default NavigationLink;

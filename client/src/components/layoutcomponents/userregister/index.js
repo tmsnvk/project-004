@@ -1,3 +1,4 @@
-import UserRegister from "../userregister/UserRegister";
+import IntroText from "./IntroText";
+import UserRegisterForm from "./UserRegisterForm";
 
-export { UserRegister };
+export { IntroText, UserRegisterForm};
