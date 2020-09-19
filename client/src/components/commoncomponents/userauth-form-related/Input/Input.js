@@ -6,9 +6,9 @@ const Input = styled.input`
   background-color: ${props => props.theme.backgroundColor.mainDark};
   color: ${props => props.theme.fontColor.main};
   font-weight: bold;
-  font-size: ${props => props.theme.fontSize.medium};
+  font-size: ${props => props.theme.fontSize.small};
   border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
-  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
   border-radius: 0.5rem;
 
   &:hover {
@@ -32,6 +32,12 @@ const Input = styled.input`
 		padding: 1rem 1rem 1rem 1rem;
 		color: ${props => props.theme.fontColor.main};
 	}
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    width: 30rem;
+    font-size: ${props => props.theme.fontSize.medium};
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+  }
 `;
 
 export default Input;

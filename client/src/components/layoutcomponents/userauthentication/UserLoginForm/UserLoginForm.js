@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
-import styled from "styled-components";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from "react";
 import UserContext from "context/UserContext";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import styled from "styled-components";
 import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/userauth-form-related";
 
 const ContainerComponent = styled.div`
@@ -14,28 +14,31 @@ const ContainerComponent = styled.div`
 `;
 
 const UserLoginForm = () => {
-  const { handleSubmit } = useForm();
-  const [loginName, setLoginName] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({ loginName: undefined, password: undefined });
   const [loginError, setLoginError] = useState(undefined);
+  
+  const { register, handleSubmit } = useForm();
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
 
-  const updateLoginName = (event) => setLoginName(event.target.value);
-  const updatePassword = (event) => setPassword(event.target.value);
+  const onSubmit = (data) => setFormData({ loginName: data.loginUserName, password:data.loginUserPassword });
 
-  const onSubmit = async () => {
-    try {
-      const loginUser = { loginName, password };
-      const loginRes = await axios.post("/users/login", loginUser );
-      setUserData({ token: loginRes.data.token, user: loginRes.data.user });
-      
-      localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/useraccount");
-    } catch (error) {
-      return error.response.data.message && setLoginError(error.response.data.message);
-    }
-  };
+  useEffect(() => {
+    if (formData.loginName === undefined || formData.password === undefined) return;
+
+    const handleLogin = async () => {
+      try {
+        const response = await axios.post("/users/login", formData);
+        setUserData({ token: response.data.token, user: response.data.user });
+        localStorage.setItem("auth-token", response.data.token);
+        history.push("/useraccount");
+      } catch (error) {
+        return error.response.data.message && setLoginError(error.response.data.message);
+      }
+    };
+
+    handleLogin();
+  }, [formData]);
 
   return (
     <ContainerComponent>
@@ -47,7 +50,7 @@ const UserLoginForm = () => {
           name="loginUserName"
           placeholder="Enter Your Name"
           autoComplete="off"
-          onChange={updateLoginName} 
+          ref={register}
         />
         <Label htmlFor="loginUserPassword">Password</Label>
         <Input 
@@ -56,9 +59,9 @@ const UserLoginForm = () => {
           name="loginUserPassword"
           placeholder="Enter Your Password"
           autoComplete="off"
-          onChange={updatePassword}
-          />
-        <InputSubmit type="submit" value="Log in" />
+          ref={register}
+        />
+        <InputSubmit type="submit" value="log in" />
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </Form>
     </ContainerComponent>

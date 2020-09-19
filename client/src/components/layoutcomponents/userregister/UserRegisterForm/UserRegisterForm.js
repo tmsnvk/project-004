@@ -37,7 +37,7 @@ const UserRegisterForm = () => {
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/useraccount");
     } catch (error) {
       return error.response.data.message && setLoginError(error.response.data.message);
     }
@@ -70,7 +70,7 @@ const UserRegisterForm = () => {
           autoComplete="off"
           onChange={updatePasswordCheck}
         />
-        <InputSubmit type="submit" value="Register" />
+        <InputSubmit type="submit" value="REGISTER" />
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </Form>
     </ContainerComponent>

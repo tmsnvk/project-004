@@ -5,7 +5,7 @@ const Label = styled.label`
   font-size: ${props => props.theme.fontSize.xLarge};
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.5rem;
 `;
 
 export default Label;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavigationLink } from "components/commoncomponents";
-import { Message } from "components/commoncomponents/authenticationrelated";
+import { Message } from "components/commoncomponents/userauth-related";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;

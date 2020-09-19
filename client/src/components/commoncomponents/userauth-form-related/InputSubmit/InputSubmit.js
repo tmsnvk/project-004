@@ -8,6 +8,8 @@ const InputSubmit = styled.input`
   color: ${props => props.theme.fontColor.main};
   font-size: ${props => props.theme.fontSize.medium};
   font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.4rem;
   margin: 5rem 0 0 0;
   padding: 1rem 1rem 1rem 1rem;
   border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;

@@ -31,7 +31,7 @@ const UserAccount = () => {
 
   return (
     <ContainerLayout>
-      <div>aaaaa</div>
+      <div>USER PROFILE</div>
     </ContainerLayout>
   );
 };
