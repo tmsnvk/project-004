@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
 import { Navbar } from "components/maincomponents";
-import { UserAuthentication, UserAccount, UserRegister } from "layouts";
+import { AdventurePick, UserAccount, UserAuthentication, UserRegister } from "layouts";
 import UserContext from "../../context/UserContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faInfinity } from "@fortawesome/free-solid-svg-icons";
+import { faInfinity, faChessRook, faToriiGate, faMapSigns, faAddressCard, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
-library.add(faInfinity, faDotCircle);
+library.add(faInfinity, faDotCircle, faChessRook, faToriiGate, faMapSigns, faAddressCard, faSignOutAlt);
 
 const theme = {
   fontColor: {
@@ -118,6 +118,7 @@ const App = () => {
           <Route exact path="/" component={UserAuthentication} />
           <Route path="/useraccount" component={UserAccount} />
           <Route path="/userregister" component={UserRegister} />
+          <Route path="/pickadventure" component={AdventurePick} />
         </Switch>
       </UserContext.Provider>
       </ThemeProvider>

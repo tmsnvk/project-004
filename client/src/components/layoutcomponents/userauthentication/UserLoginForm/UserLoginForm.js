@@ -38,7 +38,7 @@ const UserLoginForm = () => {
     };
 
     handleLogin();
-  }, [formData]);
+  }, [formData, setUserData, history]);
 
   return (
     <ContainerComponent>
@@ -61,7 +61,7 @@ const UserLoginForm = () => {
           autoComplete="off"
           ref={register}
         />
-        <InputSubmit type="submit" value="log in" />
+        <InputSubmit type="submit" value="sign in" />
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </Form>
     </ContainerComponent>
