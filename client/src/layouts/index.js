@@ -1,6 +1,8 @@
-import AdventurePick from "layouts/AdventurePick";
-import UserAccount from "layouts/UserAccount";
-import UserAuthentication from "layouts/UserAuthentication";
-import UserRegister from "layouts/UserRegister";
+import Adventures from "layouts/Adventures";
+import About from "layouts/About";
+import Home from "layouts/Home";
+import PageNotFound from "layouts/PageNotFound";
+import Profile from "layouts/Profile";
+import Register from "layouts/Register";
 
-export { AdventurePick, UserAccount, UserAuthentication, UserRegister };
+export { Adventures, About, Profile, Home, PageNotFound, Register };

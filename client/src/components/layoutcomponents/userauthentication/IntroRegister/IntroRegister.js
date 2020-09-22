@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavigationLink } from "components/commoncomponents";
+import { NavigationLink } from "components/commoncomponents/navigation-related";
 import { Message } from "components/commoncomponents/userauth-related";
 
 const ContainerComponent = styled.div`
@@ -13,7 +13,7 @@ const ContainerComponent = styled.div`
 const IntroRegister = () => {
   return (
     <ContainerComponent>
-      <Message message={<>Sign in below if you are already registered. If not - <NavigationLink to="/userregister">click here</NavigationLink> to register an account!</>} />
+      <Message message={<>Sign in below if you are already registered. If not - <NavigationLink to="/page/register">click here</NavigationLink> to register an account!</>} />
     </ContainerComponent>
   );
 };

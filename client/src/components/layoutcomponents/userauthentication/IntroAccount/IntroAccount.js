@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavigationLink } from "components/commoncomponents";
+import { NavigationLink } from "components/commoncomponents/navigation-related";
 import { Message } from "components/commoncomponents/userauth-related";
 
 const ContainerComponent = styled.div`
@@ -13,7 +13,7 @@ const ContainerComponent = styled.div`
 const IntroAccount = () => {
   return (
     <ContainerComponent>
-      <Message message={<>Visit your account & achievements <NavigationLink to="/useraccount">here</NavigationLink>.</>} />
+      <Message message={<>Visit your account & achievements <NavigationLink to="/page/profile">here</NavigationLink>.</>} />
     </ContainerComponent>
   );
 };

@@ -25,7 +25,7 @@ const ComponentContainer = styled.div`
 const NavbarLinks = styled(Link)`
   width: 5rem;
   font-size: ${props => props.theme.fontSize.small};
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0 0 0 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -35,11 +35,13 @@ const NavbarLinks = styled(Link)`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
     width: auto;
+    padding: 0 0 0 0.2rem;
+    font-size: ${props => props.theme.fontSize.small};
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: auto;
-    padding: 0 2.5rem 0 2.5rem;
+    padding: 0 0 0 2.5rem;
     font-size: ${props => props.theme.fontSize.medium};
   }
 
@@ -53,7 +55,7 @@ const ButtonContainer = styled.button`
   background-color: ${props => props.theme.backgroundColor.mainLight};
   font-size: ${props => props.theme.fontSize.small};
   width: auto;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0 0 0 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -62,7 +64,7 @@ const ButtonContainer = styled.button`
   cursor: pointer;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    padding: 0 2.5rem 0 2.5rem;
+    padding: 0 0 0 2.5rem;
     font-size: ${props => props.theme.fontSize.medium};
   }
 
@@ -76,23 +78,25 @@ const Navbar = () => {
   const history = useHistory();
 
   const handleLogout = () => {
-    setUserData({token: undefined, user: undefined });
+    setUserData({ token: undefined, user: undefined });
     localStorage.setItem("auth-token", "");
-    history.push("/");
+    history.push("/page/home");
   };
     
   return (
     <ComponentContainer>
-      {userData.user ? 
+      {userData.token ? 
       <>
-        <NavbarLinks to="/"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>
-        <NavbarLinks to="/pickadventure"><IconYellow icon={iconList.mapSigns}></IconYellow>Adventures</NavbarLinks>
-        <NavbarLinks to="/useraccount"><IconYellow icon={iconList.chessRook}></IconYellow>Account</NavbarLinks>
+        <NavbarLinks to="/page/home"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>
+        <NavbarLinks to="/page/adventures"><IconYellow icon={iconList.mapSigns}></IconYellow>Adventures</NavbarLinks>
+        <NavbarLinks to="/page/profile"><IconYellow icon={iconList.chessRook}></IconYellow>Account</NavbarLinks>
+        <NavbarLinks to="/page/about"><IconYellow icon={iconList.addressCard}></IconYellow>About</NavbarLinks>
         <ButtonContainer onClick={handleLogout}><IconYellow icon={iconList.signOut}></IconYellow>Sign out</ButtonContainer>
       </> :
       <>
-        <NavbarLinks to="/"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>
-        <NavbarLinks to="/userregister"><IconYellow icon={iconList.addressCard}></IconYellow>Register</NavbarLinks>
+        <NavbarLinks to="/page/home"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>
+        <NavbarLinks to="/page/register"><IconYellow icon={iconList.userTie}></IconYellow>Register</NavbarLinks>
+        <NavbarLinks to="/page/about"><IconYellow icon={iconList.addressCard}></IconYellow>About</NavbarLinks>
       </>}
     </ComponentContainer>
   );

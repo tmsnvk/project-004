@@ -27,13 +27,13 @@ const ContainerLayout = styled.main`
 `;
 
 
-const UserAccount = () => {
+const PageNotFound = () => {
 
   return (
     <ContainerLayout>
-      <div>USER PROFILE</div>
+      <div>404</div>
     </ContainerLayout>
   );
 };
 
-export default UserAccount;
+export default PageNotFound;

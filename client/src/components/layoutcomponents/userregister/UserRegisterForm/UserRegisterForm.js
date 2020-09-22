@@ -37,7 +37,7 @@ const UserRegisterForm = () => {
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/useraccount");
+      history.push("/page/profile");
     } catch (error) {
       return error.response.data.message && setLoginError(error.response.data.message);
     }

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import UserContext from "context/UserContext";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
-import { Navbar } from "components/maincomponents";
-import { AdventurePick, UserAccount, UserAuthentication, UserRegister } from "layouts";
-import UserContext from "../../context/UserContext";
+import { Navbar, PrivateRoute } from "components/maincomponents";
+import { Adventures, About, Profile, Home, PageNotFound, Register } from "layouts";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faInfinity, faChessRook, faToriiGate, faMapSigns, faAddressCard, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faInfinity, faChessRook, faToriiGate, faMapSigns, faAddressCard, faSignOutAlt, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
-library.add(faInfinity, faDotCircle, faChessRook, faToriiGate, faMapSigns, faAddressCard, faSignOutAlt);
+library.add(faInfinity, faDotCircle, faChessRook, faToriiGate, faMapSigns, faAddressCard, faSignOutAlt, faUserTie);
 
 const theme = {
   fontColor: {
@@ -87,25 +87,24 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
   const [userData, setUserData] = useState({ token: undefined, user: undefined });
-
+  
   useEffect(() => {
-    const checkLoggedIn = async () => {
+    const handleLogin = async () => {
       let token = localStorage.getItem("auth-token");
       if (token === null) {
         localStorage.setItem("auth-token", "");
         token = "";
-      } 
+      }
 
       const response = await axios.post("/users/tokenIsValid", null, { headers: {"x-auth-token": token }});
       
       if (response.data) {
         const userResponse = await axios.get("/users", { headers: { "x-auth-token": token }});
-        setUserData({ token, user: userResponse.data});
+        setUserData({ token, user: userResponse.data });
       }
-    
     };
 
-    checkLoggedIn();
+    handleLogin();
   }, []);
 
   return (
@@ -115,10 +114,14 @@ const App = () => {
       <UserContext.Provider value={{ userData, setUserData }}>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={UserAuthentication} />
-          <Route path="/useraccount" component={UserAccount} />
-          <Route path="/userregister" component={UserRegister} />
-          <Route path="/pickadventure" component={AdventurePick} />
+          <Route exact path="/page/home" component={Home} />
+          <Route path="/page/register" component={Register} />
+          <Route path="/page/adventures" component={Adventures} />
+          {/* <Route path="/page/profile" component={Profile} /> */}
+          <PrivateRoute path="/page/profile" component={Profile} />
+          <Route path="/page/about" component={About} />
+          <Redirect exact path="/" to="/page/home" />
+          <Route component={PageNotFound} />
         </Switch>
       </UserContext.Provider>
       </ThemeProvider>

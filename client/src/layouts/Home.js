@@ -27,7 +27,7 @@ const ContainerLayout = styled.main`
   }
 `;
 
-const UserAuthentication = () => {
+const Home = () => {
   const { userData } = useContext(UserContext);
 
   return (
@@ -38,4 +38,4 @@ const UserAuthentication = () => {
   );
 };
 
-export default UserAuthentication;
+export default Home;

@@ -46,7 +46,7 @@ router.post("/register", async (request, response) => {
 
 router.post("/login", async (request, response) => {
   try {
-    const { loginName, password } = request.body;
+    const { loginName, password, auth } = request.body;
 
     if (!loginName || !password) {
       return response.status(400).json({ message: "Not all fields have been entered!" });
@@ -65,7 +65,7 @@ router.post("/login", async (request, response) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    response.json({ token, user: { id: user._id, loginName: user.loginName }});
+    response.json({ token, user: { id: user._id, loginName: user.loginName } });
 
   } catch (error) {
     response.status(500).json({ error: error.message });
