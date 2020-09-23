@@ -87,7 +87,7 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
   const [userData, setUserData] = useState({ token: undefined, user: undefined });
-  
+
   useEffect(() => {
     const handleLogin = async () => {
       let token = localStorage.getItem("auth-token");
@@ -97,7 +97,6 @@ const App = () => {
       }
 
       const response = await axios.post("/users/tokenIsValid", null, { headers: {"x-auth-token": token }});
-      
       if (response.data) {
         const userResponse = await axios.get("/users", { headers: { "x-auth-token": token }});
         setUserData({ token, user: userResponse.data });
@@ -114,11 +113,20 @@ const App = () => {
       <UserContext.Provider value={{ userData, setUserData }}>
         <Navbar />
         <Switch>
-          <Route exact path="/page/home" component={Home} />
+          <Route path="/page/home" component={Home} />
           <Route path="/page/register" component={Register} />
           <Route path="/page/adventures" component={Adventures} />
-          {/* <Route path="/page/profile" component={Profile} /> */}
+          {/* {localStorage.getItem("isValid") ? (<Route path="/page/profile" component={Profile} />) : (<Redirect to="/page/home" />)} */}
           <PrivateRoute path="/page/profile" component={Profile} />
+          {/* <Route path="/page/profile" render={props => {
+            if (localStorage.getItem("auth-token") !== "") {
+              return <Profile {...props} />
+
+      } else {
+        return <Redirect to={"/page/home"} />
+      }
+    }}
+    /> */}
           <Route path="/page/about" component={About} />
           <Redirect exact path="/" to="/page/home" />
           <Route component={PageNotFound} />
