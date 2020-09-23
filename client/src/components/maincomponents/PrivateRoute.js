@@ -5,8 +5,12 @@ import { Redirect, Route } from "react-router-dom";
 const PrivateRoute = ({ path, component }) => {
   const { userData } = useContext(UserContext);
 
+  
+
+  console.log(userData);
+
   return (
-    userData.token !== undefined ? (<Route path={path} component={component} />) : (<Redirect to="/page/home" />)
+    !userData.user ? (<Redirect to="/page/home" />) : (<Route path={path} component={component} />)
   );
 };
 
