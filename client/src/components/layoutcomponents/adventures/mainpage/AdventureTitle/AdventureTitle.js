@@ -1,8 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const ComponentContainer = styled.button`
+const ComponentContainer = styled(Link)`
   font-size: ${props => props.theme.fontSize.small};
   font-weight: inherit;
   text-align: left;
@@ -40,9 +40,9 @@ const ComponentContainer = styled.button`
   }
 `;
 
-const AdventureTitle = ({ title }) => {
+const AdventureTitle = ({ title, linkId }) => {
   return (
-  <ComponentContainer>
+  <ComponentContainer to={`/page/adventures/${linkId}`}>
     {title}
   </ComponentContainer>
   );
