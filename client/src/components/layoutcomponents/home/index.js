@@ -1,6 +1,6 @@
 import IntroText from "./IntroText";
 import IntroRegister from "./IntroRegister";
 import IntroAccount from "./IntroAccount";
-import UserLoginForm from "./UserLoginForm";
+import LoginForm from "./LoginForm";
 
-export { IntroText, IntroRegister, IntroAccount, UserLoginForm };
+export { IntroText, IntroRegister, IntroAccount, LoginForm };

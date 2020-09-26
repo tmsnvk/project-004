@@ -9,6 +9,7 @@ const userSchema = require("../models/userModel");
 router.post("/register", async (request, response) => {
   try {
     const { loginName, password, passwordCheck } = request.body;
+    console.log(request.body);
     
     if (!loginName || !password || !passwordCheck) {
       return response.status(400).json({ message: "Not all fields have been entered!" });
@@ -41,6 +42,7 @@ router.post("/register", async (request, response) => {
 
   } catch (error) {
     response.status(500).json({ error: error.message });
+    console.log(error.message);
   }
 });
 

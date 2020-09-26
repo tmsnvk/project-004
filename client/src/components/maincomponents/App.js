@@ -3,12 +3,12 @@ import UserContext from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
+import { About, Adventures, Home, PageNotFound, Profile, Register } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
-import { Adventures, About, Profile, Home, PageNotFound, Register } from "layouts";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faInfinity, faChessRook, faToriiGate, faMapSigns, faAddressCard, faSignOutAlt, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faChessRook, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
-library.add(faInfinity, faDotCircle, faChessRook, faToriiGate, faMapSigns, faAddressCard, faSignOutAlt, faUserTie);
+library.add(faAddressCard, faChessRook, faDotCircle, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie);
 
 const theme = {
   fontColor: {
@@ -115,18 +115,8 @@ const App = () => {
         <Switch>
           <Route path="/page/home" component={Home} />
           <Route path="/page/register" component={Register} />
-          <Route path="/page/adventures" component={Adventures} />
-          {/* {localStorage.getItem("isValid") ? (<Route path="/page/profile" component={Profile} />) : (<Redirect to="/page/home" />)} */}
+          <PrivateRoute path="/page/adventures" component={Adventures} />
           <PrivateRoute path="/page/profile" component={Profile} />
-          {/* <Route path="/page/profile" render={props => {
-            if (localStorage.getItem("auth-token") !== "") {
-              return <Profile {...props} />
-
-      } else {
-        return <Redirect to={"/page/home"} />
-      }
-    }}
-    /> */}
           <Route path="/page/about" component={About} />
           <Redirect exact path="/" to="/page/home" />
           <Route component={PageNotFound} />
@@ -152,3 +142,4 @@ export default App;
 // Constant/Pseudo	Aqua	#76d4d6
 // Support	Purple	#e1a6f2
 // Operator	Beige	#ac8d58
+

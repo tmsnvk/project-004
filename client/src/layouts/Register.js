@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { IntroText, UserRegisterForm } from "components/layoutcomponents/userregister";
+import { IntroText, RegisterForm } from "components/layoutcomponents/register";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -9,7 +9,6 @@ const ContainerLayout = styled.main`
   grid-column-gap: 2.5em;
   grid-row-gap: 2.5rem;  
   font-size: ${props => props.theme.fontSize.small};
-  text-align: center;
   width: 90%;
   margin: 5rem auto;
 
@@ -26,13 +25,13 @@ const ContainerLayout = styled.main`
   }
 `;
 
-const UserRegister = () => {
+const Register = () => {
   return (
     <ContainerLayout>
       <IntroText />
-      <UserRegisterForm />
+      <RegisterForm />
     </ContainerLayout>
   );
 };
 
-export default UserRegister;
+export default Register;

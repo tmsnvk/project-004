@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import UserContext from "context/UserContext";
 import styled from "styled-components";
-import { IntroAccount, IntroRegister, IntroText, UserLoginForm } from "components/layoutcomponents/userauthentication";
+import { IntroAccount, IntroRegister, IntroText, LoginForm } from "components/layoutcomponents/home";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <ContainerLayout>
       <IntroText />
-      {!userData.user ? <><IntroRegister /><UserLoginForm /></> : <IntroAccount />}
+      {!userData.user ? <><IntroRegister /><LoginForm /></> : <IntroAccount />}
     </ContainerLayout>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { NavigationLink } from "components/commoncomponents/navigation-related";
-import { Message } from "components/commoncomponents/userauth-related";
+import { Message } from "components/commoncomponents/general";
+import componentData from "./componentData";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -13,7 +13,7 @@ const ContainerComponent = styled.div`
 const IntroAccount = () => {
   return (
     <ContainerComponent>
-      <Message message={<>Visit your account & achievements <NavigationLink to="/page/profile">here</NavigationLink>.</>} />
+      <Message message={componentData()} />
     </ContainerComponent>
   );
 };

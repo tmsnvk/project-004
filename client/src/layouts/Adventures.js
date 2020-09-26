@@ -1,6 +1,8 @@
 import React from "react";
-// import { useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
+import { Message, MessageTitle } from "components/commoncomponents/general";
+import { componentData } from "components/layoutcomponents/adventures";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -26,14 +28,13 @@ const ContainerLayout = styled.main`
   }
 `;
 
-
-const AdventurePick = () => {
-
+const Adventures = () => {
   return (
     <ContainerLayout>
-      <div>PICK ADVENTURE</div>
+      <MessageTitle title={componentData.messageTitle} />
+      <Message message={componentData.message.paragraphOne} />
     </ContainerLayout>
   );
 };
 
-export default AdventurePick;
+export default Adventures;

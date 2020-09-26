@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Message, MessageTitle } from "components/commoncomponents/userauth-related";
+import { Message, MessageTitle } from "components/commoncomponents/general";
 import componentData from "./componentData";
 
 const ContainerComponent = styled.div`

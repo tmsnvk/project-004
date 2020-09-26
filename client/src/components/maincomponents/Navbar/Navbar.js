@@ -82,10 +82,10 @@ const Navbar = () => {
     localStorage.setItem("auth-token", "");
     history.push("/page/home");
   };
-    
+
   return (
     <ComponentContainer>
-      {userData.token ? 
+      {userData.token ?
       <>
         <NavbarLinks to="/page/home"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>
         <NavbarLinks to="/page/adventures"><IconYellow icon={iconList.mapSigns}></IconYellow>Adventures</NavbarLinks>
