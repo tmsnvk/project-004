@@ -73,15 +73,13 @@ const ContainerStoryArc = styled.div`
 `;
 
 const Adventures = () => {
-  const renderStoryTitleData = storyTitleData.map(({ id, arcTitle, storyOneTitle, storyOneLink, storyTwoTitle, storyTwoLink, storyThreeTitle, storyThreeLink, storyFourTitle, storyFourLink, storyFiveTitle, storyFiveLink }) => {
+  const renderStoryTitleData = storyTitleData.map(({ id, arcTitle, storyOneTitle, storyOneLink, storyTwoTitle, storyTwoLink, storyThreeTitle, storyThreeLink }) => {
     return (
       <ContainerStoryArc key={id}>
         <AdventureArc title={arcTitle} />
         {storyOneTitle !== undefined ? <AdventureTitle title={storyOneTitle} linkId={storyOneLink} /> : null}
         {storyTwoTitle !== undefined ? <AdventureTitle title={storyTwoTitle} linkId={storyTwoLink} /> : null}
         {storyThreeTitle !== undefined ? <AdventureTitle title={storyThreeTitle} linkId={storyThreeLink} /> : null}
-        {storyFourTitle !== undefined ? <AdventureTitle title={storyFourTitle} linkId={storyFourLink} /> : null}
-        {storyFiveTitle !== undefined ? <AdventureTitle title={storyFiveTitle} linkId={storyFiveLink} /> : null}
       </ContainerStoryArc>
     );
   });

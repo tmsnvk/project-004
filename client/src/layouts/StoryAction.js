@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Message, MessageTitle } from "components/commoncomponents/general";
+import { arcOneStoryOne, arcOneStoryTwo } from "stories"; 
+import { useHistory } from "react-router-dom";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -26,10 +28,21 @@ const ContainerLayout = styled.main`
 `;
 
 const AdventureAction = () => {
+  const history = useHistory();
+  const storyName = history.location.pathname;
+  let one;
+      if (storyName === "/page/adventures/arcOneStoryOne") {
+        one = arcOneStoryOne;
+      } else if (storyName === "/page/adventures/arcOneStoryTwo") {
+        one = arcOneStoryTwo;
+      } else {
+        return null;
+      }
 
   return (
     <ContainerLayout>
-      I'm an adventure
+      <Message message={"I'm an adventure"} />
+      entry text + start button to pass the choosen story;
     </ContainerLayout>
   );
 };

@@ -38,6 +38,10 @@ const ComponentContainer = styled(Link)`
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     width: 35rem;
   }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
+    width: 45rem;
+  }
 `;
 
 const AdventureTitle = ({ title, linkId }) => {

@@ -9,7 +9,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAddressCard, faChessRook, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
 library.add(faAddressCard, faChessRook, faDotCircle, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie);
-
 const theme = {
   fontColor: {
     main: "#ffd479", // yellow
