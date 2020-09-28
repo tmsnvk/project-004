@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Message, MessageTitle } from "components/commoncomponents/general";
-import { arcOneStoryOne, arcOneStoryTwo } from "stories"; 
 import { useHistory } from "react-router-dom";
+import { ContainerStory } from "components/layoutcomponents/adventures/storypage";
+import componentData from "components/layoutcomponents/adventures/mainpage/componentData";
+import { arcOneStoryOne, arcOneStoryTwo } from "stories";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -28,21 +30,33 @@ const ContainerLayout = styled.main`
 `;
 
 const AdventureAction = () => {
+  const [start, setStart] = useState(false);
   const history = useHistory();
   const storyName = history.location.pathname;
-  let one;
-      if (storyName === "/page/adventures/arcOneStoryOne") {
-        one = arcOneStoryOne;
-      } else if (storyName === "/page/adventures/arcOneStoryTwo") {
-        one = arcOneStoryTwo;
-      } else {
-        return null;
-      }
+
+  let chosenStory;
+    if (storyName.includes("arcOneStoryOne")) {
+      chosenStory = arcOneStoryOne;
+    } else if (storyName.includes("arcOneStoryTwo")) {
+      chosenStory = arcOneStoryTwo;
+    } else {
+      return null;
+    }
+
+  const startStory = () => {
+    setStart(true);
+  }
 
   return (
     <ContainerLayout>
-      <Message message={"I'm an adventure"} />
-      entry text + start button to pass the choosen story;
+      {start === false ? 
+      <>
+        <Message message={componentData.gameBeginningMessage.paragraphOne} />
+        <Message message={componentData.gameBeginningMessage.paragraphTwo} />
+        <button onClick={startStory}>CLICK ME</button>
+      </> :
+        <ContainerStory story={chosenStory} />
+    }
     </ContainerLayout>
   );
 };
