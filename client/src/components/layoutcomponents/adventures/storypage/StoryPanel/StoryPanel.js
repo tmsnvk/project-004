@@ -31,18 +31,16 @@ const StoryPiece = styled.div`
 `;
 
 const StoryPanel = ({ story }) => {
-  const [eventId, setEventId] = useState(1);
-  const [eventTextParagraphOne, setEventTextParagraphOne] = useState();
-  const [eventTextParagraphTwo, setEventTextParagraphTwo] = useState();
+  const [eventId, setEventId] = useState("1");
+  const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined })
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
-  
+
   const history = useHistory();
 
   useEffect(() => {
     const getEventTexts = (eventId) => {
       const eventText = story.find(element => element.id === eventId);
-      setEventTextParagraphOne(eventText.paragraphs[0].text);
-      setEventTextParagraphTwo(eventText.paragraphs[1].text);
+      setEventParagraphs({ one: eventText.paragraphs[0]?.text, two: eventText.paragraphs[1]?.text, three: eventText.paragraphs[2]?.text });
     };
 
     getEventTexts(eventId);
@@ -61,7 +59,8 @@ const StoryPanel = ({ story }) => {
 
   useEffect(() => {
     const gameOver = (eventId) => {
-      if (eventId === 5) {
+      // const gameOverChoices = [];
+      if ((eventId) === "GAMEOVER") {
         history.push("/page/adventures/results");
       }
     };
@@ -70,20 +69,24 @@ const StoryPanel = ({ story }) => {
   });
   
   const renderButton = eventOptions.map((option, index) => {
-    const handleNewPiece = () => setEventId(option[1]);
+    const getNewEvent = () => setEventId(option[1]);
 
     return (
-      <button key={index} onClick={handleNewPiece}>{option[0]}</button>
+      <button key={index} onClick={getNewEvent}>{option[0]}</button>
     );
   });
 
   return (
     <ContainerLayout>
       <StoryPiece>
-      {eventTextParagraphOne}
+        {eventId}
+      {eventParagraphs.one}
       </StoryPiece>
       <StoryPiece>
-      {eventTextParagraphTwo}
+      {eventParagraphs.two}
+      </StoryPiece>
+      <StoryPiece>
+      {eventParagraphs.three}
       </StoryPiece>
       {renderButton}
     </ContainerLayout>
