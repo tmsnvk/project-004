@@ -2,7 +2,7 @@ const storyTitleData = [
   {
     id: 1,
     arcTitle:"Tales of the Eastern Fief",
-    storyOneTitle: "To New Beginnings",
+    storyOneTitle: "To One Last New Beginning",
     storyOneLink: "arcOneStoryOne",
     storyTwoTitle: "Soon-to-be-Title",
     storyTwoLink: "arcOneStoryTwo",
