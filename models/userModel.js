@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  achi: {
+    type: Boolean,
+    required: false,
   }
 }, { collection: "evrallas_database" });
 

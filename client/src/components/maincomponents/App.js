@@ -9,6 +9,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAddressCard, faChessRook, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
 library.add(faAddressCard, faChessRook, faDotCircle, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie);
+
 const theme = {
   fontColor: {
     main: "#ffd479", // yellow
@@ -86,6 +87,7 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
   const [userData, setUserData] = useState({ token: undefined, user: undefined });
+  const [finalachi, setFinalAchi] = useState({ girl: false });
 
   useEffect(() => {
     const handleLogin = async () => {
@@ -109,7 +111,7 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <UserContext.Provider value={{ userData, setUserData }}>
+      <UserContext.Provider value={{ userData, setUserData, finalachi, setFinalAchi }}>
         <Navbar />
         <Switch>
           <Route path="/page/home" component={Home} />

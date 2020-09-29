@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import UserContext from "context/UserContext";
 import styled from "styled-components";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const ContainerLayout = styled.main`
@@ -34,7 +36,9 @@ const StoryPanel = ({ story }) => {
   const [eventId, setEventId] = useState("1");
   const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined })
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
+  const [achi, setAchi] = useState({ girl: false });
 
+  const { userData, finalachi, setFinalAchi } = useContext(UserContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -58,15 +62,59 @@ const StoryPanel = ({ story }) => {
   }, [eventId, story]);
 
   useEffect(() => {
+    const achie = (eventId) => {
+      if (eventId !== "3E") return null;
+
+      if (eventId === "3E") {
+        setAchi({ girl : true });
+      }
+    };
+
+
     const gameOver = (eventId) => {
-      // const gameOverChoices = [];
       if ((eventId) === "GAMEOVER") {
         history.push("/page/adventures/results");
       }
     };
 
+    achie(eventId)
     gameOver(eventId);
-  });
+  }, [eventId]);
+  
+
+
+
+
+  useEffect(() => {
+    const achie = async () => {
+      if (achi.girl === false) return null;
+        
+      const id = localStorage.getItem("id");
+        try {
+          await axios.put("/users/achievement", { achi, id });
+          // setFinalAchi(achi);
+          
+            
+          } catch (error) {
+            console.log(error.response.data.message);
+          }
+        
+      }
+      
+      
+      
+      achie()
+    },[achi]);
+    
+    
+    console.log(achi, localStorage.getItem("userName"));
+
+
+
+
+
+
+
   
   const renderButton = eventOptions.map((option, index) => {
     const getNewEvent = () => setEventId(option[1]);

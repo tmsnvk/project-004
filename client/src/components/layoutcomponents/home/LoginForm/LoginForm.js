@@ -33,6 +33,7 @@ const LoginForm = () => {
         const response = await axios.post("/users/login", formData);
         setUserData({ token: response.data.token, user: response.data.user });
         localStorage.setItem("auth-token", response.data.token);
+        localStorage.setItem("id", response.data.user.id);
         history.push("/page/profile");
       } catch (error) {
         return error.response.data.message && setLoginError(error.response.data.message);
@@ -41,7 +42,6 @@ const LoginForm = () => {
 
     handleLogin();
   }, [formData, setUserData, history]);
-
   return (
     <ContainerComponent>
       <Form method="POST" action="/users/login" id="user-login" onSubmit={handleSubmit(onSubmit)}>

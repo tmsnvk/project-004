@@ -106,6 +106,20 @@ router.post("/tokenIsValid", async (request, response) => {
   }
 });
 
+router.put("/achievement", async (request, response) => {
+  const achi = request.body;
+  const existingUser = await userSchema.findById(achi.id);
+
+  if (!achi) return response.status(400).json({ message: "no achi" });
+  if (existingUser.achi === true) return null;
+
+  try {
+    await userSchema.findByIdAndUpdate(achi.id, { achi: achi.achi.girl });
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
+
 router.get("/", auth, async (request, response) => {
   const user = userSchema.findById(request.user);
   response.json({ loginName: user.loginName, id: user._id });

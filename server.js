@@ -16,9 +16,10 @@ app.use(helmet({
 }));
 app.use(cors());
 app.use(express.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(publicPath));
 
+mongoose.set("useFindAndModify", false);
 mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, 
   (error) => {
     if (error) {
