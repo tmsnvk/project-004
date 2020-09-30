@@ -35,7 +35,19 @@ router.post("/register", async (request, response) => {
     const newUser = new userSchema({
       loginName: loginName,
       password: passwordHash,
-      achi: false
+      achievementsAOSO: {
+        numberOfDeath: 0,
+        typesOfDeath: "",
+        followToRoom: false,
+        getKOed: false,
+        keepPunching: false,
+        hideSafely: false,
+        refuseMeal: false,
+        acceptMeal: false,
+        refusePampflet: false,
+        acceptPampflet: false,
+        listenToSoldiers: false
+      }
     });
 
     const savedUser = await newUser.save();
@@ -110,16 +122,25 @@ router.post("/tokenIsValid", async (request, response) => {
 router.put("/achievement", async (request, response) => {
   const receivedData = request.body;
   const getUser = await userSchema.findById(receivedData.id);
-  console.log(request.body.achis[0]);
+  console.log(getUser);
 
   if (!receivedData) return response.status(400).json({ message: "no achi" });
-  if (getUser.achi === true) return null;
+  // if (getUser.achievementsAOSO === true) return null;
 
-  try {
-    await userSchema.findByIdAndUpdate(receivedData.id, { achi: receivedData.achis[0].girlValue });
-  } catch (error) {
-    response.status(500).json({ error: error.message });
+  if (request.body.text === "AOSO8G") {
+    try {
+      await getUser.updateOne({ "$set": { "achievementsAOSO.keepPunching": true }});
+      console.log(getUser);
+    } catch (error) {
+      response.status(500).json({ error: error.message });
+    }
   }
+});
+
+router.get("/achievement", async (request, response) => {
+  const receivedData = request.query;
+  const getUser = await userSchema.findById(receivedData);
+  response.json(getUser.achievementsAOSO)
 });
 
 router.get("/", auth, async (request, response) => {

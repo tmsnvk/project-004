@@ -1,13 +1,9 @@
 const arcOneStoryOne = [
   {
-    achiNumber: "3E",
-    achi: {
-      achistatus: "girl",
-      achistatusbool: false
-    }
+    achiNumber: "AOSO3E",
   },
   {
-    id: "1",
+    id: "AOSO1",
     paragraphs: [
       {
         text: "You wake up in the common room at a table in a lousy tavern just before dawn. At first, you don't remember how you ended up here - you look around you (dirty clothes, a number of empty mugs, a half-eaten dish) and it all comes back together. Another failed assignment - probably the last one this time - and you are on the streets."
@@ -22,15 +18,15 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Your hungry eyes follow the girls' shapes.",
-        nextEventId: "2E",
+        nextEventId: "AOSO2E",
       },
       {
         text: "You continue staring out from your head.",
-        nextEventId: "2N",
+        nextEventId: "AOSO2N",
       },
       {
         text: "Your knightly noble instincts kick in - you decide to protect the two girls and tear at least one of the brutes a new one",
-        nextEventId: "2G"
+        nextEventId: "AOSO2G"
       }
     ]
   },
@@ -49,7 +45,7 @@ const arcOneStoryOne = [
     ]
   },
   {
-    id: "2E",
+    id: "AOSO2E",
     paragraphs: [
       {
         text: "You take interest in them after watching them for a while and decide to step up to them. The two brutes cautiously look at you but their greeting is familiar."
@@ -64,16 +60,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "You continue enjoying yourself in your stupor.",
-        nextEventId: "3E",
+        nextEventId: "AOSO3E",
       },
       {
         text: "You quickly realise this is bad - and you decide to use your fists.",
-        nextEventId: "3G",
+        nextEventId: "AOSO3G",
       }
     ]
   },
   {
-    id: "2N",
+    id: "AOSO2N",
     paragraphs: [
       {
         text: "Even though those fellas look vaguely familiar, in your stupor you decide not to mind them. You continue to ponder on your life and possibilities. After a short while you see them walking towards the stairs, probably going to their room, you think. "
@@ -101,7 +97,7 @@ const arcOneStoryOne = [
     ]
   },
   {
-    id: "2G",
+    id: "AOSO2G",
     paragraphs: [
       {
         text: "Your initial stupor fades as you look at those two fellas harassing those two girls in the corner. No matter what has happened to you, you feel the urge to step up and help them."
@@ -132,7 +128,7 @@ const arcOneStoryOne = [
     ]
   },
   {
-    id: "3E",
+    id: "AOSO3E",
     paragraphs: [
       {
         text: "Soon you feel damn good about yourself. Suddenly, one of the fellas slams one of the girls on the temple and kicks the other. They both pass out."
@@ -147,16 +143,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Follow them to their room.",
-        nextEventId: "4N_1",
+        nextEventId: "AOSO4N_1",
       },
       {
         text: "Decide to sit at their table for a little bit to gather your thoughts.",
-        nextEventId: "4N_2",
+        nextEventId: "AOSO4N_2",
       }
     ]
   },
   {
-    id: "3G",
+    id: "AOSO3G",
     paragraphs: [
       {
         text: "Suddenly, your knightly noble instincts kick in and your head is free of your previous stupor. You realise you're doing something terrible and decide to punch of the bullies in the face."
@@ -165,16 +161,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "You decide to withdraw but still keep pinning them into the corner.",
-        nextEventId: "8N",
+        nextEventId: "AOSO8N",
       },
       {
         text: "You keep punching them in the face.",
-        nextEventId: "8G",
+        nextEventId: "AOSO8G",
       }
     ]
   },
   {
-    id: "4N_1",
+    id: "AOSO4N_1",
     paragraphs: [
       {
         text: "You shake your head, stand up and walk towards the staircase."
@@ -186,16 +182,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Rush into your companions' room.",
-        nextEventId: "5N_1",
+        nextEventId: "AOSO5N_1",
       },
       {
         text: "Decide to hide somewhere else.",
-        nextEventId: "5N_2",
+        nextEventId: "AOSO5N_2",
       }
     ]
   },
   {
-    id: "4N_2",
+    id: "AOSO4N_2",
     paragraphs: [
       {
         text: "You see two soldiers rushing in to the tavern and run up the staircase. It suddenly dawns on you who they are after. Your curiosity gets the better of you and decide to follow them."
@@ -207,16 +203,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Enter the room.",
-        nextEventId: "7N_1",
+        nextEventId: "AOSO7N_1",
       },
       {
         text: "Hide somewhere safe.",
-        nextEventId: "7N_2",
+        nextEventId: "AOSO7N_2",
       }
     ]
   },
   {
-    id: "5N_1",
+    id: "AOSO5N_1",
     paragraphs: [
       {
         text: "You rush into the second room on the left and find your companions packing their gear. They look surprised first at your panicking face, then at the pair of soldiers rushing into the room."
@@ -233,7 +229,7 @@ const arcOneStoryOne = [
     ]
   },
   {
-    id: "5N_2",
+    id: "AOSO5N_2",
     paragraphs: [
       {
         text: "You run up to the top of the stairs and find a small cabinet right on your right. You enter it and find out that it's a storage room for linens and other equipment."
@@ -251,16 +247,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "You decide to go and check out the room.",
-        nextEventId: "6N_1",
+        nextEventId: "AOSO6N_1",
       },
       {
         text: "You want to leave this place immediately, so you go down the stairs.",
-        nextEventId: "6N_2",
+        nextEventId: "AOSO6N_2",
       }
     ]
   },
   {
-    id: "6N_1",
+    id: "AOSO6N_1",
     paragraphs: [
       {
         text: "CHECKING OUT ROOM"
@@ -278,7 +274,7 @@ const arcOneStoryOne = [
     ]
   },
   {
-    id: "6N_2",
+    id: "AOSO6N_2",
     paragraphs: [
       {
         text: "You carefully reach the bottom of the stairs, and see two soldiers with mugs and plates in front of them at one of the tables. You take a deep breath and shuffle towards the tavern's main door."
@@ -298,7 +294,7 @@ const arcOneStoryOne = [
     ]
   },
   {
-    id: "7N_1",
+    id: "AOSO7N_1",
     paragraphs: [
       {
         text: "You enter the room and one of the soldiers immediately turns towards you."
@@ -315,7 +311,7 @@ const arcOneStoryOne = [
     ]
   },
   {
-    id: "7N_2",
+    id: "AOSO7N_2",
     paragraphs: [
       {
         text: "You find a small cabinet on your right. You enter it and see that it's a storage room for linens and other equipment."
@@ -333,16 +329,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "You decide to go and check out the room.",
-        nextEventId: "6N_1",
+        nextEventId: "AOSO6N_1",
       },
       {
         text: "You want to leave this place immediately, so you go down the stairs.",
-        nextEventId: "6N_2",
+        nextEventId: "AOSO6N_2",
       }
     ]
   },
   {
-    id: "8N",
+    id: "AOSO8N",
     paragraphs: [
       {
         text: "The one you hit is still shaking it off, however the other one is quick to draw his knife. Lucky for you, at that moment two soldiers enter the tavern and finish what you've started."
@@ -357,16 +353,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Excuse and withdraw yourself.",
-        nextEventId: "9N",
+        nextEventId: "AOSO9N",
       },
       {
         text: "You're thirsty and hungry, so there's no reason to turn the offer down.",
-        nextEventId: "9G",
+        nextEventId: "AOSO9G",
       }
     ]
   },
   {
-    id: "8G",
+    id: "AOSO8G",
     paragraphs: [
       {
         text: "You keep pouching one of them and don't see that the other is ready to hit you with one of his mugs."
@@ -378,16 +374,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Slowly sit up, once you came to your senses.",
-        nextEventId: "13N_1",
+        nextEventId: "AOSO13N_1",
       },
       {
         text: "Jerk up and raise your fists in defence.",
-        nextEventId: "13N_2",
+        nextEventId: "AOSO13N_2",
       }
     ]
   },
   {
-    id: "9N",
+    id: "AOSO9N",
     paragraphs: [
       {
         text: "You can't shake off the familiarity those two bastards greeted you, so you excuse yourself in the hope of sneaking into their room and have a look around."
@@ -399,16 +395,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Make your way towards the staircase to enter the room.",
-        nextEventId: "6N_1",
+        nextEventId: "AOSO6N_1",
       },
       {
         text: "Take a last look at the soldiers.",
-        nextEventId: "10N",
+        nextEventId: "AOSO10N",
       }
     ]
   },
   {
-    id: "9G",
+    id: "AOSO9G",
     paragraphs: [
       {
         text: "The soldiers make room for you at their table and shortly the keeper brings you a plate of hot food and a mug of ale. You make a quick work of it, then realise the soldiers hearty laugh."
@@ -420,20 +416,20 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Listen to the soldiers' talk.",
-        nextEventId: "11N_1",
+        nextEventId: "AOSO11N_1",
       },
       {
         text: "Contemplate on what has just happened.",
-        nextEventId: "11N_2",
+        nextEventId: "AOSO11N_2",
       },
       {
         text: "Get up and make your way towards your acquaintances' room.",
-        nextEventId: "11N_3",
+        nextEventId: "AOSO11N_3",
       }
     ]
   }, 
   {
-    id: "10N",
+    id: "AOSO10N",
     paragraphs: [
       {
         text: "One of the soldiers catches your eyes and turns towards you. 'Hey you!'"
@@ -448,12 +444,12 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Climb the stairs and enter your acquaintances' room.",
-        nextEventId: "6N_1",
+        nextEventId: "AOSO6N_1",
       }
     ]
   },
   {
-    id: "11N_1",
+    id: "AOSO11N_1",
     paragraphs: [
       {
         text: "Talk of war against the Greenskins, mistrust in the Elvish Kingdom and of course the revolutionaries - just the usual."
@@ -468,16 +464,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Listen to him, but refuse the note.",
-        nextEventId: "12N",
+        nextEventId: "AOSO12N",
       },
       {
         text: "Listen to him and take the note.",
-        nextEventId: "12G",
+        nextEventId: "AOSO12G",
       }
     ]
   }, 
   {
-    id: "11N_2",
+    id: "AOSO11N_2",
     paragraphs: [
       {
         text: "While shoving the food into your mouth, you try to sum up everything that has happened. Your Lord has gotten rid of you - for sure, this time. Then you woke up here with those bastards acting way too familiar with you. Then the soldiers has appeared. That makes their room empty and you suddenly hope that something in there could help you put the pieces together. The keeper is probably waiting for the soldiers to leave to loot the room himself."
@@ -489,16 +485,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Listen to him, but refuse the note.",
-        nextEventId: "12N",
+        nextEventId: "AOSO12N",
       },
       {
         text: "Listen to him and take the note.",
-        nextEventId: "12G",
+        nextEventId: "AOSO12G",
       }
     ]
   },
   {
-    id: "11N_3",
+    id: "AOSO11N_3",
     paragraphs: [
       {
         text: "After quickly finishing your meal, you suddenly realise that something in those bastards' room could help you put the pieces of last night and this morning together. The keeper is probably waiting for the soldiers to leave to loot the room himself."
@@ -510,16 +506,16 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Listen to him, but refuse the note.",
-        nextEventId: "12N",
+        nextEventId: "AOSO12N",
       },
       {
         text: "Listen to him and take the note.",
-        nextEventId: "12G",
+        nextEventId: "AOSO12G",
       }
     ]
   },
   {
-    id: "12N",
+    id: "AOSO12N",
     paragraphs: [
       {
         text: "'Appricate your bravery, The Empire needs men like you. The Baroness of the Eastern Fief and the Lord of Tarpont Hills need men like you. But more importantly the Colonel of this stinking hole needs men like you. Safety, good job and hot meals in front of you every day. Think about it.' And with that he shoves a recruiting pampflet in your hands."
@@ -531,12 +527,12 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Climb the stairs and enter your acquaintances' room.",
-        nextEventId: "6N_1",
+        nextEventId: "AOSO6N_1",
       }
     ]
   },
   {
-    id: "12G",
+    id: "AOSO12G",
     paragraphs: [
       {
         text: "'Appricate your bravery, The Empire needs men like you. The Baroness of the Eastern Fief and the Lord of Tarpont Hills need men like you. But more importantly the Colonel of this stinking hole needs men like you. Safety, good job and hot meals in front of you every day. Think about it.' And with that he shoves a recruiting pampflet in your hands."
@@ -548,12 +544,12 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Climb the stairs and enter your acquaintances' room.",
-        nextEventId: "6N_1",
+        nextEventId: "AOSO6N_1",
       }
     ]
   },
   {
-    id: "13N_1",
+    id: "AOSO13N_1",
     paragraphs: [
       {
         text: "You turn your head around and realise you are sitting at a table with a plate and mug in front of you."
@@ -568,20 +564,20 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Listen to the soldiers' talk.",
-        nextEventId: "11N_1",
+        nextEventId: "AOSO11N_1",
       },
       {
         text: "Contemplate on what has just happened.",
-        nextEventId: "11N_2",
+        nextEventId: "AOSO11N_2",
       },
       {
         text: "Get up and make your way towards your acquaintances' room.",
-        nextEventId: "11N_3",
+        nextEventId: "AOSO11N_3",
       }
     ]
   },
   {
-    id: "13N_2",
+    id: "AOSO13N_2",
     paragraphs: [
       {
         text: "'Hey, take it easy, good man!' Tells you one of the soldiers with calming motions. 'Sit down, eat this plate of food and calm down. We entered the tavern the moment they striked you down. Eat up, you deserve it.'"
@@ -593,12 +589,12 @@ const arcOneStoryOne = [
     options: [
       {
         text: "Get up and make your way towards your acquaintances' room.",
-        nextEventId: "11N_3",
+        nextEventId: "AOSO11N_3",
       }
     ]
   },
   {
-    id: "6N_1",
+    id: "AOSO6N_1",
     paragraphs: [
       {
         text: ""
@@ -621,7 +617,7 @@ const arcOneStoryOne = [
 export default arcOneStoryOne;
 
 // {
-//   id: "6N_1",
+//   id: "AOSO6N_1",
 //   paragraphs: [
 //     {
 //       text: ""

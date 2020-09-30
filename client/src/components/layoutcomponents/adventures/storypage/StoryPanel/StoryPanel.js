@@ -33,14 +33,11 @@ const StoryPiece = styled.div`
 `;
 
 const StoryPanel = ({ story }) => {
-  const achis = [{ girl: story[0].achi.achistatus, girlValue: story[0].achi.achistatusbool }, { girl: story[0].achi.achistatus, girlValue: story[0].achi.achistatusbool }];
-  console.log(achis);
-  const [eventId, setEventId] = useState("1");
-  const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined })
+  const [eventId, setEventId] = useState("AOSO1");
+  const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined });
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
-  const [achievement, setAchievement] = useState({ girl: false, boy: false });
-console.log(achievement);
   const history = useHistory();
+
 
   useEffect(() => {
     const getEventTexts = (eventId) => {
@@ -50,6 +47,7 @@ console.log(achievement);
 
     getEventTexts(eventId);
   }, [eventId, story]);
+
 
   useEffect(() => {
     const getEventOptions = (eventId) => {
@@ -62,17 +60,20 @@ console.log(achievement);
     getEventOptions(eventId);
   }, [eventId, story]);
 
+
   useEffect(() => {
     const triggerAchievement = async (eventId) => {
-      if (eventId !== "3E") {
-        setAchievement({ ...achievement, boy: true })
-      }
-      const id = localStorage.getItem("id");
-      if (eventId === "3E") {
-        // setAchievement({ girl : true, boy: false });
-        await axios.put("/users/achievement", { achis, id });
-      }
+        const id = localStorage.getItem("id");
+
+        // const res = await axios.get("/users/achievement", {params: { _id: id }}, (req, res) => {
+        // })
+        // console.log(res.data);
+
+        if (eventId === "AOSO8G") {
+        await axios.put("/users/achievement", { id, text: "AOSO8G" } );
+        }
     };
+
 
     const gameOver = (eventId) => {
       if ((eventId) === "GAMEOVER") {
@@ -83,26 +84,6 @@ console.log(achievement);
     triggerAchievement(eventId)
     gameOver(eventId);
   }, [eventId]);
-
-
-  useEffect(() => {
-    const setAchievement = async () => {
-      if (achievement.girl === false) return null;
-        
-      const id = localStorage.getItem("id");
-
-      try {
-        await axios.put("/users/achievement", { achievement, id });
-
-      } catch (error) {
-          console.log(error.response.data.message);
-      }
-    }
-    
-    setAchievement()
-    },[achievement]);
-    
-    
 
   const renderButton = eventOptions.map((option, index) => {
     const getNewEvent = () => setEventId(option[1]);
@@ -115,7 +96,7 @@ console.log(achievement);
   return (
     <ContainerLayout>
       <StoryPiece>
-        {eventId}
+        {eventId} <br></br>
       {eventParagraphs.one}
       </StoryPiece>
       <StoryPiece>
