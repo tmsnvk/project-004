@@ -1,6 +1,10 @@
 const arcOneStoryOne = [
   {
-    achiNumber: "3E"
+    achiNumber: "3E",
+    achi: {
+      achistatus: "girl",
+      achistatusbool: false
+    }
   },
   {
     id: "1",

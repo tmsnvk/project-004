@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import UserContext from "context/UserContext";
+import { UserContext } from "context/UserContext";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { IconYellow } from "components/commoncomponents/styled-icons";
@@ -80,6 +80,7 @@ const Navbar = () => {
   const handleLogout = () => {
     setUserData({ token: undefined, user: undefined });
     localStorage.setItem("auth-token", "");
+    localStorage.setItem("id", "");
     history.push("/page/home");
   };
 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import UserContext from "context/UserContext";
+import { UserContext } from "context/UserContext";
 import styled from "styled-components";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -33,12 +33,13 @@ const StoryPiece = styled.div`
 `;
 
 const StoryPanel = ({ story }) => {
+  const achis = [{ girl: story[0].achi.achistatus, girlValue: story[0].achi.achistatusbool }, { girl: story[0].achi.achistatus, girlValue: story[0].achi.achistatusbool }];
+  console.log(achis);
   const [eventId, setEventId] = useState("1");
   const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined })
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
-  const [achi, setAchi] = useState({ girl: false });
-
-  const { userData, finalachi, setFinalAchi } = useContext(UserContext);
+  const [achievement, setAchievement] = useState({ girl: false, boy: false });
+console.log(achievement);
   const history = useHistory();
 
   useEffect(() => {
@@ -62,14 +63,16 @@ const StoryPanel = ({ story }) => {
   }, [eventId, story]);
 
   useEffect(() => {
-    const achie = (eventId) => {
-      if (eventId !== "3E") return null;
-
+    const triggerAchievement = async (eventId) => {
+      if (eventId !== "3E") {
+        setAchievement({ ...achievement, boy: true })
+      }
+      const id = localStorage.getItem("id");
       if (eventId === "3E") {
-        setAchi({ girl : true });
+        // setAchievement({ girl : true, boy: false });
+        await axios.put("/users/achievement", { achis, id });
       }
     };
-
 
     const gameOver = (eventId) => {
       if ((eventId) === "GAMEOVER") {
@@ -77,45 +80,30 @@ const StoryPanel = ({ story }) => {
       }
     };
 
-    achie(eventId)
+    triggerAchievement(eventId)
     gameOver(eventId);
   }, [eventId]);
-  
-
-
 
 
   useEffect(() => {
-    const achie = async () => {
-      if (achi.girl === false) return null;
+    const setAchievement = async () => {
+      if (achievement.girl === false) return null;
         
       const id = localStorage.getItem("id");
-        try {
-          await axios.put("/users/achievement", { achi, id });
-          // setFinalAchi(achi);
-          
-            
-          } catch (error) {
-            console.log(error.response.data.message);
-          }
-        
+
+      try {
+        await axios.put("/users/achievement", { achievement, id });
+
+      } catch (error) {
+          console.log(error.response.data.message);
       }
-      
-      
-      
-      achie()
-    },[achi]);
+    }
+    
+    setAchievement()
+    },[achievement]);
     
     
-    console.log(achi, localStorage.getItem("userName"));
 
-
-
-
-
-
-
-  
   const renderButton = eventOptions.map((option, index) => {
     const getNewEvent = () => setEventId(option[1]);
 

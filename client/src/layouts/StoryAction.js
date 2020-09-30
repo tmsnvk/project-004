@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Message, MessageTitle } from "components/commoncomponents/general";
+import { Message } from "components/commoncomponents/general";
 import { useHistory } from "react-router-dom";
 import { ContainerStory } from "components/layoutcomponents/adventures/storypage";
 import componentData from "components/layoutcomponents/adventures/mainpage/componentData";

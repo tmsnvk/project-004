@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import UserContext from "context/UserContext";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext, UserProvider } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
@@ -86,16 +86,16 @@ const GlobalStyle = createGlobalStyle`
 // ReactGA.pageview("/");
 
 const App = () => {
-  const [userData, setUserData] = useState({ token: undefined, user: undefined });
-  const [finalachi, setFinalAchi] = useState({ girl: false });
+  const { userData, setUserData } = useContext(UserContext);
 
   useEffect(() => {
     const handleLogin = async () => {
       let token = localStorage.getItem("auth-token");
+
       if (token === null) {
         localStorage.setItem("auth-token", "");
         token = "";
-      }
+      };
 
       const response = await axios.post("/users/tokenIsValid", null, { headers: {"x-auth-token": token }});
       if (response.data) {
@@ -111,7 +111,6 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <UserContext.Provider value={{ userData, setUserData, finalachi, setFinalAchi }}>
         <Navbar />
         <Switch>
           <Route path="/page/home" component={Home} />
@@ -124,7 +123,6 @@ const App = () => {
           <Redirect exact path="/" to="/page/home" />
           <Route component={PageNotFound} />
         </Switch>
-      </UserContext.Provider>
       </ThemeProvider>
     </Router>
   );

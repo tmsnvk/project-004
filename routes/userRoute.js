@@ -34,7 +34,8 @@ router.post("/register", async (request, response) => {
 
     const newUser = new userSchema({
       loginName: loginName,
-      password: passwordHash
+      password: passwordHash,
+      achi: false
     });
 
     const savedUser = await newUser.save();
@@ -107,14 +108,15 @@ router.post("/tokenIsValid", async (request, response) => {
 });
 
 router.put("/achievement", async (request, response) => {
-  const achi = request.body;
-  const existingUser = await userSchema.findById(achi.id);
+  const receivedData = request.body;
+  const getUser = await userSchema.findById(receivedData.id);
+  console.log(request.body.achis[0]);
 
-  if (!achi) return response.status(400).json({ message: "no achi" });
-  if (existingUser.achi === true) return null;
+  if (!receivedData) return response.status(400).json({ message: "no achi" });
+  if (getUser.achi === true) return null;
 
   try {
-    await userSchema.findByIdAndUpdate(achi.id, { achi: achi.achi.girl });
+    await userSchema.findByIdAndUpdate(receivedData.id, { achi: receivedData.achis[0].girlValue });
   } catch (error) {
     response.status(500).json({ error: error.message });
   }

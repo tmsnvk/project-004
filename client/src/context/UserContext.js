@@ -1,5 +1,13 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 
-const UserContext = React.createContext();
+export const UserContext = createContext();
 
-export default UserContext;
+export const UserProvider = ({ children }) => {
+  const [userData, setUserData] = useState({ token: undefined, user: undefined });
+
+  return (
+    <UserContext.Provider value={{ userData, setUserData }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
