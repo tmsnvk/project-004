@@ -412,7 +412,12 @@ const aoso_to_one_last_new_beginning = [
         nextEventId: "AOSO13N_2",
         visible: true
       }
-    ]
+    ],
+    achievement: {
+      code: "AOSO8G",
+      mongoCode: "keepPunching",
+      title: "Keep Punching 'em!"
+    }
   },
   {
     id: "AOSO9N",

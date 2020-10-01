@@ -11,23 +11,15 @@ router.post("/register", async (request, response) => {
     const { loginName, password, passwordCheck } = request.body;
     console.log(request.body);
     
-    if (!loginName || !password || !passwordCheck) {
-      return response.status(400).json({ message: "Not all fields have been entered!" });
-    }
+    if (!loginName || !password || !passwordCheck) return response.status(400).json({ message: "Not all fields have been entered!" });
     
-    if (password.length < 2) {
-      return response.status(400).json({ message: "Password needs to be at least 6 characters!" });
-    }
+    if (password.length < 2) return response.status(400).json({ message: "Password needs to be at least 6 characters!" });
     
-    if (password !== passwordCheck) {
-      return response.status(400).json({ message: "Enter the same password twice for verification" }); 
-    }
+    if (password !== passwordCheck) return response.status(400).json({ message: "Enter the same password twice for verification" }); 
 
     const existingUser = await userSchema.findOne({ loginName: loginName });
 
-    if (existingUser) {
-      return response.status(400).json({ message: "Account with this name already exists" });
-    }
+    if (existingUser) return response.status(400).json({ message: "Account with this name already exists" });
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -63,21 +55,15 @@ router.post("/login", async (request, response) => {
   try {
     const { loginName, password, auth } = request.body;
 
-    if (!loginName || !password) {
-      return response.status(400).json({ message: "Not all fields have been entered!" });
-    }
+    if (!loginName || !password) return response.status(400).json({ message: "Not all fields have been entered!" });
 
     const user = await userSchema.findOne({ loginName: loginName });
 
-    if (!user) {
-      return response.status(400).json({ message: "No account with this name!" });
-    }
+    if (!user) return response.status(400).json({ message: "No account with this name!" });
 
     const isMatch = await bcrypt.compare(password, user.password);
 
-    if (!isMatch) {
-      return response.status(400).json({ message: "Invalid credentials!" });
-    }
+    if (!isMatch) return response.status(400).json({ message: "Invalid credentials!" });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     response.json({ token, user: { id: user._id, loginName: user.loginName } });
@@ -99,19 +85,13 @@ router.delete("/delete", auth, async (request, response) => {
 router.post("/tokenIsValid", async (request, response) => {
   try {
     const token = request.header("x-auth-token");
-    if (!token) {
-      return response.json(false);
-    }
+    if (!token) return response.json(false);
 
     const verified = jwt.verify(token, process.env.JWT_SECRET);
-    if (!verified) {
-      return response.json(false);
-    }
+    if (!verified) return response.json(false);
 
     const user = await userSchema.findById(verified.id);
-    if (!user) {
-      return response.json(false);
-    }
+    if (!user) return response.json(false);
 
     return response.json(true);
   } catch (error) {
@@ -130,17 +110,17 @@ router.put("/achievement", async (request, response) => {
   if (request.body.text === "AOSO8G") {
     try {
       await getUser.updateOne({ "$set": { "achievementsAOSO.keepPunching": true }});
-      console.log(getUser);
+      return response.json("update received");
     } catch (error) {
       response.status(500).json({ error: error.message });
     }
   }
 });
 
-router.get("/achievement", async (request, response) => {
+router.get("/achievements/aoso", async (request, response) => {
   const receivedData = request.query;
   const getUser = await userSchema.findById(receivedData);
-  response.json(getUser.achievementsAOSO)
+  response.json(getUser.achievementsAOSO);
 });
 
 router.get("/", auth, async (request, response) => {

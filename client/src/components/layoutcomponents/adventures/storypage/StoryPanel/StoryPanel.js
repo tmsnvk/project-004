@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "context/UserContext";
-import styled from "styled-components";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
+import axios from "axios";
 import { AdventureButton } from "components/layoutcomponents/adventures/storypage";
 
-const ComponentLayout = styled.div`
+const ComponentContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -18,12 +17,11 @@ const ComponentLayout = styled.div`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    /* width: 90%; */
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    width: 75%;
-    margin: 0 auto;
+    margin: 10rem auto;
+    width: 80%;
   }
 `;
 
@@ -69,62 +67,99 @@ const NextEventButton = styled(AdventureButton)`
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     line-height: 1.75;
     margin: 5rem 1rem 0 1rem;
-    width: 35%;
-    
+    width: 30%;
 
     &:first-child {
-        margin: 5rem 1rem 0 1rem;
-      }
+      margin: 5rem 1rem 0 1rem;
+    }
   }
+`;
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+
+const AchievementUnlocked = styled.div`
+  animation: 0.5s ${fadeIn} ease-out;
+  width: fit-content;
+  margin: 10rem 0 0 0;
+  background-color: ${props => props.theme.backgroundColor.secondary};
+  font-size: ${props => props.theme.fontSize.medium};
+  color: ${props => props.theme.fontColor.secondaryDark};
+  font-weight: bold;
+  border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
+  padding: 2rem 2rem 2rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
 `;
 
 const StoryPanel = ({ story }) => {
   const [eventId, setEventId] = useState("AOSO1");
   const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined });
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
+  const [eventAchievement, setEventAchievement] = useState({ code: undefined, mongoCode: undefined, title: undefined });
+  const [showAchievementPanel, setShowAchievementPanel] = useState(false);
   const history = useHistory();
   
   useEffect(() => {
     const getEventTexts = (eventId) => {
-      const eventText = story.find(element => element.id === eventId);
-      setEventParagraphs({ one: eventText.paragraphs[0]?.text, two: eventText.paragraphs[1]?.text, three: eventText.paragraphs[2]?.text });
+      const eventTexts = story.find(element => element.id === eventId);
+      setEventParagraphs({ one: eventTexts.paragraphs[0]?.text, two: eventTexts.paragraphs[1]?.text, three: eventTexts.paragraphs[2]?.text });
     };
 
     getEventTexts(eventId);
   }, [eventId, story]);
 
-
   useEffect(() => {
     const getEventOptions = (eventId) => {
-      const eventText = story.find(element => element.id === eventId);
-      eventText.options.forEach((option, index, array) => {
-        setEventOptions([[array[0]?.text, array[0]?.nextEventId, array[0]?.visible], [array[1]?.text, array[1]?.nextEventId, array[1]?.visible], [array[2]?.text, array[2]?.nextEventId, array[2]?.visible]]);
-      });
+      const eventOptions = story.find(element => element.id === eventId);
+      eventOptions.options.forEach((option, index, array) => setEventOptions([[array[0]?.text, array[0]?.nextEventId, array[0]?.visible], [array[1]?.text, array[1]?.nextEventId, array[1]?.visible], [array[2]?.text, array[2]?.nextEventId, array[2]?.visible]]));
     };
 
     getEventOptions(eventId);
   }, [eventId, story]);
 
-
   useEffect(() => {
-    const triggerAchievement = async (eventId) => {
-        const id = localStorage.getItem("id");
-
-        if (eventId === "AOSO8G") {
-        await axios.put("/users/achievement", { id, text: "AOSO8G" } );
-        }
+    const getAchievement = (eventId) => {
+      const eventAchievements = story.find(element => element.id === eventId);
+      setEventAchievement({ code: eventAchievements.achievement?.code, mongoCode: eventAchievements.achievement?.mongoCode, title: eventAchievements.achievement?.title });
     };
 
+    getAchievement(eventId)
+  }, [eventId, story]);
 
-    const gameOver = (eventId) => {
-      if ((eventId) === "GAMEOVER") {
-        history.push("/page/adventures/results");
+  useEffect(() => {
+    const triggerAchievement = async (eventId, eventAchievement) => {
+      if (eventId === eventAchievement?.code) {
+        try {
+          const id = localStorage.getItem("id");
+          const response = await axios.get("/users/achievements/aoso", {params: { _id: id }});
+          if (response.data.keepPunching) return;
+          setShowAchievementPanel(true);
+          await axios.put("/users/achievement", { id, text: eventAchievement.code });
+        } catch (error) {
+          console.log(error);
+        }
       }
     };
 
-    triggerAchievement(eventId)
-    gameOver(eventId);
-  }, [eventId]);
+    triggerAchievement(eventId, eventAchievement);
+    return () => setShowAchievementPanel(false);
+  }, [eventId, eventAchievement]);
+
+  useEffect(() => {
+    const triggerGameOver = (eventId) => {
+      if ((eventId) === "GAMEOVER") history.push("/page/adventures/results");
+    };
+
+    triggerGameOver(eventId);
+  }, [eventId, history]);
 
   const renderButton = eventOptions.map((option, index) => {
     const getNewEvent = () => setEventId(option[1]);
@@ -135,21 +170,22 @@ const StoryPanel = ({ story }) => {
   });
 
   return (
-    <ComponentLayout>
+    <ComponentContainer>
       <StoryPiece>
         {eventId} <br></br>
-      {eventParagraphs.one}
+        {eventParagraphs.one}
       </StoryPiece>
       <StoryPiece>
-      {eventParagraphs.two}
+        {eventParagraphs.two}
       </StoryPiece>
       <StoryPiece>
-      {eventParagraphs.three}
+        {eventParagraphs.three}
       </StoryPiece>
       <ContainerButton>
         {renderButton}
       </ContainerButton>
-    </ComponentLayout>
+      {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {eventAchievement.title}</AchievementUnlocked> : null}
+    </ComponentContainer>
   );
 };
 

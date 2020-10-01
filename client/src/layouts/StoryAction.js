@@ -12,9 +12,10 @@ const ContainerLayout = styled.main`
   grid-template-rows: auto;
   grid-column-gap: 2.5em;
   grid-row-gap: 2.5rem;  
-  width: 85%;
+  width: 90%;
   margin: 5rem auto;
   font-size: ${props => props.theme.fontSize.medium};
+  letter-spacing: 0.1rem;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
 
