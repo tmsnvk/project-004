@@ -1,4 +1,4 @@
-const arcOneStoryOne = [
+const aoso_to_one_last_new_beginning = [
   {
     achiNumber: "AOSO3E",
   },
@@ -19,14 +19,17 @@ const arcOneStoryOne = [
       {
         text: "Your hungry eyes follow the girls' shapes.",
         nextEventId: "AOSO2E",
+        visible: true
       },
       {
         text: "You continue staring out from your head.",
         nextEventId: "AOSO2N",
+        visible: true
       },
       {
         text: "Your knightly noble instincts kick in - you decide to protect the two girls and tear at least one of the brutes a new one",
-        nextEventId: "AOSO2G"
+        nextEventId: "AOSO2G",
+        visible: true
       }
     ]
   },
@@ -61,10 +64,12 @@ const arcOneStoryOne = [
       {
         text: "You continue enjoying yourself in your stupor.",
         nextEventId: "AOSO3E",
+        visible: true
       },
       {
         text: "You quickly realise this is bad - and you decide to use your fists.",
         nextEventId: "AOSO3G",
+        visible: true
       }
     ]
   },
@@ -85,14 +90,17 @@ const arcOneStoryOne = [
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       },
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       },
       {
         text: "GAMEOVER",
-        nextEventId: "GAMEOVER"
+        nextEventId: "GAMEOVER",
+        visible: true
       }
     ]
   },
@@ -116,14 +124,17 @@ const arcOneStoryOne = [
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       },
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       },
       {
         text: "GAMEOVER",
-        nextEventId: "GAMEOVER"
+        nextEventId: "GAMEOVER",
+        visible: true
       }
     ]
   },
@@ -144,10 +155,12 @@ const arcOneStoryOne = [
       {
         text: "Follow them to their room.",
         nextEventId: "AOSO4N_1",
+        visible: true
       },
       {
         text: "Decide to sit at their table for a little bit to gather your thoughts.",
         nextEventId: "AOSO4N_2",
+        visible: true
       }
     ]
   },
@@ -162,10 +175,12 @@ const arcOneStoryOne = [
       {
         text: "You decide to withdraw but still keep pinning them into the corner.",
         nextEventId: "AOSO8N",
+        visible: true
       },
       {
         text: "You keep punching them in the face.",
         nextEventId: "AOSO8G",
+        visible: true
       }
     ]
   },
@@ -183,10 +198,12 @@ const arcOneStoryOne = [
       {
         text: "Rush into your companions' room.",
         nextEventId: "AOSO5N_1",
+        visible: true
       },
       {
         text: "Decide to hide somewhere else.",
         nextEventId: "AOSO5N_2",
+        visible: true
       }
     ]
   },
@@ -204,10 +221,12 @@ const arcOneStoryOne = [
       {
         text: "Enter the room.",
         nextEventId: "AOSO7N_1",
+        visible: true
       },
       {
         text: "Hide somewhere safe.",
         nextEventId: "AOSO7N_2",
+        visible: true
       }
     ]
   },
@@ -225,6 +244,7 @@ const arcOneStoryOne = [
       {
         text: "GAME OVER",
         nextEventId: "GAMEOVER",
+        visible: true
       }
     ]
   },
@@ -248,10 +268,12 @@ const arcOneStoryOne = [
       {
         text: "You decide to go and check out the room.",
         nextEventId: "AOSO6N_1",
+        visible: true
       },
       {
         text: "You want to leave this place immediately, so you go down the stairs.",
         nextEventId: "AOSO6N_2",
+        visible: true
       }
     ]
   },
@@ -266,10 +288,12 @@ const arcOneStoryOne = [
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       },
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       }
     ]
   },
@@ -290,6 +314,7 @@ const arcOneStoryOne = [
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       }
     ]
   },
@@ -307,6 +332,7 @@ const arcOneStoryOne = [
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       }
     ]
   },
@@ -330,10 +356,12 @@ const arcOneStoryOne = [
       {
         text: "You decide to go and check out the room.",
         nextEventId: "AOSO6N_1",
+        visible: true
       },
       {
         text: "You want to leave this place immediately, so you go down the stairs.",
         nextEventId: "AOSO6N_2",
+        visible: true
       }
     ]
   },
@@ -354,10 +382,12 @@ const arcOneStoryOne = [
       {
         text: "Excuse and withdraw yourself.",
         nextEventId: "AOSO9N",
+        visible: true
       },
       {
         text: "You're thirsty and hungry, so there's no reason to turn the offer down.",
         nextEventId: "AOSO9G",
+        visible: true
       }
     ]
   },
@@ -375,10 +405,12 @@ const arcOneStoryOne = [
       {
         text: "Slowly sit up, once you came to your senses.",
         nextEventId: "AOSO13N_1",
+        visible: true
       },
       {
         text: "Jerk up and raise your fists in defence.",
         nextEventId: "AOSO13N_2",
+        visible: true
       }
     ]
   },
@@ -396,10 +428,12 @@ const arcOneStoryOne = [
       {
         text: "Make your way towards the staircase to enter the room.",
         nextEventId: "AOSO6N_1",
+        visible: true
       },
       {
         text: "Take a last look at the soldiers.",
         nextEventId: "AOSO10N",
+        visible: true
       }
     ]
   },
@@ -417,14 +451,17 @@ const arcOneStoryOne = [
       {
         text: "Listen to the soldiers' talk.",
         nextEventId: "AOSO11N_1",
+        visible: true
       },
       {
         text: "Contemplate on what has just happened.",
         nextEventId: "AOSO11N_2",
+        visible: true
       },
       {
         text: "Get up and make your way towards your acquaintances' room.",
         nextEventId: "AOSO11N_3",
+        visible: true
       }
     ]
   }, 
@@ -445,6 +482,7 @@ const arcOneStoryOne = [
       {
         text: "Climb the stairs and enter your acquaintances' room.",
         nextEventId: "AOSO6N_1",
+        visible: true
       }
     ]
   },
@@ -465,10 +503,12 @@ const arcOneStoryOne = [
       {
         text: "Listen to him, but refuse the note.",
         nextEventId: "AOSO12N",
+        visible: true
       },
       {
         text: "Listen to him and take the note.",
         nextEventId: "AOSO12G",
+        visible: true
       }
     ]
   }, 
@@ -486,10 +526,12 @@ const arcOneStoryOne = [
       {
         text: "Listen to him, but refuse the note.",
         nextEventId: "AOSO12N",
+        visible: true
       },
       {
         text: "Listen to him and take the note.",
         nextEventId: "AOSO12G",
+        visible: true
       }
     ]
   },
@@ -507,10 +549,12 @@ const arcOneStoryOne = [
       {
         text: "Listen to him, but refuse the note.",
         nextEventId: "AOSO12N",
+        visible: true
       },
       {
         text: "Listen to him and take the note.",
         nextEventId: "AOSO12G",
+        visible: true
       }
     ]
   },
@@ -528,6 +572,7 @@ const arcOneStoryOne = [
       {
         text: "Climb the stairs and enter your acquaintances' room.",
         nextEventId: "AOSO6N_1",
+        visible: true
       }
     ]
   },
@@ -545,6 +590,7 @@ const arcOneStoryOne = [
       {
         text: "Climb the stairs and enter your acquaintances' room.",
         nextEventId: "AOSO6N_1",
+        visible: true
       }
     ]
   },
@@ -565,14 +611,17 @@ const arcOneStoryOne = [
       {
         text: "Listen to the soldiers' talk.",
         nextEventId: "AOSO11N_1",
+        visible: true
       },
       {
         text: "Contemplate on what has just happened.",
         nextEventId: "AOSO11N_2",
+        visible: true
       },
       {
         text: "Get up and make your way towards your acquaintances' room.",
         nextEventId: "AOSO11N_3",
+        visible: true
       }
     ]
   },
@@ -590,6 +639,7 @@ const arcOneStoryOne = [
       {
         text: "Get up and make your way towards your acquaintances' room.",
         nextEventId: "AOSO11N_3",
+        visible: true
       }
     ]
   },
@@ -604,17 +654,19 @@ const arcOneStoryOne = [
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       },
       {
         text: "GAMEOVER",
         nextEventId: "GAMEOVER",
+        visible: true
       }
     ]
   }
 ];
 
 
-export default arcOneStoryOne;
+export default aoso_to_one_last_new_beginning;
 
 // {
 //   id: "AOSO6N_1",

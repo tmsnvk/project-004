@@ -27,6 +27,12 @@ const ContainerLayout = styled.main`
 `;
 
 
+// const id = localStorage.getItem("id");
+
+// const res = await axios.get("/users/achievement", {params: { _id: id }}, (req, res) => {
+// })
+// console.log(res.data);
+
 const Profile = () => {
 
   return (

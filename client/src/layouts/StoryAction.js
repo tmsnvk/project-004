@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Message } from "components/commoncomponents/general";
 import { useHistory } from "react-router-dom";
-import { ContainerStory } from "components/layoutcomponents/adventures/storypage";
+import styled from "styled-components";
+import { Message, MessageTitle } from "components/commoncomponents/general";
+import { StoryPanel, AdventureButton } from "components/layoutcomponents/adventures/storypage";
 import componentData from "components/layoutcomponents/adventures/mainpage/componentData";
-import { arcOneStoryOne, arcOneStoryTwo } from "stories";
+import { aoso_to_one_last_new_beginning, arcOneStoryTwo } from "stories";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -14,7 +14,7 @@ const ContainerLayout = styled.main`
   grid-row-gap: 2.5rem;  
   width: 85%;
   margin: 5rem auto;
-  letter-spacing: 0.1rem;
+  font-size: ${props => props.theme.fontSize.medium};
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
 
@@ -25,8 +25,14 @@ const ContainerLayout = styled.main`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 90%;
+    font-size: ${props => props.theme.fontSize.large};
   }
+`;
+
+const StartButton = styled(AdventureButton)`
+  margin: 2.5rem auto;
+  font-size: ${props => props.theme.fontSize.large};
+  letter-spacing: 0.2rem;
 `;
 
 const AdventureAction = () => {
@@ -35,8 +41,8 @@ const AdventureAction = () => {
   const storyName = history.location.pathname;
 
   let chosenStory;
-    if (storyName.includes("arcOneStoryOne")) {
-      chosenStory = arcOneStoryOne;
+    if (storyName.includes("aoso_to_one_last_new_beginning")) {
+      chosenStory = aoso_to_one_last_new_beginning;
     } else if (storyName.includes("arcOneStoryTwo")) {
       chosenStory = arcOneStoryTwo;
     } else {
@@ -51,11 +57,11 @@ const AdventureAction = () => {
     <ContainerLayout>
       {start === false ? 
       <>
-        <Message message={componentData.gameBeginningMessage.paragraphOne} />
+        <MessageTitle title={componentData.gameBeginningMessage.paragraphOne} />
         <Message message={componentData.gameBeginningMessage.paragraphTwo} />
-        <button onClick={startStory}>CLICK ME</button>
+        <StartButton onClick={startStory}>START</StartButton>
       </> :
-        <ContainerStory story={chosenStory} />
+        <StoryPanel story={chosenStory} />
     }
     </ContainerLayout>
   );

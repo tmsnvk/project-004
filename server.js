@@ -1,20 +1,19 @@
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
-// const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
-
 require("dotenv").config();
 
 const publicPath = path.join(__dirname, "..", "client/public");
 
 const app = express();
 
+app.use(cors());
 app.use(helmet({
   contentSecurityPolicy: false,
 }));
-app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(publicPath));

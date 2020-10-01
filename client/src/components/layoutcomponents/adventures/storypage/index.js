@@ -1,4 +1,4 @@
-import ContainerStory from "./ContainerStory";
+import AdventureButton from "./AdventureButton";
 import StoryPanel from "./StoryPanel";
 
-export { ContainerStory, StoryPanel };
+export { AdventureButton, StoryPanel };

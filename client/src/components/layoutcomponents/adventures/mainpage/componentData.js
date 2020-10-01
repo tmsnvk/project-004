@@ -6,7 +6,7 @@ const componentData = {
   },
   gameBeginningMessage: {
     paragraphOne: "You have choosen, adventurer!",
-    paragraphTwo: "Click on the start button to start your journey! Beware of making bad choices!"
+    paragraphTwo: "Click on the start button to start your journey! Beware of making bad choices - Hood watches each and every step of yours!"
   }
 };
 

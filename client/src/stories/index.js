@@ -1,4 +1,4 @@
-import arcOneStoryOne from "stories/arcOne/storyOne";
+import aoso_to_one_last_new_beginning from "stories/arcOne/storyOne";
 import arcOneStoryTwo from "stories/arcOne/storyTwo";
 
-export { arcOneStoryOne, arcOneStoryTwo };
+export { aoso_to_one_last_new_beginning, arcOneStoryTwo };

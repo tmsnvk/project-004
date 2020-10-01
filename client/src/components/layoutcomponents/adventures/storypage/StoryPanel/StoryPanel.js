@@ -3,17 +3,11 @@ import { UserContext } from "context/UserContext";
 import styled from "styled-components";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { AdventureButton } from "components/layoutcomponents/adventures/storypage";
 
-const ContainerLayout = styled.main`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  grid-column-gap: 2.5em;
-  grid-row-gap: 2.5rem;  
-  width: 85%;
-  margin: 5rem auto;
-  letter-spacing: 0.1rem;
-  font-size: ${props => props.theme.fontSize.medium};
+const ComponentLayout = styled.div`
+  display: flex;
+  flex-direction: column;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
 
@@ -24,12 +18,64 @@ const ContainerLayout = styled.main`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 90%;
+    /* width: 90%; */
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    width: 75%;
+    margin: 0 auto;
   }
 `;
 
 const StoryPiece = styled.div`
+  padding: 1.5rem 0 1.5rem 0;
+`;
+
+const ContainerButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
+
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+    width: 80%;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    width: 100%;
+    flex-direction: row;
+}
+`;
+
+const NextEventButton = styled(AdventureButton)`
+  visibility: ${props => props.visible ? "visible" : "hidden"};
   font-size: ${props => props.theme.fontSize.medium};
+  
+  &:first-child {
+    margin: 5rem 0 1rem 0;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
+
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    line-height: 1.75;
+    margin: 5rem 1rem 0 1rem;
+    width: 35%;
+    
+
+    &:first-child {
+        margin: 5rem 1rem 0 1rem;
+      }
+  }
 `;
 
 const StoryPanel = ({ story }) => {
@@ -37,8 +83,7 @@ const StoryPanel = ({ story }) => {
   const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined });
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
   const history = useHistory();
-
-
+  
   useEffect(() => {
     const getEventTexts = (eventId) => {
       const eventText = story.find(element => element.id === eventId);
@@ -53,7 +98,7 @@ const StoryPanel = ({ story }) => {
     const getEventOptions = (eventId) => {
       const eventText = story.find(element => element.id === eventId);
       eventText.options.forEach((option, index, array) => {
-        setEventOptions([[array[0]?.text, array[0]?.nextEventId], [array[1]?.text, array[1]?.nextEventId], [array[2]?.text, array[2]?.nextEventId]]);
+        setEventOptions([[array[0]?.text, array[0]?.nextEventId, array[0]?.visible], [array[1]?.text, array[1]?.nextEventId, array[1]?.visible], [array[2]?.text, array[2]?.nextEventId, array[2]?.visible]]);
       });
     };
 
@@ -64,10 +109,6 @@ const StoryPanel = ({ story }) => {
   useEffect(() => {
     const triggerAchievement = async (eventId) => {
         const id = localStorage.getItem("id");
-
-        // const res = await axios.get("/users/achievement", {params: { _id: id }}, (req, res) => {
-        // })
-        // console.log(res.data);
 
         if (eventId === "AOSO8G") {
         await axios.put("/users/achievement", { id, text: "AOSO8G" } );
@@ -89,12 +130,12 @@ const StoryPanel = ({ story }) => {
     const getNewEvent = () => setEventId(option[1]);
 
     return (
-      <button key={index} onClick={getNewEvent}>{option[0]}</button>
+      <NextEventButton key={index} visible={option[2]} onClick={getNewEvent}>{option[0]}</NextEventButton>
     );
   });
 
   return (
-    <ContainerLayout>
+    <ComponentLayout>
       <StoryPiece>
         {eventId} <br></br>
       {eventParagraphs.one}
@@ -105,8 +146,10 @@ const StoryPanel = ({ story }) => {
       <StoryPiece>
       {eventParagraphs.three}
       </StoryPiece>
-      {renderButton}
-    </ContainerLayout>
+      <ContainerButton>
+        {renderButton}
+      </ContainerButton>
+    </ComponentLayout>
   );
 };
 

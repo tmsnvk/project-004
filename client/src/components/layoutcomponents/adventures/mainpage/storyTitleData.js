@@ -3,7 +3,7 @@ const storyTitleData = [
     id: 1,
     arcTitle:"Tales of the Eastern Fief",
     storyOneTitle: "To One Last New Beginning",
-    storyOneLink: "arcOneStoryOne",
+    storyOneLink: "aoso_to_one_last_new_beginning",
     storyTwoTitle: "Soon-to-be-Title",
     storyTwoLink: "arcOneStoryTwo",
     storyThreeTitle: undefined,
