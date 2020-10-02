@@ -100,28 +100,34 @@ router.post("/tokenIsValid", async (request, response) => {
 });
 
 router.put("/achievement", async (request, response) => {
+  const achievementClientCode = ["AOSO8G", "AOSO5N_2"];
+  const achievementMongoCode = ["achievementsAOSO.keepPunching", "achievementsAOSO.hideSafely"];
+
   const receivedData = request.body;
+  if (!receivedData) return response.status(400).json({ message: "Didn't receive any data." });
+
   const getUser = await userSchema.findById(receivedData.id);
-  console.log(getUser);
+  
+  for (let i = 0; i < achievementClientCode.length; i++) {
+    console.log("getUser" + "." + achievementMongoCode[i]);
 
-  if (!receivedData) return response.status(400).json({ message: "no achi" });
-  // if (getUser.achievementsAOSO === true) return null;
-
-  if (request.body.text === "AOSO8G") {
-    try {
-      await getUser.updateOne({ "$set": { "achievementsAOSO.keepPunching": true }});
-      return response.json("update received");
-    } catch (error) {
-      response.status(500).json({ error: error.message });
+    if (receivedData.code === achievementClientCode[i]) {
+      if ("getUser" + "." + achievementMongoCode[i]) return response.status(200).json({ message: true });
+      try {
+        await getUser.updateOne({ "$set": { [achievementMongoCode[i]]: true }});
+        return response.json("update received");
+      } catch (error) {
+        response.status(500).json({ error: error.message });
+      }
     }
   }
 });
 
-router.get("/achievements/aoso", async (request, response) => {
-  const receivedData = request.query;
-  const getUser = await userSchema.findById(receivedData);
-  response.json(getUser.achievementsAOSO);
-});
+// router.get("/achievements/aoso", async (request, response) => {
+//   const receivedData = request.query;
+//   const getUser = await userSchema.findById(receivedData);
+//   response.json(getUser.achievementsAOSO);
+// });
 
 router.get("/", auth, async (request, response) => {
   const user = userSchema.findById(request.user);

@@ -106,43 +106,46 @@ const StoryPanel = ({ story }) => {
   const [eventAchievement, setEventAchievement] = useState({ code: undefined, mongoCode: undefined, title: undefined });
   const [showAchievementPanel, setShowAchievementPanel] = useState(false);
   const history = useHistory();
-  
-  useEffect(() => {
-    const getEventTexts = (eventId) => {
-      const eventTexts = story.find(element => element.id === eventId);
-      setEventParagraphs({ one: eventTexts.paragraphs[0]?.text, two: eventTexts.paragraphs[1]?.text, three: eventTexts.paragraphs[2]?.text });
-    };
 
-    getEventTexts(eventId);
+  useEffect(() => {
+    const getEventTexts = (eventId, story) => {
+      const eventParagraphs = story.find(element => element.id === eventId);
+      setEventParagraphs({ one: eventParagraphs.paragraphs[0]?.text, two: eventParagraphs.paragraphs[1]?.text, three: eventParagraphs.paragraphs[2]?.text });
+    };
+    
+    getEventTexts(eventId, story);
+    return () => setEventParagraphs({ one: undefined, two: undefined, three: undefined });
   }, [eventId, story]);
 
   useEffect(() => {
-    const getEventOptions = (eventId) => {
+    const getEventOptions = (eventId, story) => {
       const eventOptions = story.find(element => element.id === eventId);
       eventOptions.options.forEach((option, index, array) => setEventOptions([[array[0]?.text, array[0]?.nextEventId, array[0]?.visible], [array[1]?.text, array[1]?.nextEventId, array[1]?.visible], [array[2]?.text, array[2]?.nextEventId, array[2]?.visible]]));
     };
 
-    getEventOptions(eventId);
+    getEventOptions(eventId, story);
+    return () => setEventOptions([[undefined], [undefined], [undefined]]);
   }, [eventId, story]);
 
   useEffect(() => {
-    const getAchievement = (eventId) => {
-      const eventAchievements = story.find(element => element.id === eventId);
-      setEventAchievement({ code: eventAchievements.achievement?.code, mongoCode: eventAchievements.achievement?.mongoCode, title: eventAchievements.achievement?.title });
+    const getAchievement = (eventId, story) => {
+      const eventAchievement = story.find(element => element.id === eventId);
+      setEventAchievement({ code: eventAchievement.achievement?.code, mongoCode: eventAchievement.achievement?.mongoCode, title: eventAchievement.achievement?.title });
     };
 
-    getAchievement(eventId)
+    getAchievement(eventId, story);
+    return () => setEventAchievement({ code: undefined, mongoCode: undefined, title: undefined });
   }, [eventId, story]);
 
   useEffect(() => {
     const triggerAchievement = async (eventId, eventAchievement) => {
+      if (eventId !== eventAchievement?.code) return;
+
       if (eventId === eventAchievement?.code) {
         try {
           const id = localStorage.getItem("id");
-          const response = await axios.get("/users/achievements/aoso", {params: { _id: id }});
-          if (response.data.keepPunching) return;
-          setShowAchievementPanel(true);
-          await axios.put("/users/achievement", { id, text: eventAchievement.code });
+          const response = await axios.put("/users/achievement", { id, code: eventAchievement.code });
+          if (!response.data.message) setShowAchievementPanel(true);
         } catch (error) {
           console.log(error);
         }

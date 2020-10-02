@@ -33,11 +33,11 @@ const theme = {
   },
   fontSize: {
     default: "0.625rem", // 10px
-    small: "1rem", // 16px
-    medium: "1.375rem", // 22px
-    large: "1.75rem", // 28px
-    xLarge: "2.125rem", // 34px
-    xxLarge: "2.5rem" // 40px
+    small: "0.875rem", // 14px
+    medium: "1.125rem", // 18px
+    large: "1.375rem", // 22px
+    xLarge: "1.75rem", // 28px
+    xxLarge: "2.215rem" // 34px
   },
   mediaQueries: {
     xSmall: "320px",

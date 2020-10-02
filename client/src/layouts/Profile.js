@@ -33,6 +33,10 @@ const ContainerLayout = styled.main`
 // })
 // console.log(res.data);
 
+// const response = await axios.get("/users/achievements/aoso", {params: { _id: id }});
+          // if (response.data.keepPunching) return;
+          // console.log(response.data);
+
 const Profile = () => {
 
   return (
