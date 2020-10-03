@@ -205,7 +205,12 @@ const aoso_to_one_last_new_beginning = [
         nextEventId: "AOSO5N_2",
         visible: true
       }
-    ]
+    ],
+    achievement: {
+      code: "AOSO4N_1",
+      mongoCode: "followToRoom",
+      title: "Keep Punching 'em!"
+    }
   },
   {
     id: "AOSO4N_2",
@@ -275,7 +280,12 @@ const aoso_to_one_last_new_beginning = [
         nextEventId: "AOSO6N_2",
         visible: true
       }
-    ]
+    ],
+    achievement: {
+      code: "AOSO5N_2",
+      mongoCode: "hideSafely",
+      title: "Keep Punching 'em!"
+    }
   },
   {
     id: "AOSO6N_1",

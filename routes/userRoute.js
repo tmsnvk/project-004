@@ -31,7 +31,6 @@ router.post("/register", async (request, response) => {
         numberOfDeath: 0,
         typesOfDeath: "",
         followToRoom: false,
-        getKOed: false,
         keepPunching: false,
         hideSafely: false,
         refuseMeal: false,
@@ -100,19 +99,19 @@ router.post("/tokenIsValid", async (request, response) => {
 });
 
 router.put("/achievement", async (request, response) => {
-  const achievementClientCode = ["AOSO8G", "AOSO5N_2"];
-  const achievementMongoCode = ["achievementsAOSO.keepPunching", "achievementsAOSO.hideSafely"];
-
   const receivedData = request.body;
   if (!receivedData) return response.status(400).json({ message: "Didn't receive any data." });
 
-  const getUser = await userSchema.findById(receivedData.id);
-  
-  for (let i = 0; i < achievementClientCode.length; i++) {
-    console.log("getUser" + "." + achievementMongoCode[i]);
+  const achievementClientCode = [undefined, "AOSO8G", "AOSO5N_2"];
+  const achievementMongoCode = [undefined, "achievementsAOSO.keepPunching", "achievementsAOSO.hideSafely"];
 
+  const getUser = await userSchema.findById(receivedData.id);
+  const achievementValues = Object.entries(getUser.achievementsAOSO).splice(3);
+
+  for (let i = 0; i < achievementClientCode.length; i++) {
     if (receivedData.code === achievementClientCode[i]) {
-      if ("getUser" + "." + achievementMongoCode[i]) return response.status(200).json({ message: true });
+      if (achievementValues[i][1]) return response.status(200).json({ message: true });
+
       try {
         await getUser.updateOne({ "$set": { [achievementMongoCode[i]]: true }});
         return response.json("update received");
