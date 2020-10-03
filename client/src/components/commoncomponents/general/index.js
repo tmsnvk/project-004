@@ -1,4 +1,4 @@
+import MessageText from "./MessageText";
 import MessageTitle from "./MessageTitle";
-import Message from "./Message";
 
-export { Message, MessageTitle };
+export { MessageText, MessageTitle };

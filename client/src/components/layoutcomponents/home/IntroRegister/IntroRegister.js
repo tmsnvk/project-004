@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Message } from "components/commoncomponents/general";
-import componentData from "./componentData";
+import { NavigationLink } from "components/commoncomponents/navigation-related";
+import { MessageText } from "components/commoncomponents/general";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -13,7 +13,9 @@ const ContainerComponent = styled.div`
 const IntroRegister = () => {
   return (
     <ContainerComponent>
-      <Message message={componentData()} />
+      <MessageText>
+        Sign in below if you already have an account registered. If not - <NavigationLink to="/page/register">click here</NavigationLink> to register one!
+      </MessageText>
     </ContainerComponent>
   );
 };

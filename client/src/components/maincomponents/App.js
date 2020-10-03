@@ -3,7 +3,7 @@ import { UserContext, UserProvider } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
-import { About, Adventures, GameResults, Home, PageNotFound, Profile, Register, StoryAction } from "layouts";
+import { About, Adventures, GameResults, Home, PageNotFound, Profile, Register, StoryAction, UnderConstruction } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAddressCard, faChessRook, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie } from "@fortawesome/free-solid-svg-icons";
@@ -116,7 +116,8 @@ const App = () => {
           <Route path="/page/home" component={Home} />
           <Route path="/page/register" component={Register} />
           <PrivateRoute exact path="/page/adventures" component={Adventures} />
-          <PrivateRoute path="/page/adventures/results" component={GameResults} />
+          <PrivateRoute exact path="/page/adventures/results" component={GameResults} />
+          <PrivateRoute exact path="/page/adventures/underconstruction" component={UnderConstruction} />
           <PrivateRoute path="/page/adventures/:storytitle" component={StoryAction} />
           <PrivateRoute path="/page/profile" component={Profile} />
           <Route path="/page/about" component={About} />
@@ -143,4 +144,3 @@ export default App;
 // Constant/Pseudo	Aqua	#76d4d6
 // Support	Purple	#e1a6f2
 // Operator	Beige	#ac8d58
-

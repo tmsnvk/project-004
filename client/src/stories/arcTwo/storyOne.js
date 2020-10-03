@@ -1,4 +1,4 @@
-const a_city_to_burn_0102 = [
+const greenskins_greenskins_everywhere_0201 = [
   {
     id: "AOSO1",
     paragraphs: [
@@ -46,4 +46,4 @@ const a_city_to_burn_0102 = [
   },
 ];
 
-export default a_city_to_burn_0102;
+export default greenskins_greenskins_everywhere_0201;

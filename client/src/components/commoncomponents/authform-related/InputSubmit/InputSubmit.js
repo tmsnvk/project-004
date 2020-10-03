@@ -3,15 +3,14 @@ import styled from "styled-components";
 const InputSubmit = styled.input`
   width: 20rem;
   height: 5rem;
-  text-align: center;
   background-color: ${props => props.theme.backgroundColor.mainDark};
   color: ${props => props.theme.fontColor.main};
   font-size: ${props => props.theme.fontSize.medium};
   font-weight: bold;
-  text-transform: uppercase;
   letter-spacing: 0.4rem;
+  text-transform: uppercase;
+  text-align: center;
   margin: 5rem 0 0 0;
-  padding: 1rem 1rem 1rem 1rem;
   border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -23,6 +22,10 @@ const InputSubmit = styled.input`
   
   &:focus {
     outline: none;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    font-size: ${props => props.theme.fontSize.large};
   }
 `;
 

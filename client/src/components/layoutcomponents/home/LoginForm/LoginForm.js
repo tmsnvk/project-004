@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {UserContext} from "context/UserContext";
+import { UserContext } from "context/UserContext";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -16,17 +16,15 @@ const ContainerComponent = styled.div`
 const LoginForm = () => {
   const [formData, setFormData] = useState({ loginName: undefined, password: undefined });
   const [loginError, setLoginError] = useState(undefined);
-  
-  const { handleSubmit, register } = useForm();
+
   const { setUserData } = useContext(UserContext);
+  const { handleSubmit, register } = useForm();
   const history = useHistory();
 
   const onSubmit = (data) => setFormData({ loginName: data.loginUserName, password: data.loginUserPassword });
 
   useEffect(() => {
-    if (formData.loginName === undefined || formData.password === undefined) {
-      return;
-    };
+    if (formData.loginName === undefined || formData.password === undefined) return;
 
     const handleLogin = async () => {
       try {
@@ -34,14 +32,16 @@ const LoginForm = () => {
         setUserData({ token: response.data.token, user: response.data.user });
         localStorage.setItem("auth-token", response.data.token);
         localStorage.setItem("id", response.data.user.id);
-        history.push("/page/profile");
       } catch (error) {
         return error.response.data.message && setLoginError(error.response.data.message);
       }
     };
 
     handleLogin();
+
+    return () => setFormData({ loginName: undefined, password: undefined }) && setLoginError(undefined);
   }, [formData, setUserData, history]);
+
   return (
     <ContainerComponent>
       <Form method="POST" action="/users/login" id="user-login" onSubmit={handleSubmit(onSubmit)}>

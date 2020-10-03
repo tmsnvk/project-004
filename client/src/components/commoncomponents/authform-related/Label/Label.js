@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Label = styled.label`
-  padding: 3rem 0 0.5rem 0;
+  padding: 3rem 0 1rem 0;
   font-size: ${props => props.theme.fontSize.xLarge};
   font-weight: bold;
   text-transform: uppercase;

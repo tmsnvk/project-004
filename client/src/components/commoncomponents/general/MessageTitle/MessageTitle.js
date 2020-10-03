@@ -1,10 +1,9 @@
-import React from "react";
 import styled from "styled-components";
 
-const ComponentContainer = styled.h2`
-  font-size: ${props => props.theme.fontSize.xLarge};
+const MessageTitle = styled.p`
+  font-size: ${props => props.theme.fontSize.xxLarge};
+  font-weight: bold;
   padding: 0 0 2rem 0;
-  text-align: left;
 
   &:after {
     content: " ";
@@ -14,13 +13,5 @@ const ComponentContainer = styled.h2`
     width: 25%;
   }
 `;
-
-const MessageTitle = ({ title }) => {
-  return (
-  <ComponentContainer>
-    {title}
-  </ComponentContainer>
-  );
-};
 
 export default MessageTitle;

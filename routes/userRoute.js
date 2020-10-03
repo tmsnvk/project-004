@@ -106,6 +106,7 @@ router.put("/achievement", async (request, response) => {
   const achievementMongoCode = [undefined, "achievementsAOSO.keepPunching", "achievementsAOSO.hideSafely"];
 
   const getUser = await userSchema.findById(receivedData.id);
+  console.log(Object.entries(getUser.achievementsAOSO));
   const achievementValues = Object.entries(getUser.achievementsAOSO).splice(3);
 
   for (let i = 0; i < achievementClientCode.length; i++) {

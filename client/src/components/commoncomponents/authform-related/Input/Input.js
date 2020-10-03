@@ -5,8 +5,8 @@ const Input = styled.input`
   height: 5rem;
   background-color: ${props => props.theme.backgroundColor.mainDark};
   color: ${props => props.theme.fontColor.main};
+  font-size: ${props => props.theme.fontSize.medium};
   font-weight: bold;
-  font-size: ${props => props.theme.fontSize.small};
   border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -17,7 +17,7 @@ const Input = styled.input`
     &::placeholder {
       letter-spacing: 0.2rem;
       padding: 1rem 1rem 1rem 1rem;
-      color: ${props => props.theme.fontColor.secondaryDark};;
+      color: ${props => props.theme.fontColor.secondaryDark};
 	  }
   }
 
@@ -35,8 +35,7 @@ const Input = styled.input`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: 30rem;
-    font-size: ${props => props.theme.fontSize.medium};
-    padding: 0.5rem 0.5rem 0.5rem 2rem;
+    font-size: ${props => props.theme.fontSize.large};
   }
 `;
 

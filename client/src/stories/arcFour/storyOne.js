@@ -1,4 +1,4 @@
-const a_city_to_burn_0102 = [
+const wild_elvish_sorcerers_0401 = [
   {
     id: "AOSO1",
     paragraphs: [
@@ -46,4 +46,4 @@ const a_city_to_burn_0102 = [
   },
 ];
 
-export default a_city_to_burn_0102;
+export default wild_elvish_sorcerers_0401;

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Message, MessageTitle } from "components/commoncomponents/general";
-import componentData from "./componentData";
+import { MessageText, MessageTitle } from "components/commoncomponents/general";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -13,8 +12,12 @@ const ContainerComponent = styled.div`
 const IntroText = () => {
   return (
     <ContainerComponent>
-      <MessageTitle title={componentData.messageTitle} />
-      <Message message={componentData.message.paragraphOne} />
+      <MessageTitle>
+        Welcome, adventurer!
+      </MessageTitle>
+      <MessageText>
+        Evrallas is a classic choose-your-adventure type of game in which the decisions you make directly affect the story's progress and final outcome.
+      </MessageText>
     </ContainerComponent>
   );
 };

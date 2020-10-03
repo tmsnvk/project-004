@@ -1,6 +1,5 @@
 import AdventureArc from "./AdventureArc";
 import AdventureTitle from "./AdventureTitle";
-import componentData from "./componentData";
-import storyTitleData from "./storyTitleData";
+import storiesMetaData from "./storiesMetaData";
 
-export { AdventureArc, AdventureTitle, componentData, storyTitleData };
+export { AdventureArc, AdventureTitle, storiesMetaData };

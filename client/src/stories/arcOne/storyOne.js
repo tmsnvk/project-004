@@ -1,4 +1,4 @@
-const aoso_to_one_last_new_beginning = [
+const to_one_last_new_beginning_0101 = [
   {
     achiNumber: "AOSO3E",
   },
@@ -681,7 +681,7 @@ const aoso_to_one_last_new_beginning = [
 ];
 
 
-export default aoso_to_one_last_new_beginning;
+export default to_one_last_new_beginning_0101;
 
 // {
 //   id: "AOSO6N_1",

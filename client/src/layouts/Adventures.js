@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Message, MessageTitle } from "components/commoncomponents/general";
-import { AdventureArc, AdventureTitle, componentData, storyTitleData } from "components/layoutcomponents/adventures/mainpage";
+import { MessageText, MessageTitle } from "components/commoncomponents/general";
+import { AdventureArc, AdventureTitle, storiesMetaData } from "components/layoutcomponents/adventures/mainpage";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -73,23 +73,27 @@ const ContainerStoryArc = styled.div`
 `;
 
 const Adventures = () => {
-  const renderStoryTitleData = storyTitleData.map(({ id, arcTitle, storyOneTitle, storyOneLink, storyTwoTitle, storyTwoLink, storyThreeTitle, storyThreeLink }) => {
+  const renderStoryMetaData = storiesMetaData.map(({ id, arcTitle, storyOne, storyTwo, storyThree }) => {
     return (
       <ContainerStoryArc key={id}>
-        <AdventureArc title={arcTitle} />
-        {storyOneTitle !== undefined ? <AdventureTitle title={storyOneTitle} linkId={storyOneLink} /> : null}
-        {storyTwoTitle !== undefined ? <AdventureTitle title={storyTwoTitle} linkId={storyTwoLink} /> : null}
-        {storyThreeTitle !== undefined ? <AdventureTitle title={storyThreeTitle} linkId={storyThreeLink} /> : null}
+        <AdventureArc arcTitle={arcTitle} />
+        {storyOne.title !== undefined ? <AdventureTitle disabled={storyOne.disabled} storyTitle={storyOne.title} linkId={storyOne.link} /> : null}
+        {storyTwo.title !== undefined ? <AdventureTitle disabled={storyTwo.disabled} storyTitle={storyTwo.title} linkId={storyTwo.link} /> : null}
+        {storyThree.title !== undefined ? <AdventureTitle disabled={storyThree.disabled} storyTitle={storyThree.title} linkId={storyThree.link} /> : null}
       </ContainerStoryArc>
     );
   });
 
   return (
     <ContainerLayout>
-      <MessageTitle title={componentData.messageTitle} />
-      <Message message={componentData.message.paragraphOne} />
+      <MessageTitle>
+        Select a story, adventurer!
+      </MessageTitle>
+      <MessageText>
+        message regarding how everything works, saving options etc.
+      </MessageText>
       <ContainerData>
-        {renderStoryTitleData}
+        {renderStoryMetaData}
       </ContainerData>
     </ContainerLayout>
   );
