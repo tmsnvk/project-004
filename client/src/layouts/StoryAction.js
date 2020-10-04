@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
 import { StoryPanel, AdventureButton } from "components/layoutcomponents/adventures/storypage";
@@ -48,18 +48,18 @@ const AdventureAction = () => {
   if (storyName.includes("to_one_last_new_beginning_0101")) {
     chosenStory = to_one_last_new_beginning_0101;
   } else if (storyName.includes("a_city_to_burn_0102")) {
-    history.push("/page/adventures/underconstruction");
+    return <Redirect to={"/page/adventures/underconstruction"} />;
   } else if (storyName.includes("greenskins_greenskins_everywhere_0201")) {
-    history.push("/page/adventures/underconstruction");
+    return <Redirect to={"/page/adventures/underconstruction"} />;
   } else if (storyName.includes("how_to_lose_an_empire_0301")) {
-    history.push("/page/adventures/underconstruction");
+    return <Redirect to={"/page/adventures/underconstruction"} />;
   } else if (storyName.includes("wild_elvish_sorcerers_0401")) {
-    history.push("/page/adventures/underconstruction");
+    return <Redirect to={"/page/adventures/underconstruction"} />;
   } else return null;
 
   const startStory = () => {
     setStart(true);
-  }
+  };
 
   return (
     <ContainerLayout>

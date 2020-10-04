@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   loginName: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  achievementsAOSO: { 
+  createdAt: { type: Date },
+  // updatedAt: { type: Date },
+  achievementsA1S1: { 
     numberOfDeath: { type: Number, required: false },
     typesOfDeath: { type: [String], required: false },
     followToRoom: { type: Boolean, required: false },
@@ -14,6 +16,10 @@ const userSchema = new mongoose.Schema({
     refusePampflet: { type: Boolean, required: false },
     acceptPampflet: { type: Boolean, required: false },
     listenToSoldiers: { type: Boolean, required: false },
+  },
+  achievementsA1S2: { 
+    numberOfDeath: { type: Number, required: false },
+    typesOfDeath: { type: [String], required: false },
   }
 }, { collection: "evrallas_database" });
 

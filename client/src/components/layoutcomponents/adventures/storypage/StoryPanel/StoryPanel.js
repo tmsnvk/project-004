@@ -7,6 +7,7 @@ import { AdventureButton } from "components/layoutcomponents/adventures/storypag
 const ComponentContainer = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: ${props => props.theme.fontSize.large};
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
 
@@ -17,11 +18,12 @@ const ComponentContainer = styled.div`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    font-size: ${props => props.theme.fontSize.xLarge};
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     margin: 10rem auto;
-    width: 80%;
+    width: 75%;
   }
 `;
 
@@ -33,7 +35,6 @@ const ContainerButton = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
 
@@ -51,7 +52,8 @@ const ContainerButton = styled.div`
 
 const NextEventButton = styled(AdventureButton)`
   visibility: ${props => props.visible ? "visible" : "hidden"};
-  font-size: ${props => props.theme.fontSize.medium};
+  font-size: ${props => props.theme.fontSize.large};
+  line-height: 1.75;
   
   &:first-child {
     margin: 5rem 0 1rem 0;
@@ -65,7 +67,6 @@ const NextEventButton = styled(AdventureButton)`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    line-height: 1.75;
     margin: 5rem 1rem 0 1rem;
     width: 30%;
 

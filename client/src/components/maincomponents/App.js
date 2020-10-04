@@ -3,8 +3,9 @@ import { UserContext, UserProvider } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
-import { About, Adventures, GameResults, Home, PageNotFound, Profile, Register, StoryAction, UnderConstruction } from "layouts";
+import { About, Account, Adventures, GameResults, Home, PageNotFound, Register, StoryAction, UnderConstruction } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
+import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAddressCard, faChessRook, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
@@ -23,6 +24,7 @@ const theme = {
     mainLight: "#777c85", // medium gray
     secondary: "#ffd479", // yellow
     alternate: "#6ab0f3", // blue
+    warning: "#f2777a" // red
   },
   shadowColor: {
     main: "#424242" // almost black
@@ -111,6 +113,7 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
       <GlobalStyle />
+        <ScrollToTop />
         <Navbar />
         <Switch>
           <Route path="/page/home" component={Home} />
@@ -119,7 +122,7 @@ const App = () => {
           <PrivateRoute exact path="/page/adventures/results" component={GameResults} />
           <PrivateRoute exact path="/page/adventures/underconstruction" component={UnderConstruction} />
           <PrivateRoute path="/page/adventures/:storytitle" component={StoryAction} />
-          <PrivateRoute path="/page/profile" component={Profile} />
+          <PrivateRoute path="/page/profile" component={Account} />
           <Route path="/page/about" component={About} />
           <Redirect exact path="/" to="/page/home" />
           <Route component={PageNotFound} />

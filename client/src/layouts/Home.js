@@ -9,7 +9,7 @@ const ContainerLayout = styled.main`
   grid-template-rows: auto;
   grid-column-gap: 2.5em;
   grid-row-gap: 2.5rem;  
-  width: 85%;
+  width: 90%;
   margin: 5rem auto;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {

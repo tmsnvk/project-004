@@ -13,7 +13,7 @@ const ComponentContainer = styled(Link)`
   border-radius: 0.5rem;
 
   &:hover {
-    background-color: ${props => props.theme.backgroundColor.secondary};
+    background-color: ${({ active, theme: { backgroundColor } }) => active === "true" ? backgroundColor.secondary : backgroundColor.warning};
     color: ${props => props.theme.fontColor.secondaryDark};
   }
 
@@ -22,7 +22,7 @@ const ComponentContainer = styled(Link)`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    font-size: ${props => props.theme.fontSize.medium};
+
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
@@ -44,9 +44,9 @@ const ComponentContainer = styled(Link)`
   }
 `;
 
-const AdventureTitle = ({ storyTitle, linkId }) => {
+const AdventureTitle = ({ storyTitle, linkId, active }) => {
   return (
-  <ComponentContainer to={`/page/adventures/${linkId}`}>
+  <ComponentContainer to={`/page/adventures/${linkId}`} active={active}>
     {storyTitle}
   </ComponentContainer>
   );

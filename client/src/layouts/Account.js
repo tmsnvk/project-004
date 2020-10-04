@@ -1,6 +1,8 @@
-import React from "react";
-// import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
+import { MessageText, MessageTitle } from "components/commoncomponents/general";
+import { AchievementList } from "components/layoutcomponents/account";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -8,10 +10,8 @@ const ContainerLayout = styled.main`
   grid-template-rows: auto;
   grid-column-gap: 2.5em;
   grid-row-gap: 2.5rem;  
-  font-size: ${props => props.theme.fontSize.small};
-  text-align: center;
-  width: 85%;
-  margin: 10rem auto;
+  width: 90%;
+  margin: 5rem auto;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
     font-size: ${props => props.theme.fontSize.medium};
@@ -23,27 +23,25 @@ const ContainerLayout = styled.main`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: 50%;
+    margin: 10rem auto;
   }
 `;
 
 
-// const id = localStorage.getItem("id");
 
-// const res = await axios.get("/users/achievement", {params: { _id: id }}, (req, res) => {
-// })
-// console.log(res.data);
-
-// const response = await axios.get("/users/achievements/aoso", {params: { _id: id }});
-          // if (response.data.keepPunching) return;
-          // console.log(response.data);
-
-const Profile = () => {
+const Account = () => {
 
   return (
     <ContainerLayout>
-      <div>USER PROFILE</div>
+      <MessageTitle>
+        Welcome to your Account, adventurer!
+      </MessageTitle>
+      <MessageText>
+        Below you may review what you have achieved through our adventures.
+      </MessageText>
+      <AchievementList />
     </ContainerLayout>
   );
 };
 
-export default Profile;
+export default Account;

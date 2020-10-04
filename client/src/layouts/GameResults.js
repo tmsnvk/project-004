@@ -10,7 +10,7 @@ const ContainerLayout = styled.main`
   grid-row-gap: 2.5rem;  
   font-size: ${props => props.theme.fontSize.large};
   text-align: center;
-  width: 85%;
+  width: 90%;
   margin: 10rem auto;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {

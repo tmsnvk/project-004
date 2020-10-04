@@ -27,7 +27,8 @@ router.post("/register", async (request, response) => {
     const newUser = new userSchema({
       loginName: loginName,
       password: passwordHash,
-      achievementsAOSO: {
+      createdAt: Date.now(),
+      achievementsA1S1: {
         numberOfDeath: 0,
         typesOfDeath: "",
         followToRoom: false,
@@ -38,6 +39,10 @@ router.post("/register", async (request, response) => {
         refusePampflet: false,
         acceptPampflet: false,
         listenToSoldiers: false
+      },
+      achievementsA1S2: {
+        numberOfDeath: 0,
+        typesOfDeath: "",
       }
     });
 
@@ -103,11 +108,11 @@ router.put("/achievement", async (request, response) => {
   if (!receivedData) return response.status(400).json({ message: "Didn't receive any data." });
 
   const achievementClientCode = [undefined, "AOSO8G", "AOSO5N_2"];
-  const achievementMongoCode = [undefined, "achievementsAOSO.keepPunching", "achievementsAOSO.hideSafely"];
+  const achievementMongoCode = [undefined, "achievementsA1S1.keepPunching", "achievementsA1S1.hideSafely"];
 
   const getUser = await userSchema.findById(receivedData.id);
-  console.log(Object.entries(getUser.achievementsAOSO));
-  const achievementValues = Object.entries(getUser.achievementsAOSO).splice(3);
+  console.log(Object.entries(getUser.achievementsA1S1));
+  const achievementValues = Object.entries(getUser.achievementsA1S1).splice(3);
 
   for (let i = 0; i < achievementClientCode.length; i++) {
     if (receivedData.code === achievementClientCode[i]) {
@@ -123,11 +128,18 @@ router.put("/achievement", async (request, response) => {
   }
 });
 
-// router.get("/achievements/aoso", async (request, response) => {
-//   const receivedData = request.query;
-//   const getUser = await userSchema.findById(receivedData);
-//   response.json(getUser.achievementsAOSO);
-// });
+router.get("/achievements/:storycode", async (request, response) => {
+  const receivedData = request.query;
+  const getUser = await userSchema.findById(receivedData);
+  
+  const storyCodes = ["aosone", "aostwo"];
+
+  if (request.url.includes(storyCodes[0])) {
+    response.json(getUser.achievementsA1S1);
+  } else if (request.url.includes(storyCodes[1])) {
+    response.json(getUser.achievementsA1S2);
+  } else return null;
+});
 
 router.get("/", auth, async (request, response) => {
   const user = userSchema.findById(request.user);

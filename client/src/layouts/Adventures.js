@@ -9,7 +9,7 @@ const ContainerLayout = styled.main`
   grid-template-rows: auto;
   grid-column-gap: 2.5em;
   grid-row-gap: 2.5rem;  
-  width: 85%;
+  width: 90%;
   margin: 5rem auto;
   letter-spacing: 0.1rem;
 
@@ -77,9 +77,9 @@ const Adventures = () => {
     return (
       <ContainerStoryArc key={id}>
         <AdventureArc arcTitle={arcTitle} />
-        {storyOne.title !== undefined ? <AdventureTitle disabled={storyOne.disabled} storyTitle={storyOne.title} linkId={storyOne.link} /> : null}
-        {storyTwo.title !== undefined ? <AdventureTitle disabled={storyTwo.disabled} storyTitle={storyTwo.title} linkId={storyTwo.link} /> : null}
-        {storyThree.title !== undefined ? <AdventureTitle disabled={storyThree.disabled} storyTitle={storyThree.title} linkId={storyThree.link} /> : null}
+        {storyOne.title !== undefined ? <AdventureTitle active={storyOne.active} storyTitle={storyOne.title} linkId={storyOne.link} /> : null}
+        {storyTwo.title !== undefined ? <AdventureTitle active={storyTwo.active} storyTitle={storyTwo.title} linkId={storyTwo.link} /> : null}
+        {storyThree.title !== undefined ? <AdventureTitle active={storyThree.active} storyTitle={storyThree.title} linkId={storyThree.link} /> : null}
       </ContainerStoryArc>
     );
   });
