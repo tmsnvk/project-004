@@ -29,8 +29,6 @@ router.post("/register", async (request, response) => {
       password: passwordHash,
       createdAt: Date.now(),
       achievementsA1S1: {
-        numberOfDeath: 0,
-        typesOfDeath: "",
         followToRoom: false,
         keepPunching: false,
         hideSafely: false,
@@ -39,10 +37,6 @@ router.post("/register", async (request, response) => {
         refusePampflet: false,
         acceptPampflet: false,
         listenToSoldiers: false
-      },
-      achievementsA1S2: {
-        numberOfDeath: 0,
-        typesOfDeath: "",
       }
     });
 
@@ -111,7 +105,7 @@ router.put("/achievement", async (request, response) => {
   const achievementMongoCode = [undefined, "achievementsA1S1.keepPunching", "achievementsA1S1.hideSafely"];
 
   const getUser = await userSchema.findById(receivedData.id);
-  console.log(Object.entries(getUser.achievementsA1S1));
+  // console.log(Object.entries(getUser.achievementsA1S1));
   const achievementValues = Object.entries(getUser.achievementsA1S1).splice(3);
 
   for (let i = 0; i < achievementClientCode.length; i++) {
@@ -131,8 +125,7 @@ router.put("/achievement", async (request, response) => {
 router.get("/achievements/:storycode", async (request, response) => {
   const receivedData = request.query;
   const getUser = await userSchema.findById(receivedData);
-  
-  const storyCodes = ["aosone", "aostwo"];
+  const storyCodes = ["a1s1", "a1s2"];
 
   if (request.url.includes(storyCodes[0])) {
     response.json(getUser.achievementsA1S1);

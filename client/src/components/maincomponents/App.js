@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext, UserProvider } from "context/UserContext";
+import React, { useContext, useEffect } from "react";
+import { UserContext } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
@@ -107,7 +107,7 @@ const App = () => {
     };
 
     handleLogin();
-  }, []);
+  }, [setUserData]);
 
   return (
     <Router>
