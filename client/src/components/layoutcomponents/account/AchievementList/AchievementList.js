@@ -28,26 +28,23 @@ const Button = styled.button`
 `;
 
 const AchievementList = () => {
-  const [achievementsData, setAchievementsData] = useState(undefined);
   const [achievements, setAchievements] = useState([undefined]);
-  const [eventTarget, setEventTarget] = useState("a1s1");
+  const [eventTarget, setEventTarget] = useState(undefined);
   const buttonList = [
     { id: 1, code: "a1s1", title: "To One Last New Beginning", },
     { id: 2, code: "a1s2", title: "A City to Burn", },
   ];
-  
+  console.log(achievements[0]?.[1].state);
   const storyCodes = ["a1s1", "a1s2"];
   
   useEffect(() => {
     const getAchievements = async () => {
       const id = localStorage.getItem("id");
-      const achidata = achievementsMetaData;
       try {
         for (let i = 0; i < storyCodes.length; i++) {
           if (eventTarget === storyCodes[i]) {
             const response = await axios.get(`/users/achievements/${storyCodes[i]}`, { params: { _id: id }});
             setAchievements(Object.entries(response.data));
-            setAchievementsData(achidata[i]);
           }
         }
       } catch (error) {
@@ -55,10 +52,6 @@ const AchievementList = () => {
       }
     };
     getAchievements();
-
-    return () => {
-      setAchievementsData(undefined);
-    }
   }, [eventTarget]);
   
 const handleClick = (event) => {
@@ -76,16 +69,22 @@ const handleClick = (event) => {
     <ComponentLayout>
       {renderButtons}
 
-       {eventTarget !== undefined ? 
+      {eventTarget !== undefined ? 
       achievements.map((e) => {
-        console.log(e);
         return (
-          <div key={e?.[0]}>
-            {e?.[1] ? <div>{e?.[0]}</div> : <div>{e?.[0]} just with different colours</div>}
+          <div key={e?.[1].id + 1}>
+            {e?.[1].state ?
+            <div>
+              <div>{e?.[1].name}</div>
+              <div>{e?.[1].description}</div>
+            </div> : 
+            <div>
+              <div>{e?.[1].name}</div>
+              <div>{e?.[1].description}</div>
+            </div>}
           </div>
         );
-      })
-      : null}
+      }) : null}
     </ComponentLayout>
   );
 };

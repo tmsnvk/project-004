@@ -29,14 +29,14 @@ router.post("/register", async (request, response) => {
       password: passwordHash,
       createdAt: Date.now(),
       achievementsA1S1: {
-        followToRoom: false,
-        keepPunching: false,
-        hideSafely: false,
-        refuseMeal: false,
-        acceptMeal: false,
-        refusePampflet: false,
-        acceptPampflet: false,
-        listenToSoldiers: false
+        followToRoom: { id: 1, state: false, name: "placeholder_name", description: "add descr" },
+        keepPunching: { id: 2, state: false, name: "Keep 'em Punching!", description: "You kept the bastards punching until the soldiers have shown up." },
+        hideSafely: { id: 3, state: false, name: "Hide in Safety.", description: "add descr" },
+        refuseMeal: { id: 4, state: false, name: "placeholder_name", description: "add descr" },
+        acceptMeal: { id: 5, state: false, name: "placeholder_name", description: "add descr" },
+        refusePampflet: { id: 6, state: false, name: "placeholder_name", description: "add descr" },
+        acceptPampflet: { id: 7, state: false, name: "placeholder_name", description: "add descr" },
+        listenToSoldiers: { id: 8, state: false, name: "placeholder_name", description: "add descr" }
       }
     });
 
@@ -102,15 +102,13 @@ router.put("/achievement", async (request, response) => {
   if (!receivedData) return response.status(400).json({ message: "Didn't receive any data." });
 
   const achievementClientCode = [undefined, "AOSO8G", "AOSO5N_2"];
-  const achievementMongoCode = [undefined, "achievementsA1S1.keepPunching", "achievementsA1S1.hideSafely"];
-
+  const achievementMongoCode = [undefined, "achievementsA1S1.keepPunching.state", "achievementsA1S1.hideSafely.state"];
+  
   const getUser = await userSchema.findById(receivedData.id);
-  // console.log(Object.entries(getUser.achievementsA1S1));
-  const achievementValues = Object.entries(getUser.achievementsA1S1).splice(3);
-
+  const achievementValues = Object.entries(getUser.achievementsA1S1).splice(1);
   for (let i = 0; i < achievementClientCode.length; i++) {
     if (receivedData.code === achievementClientCode[i]) {
-      if (achievementValues[i][1]) return response.status(200).json({ message: true });
+      if (achievementValues[i][1].state) return response.status(200).json({ message: true });
 
       try {
         await getUser.updateOne({ "$set": { [achievementMongoCode[i]]: true }});

@@ -6,14 +6,54 @@ const userSchema = new mongoose.Schema({
   createdAt: { type: Date },
   // updatedAt: { type: Date },
   achievementsA1S1: {
-    followToRoom: { type: Boolean, required: false },
-    keepPunching: { type: Boolean, required: false },
-    hideSafely: { type: Boolean, required: false },
-    refuseMeal: { type: Boolean, required: false },
-    acceptMeal: { type: Boolean, required: false },
-    refusePampflet: { type: Boolean, required: false },
-    acceptPampflet: { type: Boolean, required: false },
-    listenToSoldiers: { type: Boolean, required: false },
+    followToRoom: {
+      id: { type: Number, default: 1, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+    },
+    keepPunching: {
+      id: { type: Number, default: 2, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+    },
+    hideSafely: {
+      id: { type: Number, default: 3, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+    },
+    refuseMeal: {
+      id: { type: Number, default: 4, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+    },
+    acceptMeal: {
+      id: { type: Number, default: 5, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+    },
+    refusePampflet: {
+      id: { type: Number, default: 6, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+    },
+    acceptPampflet: {
+      id: { type: Number, default: 7, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+    },
+    listenToSoldiers: {
+      id: { type: Number, default: 8, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+    }
   }
 }, { collection: "evrallas_database" });
 
