@@ -18,7 +18,51 @@ const ComponentLayout = styled.div`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     /* width: 70%; */
-    margin: 10rem auto;
+    /* margin: 10rem auto; */
+  }
+`;
+
+const ContainerArcsAndStories = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+`;
+
+const ContainerArc = styled.div`
+  /* width: 25rem; */
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem auto;
+
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
+    /* width: 30rem; */
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+    margin: 2.5rem 2.5rem 0 0;
+  }
+
+  /* @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
+    width: 20rem;
+  } */
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    /* margin: 5rem auto 10rem; */
+    /* width: 30rem; */
+    flex-grow: 1;
+    min-width: 20%;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    /* margin: 5rem auto 10rem; */
+    /* width: 35rem; */
+
   }
 `;
 
@@ -27,14 +71,13 @@ const ContainerStoryButton = styled.div`
   flex-direction: column;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-  }
+   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    /* width: 70%; */
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    flex-direction: row;
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
+    /* flex-direction: row; */
   }
 `;
 
@@ -42,10 +85,7 @@ const ArcTitle = styled.p`
   font-size: ${props => props.theme.fontSize.xLarge};
   font-weight: bold;
   padding: 0 0 2rem 0;
-
-  &:nth-of-type(2) {
-    padding: 5rem 0 2rem 0;
-  }
+  text-align: center;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
   
@@ -57,6 +97,7 @@ const ArcTitle = styled.p`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     font-size: ${props => props.theme.fontSize.xxLarge};
+    text-align: left;
   }
 `;
 
@@ -73,34 +114,67 @@ const StoryButton = styled(AdventureButton)`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-  
+    width: 25rem;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-
+    width: 30rem;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    margin: 0 2rem 0 0;
+    width: 25rem;
     font-size: ${props => props.theme.fontSize.large};
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+
+  }
+`;
+
+const HorizontalLine = styled.hr`
+  border: 0.2rem solid ${props => props.theme.backgroundColor.secondary};
+  margin: 5rem auto;
+  width: 15rem;
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
+    width: 25rem;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+    width: 30rem;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    width: 35rem;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    width: 45rem;
   }
 `;
 
 const ContainerAchievements = styled.div`
-  margin: 5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
   }
 `;
 
 const WrapperAchievement = styled.div`
-  margin: 2rem 0 0 0;
+  align-self: center;
+  margin: 1rem 0 0 0;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     flex-grow: 1;
-    min-width: 33%;
+    max-width: 50%;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+
   }
 `;
 
@@ -122,7 +196,11 @@ const ObtainedAchievement = styled.div`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 50rem;
+    width: 30rem;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    width: 40rem;
   }
 `;
 
@@ -183,10 +261,10 @@ const AchievementList = () => {
       { id: 1, arc: "two", code: "a2s1", title: "Greenskins, Greenskins everywhere", }
     ],
     [
-      { id: 1, code: "a3s1", title: "How to Lose an Empire", }
+      { id: 1, arc: "three", code: "a3s1", title: "How to Lose an Empire", }
     ],
     [
-      { id: 1, code: "a4s1", title: "Wild Elvish Sorcerers", }
+      { id: 1, arc: "four", code: "a4s1", title: "Wild Elvish Sorcerers", }
     ]
   ];
 
@@ -208,7 +286,21 @@ const AchievementList = () => {
               setAchievements(Object.entries(response.data));
             }
           }
-        }
+        } else if (eventTarget.arc === "three") {
+          for (let i = 0; i < buttonList[2].length; i++) {
+            if (eventTarget.code === buttonList[2][i].code) {
+              const response = await axios.get(`/users/achievements/${buttonList[2][i].code}`, { params: { _id: id }});
+              setAchievements(Object.entries(response.data));
+            }
+          }
+        } else if (eventTarget.arc === "four") {
+          for (let i = 0; i < buttonList[3].length; i++) {
+            if (eventTarget.code === buttonList[3][i].code) {
+              const response = await axios.get(`/users/achievements/${buttonList[3][i].code}`, { params: { _id: id }});
+              setAchievements(Object.entries(response.data));
+            }
+          }
+        } else return null;
       } catch (error) {
         console.log(error);
       }
@@ -217,7 +309,7 @@ const AchievementList = () => {
     getAchievements();
   }, [eventTarget]);
   
-  const handleClick = (event) => setEventTarget({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });
+  const handleClick = (event) => setEventTarget({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });  
 
   const renderArcOneButtons = buttonList[0].map((element) => {
     return (
@@ -229,6 +321,24 @@ const AchievementList = () => {
   });
 
   const renderArcTwoButtons = buttonList[1].map((element) => {
+    return (
+      <StoryButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
+        <IconYellow icon={iconList.trophy}></IconYellow>
+        {element.title}
+      </StoryButton>
+    );
+  });
+
+  const renderArcThreeButtons = buttonList[2].map((element) => {
+    return (
+      <StoryButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
+        <IconYellow icon={iconList.trophy}></IconYellow>
+        {element.title}
+      </StoryButton>
+    );
+  });
+
+  const renderArcFourButtons = buttonList[3].map((element) => {
     return (
       <StoryButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
         <IconYellow icon={iconList.trophy}></IconYellow>
@@ -267,26 +377,47 @@ const AchievementList = () => {
 
   return (
     <ComponentLayout>
-        <ArcTitle>
-          Tales of the Eastern Fief
-        </ArcTitle>
-        <ContainerStoryButton>
-          {renderArcOneButtons}
-        </ContainerStoryButton>
-        <ArcTitle>
-          Bad News from the North
-        </ArcTitle>
-        <ContainerStoryButton>
-          {renderArcTwoButtons}
-        </ContainerStoryButton>
-        <ContainerAchievements>
-          {eventTarget.arc === "one" ? renderAchievements : null}
-        </ContainerAchievements>
-      
-        <ContainerAchievements>
-          {eventTarget.arc === "two" ? renderAchievements : null}
-        </ContainerAchievements>
-      
+      <ContainerArcsAndStories>
+        <ContainerArc>
+          <ArcTitle>
+            Tales of the Eastern Fief
+          </ArcTitle>
+          <ContainerStoryButton>
+            {renderArcOneButtons}
+          </ContainerStoryButton>
+        </ContainerArc>
+        <ContainerArc>
+          <ArcTitle>
+            Bad News from the North
+          </ArcTitle>
+          <ContainerStoryButton>
+            {renderArcTwoButtons}
+          </ContainerStoryButton>
+        </ContainerArc>
+        <ContainerArc>
+          <ArcTitle>
+            Diaries from the Royal Fief
+          </ArcTitle>
+          <ContainerStoryButton>
+            {renderArcThreeButtons}
+          </ContainerStoryButton>
+        </ContainerArc>
+        <ContainerArc>
+          <ArcTitle>
+            Friends or Foes?
+          </ArcTitle>
+          <ContainerStoryButton>
+            {renderArcFourButtons}
+          </ContainerStoryButton>
+        </ContainerArc>
+      </ContainerArcsAndStories>
+      <HorizontalLine />
+      <ContainerAchievements>
+        {eventTarget.arc === "one" ? renderAchievements : null}
+        {eventTarget.arc === "two" ? renderAchievements : null}
+        {eventTarget.arc === "three" ? renderAchievements : null}
+        {eventTarget.arc === "four" ? renderAchievements : null}
+      </ContainerAchievements>
     </ComponentLayout>
   );
 };

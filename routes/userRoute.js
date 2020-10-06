@@ -123,7 +123,7 @@ router.put("/achievement", async (request, response) => {
 router.get("/achievements/:storycode", async (request, response) => {
   const receivedData = request.query;
   const getUser = await userSchema.findById(receivedData);
-  const storyCodes = ["a1s1", "a1s2", "a2s1"];
+  const storyCodes = ["a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
 
   if (request.url.includes(storyCodes[0])) {
     response.json(getUser.achievementsA1S1);
@@ -131,6 +131,10 @@ router.get("/achievements/:storycode", async (request, response) => {
     response.json(getUser.achievementsA1S2);
   } else if (request.url.includes(storyCodes[2])) {
     response.json(getUser.achievementsA2S1);
+  } else if (request.url.includes(storyCodes[3])) {
+    response.json(getUser.achievementsA3S1);
+  } else if (request.url.includes(storyCodes[4])) {
+    response.json(getUser.achievementsA4S1);
   } else return null;
 });
 
