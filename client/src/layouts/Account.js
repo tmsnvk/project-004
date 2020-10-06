@@ -13,20 +13,19 @@ const ContainerLayout = styled.main`
   margin: 5rem auto;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    font-size: ${props => props.theme.fontSize.medium};
+    /* margin: 5rem 0 0 5rem; */
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 70%;
+    /* width: 70%; */
+    margin: 5rem 5rem 0 5rem;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 50%;
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    width: 70%;
     margin: 10rem auto;
   }
 `;
-
-
 
 const Account = () => {
 

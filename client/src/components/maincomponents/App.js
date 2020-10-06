@@ -7,9 +7,9 @@ import { About, Account, Adventures, GameResults, Home, PageNotFound, Register, 
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAddressCard, faChessRook, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faChessRook, faInfinity, faMapSigns, faScroll, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
-library.add(faAddressCard, faChessRook, faDotCircle, faInfinity, faMapSigns, faSignOutAlt, faToriiGate, faUserTie);
+library.add(faAddressCard, faChessRook, faDotCircle, faInfinity, faMapSigns, faScroll, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie);
 
 const theme = {
   fontColor: {

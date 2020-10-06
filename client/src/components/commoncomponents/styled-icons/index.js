@@ -1,3 +1,4 @@
+import IconBlack from "./IconBlack";
 import IconYellow from "./IconYellow";
 
-export { IconYellow };
+export { IconBlack, IconYellow };
