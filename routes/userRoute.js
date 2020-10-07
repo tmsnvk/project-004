@@ -28,6 +28,7 @@ router.post("/register", async (request, response) => {
       loginName: loginName,
       password: passwordHash,
       createdAt: Date.now(),
+      numberOfDeath: 0,
       achievementsA1S1: {
         followToRoom: { id: 1, state: false, name: "placeholder_name", description: "add descr" },
         keepPunching: { id: 2, state: false, name: "Keep 'em Punching!", description: "You kept the bastards punching until the soldiers have shown up." },
@@ -100,23 +101,30 @@ router.post("/tokenIsValid", async (request, response) => {
 router.put("/achievement", async (request, response) => {
   const receivedData = request.body;
   if (!receivedData) return response.status(400).json({ message: "Didn't receive any data." });
+  console.log(receivedData);
 
-  const achievementClientCode = [undefined, "AOSO8G", "AOSO5N_2"];
-  const achievementMongoCode = [undefined, "achievementsA1S1.keepPunching.state", "achievementsA1S1.hideSafely.state"];
+  if (receivedData.storyCode === "a1s1") {
+    const achievementClientCode = [undefined, "AOSO8G", "AOSO5N_2"];
+    const achievementMongoCode = [undefined, "achievementsA1S1.keepPunching.state", "achievementsA1S1.hideSafely.state"];
+    
+    const getUser = await userSchema.findById(receivedData.id);
+    const achievementValues = Object.entries(getUser.achievementsA1S1).splice(1);
+    for (let i = 0; i < achievementClientCode.length; i++) {
+      if (receivedData.code === achievementClientCode[i]) {
+        if (achievementValues[i][1].state) return response.status(200).json({ message: true });
   
-  const getUser = await userSchema.findById(receivedData.id);
-  const achievementValues = Object.entries(getUser.achievementsA1S1).splice(1);
-  for (let i = 0; i < achievementClientCode.length; i++) {
-    if (receivedData.code === achievementClientCode[i]) {
-      if (achievementValues[i][1].state) return response.status(200).json({ message: true });
-
-      try {
-        await getUser.updateOne({ "$set": { [achievementMongoCode[i]]: true }});
-        return response.json("update received");
-      } catch (error) {
-        response.status(500).json({ error: error.message });
+        try {
+          await getUser.updateOne({ "$set": { [achievementMongoCode[i]]: true }});
+          return response.json("update received");
+        } catch (error) {
+          response.status(500).json({ error: error.message });
+        }
       }
     }
+  }
+
+  if (receivedData.storyCode === "a1s2") {
+    console.log("story not yet ready, don't do anything -- need to copy over the code above");
   }
 });
 

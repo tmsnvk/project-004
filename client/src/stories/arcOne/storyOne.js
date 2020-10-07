@@ -208,6 +208,7 @@ const to_one_last_new_beginning_0101 = [
     ],
     achievement: {
       code: "AOSO4N_1",
+      storyCode: "a1s1",
       mongoCode: "followToRoom",
       title: "Keep Punching 'em!"
     }
@@ -283,6 +284,7 @@ const to_one_last_new_beginning_0101 = [
     ],
     achievement: {
       code: "AOSO5N_2",
+      storyCode: "a1s1",
       mongoCode: "hideSafely",
       title: "Keep Punching 'em!"
     }
@@ -425,6 +427,7 @@ const to_one_last_new_beginning_0101 = [
     ],
     achievement: {
       code: "AOSO8G",
+      storyCode: "a1s1",
       mongoCode: "keepPunching",
       title: "Keep Punching 'em!"
     }

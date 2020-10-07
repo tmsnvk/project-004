@@ -1,34 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import { IntroText, RegisterForm } from "components/layoutcomponents/register";
+import { RegisterForm, TopText } from "components/layoutcomponents/register";
 
 const ContainerLayout = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-column-gap: 2.5em;
-  grid-row-gap: 2.5rem;  
-  font-size: ${props => props.theme.fontSize.small};
+  grid-row-gap: 2.5rem;
   width: 90%;
   margin: 5rem auto;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    font-size: ${props => props.theme.fontSize.medium};
-  }
-
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 70%;
+    width: 65%;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 50%;
+    width: 40%;
+    margin: 10rem auto;
   }
 `;
 
 const Register = () => {
   return (
     <ContainerLayout>
-      <IntroText />
+      <TopText />
       <RegisterForm />
     </ContainerLayout>
   );

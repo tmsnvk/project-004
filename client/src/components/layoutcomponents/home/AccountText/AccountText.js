@@ -10,24 +10,20 @@ const ContainerComponent = styled.div`
   grid-row-end: 3;
 `;
 
-const IntroMessage = styled(MessageText)`
-  padding: 2.5rem 0 0 0;
-`;
-
-const IntroAccount = () => {
+const AccountText = () => {
   return (
     <ContainerComponent>
-      <IntroMessage>
+      <MessageText padding="5rem 0 0 0">
         First timer? Try the <NavigationLink to="/page/tutorial">tutorial</NavigationLink> to get the feel of the game.
-      </IntroMessage>
-      <IntroMessage>
+      </MessageText>
+      <MessageText padding="2rem 0 0 0">
         Start a game <NavigationLink to="/page/adventures">here</NavigationLink> - that's why you are probably here after all.
-      </IntroMessage>
-      <IntroMessage>
+      </MessageText>
+      <MessageText padding="2rem 0 0 0">
         Visit your account & achievements <NavigationLink to="/page/profile">here</NavigationLink>.
-      </IntroMessage>
+      </MessageText>
     </ContainerComponent>
   );
 };
 
-export default IntroAccount;
+export default AccountText;

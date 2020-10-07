@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "context/UserContext";
 import styled from "styled-components";
-import { IntroAccount, IntroRegister, IntroText, LoginForm } from "components/layoutcomponents/home";
+import { AccountText, LoginForm, RegisterText, TopText } from "components/layoutcomponents/home";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -13,11 +13,11 @@ const ContainerLayout = styled.main`
   margin: 5rem auto;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 70%;
+    width: 65%;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 50%;
+    width: 40%;
     margin: 10rem auto;
   }
 `;
@@ -27,8 +27,8 @@ const Home = () => {
 
   return (
     <ContainerLayout>
-      <IntroText />
-      {!userData.user ? <><IntroRegister /><LoginForm /></> : <IntroAccount />}
+      <TopText />
+      {!userData.user ? <><RegisterText /><LoginForm /></> : <AccountText />}
     </ContainerLayout>
   );
 };

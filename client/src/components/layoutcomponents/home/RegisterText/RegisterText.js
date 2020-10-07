@@ -10,7 +10,7 @@ const ContainerComponent = styled.div`
   grid-row-end: 3;
 `;
 
-const IntroRegister = () => {
+const RegisterText = () => {
   return (
     <ContainerComponent>
       <MessageText>
@@ -20,4 +20,4 @@ const IntroRegister = () => {
   );
 };
 
-export default IntroRegister;
+export default RegisterText;

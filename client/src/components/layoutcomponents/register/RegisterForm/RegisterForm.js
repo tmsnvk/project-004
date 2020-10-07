@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {UserContext} from "context/UserContext";
+import { UserContext } from "context/UserContext";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";

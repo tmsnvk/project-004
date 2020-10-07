@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   createdAt: { type: Date },
   // updatedAt: { type: Date },
+  numberofDeath: { type: Number, default: 0, required: true },
   achievementsA1S1: {
     followToRoom: {
       id: { type: Number, default: 1, required: true },

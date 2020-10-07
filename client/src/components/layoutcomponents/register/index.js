@@ -1,4 +1,4 @@
-import IntroText from "./IntroText";
+import TopText from "./TopText";
 import RegisterForm from "./RegisterForm";
 
-export { IntroText, RegisterForm};
+export { RegisterForm, TopText };

@@ -104,7 +104,7 @@ const StoryPanel = ({ story }) => {
   const [eventId, setEventId] = useState("AOSO1");
   const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined });
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
-  const [eventAchievement, setEventAchievement] = useState({ code: undefined, mongoCode: undefined, title: undefined });
+  const [eventAchievement, setEventAchievement] = useState({ code: undefined, storyCode: undefined, mongoCode: undefined, title: undefined });
   const [showAchievementPanel, setShowAchievementPanel] = useState(false);
   const history = useHistory();
 
@@ -131,7 +131,7 @@ const StoryPanel = ({ story }) => {
   useEffect(() => {
     const getAchievement = (eventId, story) => {
       const eventAchievement = story.find(element => element.id === eventId);
-      setEventAchievement({ code: eventAchievement.achievement?.code, mongoCode: eventAchievement.achievement?.mongoCode, title: eventAchievement.achievement?.title });
+      setEventAchievement({ code: eventAchievement.achievement?.code, storyCode: eventAchievement.achievement?.storyCode, mongoCode: eventAchievement.achievement?.mongoCode, title: eventAchievement.achievement?.title });
     };
 
     getAchievement(eventId, story);
@@ -145,7 +145,7 @@ const StoryPanel = ({ story }) => {
       if (eventId === eventAchievement?.code) {
         try {
           const id = localStorage.getItem("id");
-          const response = await axios.put("/users/achievement", { id, code: eventAchievement.code });
+          const response = await axios.put("/users/achievement", { id, storyCode: eventAchievement.storyCode, code: eventAchievement.code });
           if (!response.data.message) setShowAchievementPanel(true);
         } catch (error) {
           console.log(error);

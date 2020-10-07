@@ -38,7 +38,6 @@ const LoginForm = () => {
     };
 
     handleLogin();
-
     return () => setFormData({ loginName: undefined, password: undefined }) && setLoginError(undefined);
   }, [formData, setUserData, history]);
 

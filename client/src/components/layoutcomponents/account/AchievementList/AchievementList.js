@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { HorizontalLine } from "components/commoncomponents/general";
 import { AdventureButton } from "components/layoutcomponents/adventures/storypage";
 import { IconBlack, IconYellow } from "components/commoncomponents/styled-icons";
 import iconList from "utilities/iconList";
@@ -47,10 +48,6 @@ const ContainerArc = styled.div`
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
     margin: 2.5rem 2.5rem 0 0;
   }
-
-  /* @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    width: 20rem;
-  } */
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     /* margin: 5rem auto 10rem; */
@@ -128,28 +125,6 @@ const StoryButton = styled(AdventureButton)`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
 
-  }
-`;
-
-const HorizontalLine = styled.hr`
-  border: 0.2rem solid ${props => props.theme.backgroundColor.secondary};
-  margin: 5rem auto;
-  width: 15rem;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    width: 25rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 30rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 35rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    width: 45rem;
   }
 `;
 
@@ -308,7 +283,7 @@ const AchievementList = () => {
 
     getAchievements();
   }, [eventTarget]);
-  
+
   const handleClick = (event) => setEventTarget({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });  
 
   const renderArcOneButtons = buttonList[0].map((element) => {
@@ -411,12 +386,9 @@ const AchievementList = () => {
           </ContainerStoryButton>
         </ContainerArc>
       </ContainerArcsAndStories>
-      <HorizontalLine />
+      {eventTarget.arc !== undefined ? <HorizontalLine width="33%" margin="10rem auto 5rem" /> : null} 
       <ContainerAchievements>
-        {eventTarget.arc === "one" ? renderAchievements : null}
-        {eventTarget.arc === "two" ? renderAchievements : null}
-        {eventTarget.arc === "three" ? renderAchievements : null}
-        {eventTarget.arc === "four" ? renderAchievements : null}
+        {eventTarget.arc !== undefined ? renderAchievements : null}
       </ContainerAchievements>
     </ComponentLayout>
   );
