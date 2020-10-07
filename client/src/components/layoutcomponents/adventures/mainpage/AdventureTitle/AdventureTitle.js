@@ -2,16 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { AdventureButton } from "components/layoutcomponents/adventures/storypage";
+import { IconYellow } from "components/commoncomponents/styled-icons";
+import iconList from "utilities/iconList";
 
 const ComponentContainer = styled(AdventureButton)`
   width: 20rem;
-  font-size: ${props => props.theme.fontSize.medium};
-  font-weight: bold;
+  padding: 2rem 2rem 2rem 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  font-size: ${props => props.theme.fontSize.small};
+  font-weight: bold;
+  align-items: center;
 
   &:hover {
     background-color: ${({ active, theme: { backgroundColor } }) => active === "true" ? backgroundColor.secondary : backgroundColor.warning};
+    color: ${props => props.theme.fontColor.secondaryDark};
+  }
+
+  &:hover ${IconYellow} {
     color: ${props => props.theme.fontColor.secondaryDark};
   }
 
@@ -25,15 +33,10 @@ const ComponentContainer = styled(AdventureButton)`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
     width: 30rem;
-    /* margin: 2.5rem 2.5rem 0 0; */
-
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: 25rem;
-    /* flex-grow: 1; */
-    /* min-width: 20%; */
-    font-size: ${props => props.theme.fontSize.large};
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
@@ -44,7 +47,7 @@ const ComponentContainer = styled(AdventureButton)`
 const AdventureTitle = ({ storyTitle, linkId, active }) => {
   return (
   <ComponentContainer as={Link} to={`/page/adventures/${linkId}`} active={active}>
-    {storyTitle}
+    <IconYellow icon={iconList.sign}></IconYellow>{storyTitle}
   </ComponentContainer>
   );
 };

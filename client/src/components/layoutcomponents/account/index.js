@@ -1,3 +1,4 @@
 import AchievementList from "./AchievementList";
+import TopText from "./TopText";
 
-export { AchievementList };
+export { AchievementList, TopText };

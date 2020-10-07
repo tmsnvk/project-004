@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MessageText, MessageTitle } from "components/commoncomponents/general";
-import { AchievementList } from "components/layoutcomponents/account";
+import { AchievementList, TopText } from "components/layoutcomponents/account";
 
 const ContainerLayout = styled.main`
   display: grid;
@@ -31,15 +30,9 @@ const ContainerLayout = styled.main`
 `;
 
 const Account = () => {
-
   return (
     <ContainerLayout>
-      <MessageTitle>
-        Welcome to your Account, adventurer!
-      </MessageTitle>
-      <MessageText>
-        Below you may review what you have achieved through our adventures.
-      </MessageText>
+      <TopText />
       <AchievementList />
     </ContainerLayout>
   );

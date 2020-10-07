@@ -3,24 +3,16 @@ import axios from "axios";
 import styled from "styled-components";
 import { HorizontalLine } from "components/commoncomponents/general";
 import { AdventureButton } from "components/layoutcomponents/adventures/storypage";
+import { LoadingSpinner } from "components/commoncomponents/general";
 import { IconBlack, IconYellow } from "components/commoncomponents/styled-icons";
 import iconList from "utilities/iconList";
 
 const ComponentLayout = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
   width: 100%;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    /* width: 70%; */
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    /* width: 70%; */
-    /* margin: 10rem auto; */
-  }
 `;
 
 const ContainerArcsAndStories = styled.div`
@@ -35,72 +27,40 @@ const ContainerArcsAndStories = styled.div`
 `;
 
 const ContainerArc = styled.div`
-  /* width: 25rem; */
   display: flex;
   flex-direction: column;
   margin: 0.5rem auto;
-
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    /* width: 30rem; */
-  }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
     margin: 2.5rem 2.5rem 0 0;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    /* margin: 5rem auto 10rem; */
-    /* width: 30rem; */
     flex-grow: 1;
     min-width: 20%;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    /* margin: 5rem auto 10rem; */
-    /* width: 35rem; */
-
   }
 `;
 
 const ContainerStoryButton = styled.div`
   display: flex;
   flex-direction: column;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-   }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
-    /* flex-direction: row; */
-  }
 `;
 
 const ArcTitle = styled.p`
-  font-size: ${props => props.theme.fontSize.xLarge};
+  font-size: ${props => props.theme.fontSize.medium};
   font-weight: bold;
   padding: 0 0 2rem 0;
   text-align: center;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-  
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-
-  }
-
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.xxLarge};
+    font-size: ${props => props.theme.fontSize.large};
     text-align: left;
   }
 `;
 
 const StoryButton = styled(AdventureButton)`
   width: 20rem;
-  font-size: ${props => props.theme.fontSize.medium};
+  font-size: ${props => props.theme.fontSize.small};
   font-weight: bold;
   display: flex;
   flex-direction: row;
@@ -120,11 +80,6 @@ const StoryButton = styled(AdventureButton)`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: 25rem;
-    font-size: ${props => props.theme.fontSize.large};
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-
   }
 `;
 
@@ -146,10 +101,6 @@ const WrapperAchievement = styled.div`
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     flex-grow: 1;
     max-width: 50%;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-
   }
 `;
 
@@ -188,44 +139,21 @@ const AchievementTitle = styled.p`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: ${props => props.theme.fontSize.medium};
+  font-size: ${props => props.theme.fontSize.small};
   padding: 0 0 1rem 0;
-  
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-  
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.large};
-  }
 `;
 
 const AchievementDesc = styled.p`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: ${props => props.theme.fontSize.medium};
-  
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-  
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.large};
-  }
+  font-size: ${props => props.theme.fontSize.small};
 `;
 
 const AchievementList = () => {
-  const [achievements, setAchievements] = useState([undefined]);
+  const [achievements, setAchievements] = useState([]);
   const [eventTarget, setEventTarget] = useState({ arc: undefined, code: undefined });
+  const [loading, setLoading] = useState(false);
 
   const buttonList = [
     [
@@ -250,28 +178,36 @@ const AchievementList = () => {
         if (eventTarget.arc === "one") {
           for (let i = 0; i < buttonList[0].length; i++) {
             if (eventTarget.code === buttonList[0][i].code) {
+              setLoading(true);
               const response = await axios.get(`/users/achievements/${buttonList[0][i].code}`, { params: { _id: id }});
+              setTimeout(() => setLoading(false), 1500);
               setAchievements(Object.entries(response.data));
             }
           }
         } else if (eventTarget.arc === "two") {
           for (let i = 0; i < buttonList[1].length; i++) {
             if (eventTarget.code === buttonList[1][i].code) {
+              setLoading(true);
               const response = await axios.get(`/users/achievements/${buttonList[1][i].code}`, { params: { _id: id }});
+              setTimeout(() => setLoading(false), 1500);
               setAchievements(Object.entries(response.data));
             }
           }
         } else if (eventTarget.arc === "three") {
           for (let i = 0; i < buttonList[2].length; i++) {
             if (eventTarget.code === buttonList[2][i].code) {
+              setLoading(true);
               const response = await axios.get(`/users/achievements/${buttonList[2][i].code}`, { params: { _id: id }});
+              setTimeout(() => setLoading(false), 1500);
               setAchievements(Object.entries(response.data));
             }
           }
         } else if (eventTarget.arc === "four") {
           for (let i = 0; i < buttonList[3].length; i++) {
             if (eventTarget.code === buttonList[3][i].code) {
+              setLoading(true);
               const response = await axios.get(`/users/achievements/${buttonList[3][i].code}`, { params: { _id: id }});
+              setTimeout(() => setLoading(false), 1500);
               setAchievements(Object.entries(response.data));
             }
           }
@@ -282,7 +218,7 @@ const AchievementList = () => {
     };
 
     getAchievements();
-  }, [eventTarget]);
+  }, [eventTarget, setLoading]);
 
   const handleClick = (event) => setEventTarget({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });  
 
@@ -386,9 +322,10 @@ const AchievementList = () => {
           </ContainerStoryButton>
         </ContainerArc>
       </ContainerArcsAndStories>
-      {eventTarget.arc !== undefined ? <HorizontalLine width="33%" margin="10rem auto 5rem" /> : null} 
+      {loading ? <LoadingSpinner message={"Searching account in the database... Please wait!"} /> : null}
+      {loading || eventTarget.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
       <ContainerAchievements>
-        {eventTarget.arc !== undefined ? renderAchievements : null}
+        {loading ? eventTarget.arc === undefined : renderAchievements}
       </ContainerAchievements>
     </ComponentLayout>
   );

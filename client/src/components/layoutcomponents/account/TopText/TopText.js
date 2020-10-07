@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { HorizontalLine } from "components/commoncomponents/general";
-import Message from "components/layoutcomponents/adventures/mainpage/TopText/Message";
-import Title from "components/layoutcomponents/adventures/mainpage/TopText/Title";
+import Message from "components/layoutcomponents/account/TopText/Message";
+import Title from "components/layoutcomponents/account/TopText/Title";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;

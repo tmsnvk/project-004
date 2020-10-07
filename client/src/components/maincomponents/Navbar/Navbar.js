@@ -8,7 +8,6 @@ import iconList from "utilities/iconList";
 const ComponentContainer = styled.div`
   color: ${props => props.theme.fontColor.main};
   background-color: ${props => props.theme.backgroundColor.mainLight};
-  font-size: ${props => props.theme.fontSize.large};
   height: auto;
   display: flex;
   flex-direction: column;
@@ -16,9 +15,8 @@ const ComponentContainer = styled.div`
   padding: 0 2.5rem 0 0;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    height: 5rem;
+    height: 7.5rem;
     flex-direction: row;
-    font-size: ${props => props.theme.fontSize.medium};
   }
 `;
 
@@ -36,17 +34,13 @@ const NavbarLinks = styled(Link)`
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
     width: auto;
     padding: 0 0 0 0.2rem;
-    font-size: ${props => props.theme.fontSize.small};
+    font-size: ${props => props.theme.fontSize.default};
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: auto;
     padding: 0 0 0 2.5rem;
     font-size: ${props => props.theme.fontSize.medium};
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    font-size: ${props => props.theme.fontSize.large};
   }
 `;
 
@@ -63,13 +57,13 @@ const ButtonContainer = styled.button`
   text-decoration: none;
   cursor: pointer;
 
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+    font-size: ${props => props.theme.fontSize.default};
+  }
+
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     padding: 0 0 0 2.5rem;
     font-size: ${props => props.theme.fontSize.medium};
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    font-size: ${props => props.theme.fontSize.large};
   }
 `;
 

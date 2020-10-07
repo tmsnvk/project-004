@@ -5,7 +5,7 @@ const InputSubmit = styled.input`
   height: 5rem;
   background-color: ${props => props.theme.backgroundColor.mainDark};
   color: ${props => props.theme.fontColor.main};
-  font-size: ${props => props.theme.fontSize.medium};
+  font-size: ${props => props.theme.fontSize.small};
   font-weight: bold;
   letter-spacing: 0.4rem;
   text-transform: uppercase;
@@ -25,7 +25,7 @@ const InputSubmit = styled.input`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.large};
+    font-size: ${props => props.theme.fontSize.medium};
   }
 `;
 

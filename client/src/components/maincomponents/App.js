@@ -7,9 +7,9 @@ import { About, Account, Adventures, GameResults, Home, PageNotFound, Register, 
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAddressCard, faChessRook, faInfinity, faMapSigns, faScroll, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faChessRook, faInfinity, faMapSigns, faScroll, faCircleNotch, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
-library.add(faAddressCard, faChessRook, faDotCircle, faInfinity, faMapSigns, faScroll, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie);
+library.add(faAddressCard, faChessRook, faDotCircle, faInfinity, faMapSigns, faScroll, faCircleNotch, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie);
 
 const theme = {
   fontColor: {
@@ -34,12 +34,12 @@ const theme = {
     secondary: `"Open Sans", sans-serif`
   },
   fontSize: {
-    default: "0.625rem", // 10px
-    small: "0.875rem", // 14px
-    medium: "1.125rem", // 18px
-    large: "1.375rem", // 22px
-    xLarge: "1.75rem", // 28px
-    xxLarge: "2.215rem" // 34px
+    default: "1rem", // 10px
+    small: "1.4rem", // 14px
+    medium: "1.8rem", // 18px
+    large: "2.2rem", // 22px
+    xLarge: "2.6rem", // 26px
+    xxLarge: "3rem" // 30px
   },
   mediaQueries: {
     xSmall: "320px",

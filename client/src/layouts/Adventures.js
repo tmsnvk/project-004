@@ -21,22 +21,10 @@ const ContainerData = styled.div`
   flex-direction: column;
   margin: 0 auto;
 
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-  }
-
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     margin: 0;
     flex-direction: row;
     flex-wrap: wrap;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-
   }
 `;
 
@@ -45,25 +33,13 @@ const ContainerStoryArc = styled.div`
   flex-direction: column;
   font-weight: bold;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-
-  }
-
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     flex-grow: 1;
-    width: 50%;
-    align-items: center;
-    /* min-width: 20%; */
-    /* max-width: 50%; */
-
+    width: 40%;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
-    width: 42.5rem;
+    width: 35rem;
   }
 `;
 
