@@ -14,14 +14,15 @@ const ContainerComponent = styled.div`
 `;
 
 const LoginForm = () => {
+  const { setUserData } = useContext(UserContext);
+  
   const [formData, setFormData] = useState({ loginName: undefined, password: undefined });
   const [loginError, setLoginError] = useState(undefined);
 
-  const { setUserData } = useContext(UserContext);
   const { handleSubmit, register } = useForm();
   const history = useHistory();
 
-  const onSubmit = (data) => setFormData({ loginName: data.loginUserName, password: data.loginUserPassword });
+  const onSubmit = (data) =>  setFormData({ loginName: data.loginUserName, password: data.loginUserPassword });
 
   useEffect(() => {
     if (formData.loginName === undefined || formData.password === undefined) return;
@@ -29,14 +30,16 @@ const LoginForm = () => {
     const handleLogin = async () => {
       try {
         const response = await axios.post("/users/login", formData);
-        setUserData({ token: response.data.token, user: response.data.user });
+        setUserData({ token: response.data.token, user: response.data.user.loginName, id: response.data.user.id });
+        
         localStorage.setItem("auth-token", response.data.token);
-        localStorage.setItem("id", response.data.user.id);
+        localStorage.setItem("auth-name", response.data.user.loginName);
+        localStorage.setItem("auth-id", response.data.user.id);
       } catch (error) {
-        return error.response.data.message && setLoginError(error.response.data.message);
+        return setLoginError(error.response.data.message);
       }
     };
-
+    
     handleLogin();
     return () => setFormData({ loginName: undefined, password: undefined }) && setLoginError(undefined);
   }, [formData, setUserData, history]);

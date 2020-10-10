@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AdventureButton } from "components/layoutcomponents/adventures/storypage";
+import { Tile } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
 import iconList from "utilities/iconList";
 
-const ComponentContainer = styled(AdventureButton)`
+const ComponentContainer = styled(Tile)`
   width: 20rem;
-  padding: 2rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: row;
-  font-size: ${props => props.theme.fontSize.small};
   font-weight: bold;
   align-items: center;
 
@@ -21,10 +19,6 @@ const ComponentContainer = styled(AdventureButton)`
 
   &:hover ${IconYellow} {
     color: ${props => props.theme.fontColor.secondaryDark};
-  }
-
-  &:focus {
-    outline: none;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
@@ -44,7 +38,7 @@ const ComponentContainer = styled(AdventureButton)`
   }
 `;
 
-const AdventureTitle = ({ storyTitle, linkId, active }) => {
+const AdventureTile = ({ storyTitle, linkId, active }) => {
   return (
   <ComponentContainer as={Link} to={`/page/adventures/${linkId}`} active={active}>
     <IconYellow icon={iconList.sign}></IconYellow>{storyTitle}
@@ -52,4 +46,4 @@ const AdventureTitle = ({ storyTitle, linkId, active }) => {
   );
 };
 
-export default AdventureTitle;
+export default AdventureTile;

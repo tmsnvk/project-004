@@ -1,6 +1,6 @@
 import AdventureArc from "./AdventureArc";
-import AdventureTitle from "./AdventureTitle";
+import AdventureTile from "./AdventureTile";
 import TopText from "./TopText";
-import storiesMetaData from "./storiesMetaData";
+import adventuresMetaData from "./adventuresMetaData";
 
-export { AdventureArc, AdventureTitle, TopText, storiesMetaData };
+export { AdventureArc, AdventureTile, TopText, adventuresMetaData };

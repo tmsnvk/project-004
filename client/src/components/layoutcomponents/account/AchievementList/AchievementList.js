@@ -153,7 +153,7 @@ const AchievementDesc = styled.p`
 const AchievementList = () => {
   const [achievements, setAchievements] = useState([]);
   const [eventTarget, setEventTarget] = useState({ arc: undefined, code: undefined });
-  const [loading, setLoading] = useState(false);
+  const [loadingSpinner, setLoadingSpinner] = useState(false);
 
   const buttonList = [
     [
@@ -173,41 +173,41 @@ const AchievementList = () => {
 
   useEffect(() => {
     const getAchievements = async () => {
-      const id = localStorage.getItem("id");
+      const id = localStorage.getItem("auth-id");
       try {
         if (eventTarget.arc === "one") {
           for (let i = 0; i < buttonList[0].length; i++) {
             if (eventTarget.code === buttonList[0][i].code) {
-              setLoading(true);
+              setLoadingSpinner(true);
               const response = await axios.get(`/users/achievements/${buttonList[0][i].code}`, { params: { _id: id }});
-              setTimeout(() => setLoading(false), 1500);
+              setTimeout(() => setLoadingSpinner(false), 1500);
               setAchievements(Object.entries(response.data));
             }
           }
         } else if (eventTarget.arc === "two") {
           for (let i = 0; i < buttonList[1].length; i++) {
             if (eventTarget.code === buttonList[1][i].code) {
-              setLoading(true);
+              setLoadingSpinner(true);
               const response = await axios.get(`/users/achievements/${buttonList[1][i].code}`, { params: { _id: id }});
-              setTimeout(() => setLoading(false), 1500);
+              setTimeout(() => setLoadingSpinner(false), 1500);
               setAchievements(Object.entries(response.data));
             }
           }
         } else if (eventTarget.arc === "three") {
           for (let i = 0; i < buttonList[2].length; i++) {
             if (eventTarget.code === buttonList[2][i].code) {
-              setLoading(true);
+              setLoadingSpinner(true);
               const response = await axios.get(`/users/achievements/${buttonList[2][i].code}`, { params: { _id: id }});
-              setTimeout(() => setLoading(false), 1500);
+              setTimeout(() => setLoadingSpinner(false), 1500);
               setAchievements(Object.entries(response.data));
             }
           }
         } else if (eventTarget.arc === "four") {
           for (let i = 0; i < buttonList[3].length; i++) {
             if (eventTarget.code === buttonList[3][i].code) {
-              setLoading(true);
+              setLoadingSpinner(true);
               const response = await axios.get(`/users/achievements/${buttonList[3][i].code}`, { params: { _id: id }});
-              setTimeout(() => setLoading(false), 1500);
+              setTimeout(() => setLoadingSpinner(false), 1500);
               setAchievements(Object.entries(response.data));
             }
           }
@@ -218,7 +218,7 @@ const AchievementList = () => {
     };
 
     getAchievements();
-  }, [eventTarget, setLoading]);
+  }, [eventTarget, setLoadingSpinner]);
 
   const handleClick = (event) => setEventTarget({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });  
 
@@ -322,10 +322,10 @@ const AchievementList = () => {
           </ContainerStoryButton>
         </ContainerArc>
       </ContainerArcsAndStories>
-      {loading ? <LoadingSpinner message={"Searching account in the database... Please wait!"} /> : null}
-      {loading || eventTarget.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
+      {loadingSpinner ? <LoadingSpinner message={"Searching account in the database... Please wait!"} /> : null}
+      {loadingSpinner || eventTarget.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
       <ContainerAchievements>
-        {loading ? eventTarget.arc === undefined : renderAchievements}
+        {loadingSpinner ? eventTarget.arc === undefined : renderAchievements}
       </ContainerAchievements>
     </ComponentLayout>
   );

@@ -14,7 +14,7 @@ const RegisterText = () => {
   return (
     <ContainerComponent>
       <MessageText>
-        Sign in below if you already have an account registered. If not - <NavigationLink to="/page/register">click here</NavigationLink> to register one!
+        Sign in below if you already have an account registered at Evrallas. If not - <NavigationLink to="/page/register">click here</NavigationLink> to register one!
       </MessageText>
     </ContainerComponent>
   );

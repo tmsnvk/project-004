@@ -17,10 +17,10 @@ const AccountText = () => {
         First timer? Try the <NavigationLink to="/page/tutorial">tutorial</NavigationLink> to get the feel of the game.
       </MessageText>
       <MessageText padding="2rem 0 0 0">
-        Start a game <NavigationLink to="/page/adventures">here</NavigationLink> - that's why you are probably here after all.
+        Start a game <NavigationLink to="/page/adventures">here</NavigationLink> - replay the same story multiple times to discover the different outcomes & earn milestone achievements.
       </MessageText>
       <MessageText padding="2rem 0 0 0">
-        Visit your account & achievements <NavigationLink to="/page/profile">here</NavigationLink>.
+        Visit your account <NavigationLink to="/page/profile">here</NavigationLink> & see which achievements you have unlocked.
       </MessageText>
     </ContainerComponent>
   );

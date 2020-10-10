@@ -39,8 +39,8 @@ const NavbarLinks = styled(Link)`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: auto;
-    padding: 0 0 0 2.5rem;
-    font-size: ${props => props.theme.fontSize.medium};
+    padding: 0 0 0 1.5rem;
+    font-size: ${props => props.theme.fontSize.small};
   }
 `;
 
@@ -62,8 +62,8 @@ const ButtonContainer = styled.button`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    padding: 0 0 0 2.5rem;
-    font-size: ${props => props.theme.fontSize.medium};
+    padding: 0 0 0 1.5rem;
+    font-size: ${props => props.theme.fontSize.small};
   }
 `;
 
@@ -72,9 +72,10 @@ const Navbar = () => {
   const history = useHistory();
 
   const handleLogout = () => {
-    setUserData({ token: undefined, user: undefined });
+    setUserData({ token: undefined, user: undefined, id: undefined });
     localStorage.setItem("auth-token", "");
-    localStorage.setItem("id", "");
+    localStorage.setItem("auth-name", "");
+    localStorage.setItem("auth-id", "");
     history.push("/page/home");
   };
 
@@ -84,7 +85,8 @@ const Navbar = () => {
       <>
         <NavbarLinks to="/page/home"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>
         <NavbarLinks to="/page/adventures"><IconYellow icon={iconList.mapSigns}></IconYellow>Adventures</NavbarLinks>
-        <NavbarLinks to="/page/profile"><IconYellow icon={iconList.chessRook}></IconYellow>Account</NavbarLinks>
+        <NavbarLinks to="/page/achievements"><IconYellow icon={iconList.chessRook}></IconYellow>Achievements</NavbarLinks>
+        <NavbarLinks to="/page/settings"><IconYellow icon={iconList.wrench}></IconYellow>Settings</NavbarLinks>
         <NavbarLinks to="/page/about"><IconYellow icon={iconList.addressCard}></IconYellow>About</NavbarLinks>
         <ButtonContainer onClick={handleLogout}><IconYellow icon={iconList.signOut}></IconYellow>Sign out</ButtonContainer>
       </> :

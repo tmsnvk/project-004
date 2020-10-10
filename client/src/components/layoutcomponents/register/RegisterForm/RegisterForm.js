@@ -24,25 +24,27 @@ const RegisterForm = () => {
   const onSubmit = (data) => setFormData({ loginName: data.registerLoginName, password: data.registerPassword, passwordCheck: data.registerPasswordCheck });
 
   useEffect(() => {
-    if (formData.loginName === undefined || formData.password === undefined || formData.passwordCheck === undefined) {
-      return;
-    };
+    if (formData.loginName === undefined || formData.password === undefined || formData.passwordCheck === undefined) return;
 
     const handleRegister = async () => {
       try {
         await axios.post("/users/register", formData);
-        
+
         const response = await axios.post("/users/login", formData);
-        setUserData({ token: response.data.token, user: response.data.user });
+        setUserData({ token: response.data.token, user: response.data.user.loginName, id: response.data.user.id });
+
         localStorage.setItem("auth-token", response.data.token);
+        localStorage.setItem("auth-name", response.data.user.loginName);
+        localStorage.setItem("auth-id", response.data.user.id);
         history.push("/page/profile");
       } catch (error) {
-        return error.response.data.message && setLoginError(error.response.data.message);
+        console.log(error);
+        return setLoginError(error.response.data.message);
       }
     };
 
     handleRegister();
-  },[formData, setUserData, history]);
+  }, [formData, setUserData, history]);
 
   return (
     <ContainerComponent>

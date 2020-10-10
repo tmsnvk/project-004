@@ -10,13 +10,13 @@ const ContainerComponent = styled.div`
   grid-row-start: 1;
   grid-row-end: 2;
   margin: 0 auto;
-  
+
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 70%;
+    width: 65%;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 45%;
+    width: 50%;
   }
 `;
 

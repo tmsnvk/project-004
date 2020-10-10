@@ -22,14 +22,25 @@ const ComponentContainer = styled.div`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 20%;
+    width: 30%;
   }
+`;
+
+const ContainerIcon = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const LoadingSpinner = ({ message }) => {
   return (
     <ComponentContainer>
-      <IconYellow icon={iconList.spinner} spin></IconYellow>
+      <ContainerIcon>
+        <IconYellow icon={iconList.spinner} spin></IconYellow>
+        <IconYellow icon={iconList.dragon}></IconYellow>
+        <IconYellow icon={iconList.mountain}></IconYellow>
+        <IconYellow icon={iconList.dragon}></IconYellow>
+        <IconYellow icon={iconList.spinner} spin></IconYellow>
+      </ContainerIcon>
       <MessageText>{message}</MessageText>
     </ComponentContainer>
   );

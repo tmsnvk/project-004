@@ -1,11 +1,12 @@
 import About from "layouts/About";
-import Account from "layouts/Account";
+import Achievements from "layouts/Achievements";
 import Adventures from "layouts/Adventures";
 import GameResults from "layouts/GameResults";
+import GameStart from "layouts/GameStart";
 import Home from "layouts/Home";
 import PageNotFound from "layouts/PageNotFound";
 import Register from "layouts/Register";
-import StoryAction from "layouts/StoryAction";
+import Settings from "layouts/Settings";
 import UnderConstruction from "layouts/UnderConstruction";
 
-export { About, Account, Adventures, GameResults, Home, PageNotFound, Register, StoryAction, UnderConstruction };
+export { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, UnderConstruction };

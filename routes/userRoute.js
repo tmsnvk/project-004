@@ -9,7 +9,6 @@ const userSchema = require("../models/userModel");
 router.post("/register", async (request, response) => {
   try {
     const { loginName, password, passwordCheck } = request.body;
-    console.log(request.body);
     
     if (!loginName || !password || !passwordCheck) return response.status(400).json({ message: "Not all fields have been entered!" });
     
@@ -52,7 +51,7 @@ router.post("/register", async (request, response) => {
 
 router.post("/login", async (request, response) => {
   try {
-    const { loginName, password, auth } = request.body;
+    const { loginName, password } = request.body;
 
     if (!loginName || !password) return response.status(400).json({ message: "Not all fields have been entered!" });
 
@@ -101,7 +100,6 @@ router.post("/tokenIsValid", async (request, response) => {
 router.put("/achievement", async (request, response) => {
   const receivedData = request.body;
   if (!receivedData) return response.status(400).json({ message: "Didn't receive any data." });
-  console.log(receivedData);
 
   if (receivedData.storyCode === "a1s1") {
     const achievementClientCode = [undefined, "AOSO8G", "AOSO5N_2"];
@@ -147,7 +145,7 @@ router.get("/achievements/:storycode", async (request, response) => {
 });
 
 router.get("/", auth, async (request, response) => {
-  const user = userSchema.findById(request.user);
+  const user = await userSchema.findById(request.user);
   response.json({ loginName: user.loginName, id: user._id });
 });
 

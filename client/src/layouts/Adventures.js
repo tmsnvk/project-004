@@ -1,22 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { AdventureArc, AdventureTitle, TopText, storiesMetaData } from "components/layoutcomponents/adventures/mainpage";
+import { ContainerLayout } from "components/commoncomponents/general";
+import { AdventureArc, AdventureTile, TopText, adventuresMetaData } from "components/layoutcomponents/adventures/mainpage";
 
-const ContainerLayout = styled.main`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  grid-column-gap: 2.5em;
-  grid-row-gap: 2.5rem;  
-  width: 90%;
-  margin: 5rem auto;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    margin: 10rem auto;
-  }
-`;
-
-const ContainerData = styled.div`
+const ContainerButton = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -44,13 +31,13 @@ const ContainerStoryArc = styled.div`
 `;
 
 const Adventures = () => {
-  const renderStoryMetaData = storiesMetaData.map(({ id, arcTitle, storyOne, storyTwo, storyThree }) => {
+  const renderAdventureTiles = adventuresMetaData.map(({ id, arcTitle, storyOne, storyTwo, storyThree }) => {
     return (
       <ContainerStoryArc key={id}>
         <AdventureArc arcTitle={arcTitle} />
-        {storyOne.title !== undefined ? <AdventureTitle active={storyOne.active} storyTitle={storyOne.title} linkId={storyOne.link} /> : null}
-        {storyTwo.title !== undefined ? <AdventureTitle active={storyTwo.active} storyTitle={storyTwo.title} linkId={storyTwo.link} /> : null}
-        {storyThree.title !== undefined ? <AdventureTitle active={storyThree.active} storyTitle={storyThree.title} linkId={storyThree.link} /> : null}
+        {storyOne.title !== undefined ? <AdventureTile active={storyOne.active} storyTitle={storyOne.title} linkId={storyOne.link} /> : null}
+        {storyTwo.title !== undefined ? <AdventureTile active={storyTwo.active} storyTitle={storyTwo.title} linkId={storyTwo.link} /> : null}
+        {storyThree.title !== undefined ? <AdventureTile active={storyThree.active} storyTitle={storyThree.title} linkId={storyThree.link} /> : null}
       </ContainerStoryArc>
     );
   });
@@ -58,9 +45,9 @@ const Adventures = () => {
   return (
     <ContainerLayout>
       <TopText />
-      <ContainerData>
-        {renderStoryMetaData}
-      </ContainerData>
+      <ContainerButton>
+        {renderAdventureTiles}
+      </ContainerButton>
     </ContainerLayout>
   );
 };

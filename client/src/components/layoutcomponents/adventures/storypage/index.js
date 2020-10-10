@@ -1,4 +1,4 @@
 import AdventureButton from "./AdventureButton";
-import StoryPanel from "./StoryPanel";
+import GameMainPage from "./GameMainPage";
 
-export { AdventureButton, StoryPanel };
+export { AdventureButton, GameMainPage };

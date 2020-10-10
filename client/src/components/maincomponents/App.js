@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
-import { About, Account, Adventures, GameResults, Home, PageNotFound, Register, StoryAction, UnderConstruction } from "layouts";
+import { LoadingSpinner } from "components/commoncomponents/general";
+import { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, UnderConstruction } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAddressCard, faChessRook, faInfinity, faMapSigns, faScroll, faCircleNotch, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faChessKing, faChessRook, faCog, faDragon, faInfinity, faMapSigns, faMountain, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
-library.add(faAddressCard, faChessRook, faDotCircle, faInfinity, faMapSigns, faScroll, faCircleNotch, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie);
+library.add(faAddressCard, faChessKing, faChessRook, faCog, faDotCircle, faDragon, faInfinity, faMapSigns, faMountain, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench);
 
 const theme = {
   fontColor: {
@@ -88,7 +89,8 @@ const GlobalStyle = createGlobalStyle`
 // ReactGA.pageview("/");
 
 const App = () => {
-  const { userData, setUserData } = useContext(UserContext);
+  const { setUserData } = useContext(UserContext);
+  const [initialGlobalStateLoader, setInitialGlobalStateLoader] = useState(false);
 
   useEffect(() => {
     const handleLogin = async () => {
@@ -97,17 +99,20 @@ const App = () => {
       if (token === null) {
         localStorage.setItem("auth-token", "");
         token = "";
-      };
+      }
+
+      if (token !== "") setInitialGlobalStateLoader(true);
 
       const response = await axios.post("/users/tokenIsValid", null, { headers: {"x-auth-token": token }});
       if (response.data) {
         const userResponse = await axios.get("/users", { headers: { "x-auth-token": token }});
-        setUserData({ token, user: userResponse.data });
+        setUserData({ token, user: userResponse.data.loginName, id: userResponse.data.id });
+        setInitialGlobalStateLoader(false);
       }
     };
 
     handleLogin();
-  }, [setUserData]);
+  }, [setInitialGlobalStateLoader, setUserData]);
 
   return (
     <Router>
@@ -116,13 +121,15 @@ const App = () => {
         <ScrollToTop />
         <Navbar />
         <Switch>
+          {initialGlobalStateLoader ? <LoadingSpinner message="The dragons are getting tea..." /> : null}
           <Route path="/page/home" component={Home} />
           <Route path="/page/register" component={Register} />
           <PrivateRoute exact path="/page/adventures" component={Adventures} />
           <PrivateRoute exact path="/page/adventures/results" component={GameResults} />
           <PrivateRoute exact path="/page/adventures/underconstruction" component={UnderConstruction} />
-          <PrivateRoute path="/page/adventures/:storytitle" component={StoryAction} />
-          <PrivateRoute path="/page/profile" component={Account} />
+          <PrivateRoute path="/page/adventures/:storytitle" component={GameStart} />
+          <PrivateRoute path="/page/achievements" component={Achievements} />
+          <PrivateRoute path="/page/settings" component={Settings} />
           <Route path="/page/about" component={About} />
           <Redirect exact path="/" to="/page/home" />
           <Route component={PageNotFound} />

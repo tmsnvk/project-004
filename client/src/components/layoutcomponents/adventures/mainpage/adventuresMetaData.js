@@ -1,4 +1,4 @@
-const storiesMetaData = [
+const adventuresMetaData = [
   {
     id: 1,
     arcTitle:"Tales of the Eastern Fief",
@@ -29,4 +29,4 @@ const storiesMetaData = [
   }
 ];
 
-export default storiesMetaData;
+export default adventuresMetaData;

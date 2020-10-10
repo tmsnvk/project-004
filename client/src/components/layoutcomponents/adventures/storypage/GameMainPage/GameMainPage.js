@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
-import { AdventureButton } from "components/layoutcomponents/adventures/storypage";
+import { Tile } from "components/commoncomponents/adventure-related";
 
 const ComponentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: ${props => props.theme.fontSize.large};
+  font-size: ${props => props.theme.fontSize.small};
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
 
@@ -18,11 +18,11 @@ const ComponentContainer = styled.div`
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.xLarge};
+    font-size: ${props => props.theme.fontSize.medium};
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    margin: 10rem auto;
+    margin: 0 auto;
     width: 75%;
   }
 `;
@@ -50,13 +50,18 @@ const ContainerButton = styled.div`
 }
 `;
 
-const NextEventButton = styled(AdventureButton)`
+const NextEventButton = styled(Tile)`
   visibility: ${props => props.visible ? "visible" : "hidden"};
-  font-size: ${props => props.theme.fontSize.large};
+  font-size: ${props => props.theme.fontSize.small};
   line-height: 1.75;
-  
+
   &:first-child {
     margin: 5rem 0 1rem 0;
+  }
+
+  &:hover {
+    background-color: ${props => props.theme.backgroundColor.secondary};
+    color: ${props => props.theme.fontColor.secondaryDark};
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
@@ -100,7 +105,7 @@ const AchievementUnlocked = styled.div`
   cursor: pointer;
 `;
 
-const StoryPanel = ({ story }) => {
+const GameMainPage = ({ story }) => {
   const [eventId, setEventId] = useState("AOSO1");
   const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined });
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
@@ -144,7 +149,7 @@ const StoryPanel = ({ story }) => {
 
       if (eventId === eventAchievement?.code) {
         try {
-          const id = localStorage.getItem("id");
+          const id = localStorage.getItem("auth-id");
           const response = await axios.put("/users/achievement", { id, storyCode: eventAchievement.storyCode, code: eventAchievement.code });
           if (!response.data.message) setShowAchievementPanel(true);
         } catch (error) {
@@ -193,4 +198,4 @@ const StoryPanel = ({ story }) => {
   );
 };
 
-export default StoryPanel;
+export default GameMainPage;

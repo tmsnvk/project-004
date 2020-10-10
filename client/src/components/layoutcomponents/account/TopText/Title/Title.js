@@ -7,7 +7,7 @@ const Title = () => {
 
   return (
     <MessageTitle>
-      Welcome to your Account, adventurer!
+      {!userData.user ? <></> : `Welcome to your Account, ${userData.user.toUpperCase()}!`}
     </MessageTitle>
   );
 };

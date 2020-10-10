@@ -29,7 +29,7 @@ const ContainerLayout = styled.main`
   }
 `;
 
-const Account = () => {
+const Achievements = () => {
   return (
     <ContainerLayout>
       <TopText />
@@ -38,4 +38,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default Achievements;
