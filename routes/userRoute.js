@@ -136,7 +136,7 @@ router.put("/achievements/death", async (request, response) => {
   const receivedData = request.body;
   const getUser = await userSchema.findById(receivedData.id);
   await getUser.updateOne({ "$inc": { numberofDeath: +1 }});
-  response.json("DONE");
+  response.json("Data has been updated!");
 });
 
 router.get("/achievements/:storycode", async (request, response) => {

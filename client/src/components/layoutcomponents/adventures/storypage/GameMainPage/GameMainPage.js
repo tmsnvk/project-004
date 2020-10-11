@@ -147,9 +147,9 @@ const GameMainPage = ({ story }) => {
     const triggerGameOver = async (eventId) => {
       if ((eventId) === "GAMEOVER") {
         const id = localStorage.getItem("auth-id");
-        const response = await axios.put("/users/achievements/death", { id });
-        console.log(response.data);
+        await axios.put("/users/achievements/death", { id });
         history.push("/page/adventures/results");
+        history.go();
       } 
     };
 

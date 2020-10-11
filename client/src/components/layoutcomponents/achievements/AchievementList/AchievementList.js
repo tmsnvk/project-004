@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "context/UserContext";
 import axios from "axios";
 import styled from "styled-components";
 import { TileButton, TileContainer } from "components/commoncomponents/adventure-related";
@@ -24,10 +25,14 @@ const WrapperMain = styled.div`
   }
 `;
 
-const ContainerDeath = styled(TileContainer)`
+const ContainerStatistics = styled(TileContainer)`
   width: fit-content;
   margin: 0 auto 5rem;
   font-size: ${props => props.theme.fontSize.small};
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    margin: 0 25% 5rem;
+  }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     margin: 0 33% 5rem;
@@ -167,7 +172,7 @@ const AchievementDescription = styled.p`
 `;
 
 const AchievementList = () => {
-  const [numberOfDeath, setNumberOfDeath] = useState(undefined);
+  const { gameData } = useContext(UserContext);
   const [achievements, setAchievements] = useState([]);
   const [eventTarget, setEventTarget] = useState({ arc: undefined, code: undefined });
   const [loadingSpinner, setLoadingSpinner] = useState(false);
@@ -188,26 +193,6 @@ const AchievementList = () => {
       { id: 1, arc: "four", code: "a4s1", title: "Wild Elvish Sorcerers", }
     ]
   ];
-
-  useEffect(() => {
-    const source = axios.CancelToken.source();
-
-    const getNumberOfDeath = async () => {
-      try {
-        const response = await axios.get("/users/achievements/death", { params: { _id: id }, cancelToken: source.token });
-        setNumberOfDeath(response.data);
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log(error);
-        } else {
-          throw error;
-        }
-      }
-    };
-
-    getNumberOfDeath();
-    return () => source.cancel() && setNumberOfDeath(0);
-  }, [id]);
 
   useEffect(() => {
     const getAchievements = async () => {
@@ -325,9 +310,9 @@ const AchievementList = () => {
 
   return (
     <ComponentLayout>
-      <ContainerDeath>
-      Number of death across all games: {numberOfDeath}
-      </ContainerDeath>
+      <ContainerStatistics>
+      Number of death across all games: {gameData.death}
+      </ContainerStatistics>
       <WrapperMain>
         <WrapperAdventureArc>
           <TitleArc>

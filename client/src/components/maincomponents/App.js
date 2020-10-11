@@ -89,7 +89,7 @@ const GlobalStyle = createGlobalStyle`
 // ReactGA.pageview("/");
 
 const App = () => {
-  const { setUserData } = useContext(UserContext);
+  const { setUserData, setGameData } = useContext(UserContext);
   const [initialGlobalStateLoader, setInitialGlobalStateLoader] = useState(false);
 
   useEffect(() => {
@@ -113,6 +113,27 @@ const App = () => {
 
     handleLogin();
   }, [setInitialGlobalStateLoader, setUserData]);
+
+  useEffect(() => {
+    const id = localStorage.getItem("auth-id");
+    const source = axios.CancelToken.source();
+
+    const getNumberOfDeath = async () => {
+      try {
+        const response = await axios.get("/users/achievements/death", { params: { _id: id }, cancelToken: source.token });
+        setGameData({ death: response.data });
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log(error);
+        } else {
+          throw error;
+        }
+      }
+    };
+
+    getNumberOfDeath();
+    return () => source.cancel() && setGameData({ death: 0 });
+  }, [setGameData]);
 
   return (
     <Router>
