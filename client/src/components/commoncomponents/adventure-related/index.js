@@ -1,3 +1,4 @@
-import Tile from "./Tile";
+import TileButton from "./TileButton";
+import TileContainer from "./TileContainer";
 
-export { Tile };
+export { TileButton, TileContainer };

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { HorizontalLine } from "components/commoncomponents/general";
-import { AdventureButton } from "components/layoutcomponents/adventures/storypage";
-import { LoadingSpinner } from "components/commoncomponents/general";
+import { TileButton, TileContainer } from "components/commoncomponents/adventure-related";
+import { HorizontalLine, LoadingSpinner } from "components/commoncomponents/general";
 import { IconBlack, IconYellow } from "components/commoncomponents/styled-icons";
 import iconList from "utilities/iconList";
 
@@ -12,10 +11,9 @@ const ComponentLayout = styled.div`
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
-  width: 100%;
 `;
 
-const ContainerArcsAndStories = styled.div`
+const WrapperMain = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +24,17 @@ const ContainerArcsAndStories = styled.div`
   }
 `;
 
-const ContainerArc = styled.div`
+const ContainerDeath = styled(TileContainer)`
+  width: fit-content;
+  margin: 0 auto 5rem;
+  font-size: ${props => props.theme.fontSize.small};
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    margin: 0 33% 5rem;
+  }
+`;
+
+const WrapperAdventureArc = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0.5rem auto;
@@ -41,12 +49,12 @@ const ContainerArc = styled.div`
   }
 `;
 
-const ContainerStoryButton = styled.div`
+const WrapperAdventureButton = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const ArcTitle = styled.p`
+const TitleArc = styled.p`
   font-size: ${props => props.theme.fontSize.medium};
   font-weight: bold;
   padding: 0 0 2rem 0;
@@ -58,13 +66,18 @@ const ArcTitle = styled.p`
   }
 `;
 
-const StoryButton = styled(AdventureButton)`
+const AdventureButton = styled(TileButton)`
   width: 20rem;
   font-size: ${props => props.theme.fontSize.small};
   font-weight: bold;
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  &:hover {
+    background-color: ${props => props.theme.backgroundColor.secondary};
+    color: ${props => props.theme.fontColor.secondaryDark};
+  }
 
   &:hover ${IconYellow} {
     color: ${props => props.theme.fontColor.secondaryDark};
@@ -104,14 +117,17 @@ const WrapperAchievement = styled.div`
   }
 `;
 
-const ObtainedAchievement = styled.div`
+const AchievementObtained = styled(TileContainer)`
   width: 20rem;
   background-color: ${props => props.theme.backgroundColor.secondary};
   color: ${props => props.theme.fontColor.secondaryDark};
-  font-weight: bold;
-  border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
-  padding: 2rem 2rem 2rem 2rem;
-  border-radius: 0.5rem;
+  font-family: ${props => props.theme.fontFamily.secondary};
+  font-weight: bolder;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+  }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
     width: 25rem;
@@ -130,7 +146,7 @@ const ObtainedAchievement = styled.div`
   }
 `;
 
-const MissingAchievement = styled(ObtainedAchievement)`
+const AchievementMissing = styled(AchievementObtained)`
   background-color: ${props => props.theme.backgroundColor.mainDark};
   color: ${props => props.theme.fontColor.main};
 `;
@@ -143,7 +159,7 @@ const AchievementTitle = styled.p`
   padding: 0 0 1rem 0;
 `;
 
-const AchievementDesc = styled.p`
+const AchievementDescription = styled.p`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -151,9 +167,11 @@ const AchievementDesc = styled.p`
 `;
 
 const AchievementList = () => {
+  const [numberOfDeath, setNumberOfDeath] = useState(undefined);
   const [achievements, setAchievements] = useState([]);
   const [eventTarget, setEventTarget] = useState({ arc: undefined, code: undefined });
   const [loadingSpinner, setLoadingSpinner] = useState(false);
+  const id = localStorage.getItem("auth-id");
 
   const buttonList = [
     [
@@ -172,8 +190,27 @@ const AchievementList = () => {
   ];
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
+
+    const getNumberOfDeath = async () => {
+      try {
+        const response = await axios.get("/users/achievements/death", { params: { _id: id }, cancelToken: source.token });
+        setNumberOfDeath(response.data);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log(error);
+        } else {
+          throw error;
+        }
+      }
+    };
+
+    getNumberOfDeath();
+    return () => source.cancel() && setNumberOfDeath(0);
+  }, [id]);
+
+  useEffect(() => {
     const getAchievements = async () => {
-      const id = localStorage.getItem("auth-id");
       try {
         if (eventTarget.arc === "one") {
           for (let i = 0; i < buttonList[0].length; i++) {
@@ -218,43 +255,43 @@ const AchievementList = () => {
     };
 
     getAchievements();
-  }, [eventTarget, setLoadingSpinner]);
+  }, [eventTarget, id, setLoadingSpinner]);
 
-  const handleClick = (event) => setEventTarget({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });  
+  const handleClick = (event) => setEventTarget({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });
 
   const renderArcOneButtons = buttonList[0].map((element) => {
     return (
-      <StoryButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
+      <AdventureButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
         <IconYellow icon={iconList.trophy}></IconYellow>
         {element.title}
-      </StoryButton>
+      </AdventureButton>
     );
   });
 
   const renderArcTwoButtons = buttonList[1].map((element) => {
     return (
-      <StoryButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
+      <AdventureButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
         <IconYellow icon={iconList.trophy}></IconYellow>
         {element.title}
-      </StoryButton>
+      </AdventureButton>
     );
   });
 
   const renderArcThreeButtons = buttonList[2].map((element) => {
     return (
-      <StoryButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
+      <AdventureButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
         <IconYellow icon={iconList.trophy}></IconYellow>
         {element.title}
-      </StoryButton>
+      </AdventureButton>
     );
   });
 
   const renderArcFourButtons = buttonList[3].map((element) => {
     return (
-      <StoryButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
+      <AdventureButton key={element.id} data-arc={element.arc} data-code={element.code} onClick={handleClick}>
         <IconYellow icon={iconList.trophy}></IconYellow>
         {element.title}
-      </StoryButton>
+      </AdventureButton>
     );
   });
 
@@ -262,67 +299,70 @@ const AchievementList = () => {
     return (
       <WrapperAchievement key={element?.[1].id + 1}>
         {element?.[1].state ?
-        <ObtainedAchievement>
+        <AchievementObtained>
           <AchievementTitle>
             <IconBlack icon={iconList.star}></IconBlack>
             {element?.[1].name}
           </AchievementTitle>
-          <AchievementDesc>
+          <AchievementDescription>
             <IconBlack icon={iconList.scroll}></IconBlack>{
             element?.[1].description}
-          </AchievementDesc>
-        </ObtainedAchievement> : 
-        <MissingAchievement>
+          </AchievementDescription>
+        </AchievementObtained> : 
+        <AchievementMissing>
           <AchievementTitle>
             <IconYellow icon={iconList.star}></IconYellow>
             {element?.[1].name}
           </AchievementTitle>
-          <AchievementDesc>
+          <AchievementDescription>
             <IconYellow icon={iconList.scroll}></IconYellow>
             {element?.[1].description}
-          </AchievementDesc>
-        </MissingAchievement>}
+          </AchievementDescription>
+        </AchievementMissing>}
       </WrapperAchievement>
     );
   });
 
   return (
     <ComponentLayout>
-      <ContainerArcsAndStories>
-        <ContainerArc>
-          <ArcTitle>
+      <ContainerDeath>
+      Number of death across all games: {numberOfDeath}
+      </ContainerDeath>
+      <WrapperMain>
+        <WrapperAdventureArc>
+          <TitleArc>
             Tales of the Eastern Fief
-          </ArcTitle>
-          <ContainerStoryButton>
+          </TitleArc>
+          <WrapperAdventureButton>
             {renderArcOneButtons}
-          </ContainerStoryButton>
-        </ContainerArc>
-        <ContainerArc>
-          <ArcTitle>
+          </WrapperAdventureButton>
+        </WrapperAdventureArc>
+        <WrapperAdventureArc>
+          <TitleArc>
             Bad News from the North
-          </ArcTitle>
-          <ContainerStoryButton>
+          </TitleArc>
+          <WrapperAdventureButton>
             {renderArcTwoButtons}
-          </ContainerStoryButton>
-        </ContainerArc>
-        <ContainerArc>
-          <ArcTitle>
+          </WrapperAdventureButton>
+        </WrapperAdventureArc>
+        <WrapperAdventureArc>
+          <TitleArc>
             Diaries from the Royal Fief
-          </ArcTitle>
-          <ContainerStoryButton>
+          </TitleArc>
+          <WrapperAdventureButton>
             {renderArcThreeButtons}
-          </ContainerStoryButton>
-        </ContainerArc>
-        <ContainerArc>
-          <ArcTitle>
+          </WrapperAdventureButton>
+        </WrapperAdventureArc>
+        <WrapperAdventureArc>
+          <TitleArc>
             Friends or Foes?
-          </ArcTitle>
-          <ContainerStoryButton>
+          </TitleArc>
+          <WrapperAdventureButton>
             {renderArcFourButtons}
-          </ContainerStoryButton>
-        </ContainerArc>
-      </ContainerArcsAndStories>
-      {loadingSpinner ? <LoadingSpinner message={"Searching account in the database... Please wait!"} /> : null}
+          </WrapperAdventureButton>
+        </WrapperAdventureArc>
+      </WrapperMain>
+      {loadingSpinner ? <LoadingSpinner message={"The dragons are fetching your data..."} /> : null}
       {loadingSpinner || eventTarget.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
       <ContainerAchievements>
         {loadingSpinner ? eventTarget.arc === undefined : renderAchievements}

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Tile } from "components/commoncomponents/adventure-related";
+import { TileButton } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
 import iconList from "utilities/iconList";
 
-const ComponentContainer = styled(Tile)`
+const ComponentContainer = styled(TileButton)`
   width: 20rem;
   display: flex;
   flex-direction: row;

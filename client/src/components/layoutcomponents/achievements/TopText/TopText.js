@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { HorizontalLine } from "components/commoncomponents/general";
-import Message from "components/layoutcomponents/account/TopText/Message";
-import Title from "components/layoutcomponents/account/TopText/Title";
+import Message from "components/layoutcomponents/achievements/TopText/Message";
+import Title from "components/layoutcomponents/achievements/TopText/Title";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -12,11 +12,11 @@ const ContainerComponent = styled.div`
   margin: 0 auto;
   
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 70%;
+    width: 65%;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 45%;
+    width: 50%;
   }
 `;
 

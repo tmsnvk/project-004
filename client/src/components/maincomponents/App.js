@@ -32,7 +32,7 @@ const theme = {
   },
   fontFamily: {
     main: `"Roboto", sans-serif`,
-    secondary: `"Open Sans", sans-serif`
+    secondary: "Montserrat"
   },
   fontSize: {
     default: "1rem", // 10px

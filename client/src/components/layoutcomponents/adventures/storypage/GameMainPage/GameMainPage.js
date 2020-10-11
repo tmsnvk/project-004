@@ -2,24 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
-import { Tile } from "components/commoncomponents/adventure-related";
+import { TileButton } from "components/commoncomponents/adventure-related";
 
 const ComponentContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-size: ${props => props.theme.fontSize.small};
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.medium};
-  }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     margin: 0 auto;
@@ -27,18 +15,20 @@ const ComponentContainer = styled.div`
   }
 `;
 
-const StoryPiece = styled.div`
-  padding: 1.5rem 0 1.5rem 0;
+const StoryPiece = styled.p`
+  padding: 1rem 0 1rem 0;
+  font-family: ${props => props.theme.fontFamily.secondary};
+  font-weight: bolder;
+
+  &::first-letter {
+    font-size: ${props => props.theme.fontSize.xxLarge};
+  }
 `;
 
 const ContainerButton = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-
-  }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
     width: 80%;
@@ -47,13 +37,12 @@ const ContainerButton = styled.div`
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: 100%;
     flex-direction: row;
-}
+  }
 `;
 
-const NextEventButton = styled(Tile)`
+const NextEventButton = styled(TileButton)`
   visibility: ${props => props.visible ? "visible" : "hidden"};
-  font-size: ${props => props.theme.fontSize.small};
-  line-height: 1.75;
+  font-weight: bold;
 
   &:first-child {
     margin: 5rem 0 1rem 0;
@@ -62,13 +51,6 @@ const NextEventButton = styled(Tile)`
   &:hover {
     background-color: ${props => props.theme.backgroundColor.secondary};
     color: ${props => props.theme.fontColor.secondaryDark};
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
@@ -99,10 +81,9 @@ const AchievementUnlocked = styled.div`
   font-size: ${props => props.theme.fontSize.medium};
   color: ${props => props.theme.fontColor.secondaryDark};
   font-weight: bold;
-  border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
   padding: 2rem 2rem 2rem 2rem;
+  border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
   border-radius: 0.5rem;
-  cursor: pointer;
 `;
 
 const GameMainPage = ({ story }) => {
@@ -118,7 +99,7 @@ const GameMainPage = ({ story }) => {
       const eventParagraphs = story.find(element => element.id === eventId);
       setEventParagraphs({ one: eventParagraphs.paragraphs[0]?.text, two: eventParagraphs.paragraphs[1]?.text, three: eventParagraphs.paragraphs[2]?.text });
     };
-    
+
     getEventTexts(eventId, story);
     return () => setEventParagraphs({ one: undefined, two: undefined, three: undefined });
   }, [eventId, story]);
@@ -163,8 +144,13 @@ const GameMainPage = ({ story }) => {
   }, [eventId, eventAchievement]);
 
   useEffect(() => {
-    const triggerGameOver = (eventId) => {
-      if ((eventId) === "GAMEOVER") history.push("/page/adventures/results");
+    const triggerGameOver = async (eventId) => {
+      if ((eventId) === "GAMEOVER") {
+        const id = localStorage.getItem("auth-id");
+        const response = await axios.put("/users/achievements/death", { id });
+        console.log(response.data);
+        history.push("/page/adventures/results");
+      } 
     };
 
     triggerGameOver(eventId);
