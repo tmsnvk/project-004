@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 import { ContainerLayout, MessageText, MessageTitle } from "components/commoncomponents/general";
 import { TileButton } from "components/commoncomponents/adventure-related";
@@ -38,7 +39,12 @@ const GameStart = () => {
     return <Redirect to={"/page/adventures/underconstruction"} />;
   } else return null;
 
-  const startStory = () => setStart(true);
+  const startStory = async () => {
+    const id = localStorage.getItem("auth-id");
+    await axios.put("/users/achievements/gamestart", { id });
+    
+    setStart(true);
+  };
 
   return (
     <ContainerLayout>

@@ -1,5 +1,7 @@
 const iconList = {
   addressCard: ["fas", "address-card"],
+  calendarUnlocked: ["fas", "calendar-check"],
+  calendarLocked: ["fas", "calendar-times"],
   chessKing: ["fas", "chess-king"],
   chessRook: ["fas", "chess-rook"],
   dragon: ["fas", "dragon"],

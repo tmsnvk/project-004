@@ -27,16 +27,18 @@ router.post("/register", async (request, response) => {
       loginName: loginName,
       password: passwordHash,
       createdAt: Date.now(),
-      numberOfDeath: 0,
+      numberOfGameStarts: 0,
+      numberOfGameFinishes: 0,
+      numberOfDeaths: 0,
       achievementsA1S1: {
-        followToRoom: { id: 1, state: false, name: "placeholder_name", description: "add descr" },
-        keepPunching: { id: 2, state: false, name: "Keep 'em Punching!", description: "You kept the bastards punching until the soldiers have shown up." },
-        hideSafely: { id: 3, state: false, name: "Hide in Safety.", description: "add descr" },
-        refuseMeal: { id: 4, state: false, name: "placeholder_name", description: "add descr" },
-        acceptMeal: { id: 5, state: false, name: "placeholder_name", description: "add descr" },
-        refusePampflet: { id: 6, state: false, name: "placeholder_name", description: "add descr" },
-        acceptPampflet: { id: 7, state: false, name: "placeholder_name", description: "add descr" },
-        listenToSoldiers: { id: 8, state: false, name: "placeholder_name", description: "add descr" }
+        followToRoom: { id: 1, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },
+        keepPunching: { id: 2, state: false, name: "Keep 'em Punching!", description: "You kept the bastards punching until the soldiers have shown up.", date: Date.now() },
+        hideSafely: { id: 3, state: false, name: "Hide in Safety.", description: "add descr", date: Date.now() },
+        refuseMeal: { id: 4, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },
+        acceptMeal: { id: 5, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },
+        refusePampflet: { id: 6, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },
+        acceptPampflet: { id: 7, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },
+        listenToSoldiers: { id: 8, state: false, name: "placeholder_name", description: "add descr", date: Date.now() }
       }
     });
 
@@ -103,7 +105,8 @@ router.put("/achievement", async (request, response) => {
 
   if (receivedData.storyCode === "a1s1") {
     const achievementClientCode = [undefined, "AOSO8G", "AOSO5N_2"];
-    const achievementMongoCode = [undefined, "achievementsA1S1.keepPunching.state", "achievementsA1S1.hideSafely.state"];
+    const achievementStates = [undefined, "achievementsA1S1.keepPunching.state", "achievementsA1S1.hideSafely.state"];
+    const achievementTimestamps = [undefined, "achievementsA1S1.keepPunching.date", "achievementsA1S1.hideSafely.date"];
     
     const getUser = await userSchema.findById(receivedData.id);
     const achievementValues = Object.entries(getUser.achievementsA1S1).splice(1);
@@ -112,7 +115,7 @@ router.put("/achievement", async (request, response) => {
         if (achievementValues[i][1].state) return response.status(200).json({ message: true });
   
         try {
-          await getUser.updateOne({ "$set": { [achievementMongoCode[i]]: true }});
+          await getUser.updateOne({ "$set": { [achievementStates[i]]: true, [achievementTimestamps[i]]: Date.now() }});
           return response.json("update received");
         } catch (error) {
           response.status(500).json({ error: error.message });
@@ -126,16 +129,23 @@ router.put("/achievement", async (request, response) => {
   }
 });
 
-router.get("/achievements/death", async (request, response) => {
+router.get("/achievements/global", async (request, response) => {
   const receivedData = request.query;
   const getUser = await userSchema.findById(receivedData);
-  response.json(getUser.numberofDeath);
+  response.json({gameStart: getUser.numberOfGameStarts, gameFinish: getUser.numberOfGameFinishes, gameDeath: getUser.numberOfDeaths});
+});
+
+router.put("/achievements/gamestart", async (request, response) => {
+  const receivedData = request.body;
+  const getUser = await userSchema.findById(receivedData.id);
+  await getUser.updateOne({ "$inc": { numberOfGameStarts: +1 }});
+  response.json("Data has been updated!");
 });
 
 router.put("/achievements/death", async (request, response) => {
   const receivedData = request.body;
   const getUser = await userSchema.findById(receivedData.id);
-  await getUser.updateOne({ "$inc": { numberofDeath: +1 }});
+  await getUser.updateOne({ "$inc": { numberOfDeaths: +1 }});
   response.json("Data has been updated!");
 });
 

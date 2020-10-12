@@ -28,7 +28,8 @@ const WrapperMain = styled.div`
 const ContainerStatistics = styled(TileContainer)`
   width: fit-content;
   margin: 0 auto 5rem;
-  font-size: ${props => props.theme.fontSize.small};
+  display: flex;
+  flex-direction: column;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     margin: 0 25% 5rem;
@@ -37,6 +38,18 @@ const ContainerStatistics = styled(TileContainer)`
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     margin: 0 33% 5rem;
   }
+`;
+
+const TextStatistics = styled.p`
+  align-items: center;
+  font-size: ${props => props.theme.fontSize.small};
+  padding: 0.5rem 1rem 0.5rem 1rem;
+`;
+
+const SpanBold = styled.span`
+  font-size: ${props => props.theme.fontSize.large};
+  font-weight: bolder;
+  padding: 0 0 0 1rem;
 `;
 
 const WrapperAdventureArc = styled.div`
@@ -164,11 +177,8 @@ const AchievementTitle = styled.p`
   padding: 0 0 1rem 0;
 `;
 
-const AchievementDescription = styled.p`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: ${props => props.theme.fontSize.small};
+const AchievementDescription = styled(AchievementTitle)`
+  padding: 0;
 `;
 
 const AchievementList = () => {
@@ -290,8 +300,12 @@ const AchievementList = () => {
             {element?.[1].name}
           </AchievementTitle>
           <AchievementDescription>
-            <IconBlack icon={iconList.scroll}></IconBlack>{
-            element?.[1].description}
+            <IconBlack icon={iconList.scroll}></IconBlack>
+            {element?.[1].description}
+          </AchievementDescription>
+          <AchievementDescription>
+            <IconBlack icon={iconList.calendarUnlocked}></IconBlack>
+            {new Date(element?.[1].date).toLocaleString("en-US", { year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: true })}
           </AchievementDescription>
         </AchievementObtained> : 
         <AchievementMissing>
@@ -303,6 +317,10 @@ const AchievementList = () => {
             <IconYellow icon={iconList.scroll}></IconYellow>
             {element?.[1].description}
           </AchievementDescription>
+          <AchievementDescription>
+            <IconYellow icon={iconList.calendarLocked}></IconYellow>
+            Not yet unlocked.
+          </AchievementDescription>
         </AchievementMissing>}
       </WrapperAchievement>
     );
@@ -311,7 +329,15 @@ const AchievementList = () => {
   return (
     <ComponentLayout>
       <ContainerStatistics>
-      Number of death across all games: {gameData.death}
+        <TextStatistics>
+          Number of adventures started: <SpanBold>{gameData.gameStart}</SpanBold>
+        </TextStatistics>
+        <TextStatistics>
+          Number of adventures finished: <SpanBold>{gameData.gameFinish}</SpanBold>
+        </TextStatistics>
+        <TextStatistics>
+          Number of deaths: <SpanBold>{gameData.gameDeath}</SpanBold>
+        </TextStatistics>
       </ContainerStatistics>
       <WrapperMain>
         <WrapperAdventureArc>

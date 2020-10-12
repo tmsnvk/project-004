@@ -8,9 +8,9 @@ import { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotF
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAddressCard, faChessKing, faChessRook, faCog, faDragon, faInfinity, faMapSigns, faMountain, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faCalendarCheck, faCalendarTimes, faChessKing, faChessRook, faCog, faDragon, faInfinity, faMapSigns, faMountain, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
-library.add(faAddressCard, faChessKing, faChessRook, faCog, faDotCircle, faDragon, faInfinity, faMapSigns, faMountain, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench);
+library.add(faAddressCard, faCalendarCheck, faCalendarTimes, faChessKing, faChessRook, faCog, faDotCircle, faDragon, faInfinity, faMapSigns, faMountain, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench);
 
 const theme = {
   fontColor: {
@@ -116,12 +116,14 @@ const App = () => {
 
   useEffect(() => {
     const id = localStorage.getItem("auth-id");
+    if (id === null || id === "") return;
+
     const source = axios.CancelToken.source();
 
-    const getNumberOfDeath = async () => {
+    const getGlobalAchievements = async () => {
       try {
-        const response = await axios.get("/users/achievements/death", { params: { _id: id }, cancelToken: source.token });
-        setGameData({ death: response.data });
+        const response = await axios.get("/users/achievements/global", { params: { _id: id }, cancelToken: source.token });
+        setGameData({ gameStart: response.data.gameStart, gameFinish: response.data.gameFinish, gameDeath: response.data.gameDeath });
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log(error);
@@ -131,8 +133,8 @@ const App = () => {
       }
     };
 
-    getNumberOfDeath();
-    return () => source.cancel() && setGameData({ death: 0 });
+    getGlobalAchievements();
+    return () => source.cancel() && setGameData({ gameStart: 0, gameFinish: 0, gameDeath: 0 });
   }, [setGameData]);
 
   return (
