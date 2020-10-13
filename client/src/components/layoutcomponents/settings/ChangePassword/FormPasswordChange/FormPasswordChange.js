@@ -24,9 +24,9 @@ const FormNameChange = () => {
       const id = localStorage.getItem("auth-id");
 
       try {
-        const response = await axios.put("/users/changepassword", { id, formData });
-        console.log(response.data);
-        // history.go();
+        await axios.put("/users/changepassword", { id, formData });
+        history.push("/page/success");
+        history.go();
       } catch (error) {
         console.log(error);
         return setLoginError(error.response.data.message);

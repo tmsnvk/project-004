@@ -4,7 +4,6 @@ const userSchema = new mongoose.Schema({
   loginName: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   createdAt: { type: Date },
-  // updatedAt: { type: Date },
   numberOfGameStarts: { type: Number, default: 0, required: true },
   numberOfGameFinishes: { type: Number, default: 0, required: true },
   numberOfDeaths: { type: Number, default: 0, required: true },

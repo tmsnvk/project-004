@@ -196,9 +196,18 @@ router.put("/changepassword", async (request, response) => {
   response.json("Data has been updated!");
 });
 
+router.put("/deleteaccount", async (request, response) => {
+  const { id } = request.body;
+
+  const getUser = await userSchema.findById(id);
+  console.log(getUser.loginName);
+  await getUser.deleteOne({ loginName: getUser.loginName });
+  response.json("Account has been deleted!");
+});
+
 router.get("/", auth, async (request, response) => {
   const user = await userSchema.findById(request.user);
-  response.json({ loginName: user.loginName, id: user._id });
+  response.json({ loginName: user.loginName, id: user._id, createdAt: user.createdAt });
 });
 
 module.exports = router;

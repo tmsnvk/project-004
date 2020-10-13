@@ -7,6 +7,7 @@ import Home from "layouts/Home";
 import PageNotFound from "layouts/PageNotFound";
 import Register from "layouts/Register";
 import Settings from "layouts/Settings";
+import SuccessfulUpdate from "layouts/SuccessfulUpdate";
 import UnderConstruction from "layouts/UnderConstruction";
 
-export { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, UnderConstruction };
+export { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, SuccessfulUpdate, UnderConstruction };

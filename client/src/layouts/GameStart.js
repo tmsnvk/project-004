@@ -42,7 +42,6 @@ const GameStart = () => {
   const startStory = async () => {
     const id = localStorage.getItem("auth-id");
     await axios.put("/users/achievements/gamestart", { id });
-    
     setStart(true);
   };
 

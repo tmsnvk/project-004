@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-d
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, UnderConstruction } from "layouts";
+import { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, SuccessfulUpdate, UnderConstruction } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -106,7 +106,7 @@ const App = () => {
       const response = await axios.post("/users/tokenIsValid", null, { headers: {"x-auth-token": token }});
       if (response.data) {
         const userResponse = await axios.get("/users", { headers: { "x-auth-token": token }});
-        setUserData({ token, user: userResponse.data.loginName, id: userResponse.data.id });
+        setUserData({ token, user: userResponse.data.loginName, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
         setInitialGlobalStateLoader(false);
       }
     };
@@ -134,7 +134,10 @@ const App = () => {
     };
 
     getGlobalAchievements();
-    return () => source.cancel() && setGameData({ gameStart: 0, gameFinish: 0, gameDeath: 0 });
+    return () => {
+      source.cancel();
+      setGameData({ gameStart: 0, gameFinish: 0, gameDeath: 0 });
+    } 
   }, [setGameData]);
 
   return (
@@ -153,6 +156,7 @@ const App = () => {
           <PrivateRoute path="/page/adventures/:storytitle" component={GameStart} />
           <PrivateRoute path="/page/achievements" component={Achievements} />
           <PrivateRoute path="/page/settings" component={Settings} />
+          <PrivateRoute path="/page/success" component={SuccessfulUpdate} />
           <Route path="/page/about" component={About} />
           <Redirect exact path="/" to="/page/home" />
           <Route component={PageNotFound} />
