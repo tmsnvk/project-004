@@ -167,6 +167,35 @@ router.get("/achievements/:storycode", async (request, response) => {
   } else return null;
 });
 
+router.put("/changename", async (request, response) => {
+  const { id, formData } = request.body;
+
+  if (!formData.changedName) return response.status(400).json({ message: "Not all fields have been entered!" });
+
+  const user = await userSchema.findOne({ loginName: formData.changedName });
+  if (user) return response.status(400).json({ message: "There's already an account with this name!" });
+
+  const getUser = await userSchema.findById(id);
+  await getUser.updateOne({ "$set": { loginName: formData.changedName }});
+  response.json("Data has been updated!");
+});
+
+router.put("/changepassword", async (request, response) => {
+  const { id, formData } = request.body;
+
+  if (!formData.password || !formData.passwordCheck) return response.status(400).json({ message: "Not all fields have been entered!" });
+  
+  if (formData.password.length < 2) return response.status(400).json({ message: "Password needs to be at least 6 characters!" });
+  if (formData.password !== formData.passwordCheck) return response.status(400).json({ message: "Enter the same password twice for verification" }); 
+
+  const salt = await bcrypt.genSalt();
+  const passwordHash = await bcrypt.hash(formData.password, salt);
+
+  const getUser = await userSchema.findById(id);
+  await getUser.updateOne({ "$set": { password: passwordHash }});
+  response.json("Data has been updated!");
+});
+
 router.get("/", auth, async (request, response) => {
   const user = await userSchema.findById(request.user);
   response.json({ loginName: user.loginName, id: user._id });

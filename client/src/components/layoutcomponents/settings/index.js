@@ -1,3 +1,5 @@
+import ChangeName from "./ChangeName";
+import ChangePassword from "./ChangePassword";
 import TopText from "./TopText";
 
-export { TopText };
+export { ChangeName, ChangePassword, TopText };
