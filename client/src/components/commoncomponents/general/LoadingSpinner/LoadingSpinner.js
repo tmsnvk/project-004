@@ -36,9 +36,9 @@ const LoadingSpinner = ({ message }) => {
     <ComponentContainer>
       <ContainerIcon>
         <IconYellow icon={iconList.spinner} spin></IconYellow>
-        <IconYellow icon={iconList.dragon}></IconYellow>
-        <IconYellow icon={iconList.mountain}></IconYellow>
-        <IconYellow icon={iconList.dragon}></IconYellow>
+        <IconYellow icon={iconList.peopleCarry}></IconYellow>
+        <IconYellow icon={iconList.archive}></IconYellow>
+        <IconYellow icon={iconList.peopleCarry}></IconYellow>
         <IconYellow icon={iconList.spinner} spin></IconYellow>
       </ContainerIcon>
       <MessageText>{message}</MessageText>

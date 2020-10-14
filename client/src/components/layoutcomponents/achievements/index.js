@@ -1,4 +1,4 @@
 import AchievementList from "./AchievementList";
-import TopText from "./TopText";
+import PageTopText from "./PageTopText";
 
-export { AchievementList, TopText };
+export { AchievementList, PageTopText };

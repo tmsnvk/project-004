@@ -8,17 +8,23 @@ import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/common
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 3;
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
 `;
 
 const RegisterForm = () => {
+  const { setUserData } = useContext(UserContext);
+
   const [formData, setFormData] = useState({ userName: undefined, password: undefined, passwordCheck: undefined });
   const [loginError, setLoginError] = useState(undefined);
 
   const { handleSubmit, register } = useForm();
-  const { setUserData } = useContext(UserContext);
   const history = useHistory();
 
   const onSubmit = (data) => setFormData({ userName: data.registerLoginName, password: data.registerPassword, passwordCheck: data.registerPasswordCheck });
@@ -45,6 +51,7 @@ const RegisterForm = () => {
     };
 
     handleRegister();
+    return () => setFormData({ userName: undefined, password: undefined, passwordCheck: undefined });
   }, [formData, setUserData, history]);
 
   return (
@@ -55,7 +62,7 @@ const RegisterForm = () => {
           type="text"
           id="registerLoginName"
           name="registerLoginName"
-          placeholder="* Your Account Name"
+          placeholder="* Enter Usename"
           autoComplete="off"
           ref={register}
         />
@@ -64,7 +71,7 @@ const RegisterForm = () => {
           type="password"
           id="registerPassword"
           name="registerPassword"
-          placeholder="* Your Password"
+          placeholder="* Enter Password"
           autoComplete="off"
           ref={register}
         />
@@ -73,7 +80,7 @@ const RegisterForm = () => {
           type="password"
           id="registerPasswordCheck"
           name="registerPasswordCheck"
-          placeholder="* Verify Your Password"
+          placeholder="* Verify Password"
           autoComplete="off"
           ref={register}
         />

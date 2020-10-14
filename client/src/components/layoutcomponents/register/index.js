@@ -1,4 +1,4 @@
-import TopText from "./TopText";
+import PageTopText from "./PageTopText";
 import RegisterForm from "./RegisterForm";
 
-export { RegisterForm, TopText };
+export { PageTopText, RegisterForm };

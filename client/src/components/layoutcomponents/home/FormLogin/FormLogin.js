@@ -20,7 +20,7 @@ const ContainerComponent = styled.div`
 
 const LoginForm = () => {
   const { setUserData } = useContext(UserContext);
-  
+
   const [formData, setFormData] = useState({ userName: undefined, password: undefined });
   const [loginError, setLoginError] = useState(undefined);
 
@@ -36,7 +36,7 @@ const LoginForm = () => {
       try {
         const response = await axios.post("/user/login", formData);
         setUserData({ token: response.data.token, user: response.data.user.userName, id: response.data.user.id });
-        
+
         localStorage.setItem("auth-token", response.data.token);
         localStorage.setItem("auth-name", response.data.user.userName);
         localStorage.setItem("auth-id", response.data.user.id);
@@ -44,7 +44,7 @@ const LoginForm = () => {
         return setLoginError(error.response.data.message);
       }
     };
-    
+
     handleLogin();
     return () => {
       setFormData({ userName: undefined, password: undefined });
@@ -73,7 +73,7 @@ const LoginForm = () => {
           autoComplete="off"
           ref={register}
         />
-        <InputSubmit type="submit" value="sign in" />
+        <InputSubmit type="submit" value="log in" />
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </Form>
     </ContainerComponent>

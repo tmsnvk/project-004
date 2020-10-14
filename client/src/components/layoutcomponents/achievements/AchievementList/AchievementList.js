@@ -7,9 +7,9 @@ import { HorizontalLine, LoadingSpinner } from "components/commoncomponents/gene
 import { IconBlack, IconYellow } from "components/commoncomponents/styled-icons";
 import iconList from "utilities/iconList";
 
-const ComponentLayout = styled.div`
+const ContainerComponent = styled.div`
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 3;
 `;
@@ -327,7 +327,7 @@ const AchievementList = () => {
   });
 
   return (
-    <ComponentLayout>
+    <ContainerComponent>
       <ContainerStatistics>
         <TextStatistics>
           Number of adventures started: <SpanBold>{gameData.gameStart}</SpanBold>
@@ -378,7 +378,7 @@ const AchievementList = () => {
       <ContainerAchievements>
         {loadingSpinner ? eventTarget.arc === undefined : renderAchievements}
       </ContainerAchievements>
-    </ComponentLayout>
+    </ContainerComponent>
   );
 };
 

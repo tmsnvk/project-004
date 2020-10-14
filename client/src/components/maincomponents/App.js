@@ -4,13 +4,13 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-d
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, SuccessfulUpdate, UnderConstruction } from "layouts";
+import { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, SuccessfulUpdate, Tutorial, UnderConstruction } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAddressCard, faCalendarCheck, faCalendarTimes, faChessKing, faChessRook, faCog, faDragon, faInfinity, faMapSigns, faMountain, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChessKing, faChessRook, faCog, faInfinity, faMapSigns, faPeopleCarry, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
 import { faDotCircle } from "@fortawesome/free-regular-svg-icons";
-library.add(faAddressCard, faCalendarCheck, faCalendarTimes, faChessKing, faChessRook, faCog, faDotCircle, faDragon, faInfinity, faMapSigns, faMountain, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench);
+library.add(faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChessKing, faChessRook, faCog, faDotCircle, faInfinity, faMapSigns, faPeopleCarry, faScroll, faSign, faSignOutAlt, faStar, faToriiGate, faTrophy, faUserTie, faWrench);
 
 const theme = {
   fontColor: {
@@ -104,7 +104,7 @@ const App = () => {
       if (token !== "") setInitialGlobalStateLoader(true);
 
       const response = await axios.post("/user/token-validity", null, { headers: {"x-auth-token": token }});
-      if (response.data) {
+      if (response.data.message.status) {
         const userResponse = await axios.get("/user", { headers: { "x-auth-token": token }});
         setUserData({ token, user: userResponse.data.userName, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
         setInitialGlobalStateLoader(false);
@@ -147,10 +147,11 @@ const App = () => {
         <ScrollToTop />
         <Navbar />
         <Switch>
-          {initialGlobalStateLoader ? <LoadingSpinner message="The dragons are getting tea..." /> : null}
+          {initialGlobalStateLoader ? <LoadingSpinner message="The caretakers are retriving the data from the archives..." /> : null}
           <Route path="/page/home" component={Home} />
           <Route path="/page/register" component={Register} />
           <PrivateRoute exact path="/page/adventures" component={Adventures} />
+          <PrivateRoute exact path="/page/adventures/tutorial" component={Tutorial} />
           <PrivateRoute exact path="/page/adventures/results" component={GameResults} />
           <PrivateRoute exact path="/page/adventures/underconstruction" component={UnderConstruction} />
           <PrivateRoute path="/page/adventures/:storytitle" component={GameStart} />
