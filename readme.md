@@ -47,6 +47,26 @@ FRONTEND
     |- COMPONENTS
       |- COMMONCOMPONENTS
       |- LAYOUTCOMPONENTS
+        |- HOME
+          |- index.js
+          |- FORMLOGIN
+            |- index.js
+            |- FormLogin.js
+          |- LOGGEDINTEXT
+            |- index.js
+            |- LoggedInText.js
+          |- LOGGEDOUTTEXT
+            |- index.js
+            |- LoggedOutText.js
+          |- PAGETOPTEXT
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
+            |- index.js
+            |- PageTopText.js
       |- MAINCOMPONENTS
         |- App.js
         |- index.js

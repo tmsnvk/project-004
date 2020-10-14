@@ -1,6 +1,6 @@
-import TopText from "./TopText";
-import RegisterText from "./RegisterText";
-import AccountText from "./AccountText";
-import LoginForm from "./LoginForm";
+import FormLogin from "./FormLogin";
+import LoggedInText from "./LoggedInText";
+import LoggedOutText from "./LoggedOutText";
+import PageTopText from "./PageTopText";
 
-export { TopText, RegisterText, AccountText, LoginForm };
+export { FormLogin, LoggedInText, LoggedOutText, PageTopText };

@@ -23,7 +23,7 @@ const FormNameChange = () => {
       const id = localStorage.getItem("auth-id");
 
       try {
-        await axios.put("/users/changename", { id, formData });
+        await axios.put("/user/change-name", { id, formData });
         history.push("/page/success");
         history.go();
       } catch (error) {
@@ -33,11 +33,11 @@ const FormNameChange = () => {
     };
 
     handleNameChange();
-  }, [formData]);
+  }, [formData, history]);
 
   return (
     <ContainerComponent>
-        <Form method="PUT" action="/users/changename" id="user-changename" onSubmit={handleSubmit(onSubmit)}>
+        <Form method="PUT" action="/user/change-name" id="user-changename" onSubmit={handleSubmit(onSubmit)}>
         <Label htmlFor="changeLoginName">Name</Label>
         <Input 
           type="text"

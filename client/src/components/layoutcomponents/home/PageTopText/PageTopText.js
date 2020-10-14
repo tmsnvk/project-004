@@ -1,17 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import { HorizontalLine } from "components/commoncomponents/general";
-import Message from "components/layoutcomponents/home/TopText/Message";
-import Title from "components/layoutcomponents/home/TopText/Title";
+import Message from "components/layoutcomponents/home/PageTopText/Message";
+import Title from "components/layoutcomponents/home/PageTopText/Title";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
 `;
 
-const TopText = () => {
+const PageTopText = () => {
   return (
     <ContainerComponent>
       <Title />
@@ -21,4 +26,4 @@ const TopText = () => {
   );
 };
 
-export default TopText;
+export default PageTopText;

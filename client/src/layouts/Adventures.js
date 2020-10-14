@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ContainerLayout } from "components/commoncomponents/general";
+import { LayoutContainer } from "components/commoncomponents/general";
 import { AdventureArc, AdventureTile, TopText, adventuresMetaData } from "components/layoutcomponents/adventures/mainpage";
 
 const ContainerButton = styled.div`
@@ -43,12 +43,12 @@ const Adventures = () => {
   });
 
   return (
-    <ContainerLayout>
+    <LayoutContainer>
       <TopText />
       <ContainerButton>
         {renderAdventureTiles}
       </ContainerButton>
-    </ContainerLayout>
+    </LayoutContainer>
   );
 };
 

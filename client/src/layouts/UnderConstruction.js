@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { ContainerLayoutWithMQ } from "components/commoncomponents/general";
+import { LayoutContainer } from "components/commoncomponents/general";
 import { TopText } from "components/layoutcomponents/underconstruction";
 
 const UnderConstruction = () => {
   return (
-    <ContainerLayoutWithMQ>
+    <LayoutContainer>
       <TopText />
-    </ContainerLayoutWithMQ>
+    </LayoutContainer>
   );
 };
 

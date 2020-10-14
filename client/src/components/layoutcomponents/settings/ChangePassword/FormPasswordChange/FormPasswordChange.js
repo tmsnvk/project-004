@@ -24,7 +24,7 @@ const FormNameChange = () => {
       const id = localStorage.getItem("auth-id");
 
       try {
-        await axios.put("/users/changepassword", { id, formData });
+        await axios.put("/user/change-password", { id, formData });
         history.push("/page/success");
         history.go();
       } catch (error) {
@@ -34,11 +34,11 @@ const FormNameChange = () => {
     };
 
     handlePasswordChange();
-  }, [formData]);
+  }, [formData, history]);
 
   return (
     <ContainerComponent>
-        <Form method="PUT" action="/users/changepassword" id="user-password" onSubmit={handleSubmit(onSubmit)}>
+        <Form method="PUT" action="/user/change-password" id="user-changepassword" onSubmit={handleSubmit(onSubmit)}>
         <Label htmlFor="changePassword">Password</Label>
         <Input 
           type="password"

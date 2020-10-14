@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
-import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/authform-related";
+import { Form, InputSubmit } from "components/commoncomponents/authform-related";
 
 const ContainerComponent = styled.div`
 
@@ -25,11 +25,14 @@ const FormAccountDelete = () => {
   useEffect(() => {
     if (!deleteAccount) return;
 
-    const handlePasswordChange = async () => {
+    const handleAccountDelete = async () => {
       const id = localStorage.getItem("auth-id");
+      const token = localStorage.getItem("auth-token");
+
+      console.log(id);
 
       try {
-        const response = await axios.put("/users/deleteaccount", { id });
+        await axios.delete("/user/delete", { params: { id: id }, headers: {"x-auth-token": token }});
         localStorage.setItem("auth-token", "");
         localStorage.setItem("auth-name", "");
         localStorage.setItem("auth-id", "");
@@ -41,13 +44,13 @@ const FormAccountDelete = () => {
       }
     };
     
-    handlePasswordChange();
+    handleAccountDelete();
     SetDeleteAccount(false);
-  }, [deleteAccount, SetDeleteAccount]);
+  }, [deleteAccount, history, SetDeleteAccount]);
 
   return (
     <ContainerComponent>
-        <Form method="PUT" action="/users/deleteaccount" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>
+        <Form method="DELETE" action="/user/delete" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>
         <DeleteSubmit type="submit" value="delete" />
       </Form>
     </ContainerComponent>

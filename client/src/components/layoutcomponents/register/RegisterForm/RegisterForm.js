@@ -14,27 +14,27 @@ const ContainerComponent = styled.div`
 `;
 
 const RegisterForm = () => {
-  const [formData, setFormData] = useState({ loginName: undefined, password: undefined, passwordCheck: undefined });
+  const [formData, setFormData] = useState({ userName: undefined, password: undefined, passwordCheck: undefined });
   const [loginError, setLoginError] = useState(undefined);
 
   const { handleSubmit, register } = useForm();
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
 
-  const onSubmit = (data) => setFormData({ loginName: data.registerLoginName, password: data.registerPassword, passwordCheck: data.registerPasswordCheck });
+  const onSubmit = (data) => setFormData({ userName: data.registerLoginName, password: data.registerPassword, passwordCheck: data.registerPasswordCheck });
 
   useEffect(() => {
-    if (formData.loginName === undefined || formData.password === undefined || formData.passwordCheck === undefined) return;
+    if (formData.userName === undefined || formData.password === undefined || formData.passwordCheck === undefined) return;
 
     const handleRegister = async () => {
       try {
-        await axios.post("/users/register", formData);
+        await axios.post("/user/register", formData);
 
-        const response = await axios.post("/users/login", formData);
-        setUserData({ token: response.data.token, user: response.data.user.loginName, id: response.data.user.id });
+        const response = await axios.post("/user/login", formData);
+        setUserData({ token: response.data.token, user: response.data.user.userName, id: response.data.user.id });
 
         localStorage.setItem("auth-token", response.data.token);
-        localStorage.setItem("auth-name", response.data.user.loginName);
+        localStorage.setItem("auth-name", response.data.user.userName);
         localStorage.setItem("auth-id", response.data.user.id);
         history.push("/page/home");
         history.go();
@@ -49,7 +49,7 @@ const RegisterForm = () => {
 
   return (
     <ContainerComponent>
-      <Form method="POST" action="/users/register" id="user-register" onSubmit={handleSubmit(onSubmit)}>
+      <Form method="POST" action="/user/register" id="user-register" onSubmit={handleSubmit(onSubmit)}>
         <Label htmlFor="registerLoginName">Name</Label>
         <Input 
           type="text"

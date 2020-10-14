@@ -131,7 +131,7 @@ const GameMainPage = ({ story }) => {
       if (eventId === eventAchievement?.code) {
         try {
           const id = localStorage.getItem("auth-id");
-          const response = await axios.put("/users/achievement", { id, storyCode: eventAchievement.storyCode, code: eventAchievement.code });
+          const response = await axios.put("/achievement/trigger", { id, storyCode: eventAchievement.storyCode, code: eventAchievement.code });
           if (!response.data.message) setShowAchievementPanel(true);
         } catch (error) {
           console.log(error);
@@ -147,7 +147,7 @@ const GameMainPage = ({ story }) => {
     const triggerGameOver = async (eventId) => {
       if ((eventId) === "GAMEOVER") {
         const id = localStorage.getItem("auth-id");
-        await axios.put("/users/achievements/death", { id });
+        await axios.put("/achievement/counter-death", { id });
         history.push("/page/adventures/results");
         history.go();
       } 

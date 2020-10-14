@@ -8,32 +8,37 @@ import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/common
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 4;
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
 `;
 
 const LoginForm = () => {
   const { setUserData } = useContext(UserContext);
   
-  const [formData, setFormData] = useState({ loginName: undefined, password: undefined });
+  const [formData, setFormData] = useState({ userName: undefined, password: undefined });
   const [loginError, setLoginError] = useState(undefined);
 
   const { handleSubmit, register } = useForm();
   const history = useHistory();
 
-  const onSubmit = (data) =>  setFormData({ loginName: data.loginUserName, password: data.loginUserPassword });
+  const onSubmit = (data) =>  setFormData({ userName: data.loginUserName, password: data.loginUserPassword });
 
   useEffect(() => {
-    if (formData.loginName === undefined || formData.password === undefined) return;
+    if (formData.userName === undefined || formData.password === undefined) return;
 
     const handleLogin = async () => {
       try {
-        const response = await axios.post("/users/login", formData);
-        setUserData({ token: response.data.token, user: response.data.user.loginName, id: response.data.user.id });
+        const response = await axios.post("/user/login", formData);
+        setUserData({ token: response.data.token, user: response.data.user.userName, id: response.data.user.id });
         
         localStorage.setItem("auth-token", response.data.token);
-        localStorage.setItem("auth-name", response.data.user.loginName);
+        localStorage.setItem("auth-name", response.data.user.userName);
         localStorage.setItem("auth-id", response.data.user.id);
       } catch (error) {
         return setLoginError(error.response.data.message);
@@ -42,29 +47,29 @@ const LoginForm = () => {
     
     handleLogin();
     return () => {
-      setFormData({ loginName: undefined, password: undefined });
+      setFormData({ userName: undefined, password: undefined });
       setLoginError(undefined);
     };
   }, [formData, setUserData, history]);
 
   return (
     <ContainerComponent>
-      <Form method="POST" action="/users/login" id="user-login" onSubmit={handleSubmit(onSubmit)}>
-        <Label htmlFor="loginUserName">Name</Label>
-        <Input 
+      <Form method="POST" action="/user/login" id="user-login" onSubmit={handleSubmit(onSubmit)}>
+        <Label htmlFor="loginUserName">Username</Label>
+        <Input
           type="text"
           id="loginUserName"
           name="loginUserName"
-          placeholder="Enter Your Name"
+          placeholder="Enter Username"
           autoComplete="off"
           ref={register}
         />
         <Label htmlFor="loginUserPassword">Password</Label>
-        <Input 
+        <Input
           type="password"
           id="loginUserPassword"
           name="loginUserPassword"
-          placeholder="Enter Your Password"
+          placeholder="Enter Password"
           autoComplete="off"
           ref={register}
         />

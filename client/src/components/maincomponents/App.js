@@ -103,10 +103,10 @@ const App = () => {
 
       if (token !== "") setInitialGlobalStateLoader(true);
 
-      const response = await axios.post("/users/tokenIsValid", null, { headers: {"x-auth-token": token }});
+      const response = await axios.post("/user/token-validity", null, { headers: {"x-auth-token": token }});
       if (response.data) {
-        const userResponse = await axios.get("/users", { headers: { "x-auth-token": token }});
-        setUserData({ token, user: userResponse.data.loginName, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
+        const userResponse = await axios.get("/user", { headers: { "x-auth-token": token }});
+        setUserData({ token, user: userResponse.data.userName, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
         setInitialGlobalStateLoader(false);
       }
     };
@@ -122,7 +122,7 @@ const App = () => {
 
     const getGlobalAchievements = async () => {
       try {
-        const response = await axios.get("/users/achievements/global", { params: { _id: id }, cancelToken: source.token });
+        const response = await axios.get("/achievement/store", { params: { _id: id }, cancelToken: source.token });
         setGameData({ gameStart: response.data.gameStart, gameFinish: response.data.gameFinish, gameDeath: response.data.gameDeath });
       } catch (error) {
         if (axios.isCancel(error)) {

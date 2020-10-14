@@ -1,13 +1,13 @@
 import React from "react";
-import { ContainerLayoutWithMQ } from "components/commoncomponents/general";
+import { LayoutContainer } from "components/commoncomponents/general";
 import { RegisterForm, TopText } from "components/layoutcomponents/register";
 
 const Register = () => {
   return (
-    <ContainerLayoutWithMQ>
+    <LayoutContainer>
       <TopText />
       <RegisterForm />
-    </ContainerLayoutWithMQ>
+    </LayoutContainer>
   );
 };
 

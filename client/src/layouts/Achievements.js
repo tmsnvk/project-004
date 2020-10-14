@@ -1,13 +1,13 @@
 import React from "react";
-import { ContainerLayout } from "components/commoncomponents/general";
+import { LayoutContainer } from "components/commoncomponents/general";
 import { AchievementList, TopText } from "components/layoutcomponents/achievements";
 
 const Achievements = () => {
   return (
-    <ContainerLayout>
+    <LayoutContainer>
       <TopText />
       <AchievementList />
-    </ContainerLayout>
+    </LayoutContainer>
   );
 };
 

@@ -211,7 +211,7 @@ const AchievementList = () => {
           for (let i = 0; i < buttonList[0].length; i++) {
             if (eventTarget.code === buttonList[0][i].code) {
               setLoadingSpinner(true);
-              const response = await axios.get(`/users/achievements/${buttonList[0][i].code}`, { params: { _id: id }});
+              const response = await axios.get(`/achievement/showcase/${buttonList[0][i].code}`, { params: { _id: id }});
               setTimeout(() => setLoadingSpinner(false), 1500);
               setAchievements(Object.entries(response.data));
             }
@@ -220,7 +220,7 @@ const AchievementList = () => {
           for (let i = 0; i < buttonList[1].length; i++) {
             if (eventTarget.code === buttonList[1][i].code) {
               setLoadingSpinner(true);
-              const response = await axios.get(`/users/achievements/${buttonList[1][i].code}`, { params: { _id: id }});
+              const response = await axios.get(`/achievement/showcase/${buttonList[1][i].code}`, { params: { _id: id }});
               setTimeout(() => setLoadingSpinner(false), 1500);
               setAchievements(Object.entries(response.data));
             }
@@ -229,7 +229,7 @@ const AchievementList = () => {
           for (let i = 0; i < buttonList[2].length; i++) {
             if (eventTarget.code === buttonList[2][i].code) {
               setLoadingSpinner(true);
-              const response = await axios.get(`/users/achievements/${buttonList[2][i].code}`, { params: { _id: id }});
+              const response = await axios.get(`/achievement/showcase/${buttonList[2][i].code}`, { params: { _id: id }});
               setTimeout(() => setLoadingSpinner(false), 1500);
               setAchievements(Object.entries(response.data));
             }
@@ -238,7 +238,7 @@ const AchievementList = () => {
           for (let i = 0; i < buttonList[3].length; i++) {
             if (eventTarget.code === buttonList[3][i].code) {
               setLoadingSpinner(true);
-              const response = await axios.get(`/users/achievements/${buttonList[3][i].code}`, { params: { _id: id }});
+              const response = await axios.get(`/achievement/showcase/${buttonList[3][i].code}`, { params: { _id: id }});
               setTimeout(() => setLoadingSpinner(false), 1500);
               setAchievements(Object.entries(response.data));
             }
