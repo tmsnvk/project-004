@@ -1,3 +1,3 @@
 import PageTopText from "./PageTopText";
 
-export { PageTopText };
+export default PageTopText;

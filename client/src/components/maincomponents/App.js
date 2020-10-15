@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-d
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, SuccessfulUpdate, Tutorial, UnderConstruction } from "layouts";
+import { About, Achievements, AdventuresGameResult, AdventuresGameStart, AdventuresMainPage, Home, PageNotFound, Register, Settings, SuccessfulUpdate, UnderConstruction } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -37,8 +37,8 @@ const theme = {
   fontSize: {
     default: "1rem", // 10px
     small: "1.4rem", // 14px
-    medium: "1.8rem", // 18px
-    large: "2.2rem", // 22px
+    medium: "1.6rem", // 16px
+    large: "2rem", // 20px
     xLarge: "2.6rem", // 26px
     xxLarge: "3rem" // 30px
   },
@@ -150,11 +150,10 @@ const App = () => {
           {initialGlobalStateLoader ? <LoadingSpinner message="The caretakers are retriving the data from the archives..." /> : null}
           <Route path="/page/home" component={Home} />
           <Route path="/page/register" component={Register} />
-          <PrivateRoute exact path="/page/adventures" component={Adventures} />
-          <PrivateRoute exact path="/page/adventures/tutorial" component={Tutorial} />
-          <PrivateRoute exact path="/page/adventures/results" component={GameResults} />
+          <PrivateRoute exact path="/page/adventures" component={AdventuresMainPage} />
+          <PrivateRoute exact path="/page/adventures/results" component={AdventuresGameResult} />
           <PrivateRoute exact path="/page/adventures/underconstruction" component={UnderConstruction} />
-          <PrivateRoute path="/page/adventures/:storytitle" component={GameStart} />
+          <PrivateRoute path="/page/adventures/:storytitle" component={AdventuresGameStart} />
           <PrivateRoute path="/page/achievements" component={Achievements} />
           <PrivateRoute path="/page/settings" component={Settings} />
           <PrivateRoute path="/page/success" component={SuccessfulUpdate} />

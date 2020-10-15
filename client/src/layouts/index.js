@@ -1,14 +1,13 @@
 import About from "layouts/About";
 import Achievements from "layouts/Achievements";
-import Adventures from "layouts/Adventures";
-import GameResults from "layouts/GameResults";
-import GameStart from "layouts/GameStart";
+import AdventuresGameResult from "layouts/AdventuresGameResult";
+import AdventuresMainPage from "layouts/AdventuresMainPage";
+import AdventuresGameStart from "layouts/AdventuresGameStart";
 import Home from "layouts/Home";
 import PageNotFound from "layouts/PageNotFound";
 import Register from "layouts/Register";
 import Settings from "layouts/Settings";
 import SuccessfulUpdate from "layouts/SuccessfulUpdate";
-import Tutorial from "layouts/Tutorial";
 import UnderConstruction from "layouts/UnderConstruction";
 
-export { About, Achievements, Adventures, GameResults, GameStart, Home, PageNotFound, Register, Settings, SuccessfulUpdate, Tutorial, UnderConstruction };
+export { About, Achievements, AdventuresGameResult, AdventuresGameStart, AdventuresMainPage, Home, PageNotFound, Register, Settings, SuccessfulUpdate, UnderConstruction };

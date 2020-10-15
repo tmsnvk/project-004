@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import styled from "styled-components";
-import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/authform-related";
-
-const ContainerComponent = styled.div`
-`;
+import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/form-related";
 
 const FormNameChange = () => {
   const [formData, setFormData] = useState({ changedName: undefined });
   const [loginError, setLoginError] = useState(undefined);
+
   const { handleSubmit, register } = useForm();
   const history = useHistory();
 
@@ -27,7 +24,6 @@ const FormNameChange = () => {
         history.push("/page/success");
         history.go();
       } catch (error) {
-        console.log(error);
         return setLoginError(error.response.data.message);
       }
     };
@@ -36,21 +32,21 @@ const FormNameChange = () => {
   }, [formData, history]);
 
   return (
-    <ContainerComponent>
-        <Form method="PUT" action="/user/change-name" id="user-changename" onSubmit={handleSubmit(onSubmit)}>
-        <Label htmlFor="changeLoginName">Name</Label>
+    <>
+      <Form method="PUT" action="/user/change-name" id="user-changename" onSubmit={handleSubmit(onSubmit)}>
+        <Label htmlFor="changeUserName">Name</Label>
         <Input 
           type="text"
-          id="changeLoginName"
-          name="changeLoginName"
-          placeholder="* Your New Name"
+          id="changeUserName"
+          name="changeUserName"
+          placeholder="* Enter New Username"
           autoComplete="off"
           ref={register}
         />
         <InputSubmit type="submit" value="change" />
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </Form>
-    </ContainerComponent>
+    </>
   );
 };
 

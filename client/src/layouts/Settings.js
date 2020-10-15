@@ -1,11 +1,11 @@
 import React from "react";
 import { LayoutContainer } from "components/commoncomponents/general";
-import { ChangeName, ChangePassword, DeleteAccount, TopText } from "components/layoutcomponents/settings";
+import { ChangeName, ChangePassword, DeleteAccount, PageTopText } from "components/layoutcomponents/settings";
 
 const Settings = () => {
   return (
     <LayoutContainer>
-      <TopText />
+      <PageTopText />
       <ChangeName />
       <ChangePassword />
       <DeleteAccount />

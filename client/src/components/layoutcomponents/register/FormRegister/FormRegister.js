@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
-import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/authform-related";
+import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/form-related";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -18,7 +18,7 @@ const ContainerComponent = styled.div`
   }
 `;
 
-const RegisterForm = () => {
+const FormRegister = () => {
   const { setUserData } = useContext(UserContext);
 
   const [formData, setFormData] = useState({ userName: undefined, password: undefined, passwordCheck: undefined });
@@ -27,7 +27,7 @@ const RegisterForm = () => {
   const { handleSubmit, register } = useForm();
   const history = useHistory();
 
-  const onSubmit = (data) => setFormData({ userName: data.registerLoginName, password: data.registerPassword, passwordCheck: data.registerPasswordCheck });
+  const onSubmit = (data) => setFormData({ userName: data.registerUserName, password: data.registerPassword, passwordCheck: data.registerPasswordCheck });
 
   useEffect(() => {
     if (formData.userName === undefined || formData.password === undefined || formData.passwordCheck === undefined) return;
@@ -57,11 +57,11 @@ const RegisterForm = () => {
   return (
     <ContainerComponent>
       <Form method="POST" action="/user/register" id="user-register" onSubmit={handleSubmit(onSubmit)}>
-        <Label htmlFor="registerLoginName">Name</Label>
+        <Label htmlFor="registerUserName">Name</Label>
         <Input 
           type="text"
-          id="registerLoginName"
-          name="registerLoginName"
+          id="registerUserName"
+          name="registerUserName"
           placeholder="* Enter Usename"
           autoComplete="off"
           ref={register}
@@ -91,4 +91,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default FormRegister;

@@ -5,8 +5,8 @@ import { TileButton } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
 import iconList from "utilities/iconList";
 
-const ComponentContainer = styled(TileButton)`
-  width: 20rem;
+const ContainerComponent = styled(TileButton)`
+  width: 30rem;
   display: flex;
   flex-direction: row;
   font-weight: bold;
@@ -20,29 +20,13 @@ const ComponentContainer = styled(TileButton)`
   &:hover ${IconYellow} {
     color: ${props => props.theme.fontColor.secondaryDark};
   }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    width: 25rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 30rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 25rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
-    width: 30rem;
-  }
 `;
 
 const AdventureTile = ({ storyTitle, linkId, active }) => {
   return (
-  <ComponentContainer as={Link} to={`/page/adventures/${linkId}`} active={active}>
+  <ContainerComponent as={Link} to={`/page/adventures/${linkId}`} active={active}>
     <IconYellow icon={iconList.sign}></IconYellow>{storyTitle}
-  </ComponentContainer>
+  </ContainerComponent>
   );
 };
 

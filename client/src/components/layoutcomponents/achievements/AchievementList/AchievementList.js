@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "context/UserContext";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { TileButton, TileContainer } from "components/commoncomponents/adventure-related";
 import { HorizontalLine, LoadingSpinner } from "components/commoncomponents/general";
 import { IconBlack, IconYellow } from "components/commoncomponents/styled-icons";
+import TitleArc from "./TitleArc";
 import iconList from "utilities/iconList";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
   grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
 `;
 
 const WrapperMain = styled.div`
@@ -23,33 +23,6 @@ const WrapperMain = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
   }
-`;
-
-const ContainerStatistics = styled(TileContainer)`
-  width: fit-content;
-  margin: 0 auto 5rem;
-  display: flex;
-  flex-direction: column;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    margin: 0 25% 5rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    margin: 0 33% 5rem;
-  }
-`;
-
-const TextStatistics = styled.p`
-  align-items: center;
-  font-size: ${props => props.theme.fontSize.small};
-  padding: 0.5rem 1rem 0.5rem 1rem;
-`;
-
-const SpanBold = styled.span`
-  font-size: ${props => props.theme.fontSize.large};
-  font-weight: bolder;
-  padding: 0 0 0 1rem;
 `;
 
 const WrapperAdventureArc = styled.div`
@@ -72,20 +45,8 @@ const WrapperAdventureButton = styled.div`
   flex-direction: column;
 `;
 
-const TitleArc = styled.p`
-  font-size: ${props => props.theme.fontSize.medium};
-  font-weight: bold;
-  padding: 0 0 2rem 0;
-  text-align: center;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.large};
-    text-align: left;
-  }
-`;
-
 const AdventureButton = styled(TileButton)`
-  width: 20rem;
+  width: 30rem;
   font-size: ${props => props.theme.fontSize.small};
   font-weight: bold;
   display: flex;
@@ -99,18 +60,6 @@ const AdventureButton = styled(TileButton)`
 
   &:hover ${IconYellow} {
     color: ${props => props.theme.fontColor.secondaryDark};
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    width: 25rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 30rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 25rem;
   }
 `;
 
@@ -174,7 +123,7 @@ const AchievementTitle = styled.p`
   flex-direction: row;
   align-items: center;
   font-size: ${props => props.theme.fontSize.small};
-  padding: 0 0 1rem 0;
+  padding: 0 0 2rem 0;
 `;
 
 const AchievementDescription = styled(AchievementTitle)`
@@ -182,12 +131,10 @@ const AchievementDescription = styled(AchievementTitle)`
 `;
 
 const AchievementList = () => {
-  const { gameData } = useContext(UserContext);
   const [achievements, setAchievements] = useState([]);
   const [eventTarget, setEventTarget] = useState({ arc: undefined, code: undefined });
   const [loadingSpinner, setLoadingSpinner] = useState(false);
-  const id = localStorage.getItem("auth-id");
-
+  
   const buttonList = [
     [
       { id: 1, arc: "one", code: "a1s1", title: "To One Last New Beginning", },
@@ -203,54 +150,30 @@ const AchievementList = () => {
       { id: 1, arc: "four", code: "a4s1", title: "Wild Elvish Sorcerers", }
     ]
   ];
-
+  
   useEffect(() => {
-    const getAchievements = async () => {
+    const getAchievements = () => {
+      if (eventTarget.arc === undefined) return;
+      const id = localStorage.getItem("auth-id");
+      const storyCode = ["a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
+
       try {
-        if (eventTarget.arc === "one") {
-          for (let i = 0; i < buttonList[0].length; i++) {
-            if (eventTarget.code === buttonList[0][i].code) {
-              setLoadingSpinner(true);
-              const response = await axios.get(`/achievement/showcase/${buttonList[0][i].code}`, { params: { _id: id }});
-              setTimeout(() => setLoadingSpinner(false), 1500);
-              setAchievements(Object.entries(response.data));
-            }
+        setLoadingSpinner(true);
+        storyCode.forEach(async (element) => {
+          if (eventTarget.code === element) {
+            const response = await axios.get(`/achievement/showcase/${element}`, { params: { _id: id }});
+            setTimeout(() => setLoadingSpinner(false), 1500);
+            setAchievements(Object.entries(response.data));
           }
-        } else if (eventTarget.arc === "two") {
-          for (let i = 0; i < buttonList[1].length; i++) {
-            if (eventTarget.code === buttonList[1][i].code) {
-              setLoadingSpinner(true);
-              const response = await axios.get(`/achievement/showcase/${buttonList[1][i].code}`, { params: { _id: id }});
-              setTimeout(() => setLoadingSpinner(false), 1500);
-              setAchievements(Object.entries(response.data));
-            }
-          }
-        } else if (eventTarget.arc === "three") {
-          for (let i = 0; i < buttonList[2].length; i++) {
-            if (eventTarget.code === buttonList[2][i].code) {
-              setLoadingSpinner(true);
-              const response = await axios.get(`/achievement/showcase/${buttonList[2][i].code}`, { params: { _id: id }});
-              setTimeout(() => setLoadingSpinner(false), 1500);
-              setAchievements(Object.entries(response.data));
-            }
-          }
-        } else if (eventTarget.arc === "four") {
-          for (let i = 0; i < buttonList[3].length; i++) {
-            if (eventTarget.code === buttonList[3][i].code) {
-              setLoadingSpinner(true);
-              const response = await axios.get(`/achievement/showcase/${buttonList[3][i].code}`, { params: { _id: id }});
-              setTimeout(() => setLoadingSpinner(false), 1500);
-              setAchievements(Object.entries(response.data));
-            }
-          }
-        } else return null;
+        });
       } catch (error) {
         console.log(error);
       }
     };
 
     getAchievements();
-  }, [eventTarget, id, setLoadingSpinner]);
+    return () => setAchievements([]);
+  }, [eventTarget, setLoadingSpinner]);
 
   const handleClick = (event) => setEventTarget({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });
 
@@ -328,52 +251,33 @@ const AchievementList = () => {
 
   return (
     <ContainerComponent>
-      <ContainerStatistics>
-        <TextStatistics>
-          Number of adventures started: <SpanBold>{gameData.gameStart}</SpanBold>
-        </TextStatistics>
-        <TextStatistics>
-          Number of adventures finished: <SpanBold>{gameData.gameFinish}</SpanBold>
-        </TextStatistics>
-        <TextStatistics>
-          Number of deaths: <SpanBold>{gameData.gameDeath}</SpanBold>
-        </TextStatistics>
-      </ContainerStatistics>
       <WrapperMain>
         <WrapperAdventureArc>
-          <TitleArc>
-            Tales of the Eastern Fief
-          </TitleArc>
+          <TitleArc title="Tales of the Eastern Fief" />
           <WrapperAdventureButton>
             {renderArcOneButtons}
           </WrapperAdventureButton>
         </WrapperAdventureArc>
         <WrapperAdventureArc>
-          <TitleArc>
-            Bad News from the North
-          </TitleArc>
+          <TitleArc title="Bad News from the North" />
           <WrapperAdventureButton>
             {renderArcTwoButtons}
           </WrapperAdventureButton>
         </WrapperAdventureArc>
         <WrapperAdventureArc>
-          <TitleArc>
-            Diaries from the Royal Fief
-          </TitleArc>
+          <TitleArc title="Diaries from the Royal Fief" />
           <WrapperAdventureButton>
             {renderArcThreeButtons}
           </WrapperAdventureButton>
         </WrapperAdventureArc>
         <WrapperAdventureArc>
-          <TitleArc>
-            Friends or Foes?
-          </TitleArc>
+          <TitleArc title="Friends or Foes?" />
           <WrapperAdventureButton>
             {renderArcFourButtons}
           </WrapperAdventureButton>
         </WrapperAdventureArc>
       </WrapperMain>
-      {loadingSpinner ? <LoadingSpinner message={"The dragons are fetching your data..."} /> : null}
+      {loadingSpinner ? <LoadingSpinner message={"The caretakers of the Tower are retriving the requested data from the Archives."} /> : null}
       {loadingSpinner || eventTarget.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
       <ContainerAchievements>
         {loadingSpinner ? eventTarget.arc === undefined : renderAchievements}

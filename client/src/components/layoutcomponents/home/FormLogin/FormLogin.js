@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
-import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/authform-related";
+import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/form-related";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -27,7 +27,7 @@ const LoginForm = () => {
   const { handleSubmit, register } = useForm();
   const history = useHistory();
 
-  const onSubmit = (data) =>  setFormData({ userName: data.loginUserName, password: data.loginUserPassword });
+  const onSubmit = (data) =>  setFormData({ userName: data.loginUserName, password: data.loginPassword });
 
   useEffect(() => {
     if (formData.userName === undefined || formData.password === undefined) return;
@@ -64,11 +64,11 @@ const LoginForm = () => {
           autoComplete="off"
           ref={register}
         />
-        <Label htmlFor="loginUserPassword">Password</Label>
+        <Label htmlFor="loginPassword">Password</Label>
         <Input
           type="password"
-          id="loginUserPassword"
-          name="loginUserPassword"
+          id="loginPassword"
+          name="loginPassword"
           placeholder="Enter Password"
           autoComplete="off"
           ref={register}

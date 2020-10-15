@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import { LayoutContainer, MessageText, MessageTitle } from "components/commoncomponents/general";
+import { LayoutContainer, MessageText, MessageTitle, SpanBold } from "components/commoncomponents/general";
 import { TileButton } from "components/commoncomponents/adventure-related";
 import { GameMainPage } from "components/layoutcomponents/adventures/storypage";
 // import { to_one_last_new_beginning_0101, a_city_to_burn_0102, greenskins_greenskins_everywhere_0201, how_to_lose_an_empire_0301, wild_elvish_sorcerers_0401 } from "stories";
 import { to_one_last_new_beginning_0101 } from "stories";
-
-const SpanBold = styled.span`
-  font-weight: bold;
-`;
 
 const StartButton = styled(TileButton)`
   margin: 10rem auto;

@@ -1,5 +1,12 @@
 const adventuresMetaData = [
   {
+    id: 0,
+    arcTitle:"Tutorial",
+    storyOne: { title: "Tutorial", link: "to_one_last_new_beginning_0101", active: "true" },
+    storyTwo: { title: undefined, link: undefined, active: "false" },
+    storyThree: { title: undefined, link: undefined, active: "false" }
+  },
+  {
     id: 1,
     arcTitle:"Tales of the Eastern Fief",
     storyOne: { title: "To One Last New Beginning", link: "to_one_last_new_beginning_0101", active: "true" },

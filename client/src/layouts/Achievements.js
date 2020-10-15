@@ -1,11 +1,12 @@
 import React from "react";
 import { LayoutContainer } from "components/commoncomponents/general";
-import { AchievementList, PageTopText } from "components/layoutcomponents/achievements";
+import { AchievementList, PageTopText, UserStatistics } from "components/layoutcomponents/achievements";
 
 const Achievements = () => {
   return (
     <LayoutContainer>
       <PageTopText />
+      <UserStatistics />
       <AchievementList />
     </LayoutContainer>
   );

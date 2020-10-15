@@ -5,43 +5,30 @@ import { MessageText, MessageTitle } from "components/commoncomponents/general";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 4;
-`;
-
-const WrapperRename = styled.div`
   margin: 5rem 0 0 0;
-`;
 
-const Title = styled(MessageTitle)`
-  font-size: ${props => props.theme.fontSize.small};
-  font-weight: bold;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.medium};
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+    grid-column-start: 2;
+    grid-column-end: 3;
   }
 `;
 
-const Message = styled(MessageText)`
-  font-size: ${props => props.theme.fontSize.small};
-`;
-
-const ChangeName = () => {
+const ChangePassword = () => {
 
   return (
     <ContainerComponent>
-      <WrapperRename>
-        <Title>
-          Change your password
-        </Title>
-        <Message>
-          Please enter your new password in the box below. You may change your password as often as you would like to.
-        </Message>
-      </WrapperRename>
+      <MessageTitle>
+        Change your password
+      </MessageTitle>
+      <MessageText>
+        Please enter your new password in the box below. You may change your password as often as you would like to.
+      </MessageText>
       <FormPasswordChange />
     </ContainerComponent>
   );
 };
 
-export default ChangeName;
+export default ChangePassword;

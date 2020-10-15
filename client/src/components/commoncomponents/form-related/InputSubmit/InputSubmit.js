@@ -16,7 +16,7 @@ const InputSubmit = styled.input`
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.theme.backgroundColor.secondary};
+    background-color: ${props => props.backgroundColor || props.theme.backgroundColor.secondary};
     color: ${props => props.theme.fontColor.secondaryDark};
   }
   
