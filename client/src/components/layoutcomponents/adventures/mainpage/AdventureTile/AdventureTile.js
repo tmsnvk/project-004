@@ -25,7 +25,8 @@ const ContainerComponent = styled(TileButton)`
 const AdventureTile = ({ storyTitle, linkId, active }) => {
   return (
   <ContainerComponent as={Link} to={`/page/adventures/${linkId}`} active={active}>
-    <IconYellow icon={iconList.sign}></IconYellow>{storyTitle}
+    <IconYellow icon={iconList.sign}></IconYellow>
+    {storyTitle}
   </ContainerComponent>
   );
 };
