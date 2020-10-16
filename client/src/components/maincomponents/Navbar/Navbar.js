@@ -17,6 +17,7 @@ const ComponentContainer = styled.div`
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
     align-items: center;
     flex-direction: row;
+    padding: 0 2.5rem 0 2.5rem;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
@@ -24,6 +25,7 @@ const ComponentContainer = styled.div`
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-end;
+    padding: 0 2.5rem 0 0;
   }
 `;
 

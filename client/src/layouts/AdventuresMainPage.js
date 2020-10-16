@@ -1,13 +1,18 @@
 import React from "react";
+import styled from "styled-components";
 import { LayoutContainer } from "components/commoncomponents/general";
-import { PageTopText, TileArcTitles } from "components/layoutcomponents/adventures/mainpage";
+import { ContainerStoryTiles, PageTopText } from "components/layoutcomponents/adventures/mainpage";
+
+const LayoutContainerModified = styled(LayoutContainer)`
+  grid-template-columns: 25% 25% 25% 25%;
+`;
 
 const AdventuresMainPage = () => {
   return (
-    <LayoutContainer>
+    <LayoutContainerModified>
       <PageTopText />
-      <TileArcTitles />
-    </LayoutContainer>
+      <ContainerStoryTiles />
+    </LayoutContainerModified>
   );
 };
 

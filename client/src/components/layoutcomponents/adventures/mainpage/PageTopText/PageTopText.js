@@ -6,13 +6,13 @@ import Title from "components/layoutcomponents/adventures/mainpage/PageTopText/T
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column-end: 4;
   }
 `;
 

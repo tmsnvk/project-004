@@ -6,7 +6,6 @@ import { IconYellow } from "components/commoncomponents/styled-icons";
 import iconList from "utilities/iconList";
 
 const ContainerComponent = styled(TileButton)`
-  width: 30rem;
   display: flex;
   flex-direction: row;
   font-weight: bold;
