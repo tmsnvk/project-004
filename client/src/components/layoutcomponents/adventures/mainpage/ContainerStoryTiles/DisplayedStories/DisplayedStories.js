@@ -48,9 +48,9 @@ const DisplayedStories = ({ storyTitlesData }) => {
 
     return (
       <ContainerArc key={element?.id}>
-        {element.storyOne.title !== undefined ? <AdventureTile active={element?.storyOne.active} storyTitle={element?.storyOne.title} linkId={element?.storyOne.link} /> : null}
-        {element.storyTwo.title !== undefined ? <AdventureTile active={element?.storyTwo.active} storyTitle={element?.storyTwo.title} linkId={element?.storyTwo.link} /> : null}
-        {element.storyThree.title !== undefined ? <AdventureTile active={element?.storyThree.active} storyTitle={element?.storyThree.title} linkId={element?.storyThree.link} /> : null}
+        {element.storyOne.title !== undefined ? <AdventureTile available={element?.storyOne.available} storyTitle={element?.storyOne.title} linkId={element?.storyOne.link} /> : null}
+        {element.storyTwo.title !== undefined ? <AdventureTile available={element?.storyTwo.available} storyTitle={element?.storyTwo.title} linkId={element?.storyTwo.link} /> : null}
+        {element.storyThree.title !== undefined ? <AdventureTile available={element?.storyThree.available} storyTitle={element?.storyThree.title} linkId={element?.storyThree.link} /> : null}
       </ContainerArc>
     );
   });

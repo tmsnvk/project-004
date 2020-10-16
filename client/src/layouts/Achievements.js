@@ -1,14 +1,19 @@
 import React from "react";
+import styled from "styled-components";
 import { LayoutContainer } from "components/commoncomponents/general";
 import { AchievementList, PageTopText, UserStatistics } from "components/layoutcomponents/achievements";
 
+const LayoutContainerModified = styled(LayoutContainer)`
+  grid-template-columns: 25% 25% 25% 25%;
+`;
+
 const Achievements = () => {
   return (
-    <LayoutContainer>
+    <LayoutContainerModified>
       <PageTopText />
       <UserStatistics />
       <AchievementList />
-    </LayoutContainer>
+    </LayoutContainerModified>
   );
 };
 

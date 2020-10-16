@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { TileButton } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
-import DisplayedStories from "./DisplayedStories";
 import { adventuresMetaData } from "components/layoutcomponents/adventures/mainpage";
+import DisplayedStories from "./DisplayedStories";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -36,11 +36,11 @@ const ArcButton = styled(TileButton)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: ${({ highlighted, theme: { backgroundColor } }) => highlighted ? backgroundColor.mainDark : backgroundColor.secondary};
-  background-color: ${({ highlighted, theme: { backgroundColor } }) => highlighted ? backgroundColor.secondary : backgroundColor.mainDark};
+  color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.mainDark : backgroundColor.secondary};
+  background-color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.secondary : backgroundColor.mainDark};
 
   ${IconYellow} {
-    color: ${({ highlighted, theme: { backgroundColor } }) => highlighted ? backgroundColor.mainDark : backgroundColor.secondary};
+    color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.mainDark : backgroundColor.secondary};
   }
 
   &:hover {
@@ -58,17 +58,17 @@ const ContainerStoryTiles = () => {
   const [storyTitlesData, setStoryTitlesData] = useState([undefined]);
 
   useEffect(() => {
-    setStoryTitlesData([adventuresMetaData[Number(displayArcTitles)]]);
+    setStoryTitlesData([adventuresMetaData[displayArcTitles]]);
 
   }, [displayArcTitles]);
 
-  const handleStories = (index) => setDisplayArcTitles(index);
+  const handleArcChoice = (index) => setDisplayArcTitles(index);
 
   const renderArcTitles = adventuresMetaData.map(({ id, arcIcon, arcTitle }, index) => {
-    const active = index === displayArcTitles ? true : false;
+    const isActive = index === displayArcTitles ? true : false;
 
     return (
-      <ArcButton key={id} highlighted={active} data-id={id} onClick={() => handleStories(index)}>
+      <ArcButton key={id} highlight={isActive} data-id={id} onClick={() => handleArcChoice(index)}>
         <IconYellow icon={arcIcon}></IconYellow>{arcTitle}
       </ArcButton>
     );

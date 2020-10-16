@@ -12,7 +12,7 @@ const ContainerComponent = styled(TileButton)`
   align-items: center;
 
   &:hover {
-    background-color: ${({ active, theme: { backgroundColor } }) => active === "true" ? backgroundColor.secondary : backgroundColor.warning};
+    background-color: ${({ available, theme: { backgroundColor } }) => available === "true" ? backgroundColor.secondary : backgroundColor.warning};
     color: ${props => props.theme.fontColor.secondaryDark};
   }
 
@@ -21,9 +21,9 @@ const ContainerComponent = styled(TileButton)`
   }
 `;
 
-const AdventureTile = ({ storyTitle, linkId, active }) => {
+const AdventureTile = ({ storyTitle, linkId, available }) => {
   return (
-  <ContainerComponent as={Link} to={`/page/adventures/${linkId}`} active={active}>
+  <ContainerComponent as={Link} to={`/page/adventures/${linkId}`} available={available}>
     <IconYellow icon={iconList.sign}></IconYellow>
     {storyTitle}
   </ContainerComponent>
