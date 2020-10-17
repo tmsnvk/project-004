@@ -1,5 +1,5 @@
-import AchievementList from "./AchievementList";
+import AchievementsDisplay from "./AchievementsDisplay";
 import PageTopText from "./PageTopText";
 import UserStatistics from "./UserStatistics";
 
-export { AchievementList, PageTopText, UserStatistics };
+export { AchievementsDisplay, PageTopText, UserStatistics };

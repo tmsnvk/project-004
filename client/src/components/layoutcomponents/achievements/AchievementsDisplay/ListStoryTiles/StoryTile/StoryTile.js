@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { TileButton } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
@@ -21,13 +20,13 @@ const ContainerComponent = styled(TileButton)`
   }
 `;
 
-const AdventureTile = ({ storyTitle, linkId, available }) => {
+const StoryTile = ({ storyTitle, dataArc, dataCode, onClick, available }) => {
   return (
-  <ContainerComponent as={Link} to={`/page/adventures/${linkId}`} available={available}>
-    <IconYellow icon={iconList.sign}></IconYellow>
+  <ContainerComponent data-arc={dataArc} data-code={dataCode} onClick={onClick} available={available}>
+    <IconYellow icon={iconList.trophy}></IconYellow>
     {storyTitle}
   </ContainerComponent>
   );
 };
 
-export default AdventureTile;
+export default StoryTile;

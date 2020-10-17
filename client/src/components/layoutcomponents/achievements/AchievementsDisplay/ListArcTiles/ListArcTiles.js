@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { TileButton } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
 import { adventuresMetaData } from "utilities";
-import DisplayedStories from "./DisplayedStories";
+import { TileButton } from "components/commoncomponents/adventure-related";
 
-const ContainerComponent = styled.div`
+const ContainerArcTiles = styled.div`
+  display: grid;
   grid-column-start: 1;
   grid-column-end: 5;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
   display: flex;
   flex-direction: column;
   margin: 5rem auto 0;
@@ -17,13 +17,8 @@ const ContainerComponent = styled.div`
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     grid-column-start: 1;
-    grid-column-end: 4;
-    margin: 5rem 0 0 0;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    grid-column-start: 1;
     grid-column-end: 3;
+    margin: 5rem 0 0 0;
   }
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
@@ -32,12 +27,12 @@ const ContainerComponent = styled.div`
   }
 `;
 
-const ArcButton = styled(TileButton)`
+const ArcTileButton = styled(TileButton)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.mainDark : backgroundColor.secondary};
   background-color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.secondary : backgroundColor.mainDark};
+  color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.mainDark : backgroundColor.secondary};
 
   ${IconYellow} {
     color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.mainDark : backgroundColor.secondary};
@@ -53,35 +48,22 @@ const ArcButton = styled(TileButton)`
   }
 `;
 
-const ContainerStoryTiles = () => {
-  const [displayArcTitles, setDisplayArcTitles] = useState(1);
-  const [storyTitlesData, setStoryTitlesData] = useState([undefined]);
-
-  useEffect(() => {
-    setStoryTitlesData([adventuresMetaData[displayArcTitles]]);
-
-  }, [displayArcTitles]);
-
-  const handleArcChoice = (index) => setDisplayArcTitles(index);
-
+const ListArcTiles = ({ displayArcTiles, chooseArcTile }) => {
   const renderArcTitles = adventuresMetaData.map(({ id, arcIcon, arcTitle }, index) => {
-    const isActive = index === displayArcTitles ? true : false;
+    const isActive = index === displayArcTiles ? true : false;
 
     return (
-      <ArcButton key={id} highlight={isActive} data-id={id} onClick={() => handleArcChoice(index)}>
+      <ArcTileButton key={id} highlight={isActive} data-id={id} onClick={() => chooseArcTile(index)}>
         <IconYellow icon={arcIcon}></IconYellow>{arcTitle}
-      </ArcButton>
+      </ArcTileButton>
     );
   });
 
   return (
-    <>
-      <ContainerComponent>
-        {renderArcTitles}
-      </ContainerComponent>
-      <DisplayedStories storyTitlesData={storyTitlesData} />
-    </>
+    <ContainerArcTiles>
+      {renderArcTitles}
+    </ContainerArcTiles>
   );
 };
 
-export default ContainerStoryTiles;
+export default ListArcTiles;
