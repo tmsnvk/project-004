@@ -2,36 +2,33 @@ import React, { useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import { LayoutContainer, MessageText, MessageTitle, SpanBold } from "components/commoncomponents/general";
-import { TileButton } from "components/commoncomponents/adventure-related";
-import { GameMainPage } from "components/layoutcomponents/adventures/storypage";
-// import { to_one_last_new_beginning_0101, a_city_to_burn_0102, greenskins_greenskins_everywhere_0201, how_to_lose_an_empire_0301, wild_elvish_sorcerers_0401 } from "stories";
-import { to_one_last_new_beginning_0101 } from "stories";
+import { LayoutContainer } from "components/commoncomponents/general";
+import { GameMainPage, PageTopText } from "components/layoutcomponents/adventures/storyPlay";
+import { tutorial, to_one_last_new_beginning_a1s1 } from "utilities/stories";
 
-const StartButton = styled(TileButton)`
-  margin: 10rem auto;
-  font-size: ${props => props.theme.fontSize.xLarge};
-  letter-spacing: 0.3rem;
-  text-transform: uppercase;
-  font-weight: bold;
+const LayoutContainerModified = styled(LayoutContainer)`
+  grid-template-columns: 10% 15% 50% 15% 10%;
 `;
 
-const GameStart = () => {
+const AdventuresGameStart = () => {
   const [start, setStart] = useState(false);
+
   const history = useHistory();
   const storyName = history.location.pathname;
-
+  
   let chosenStory;
 
-  if (storyName.includes("to_one_last_new_beginning_0101")) {
-    chosenStory = to_one_last_new_beginning_0101;
-  } else if (storyName.includes("a_city_to_burn_0102")) {
+  if (storyName.includes("tutorial")) {
+    chosenStory = tutorial;
+  } else if (storyName.includes("to_one_last_new_beginning_a1s1")) {
+    chosenStory = to_one_last_new_beginning_a1s1;
+  } else if (storyName.includes("a_city_to_burn_a1s2")) {
     return <Redirect to={"/page/adventures/underconstruction"} />;
-  } else if (storyName.includes("greenskins_greenskins_everywhere_0201")) {
+  } else if (storyName.includes("greenskins_greenskins_everywhere_a2s1")) {
     return <Redirect to={"/page/adventures/underconstruction"} />;
-  } else if (storyName.includes("how_to_lose_an_empire_0301")) {
+  } else if (storyName.includes("how_to_lose_an_empire_a3s1")) {
     return <Redirect to={"/page/adventures/underconstruction"} />;
-  } else if (storyName.includes("wild_elvish_sorcerers_0401")) {
+  } else if (storyName.includes("wild_elvish_sorcerers_a4s1")) {
     return <Redirect to={"/page/adventures/underconstruction"} />;
   } else return null;
 
@@ -42,23 +39,10 @@ const GameStart = () => {
   };
 
   return (
-    <LayoutContainer>
-      {start === false ? 
-      <>
-        <MessageTitle>
-          You have choosen, adventurer!
-        </MessageTitle>
-        <MessageText>
-          Click on the start button to start your journey!
-        </MessageText>
-        <MessageText>
-          Beware of making bad choices - <SpanBold>Hood</SpanBold> watches each and every step of yours!
-        </MessageText>
-        <StartButton onClick={startStory}>Start</StartButton>
-      </> :
-      <GameMainPage story={chosenStory} />}
-    </LayoutContainer>
+    <LayoutContainerModified>
+      {start === false ? <PageTopText setStart={setStart} startStory={startStory} /> : <GameMainPage story={chosenStory} />}
+    </LayoutContainerModified>
   );
 };
 
-export default GameStart;
+export default AdventuresGameStart;

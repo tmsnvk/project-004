@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { AdventureTile } from "components/layoutcomponents/adventures/mainpage";
+import { AdventureTile } from "components/layoutcomponents/adventures/storySelection";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;

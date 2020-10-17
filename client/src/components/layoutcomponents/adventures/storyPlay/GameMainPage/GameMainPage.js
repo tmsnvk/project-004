@@ -1,89 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import axios from "axios";
-import { TileButton } from "components/commoncomponents/adventure-related";
+import ListEventParagraphs from "./ListEventParagraphs";
+import ListEventChoices from "./ListEventChoices";
+import ListEventAchievement from "./ListEventAchievement";
 
-const ComponentContainer = styled.div`
+const ContainerComponent = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 4;
   display: flex;
   flex-direction: column;
-  font-size: ${props => props.theme.fontSize.small};
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    margin: 0 auto;
-    width: 75%;
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
+    grid-column-start: 2;
+    grid-column-end: 5;
   }
-`;
-
-const StoryPiece = styled.p`
-  padding: 1rem 0 1rem 0;
-  font-family: ${props => props.theme.fontFamily.secondary};
-  font-weight: bolder;
-
-  &::first-letter {
-    font-size: ${props => props.theme.fontSize.xxLarge};
-  }
-`;
-
-const ContainerButton = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 80%;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 100%;
-    flex-direction: row;
-  }
-`;
-
-const NextEventButton = styled(TileButton)`
-  visibility: ${props => props.visible ? "visible" : "hidden"};
-  font-weight: bold;
-
-  &:first-child {
-    margin: 5rem 0 1rem 0;
-  }
-
-  &:hover {
-    background-color: ${props => props.theme.backgroundColor.secondary};
-    color: ${props => props.theme.fontColor.secondaryDark};
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    margin: 5rem 1rem 0 1rem;
-    width: 30%;
-
-    &:first-child {
-      margin: 5rem 1rem 0 1rem;
-    }
-  }
-`;
-
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-`;
-
-const AchievementUnlocked = styled.div`
-  animation: 0.5s ${fadeIn} ease-out;
-  width: fit-content;
-  margin: 10rem 0 0 0;
-  background-color: ${props => props.theme.backgroundColor.secondary};
-  font-size: ${props => props.theme.fontSize.medium};
-  color: ${props => props.theme.fontColor.secondaryDark};
-  font-weight: bold;
-  padding: 2rem 2rem 2rem 2rem;
-  border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
-  border-radius: 0.5rem;
 `;
 
 const GameMainPage = ({ story }) => {
@@ -156,31 +90,12 @@ const GameMainPage = ({ story }) => {
     triggerGameOver(eventId);
   }, [eventId, history]);
 
-  const renderButton = eventOptions.map((option, index) => {
-    const getNewEvent = () => setEventId(option[1]);
-
-    return (
-      <NextEventButton key={index} visible={option[2]} onClick={getNewEvent}>{option[0]}</NextEventButton>
-    );
-  });
-
   return (
-    <ComponentContainer>
-      <StoryPiece>
-        {eventId} <br></br>
-        {eventParagraphs.one}
-      </StoryPiece>
-      <StoryPiece>
-        {eventParagraphs.two}
-      </StoryPiece>
-      <StoryPiece>
-        {eventParagraphs.three}
-      </StoryPiece>
-      <ContainerButton>
-        {renderButton}
-      </ContainerButton>
-      {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {eventAchievement.title}</AchievementUnlocked> : null}
-    </ComponentContainer>
+    <ContainerComponent>
+      <ListEventParagraphs eventParagraphs={eventParagraphs} />
+      <ListEventChoices eventOptions={eventOptions} setEventId={setEventId} />
+      <ListEventAchievement eventAchievement={eventAchievement} showAchievementPanel={showAchievementPanel} />
+    </ContainerComponent>
   );
 };
 
