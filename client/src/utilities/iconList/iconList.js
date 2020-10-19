@@ -9,6 +9,8 @@ const iconList = {
   chessPawn: ["fas", "chess-pawn"],
   chessRook: ["fas", "chess-rook"],
   mapSigns: ["fas", "map-signs"],
+  passwordLock: ["fas", "lock"],
+  passwordUnlock: ["fas", "unlock"],
   peopleArrows: ["fas", "people-arrows"],
   peopleCarry: ["fas", "people-carry"],
   scroll: ["fas", "scroll"],

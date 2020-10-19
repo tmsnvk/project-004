@@ -29,12 +29,12 @@ const GameMainPage = ({ story }) => {
   const history = useHistory();
 
   useEffect(() => {
-    const getEventTexts = (eventId, story) => {
+    const getEventParagraphs = (eventId, story) => {
       const eventParagraphs = story.find(element => element.id === eventId);
       setEventParagraphs({ one: eventParagraphs.paragraphs[0]?.text, two: eventParagraphs.paragraphs[1]?.text, three: eventParagraphs.paragraphs[2]?.text });
     };
 
-    getEventTexts(eventId, story);
+    getEventParagraphs(eventId, story);
     return () => setEventParagraphs({ one: undefined, two: undefined, three: undefined });
   }, [eventId, story]);
 
@@ -49,12 +49,12 @@ const GameMainPage = ({ story }) => {
   }, [eventId, story]);
 
   useEffect(() => {
-    const getAchievement = (eventId, story) => {
+    const getEventAchievement = (eventId, story) => {
       const eventAchievement = story.find(element => element.id === eventId);
       setEventAchievement({ code: eventAchievement.achievement?.code, storyCode: eventAchievement.achievement?.storyCode, mongoCode: eventAchievement.achievement?.mongoCode, title: eventAchievement.achievement?.title });
     };
 
-    getAchievement(eventId, story);
+    getEventAchievement(eventId, story);
     return () => setEventAchievement({ code: undefined, mongoCode: undefined, title: undefined });
   }, [eventId, story]);
 

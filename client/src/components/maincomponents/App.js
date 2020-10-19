@@ -8,9 +8,9 @@ import { About, Achievements, AdventuresGameResult, AdventuresGameStart, Adventu
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faCog, faFireAlt, faInfinity, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faToriiGate, faTrophy, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faCog, faFireAlt, faInfinity, faLock, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faToriiGate, faTrophy, faUnlock, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
 import {  } from "@fortawesome/free-regular-svg-icons";
-library.add(faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faCog, faFireAlt, faInfinity, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faToriiGate, faTrophy, faUserTie, faWrench);
+library.add(faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faCog, faFireAlt, faInfinity, faLock, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faToriiGate, faTrophy, faUnlock, faUserTie, faWrench);
 
 const theme = {
   fontColor: {
@@ -100,6 +100,7 @@ const App = () => {
         localStorage.setItem("auth-token", "");
         token = "";
       }
+      if (token === "") return;
 
       if (token !== "") setInitialGlobalStateLoader(true);
 

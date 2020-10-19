@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
 const Label = styled.label`
-  padding: 3rem 0 1rem 0;
-  font-size: ${props => props.theme.fontSize.medium};
+  font-size: ${props => props.theme.fontSize.small};
+  font-family: ${props => props.theme.fontFamily.secondary};
   font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5rem;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.large};
-  }
+  letter-spacing: 0.25rem;
+  position: relative;
+  top: 4rem;
+  left: 2rem;
+  transition: all 150ms ease-in;
+  transform: ${({ activeFormField }) => activeFormField ? "scale(0.85) translate(-10%, -85%)" : ""};
+  cursor: text;
 `;
 
 export default Label;

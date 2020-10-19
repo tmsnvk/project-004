@@ -11,6 +11,9 @@ const ContainerComponent = styled.div`
   grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     grid-column-start: 2;
@@ -20,6 +23,13 @@ const ContainerComponent = styled.div`
 
 const FormRegister = () => {
   const { setUserData } = useContext(UserContext);
+
+  const [activeNameFormField, setActiveNameFormField] = useState(false);
+  const [contentNameFormField, setContentNameFormField] = useState("");
+  const [activePasswordFormField, setActivePasswordFormField] = useState(false);
+  const [contentPasswordFormField, setContentPasswordFormField] = useState("");
+  const [activePasswordCheckFormField, setActivePasswordCheckFormField] = useState(false);
+  const [contentPasswordCheckFormField, setContentPasswordCheckFormField] = useState("");
 
   const [formData, setFormData] = useState({ userName: undefined, password: undefined, passwordCheck: undefined });
   const [loginError, setLoginError] = useState(undefined);
@@ -54,34 +64,64 @@ const FormRegister = () => {
     return () => setFormData({ userName: undefined, password: undefined, passwordCheck: undefined });
   }, [formData, setUserData, history]);
 
+  const activateNameFormField = () => setActiveNameFormField(true);
+  const disableNameFocus = (event) => event.target.value === "" ? setActiveNameFormField(false) : null;
+
+  const updateNameInputValue = (event) => {
+    setContentNameFormField(event.target.value);
+    activateNameFormField();
+  };
+
+  const activatePasswordFormField = () => setActivePasswordFormField(true);
+  const disablePasswordFocus = (event) => event.target.value === "" ? setActivePasswordFormField(false) : null;
+
+  const updatePasswordInputValue = (event) => {
+    setContentPasswordFormField(event.target.value);
+    activatePasswordFormField();
+  };
+
+  const activatePasswordCheckFormField = () => setActivePasswordCheckFormField(true);
+  const disablePasswordCheckFocus = (event) => event.target.value === "" ? setActivePasswordCheckFormField(false) : null;
+
+  const updatePasswordCheckInputValue = (event) => {
+    setContentPasswordCheckFormField(event.target.value);
+    activatePasswordCheckFormField();
+  };
+
   return (
     <ContainerComponent>
       <Form method="POST" action="/user/register" id="user-register" onSubmit={handleSubmit(onSubmit)}>
-        <Label htmlFor="registerUserName">Name</Label>
+        <Label htmlFor="registerUserName" activeFormField={activeNameFormField}>Name *</Label>
         <Input 
           type="text"
           id="registerUserName"
           name="registerUserName"
-          placeholder="* Enter Usename"
           autoComplete="off"
+          onFocus={activateNameFormField}
+          onBlur={disableNameFocus}
+          onChange={updateNameInputValue}
           ref={register}
         />
-        <Label htmlFor="registerPassword">Password</Label>
+        <Label htmlFor="registerPassword" activeFormField={activePasswordFormField}>Password *</Label>
         <Input 
           type="password"
           id="registerPassword"
           name="registerPassword"
-          placeholder="* Enter Password"
           autoComplete="off"
+          onFocus={activatePasswordFormField}
+          onBlur={disablePasswordFocus}
+          onChange={updatePasswordInputValue}
           ref={register}
         />
-        <Label htmlFor="registerPasswordCheck">Verify Password</Label>
+        <Label htmlFor="registerPasswordCheck" activeFormField={activePasswordCheckFormField}>Verify Password *</Label>
         <Input 
           type="password"
           id="registerPasswordCheck"
           name="registerPasswordCheck"
-          placeholder="* Verify Password"
           autoComplete="off"
+          onFocus={activatePasswordCheckFormField}
+          onBlur={disablePasswordCheckFocus}
+          onChange={updatePasswordCheckInputValue}
           ref={register}
         />
         <InputSubmit type="submit" value="register" />
