@@ -4,14 +4,14 @@ import { IconYellow } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
 const PasswordIcon = styled(IconYellow)`
-  position: relative;
-  top: ${props => props.top || null};
-  left: ${props => props.left || null};
+  align-self: flex-end;
+  margin: 1rem 1rem 0 0;
+  cursor: pointer;
 `;
 
-const TogglePassword = ({ top, left, isPasswordHidden, togglePassword }) => {
+const TogglePassword = ({ isPasswordHidden, togglePassword }) => {
   return (
-    isPasswordHidden ? <PasswordIcon top={top} left={left} icon={iconList.passwordUnlock} onClick={togglePassword}></PasswordIcon> : <PasswordIcon top={top} left={left} icon={iconList.passwordLock} onClick={togglePassword}></PasswordIcon>
+    isPasswordHidden ? <PasswordIcon icon={iconList.passwordUnlock} onClick={togglePassword}></PasswordIcon> : <PasswordIcon icon={iconList.passwordLock} onClick={togglePassword}></PasswordIcon>
   );
 };
 

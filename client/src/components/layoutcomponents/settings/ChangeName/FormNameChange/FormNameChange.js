@@ -5,6 +5,8 @@ import axios from "axios";
 import { ErrorMessage, Form, Input, InputSubmit, Label } from "components/commoncomponents/form-related";
 
 const FormNameChange = () => {
+  const [activeNameFormField, setActiveNameFormField] = useState(false);
+
   const [formData, setFormData] = useState({ changedName: undefined });
   const [loginError, setLoginError] = useState(undefined);
 
@@ -31,16 +33,20 @@ const FormNameChange = () => {
     handleNameChange();
   }, [formData, history]);
 
+  const activateNameFormField = () => setActiveNameFormField(true);
+  const disableNameFocus = (event) => event.target.value === "" ? setActiveNameFormField(false) : null;
+
   return (
     <>
       <Form method="PUT" action="/user/change-name" id="user-changename" onSubmit={handleSubmit(onSubmit)}>
-        <Label htmlFor="changeUserName">Name</Label>
+        <Label htmlFor="changeUserName" activeFormField={activeNameFormField}>Username *</Label>
         <Input 
           type="text"
           id="changeUserName"
           name="changeUserName"
-          placeholder="* Enter New Username"
           autoComplete="off"
+          onFocus={activateNameFormField}
+          onBlur={disableNameFocus}
           ref={register}
         />
         <InputSubmit type="submit" value="change" />

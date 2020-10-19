@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-d
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { About, Achievements, AdventuresGameResult, AdventuresGameStart, AdventuresMainPage, Home, PageNotFound, Register, Settings, SuccessfulUpdate, UnderConstruction } from "layouts";
+import { About, Achievements, AdventuresGameResult, AdventuresGameStart, AdventuresMainPage, Home, PageNotFound, Register, Settings, SuccessfulUpdate, Terms, UnderConstruction } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -159,6 +159,7 @@ const App = () => {
           <PrivateRoute path="/page/settings" component={Settings} />
           <PrivateRoute path="/page/success" component={SuccessfulUpdate} />
           <Route path="/page/about" component={About} />
+          <Route path="/page/terms" component={Terms} />
           <Redirect exact path="/" to="/page/home" />
           <Route component={PageNotFound} />
         </Switch>

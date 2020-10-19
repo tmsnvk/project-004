@@ -1,5 +1,6 @@
 import React from "react";
 import { MessageText } from "components/commoncomponents/general";
+import { NavigationLink } from "components/commoncomponents/navigation-related";
 
 const Message = () => {
   return (
@@ -12,6 +13,9 @@ const Message = () => {
       </MessageText>
       <MessageText padding="2.5rem 0 0 0">
         Upon registering you will automatically be logged in to your user account.
+      </MessageText>
+      <MessageText padding="2.5rem 0 0 0">
+        By creating an account you agree to our <NavigationLink to="/page/terms">Terms and Conditions</NavigationLink> and <NavigationLink to="/page/terms">Privacy Policy</NavigationLink>.
       </MessageText>
     </>
   );

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const InputSubmit = styled.input`
+  align-self: center;
   width: 20rem;
   height: 5rem;
   background-color: ${props => props.theme.backgroundColor.mainDark};
@@ -10,7 +11,7 @@ const InputSubmit = styled.input`
   letter-spacing: 0.3rem;
   text-transform: uppercase;
   text-align: center;
-  margin: 5rem 0 0 2.5rem;
+  margin: 5rem 0 0 0;
   border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
   border-radius: 0.5rem;
   cursor: pointer;

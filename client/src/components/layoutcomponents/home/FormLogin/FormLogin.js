@@ -92,7 +92,7 @@ const LoginForm = () => {
           ref={register}
         />
         <InputSubmit type="submit" value="log in" />
-        <TogglePassword top="-15.5rem" left="20rem" togglePassword={togglePassword} isPasswordHidden={isPasswordHidden} />
+        <TogglePassword top="-14.5rem" left="9.5rem" togglePassword={togglePassword} isPasswordHidden={isPasswordHidden} />
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </Form>
     </ContainerComponent>

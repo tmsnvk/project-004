@@ -9,21 +9,13 @@ const ComponentContainer = styled.div`
   grid-column-end: 2;
   grid-row-start: 3;
   grid-row-end: 4;
-  width: 60%;
+  /* width: 60%; */
   margin: 5rem auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 40%;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    width: 30%;
-  }
 `;
 
 const ContainerIcon = styled.div`

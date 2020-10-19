@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Input = styled.input`
+  align-self: center;
   width: 25rem;
   height: 6.5rem;
   background-color: ${props => props.theme.backgroundColor.mainDark};
