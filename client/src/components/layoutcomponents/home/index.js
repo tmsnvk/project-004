@@ -1,6 +1,6 @@
-import FormLogin from "./FormLogin";
 import LoggedInText from "./LoggedInText";
 import LoggedOutText from "./LoggedOutText";
-import PageTopText from "./PageTopText";
+import LoginForm from "./LoginForm";
+import PageInformation from "./PageInformation";
 
-export { FormLogin, LoggedInText, LoggedOutText, PageTopText };
+export { LoggedInText, LoggedOutText, LoginForm, PageInformation };

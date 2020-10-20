@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, Input, InputSubmit, Label, TogglePassword } from "components/commoncomponents/form-related";
+import { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, Input, Submit, Label, TogglePassword } from "components/commoncomponents/form-related";
 
 const WrapperForm = styled.div`
   display: flex;
@@ -145,7 +145,7 @@ const FormNameChange = () => {
           />
           {errors.changePasswordCheck && <ErrorMessageInputField>{errors.changePasswordCheck.message}</ErrorMessageInputField>}
         </WrapperForm>
-        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <InputSubmit type="submit" value="change" />}
+        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="change" />}
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </Form>
     </>

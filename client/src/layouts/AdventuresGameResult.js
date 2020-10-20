@@ -2,7 +2,7 @@ import React from "react";
 // import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-const ContainerLayout = styled.main`
+const LayoutContainer = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
@@ -28,9 +28,9 @@ const ContainerLayout = styled.main`
 
 const GameResults = () => {
   return (
-    <ContainerLayout>
+    <LayoutContainer>
       <div>DED</div>
-    </ContainerLayout>
+    </LayoutContainer>
   );
 };
 

@@ -21,6 +21,14 @@ const Input = styled.input`
   &:focus {
     outline: none;
   }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+    width: 30rem;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
+    width: 35rem;
+  }
 `;
 
 export default Input;

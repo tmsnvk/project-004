@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, Input, InputSubmit, Label } from "components/commoncomponents/form-related";
+import { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, Input, Submit, Label } from "components/commoncomponents/form-related";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -103,7 +103,7 @@ const ContactForm = () => {
     };
 
     handleFormSubmission();
-    // return () => setFormData({ userName: undefined, email: undefined, message: undefined });
+    return () => setFormData({ userName: undefined, email: undefined, message: undefined });
   }, [formData, setUserData, setLoadingSpinner, history]);
   
   const activateNameFormField = () => setActiveNameFormField(true);
@@ -177,7 +177,7 @@ const ContactForm = () => {
                 message: "PASSWORD is required."
               },
               pattern: {
-                value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 message: "Provide a valid EMAIL."
               }
             })}
@@ -205,7 +205,7 @@ const ContactForm = () => {
           </WrapperInputTools>
           {errors.contactTextarea && <ErrorMessageInputField>{errors.contactTextarea.message}</ErrorMessageInputField>}
         </WrapperForm>
-        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <InputSubmit type="submit" value="submit" />}
+        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="submit" />}
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
       </Form>
     </ContainerComponent>

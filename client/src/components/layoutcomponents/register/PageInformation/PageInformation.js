@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { HorizontalLine } from "components/commoncomponents/general";
-import Title from "components/layoutcomponents/register/PageTopText/Title";
-import Message from "components/layoutcomponents/register/PageTopText/Message";
+import Message from "components/layoutcomponents/register/PageInformation/Message";
+import Title from "components/layoutcomponents/register/PageInformation/Title";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -16,7 +16,7 @@ const ContainerComponent = styled.div`
   }
 `;
 
-const PageTopText = () => {
+const PageInformation = () => {
   return (
     <ContainerComponent>
       <Title />
@@ -26,4 +26,4 @@ const PageTopText = () => {
   );
 };
 
-export default PageTopText;
+export default PageInformation;

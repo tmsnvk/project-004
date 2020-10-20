@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const InputSubmit = styled.input`
+const Submit = styled.input`
   align-self: center;
   width: 20rem;
   height: 5rem;
@@ -26,4 +26,4 @@ const InputSubmit = styled.input`
   }
 `;
 
-export default InputSubmit;
+export default Submit;

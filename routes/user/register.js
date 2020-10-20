@@ -3,20 +3,20 @@ const userSchema = require("../../models/userModel");
 
 module.exports = async (request, response) => {
   try {
-    const { userName, password, passwordCheck } = request.body;
+    const { username, password, passwordCheck } = request.body;
 
-    if (!userName || !password || !passwordCheck) return response.status(400).json({ message: "Please fill out all fields!" });
+    if (!username || !password || !passwordCheck) return response.status(400).json({ message: "Please fill out all fields!" });
     if (password.length < 6) return response.status(400).json({ message: "Your password needs to be at least 6 characters long!" });
     if (password !== passwordCheck) return response.status(400).json({ message: "Please enter the same password twice for verification!" }); 
 
-    const existingUser = await userSchema.findOne({ userName: userName });
+    const existingUser = await userSchema.findOne({ username: username });
     if (existingUser) return response.status(400).json({ message: "An entry with such name already exists in our archives." });
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
     const newUser = new userSchema({
-      userName: userName,
+      username: username,
       password: passwordHash,
       createdAt: Date.now(),
       numberOfGameStarts: 0,

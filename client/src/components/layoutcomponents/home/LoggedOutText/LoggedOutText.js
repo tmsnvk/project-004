@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MessageText } from "components/commoncomponents/general";
 import { NavigationLink } from "components/commoncomponents/navigation-related";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 2;
@@ -17,11 +17,11 @@ const ContainerComponent = styled.div`
 
 const LoggedOutText = () => {
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       <MessageText>
         Sign in below if you already have an account registered at Evrallas. If not - <NavigationLink to="/page/register">click here</NavigationLink> to register one!
       </MessageText>
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

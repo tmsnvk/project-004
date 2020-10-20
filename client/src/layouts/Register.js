@@ -1,12 +1,12 @@
 import React from "react";
 import { LayoutContainer } from "components/commoncomponents/general";
-import { FormRegister, PageTopText } from "components/layoutcomponents/register";
+import { PageInformation, RegisterForm } from "components/layoutcomponents/register";
 
 const Register = () => {
   return (
     <LayoutContainer>
-      <PageTopText />
-      <FormRegister />
+      <PageInformation />
+      <RegisterForm />
     </LayoutContainer>
   );
 };

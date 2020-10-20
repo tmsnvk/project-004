@@ -107,7 +107,7 @@ const App = () => {
       const response = await axios.post("/user/token-validity", null, { headers: {"x-auth-token": token }});
       if (response.data.message.status) {
         const userResponse = await axios.get("/user", { headers: { "x-auth-token": token }});
-        setUserData({ token, user: userResponse.data.userName, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
+        setUserData({ token, user: userResponse.data.username, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
         setInitialGlobalStateLoader(false);
       }
     };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Form, InputSubmit } from "components/commoncomponents/form-related";
+import { Form, Submit } from "components/commoncomponents/form-related";
 
 const FormAccountDelete = () => {
   const [deleteAccount, SetDeleteAccount] = useState(false);
@@ -38,7 +38,7 @@ const FormAccountDelete = () => {
   return (
     <>
       <Form method="DELETE" action="/user/delete" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>
-        <InputSubmit type="submit" value="delete" backgroundColor={props => props.theme.backgroundColor.warning} />
+        <Submit type="submit" value="delete" backgroundColor={props => props.theme.backgroundColor.warning} />
       </Form>
     </>
   );

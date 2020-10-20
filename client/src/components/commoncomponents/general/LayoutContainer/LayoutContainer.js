@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ContainerLayout = styled.main`
+const LayoutContainer = styled.main`
   display: grid;
   grid-template-columns: 25% 50% 25%;
   grid-template-rows: auto;
@@ -9,4 +9,4 @@ const ContainerLayout = styled.main`
   margin: 5rem auto;
 `;
 
-export default ContainerLayout;
+export default LayoutContainer;

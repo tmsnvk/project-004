@@ -9,7 +9,7 @@ const Label = styled.label`
   position: relative;
   top: 4rem;
   transition: all 150ms ease-in;
-  transform: ${({ activeFormField }) => activeFormField ? "scale(0.85) translate(0, -80%)" : ""};
+  transform: ${({ isInputInFocus }) => isInputInFocus ? "scale(0.85) translate(0, -80%)" : ""};
   cursor: text;
 `;
 
