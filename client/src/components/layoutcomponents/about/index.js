@@ -1,3 +1,4 @@
+import ContactForm from "./ContactForm";
 import PageTopText from "./PageTopText";
 
-export { PageTopText };
+export { ContactForm, PageTopText };

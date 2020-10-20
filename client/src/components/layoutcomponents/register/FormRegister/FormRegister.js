@@ -38,6 +38,7 @@ const WrapperInputTools = styled.div`
 
 const FormRegister = () => {
   const { setUserData } = useContext(UserContext);
+  const { errors, handleSubmit, register, trigger, watch } = useForm();
 
   const [activeNameFormField, setActiveNameFormField] = useState(false);
   const [activePasswordFormField, setActivePasswordFormField] = useState(false);
@@ -53,7 +54,6 @@ const FormRegister = () => {
   const [formData, setFormData] = useState({ userName: undefined, password: undefined, passwordCheck: undefined });
   const [loginError, setLoginError] = useState(undefined);
 
-  const { errors, handleSubmit, register, watch } = useForm();
   const history = useHistory();
 
   const onSubmit = (data) => setFormData({ userName: data.registerUserName, password: data.registerPassword, passwordCheck: data.registerPasswordCheck });
@@ -63,10 +63,10 @@ const FormRegister = () => {
 
     const handleRegister = async () => {
       try {
+        setLoadingSpinner(true);
         await axios.post("/user/register", formData);
-        setLoadingSpinner(true)
         const response = await axios.post("/user/login", formData);
-        setTimeout(() => setLoadingSpinner(false), 1000000);
+        setTimeout(() => setLoadingSpinner(false), 1500);
         setUserData({ token: response.data.token, user: response.data.user.userName, id: response.data.user.id });
 
         localStorage.setItem("auth-token", response.data.token);
@@ -95,8 +95,17 @@ const FormRegister = () => {
 
   const togglePassword = () => setIsPasswordHidden(!isPasswordHidden);
 
-  const getUsernameCharacterNumber = (event) => setUsernameCharacterCounter(event.target.value.length);
-  const getPasswordCharacterNumber = (event) => setPasswordCharacterCounter(event.target.value.length);
+  const getUsernameChanges = (event) => {
+    setUsernameCharacterCounter(event.target.value.length);
+    trigger("registerUserName");
+  };
+
+  const getPasswordChanges = (event) => {
+    setPasswordCharacterCounter(event.target.value.length);
+    trigger("registerPassword");
+  };
+
+  const getPasswordCheckChanges = () => trigger("registerPasswordCheck");
 
   return (
     <ContainerComponent>
@@ -108,30 +117,31 @@ const FormRegister = () => {
             id="registerUserName"
             name="registerUserName"
             autoComplete="off"
+            maxLength="12"
             onFocus={activateNameFormField}
             onBlur={disableNameFocus}
-            onChange={getUsernameCharacterNumber}
+            onChange={getUsernameChanges}
             ref={register({
               required: {
                 value: true,
-                message: "USERNAME is required. Use only letters or numbers."
+                message: "USERNAME is required. Use only letters or numbers between 5 and 12 characters."
               },
               pattern: {
                 value: /^[A-Za-z0-9 ]+$/i,
-                message: "USERNAME is required. Use only letters or numbers."
+                message: "Use only letters or numbers."
               },
               minLength: {
                 value: 5,
                 message: "USERNAME must be minimum 5 characters long."
               },
               maxLength: {
-                value: 20,
-                message: "USERNAME must be maximum 20 characters long."
+                value: 12,
+                message: "USERNAME must be maximum 12 characters long."
               }
             })}
           />
           <WrapperInputTools>
-            <CharacterCounter characterCounter={usernameCharacterCounter} />
+            <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="12" />
           </WrapperInputTools>
           {errors.registerUserName && <ErrorMessageInputField>{errors.registerUserName.message}</ErrorMessageInputField>}
           <Label htmlFor="registerPassword" activeFormField={activePasswordFormField}>Password *</Label>
@@ -140,9 +150,10 @@ const FormRegister = () => {
             id="registerPassword"
             name="registerPassword"
             autoComplete="off"
+            maxLength="15"
             onFocus={activatePasswordFormField}
             onBlur={disablePasswordFocus}
-            onChange={getPasswordCharacterNumber}
+            onChange={getPasswordChanges}
             ref={register({
               required: {
                 value: true,
@@ -153,14 +164,14 @@ const FormRegister = () => {
                 message: "PASSWORD must be minimum 6 characters long."
               },
               maxLength: {
-                value: 20,
-                message: "PASSWORD must be maximum 20 characters long."
+                value: 15,
+                message: "PASSWORD must be maximum 15 characters long."
               }
             })}
           />
           <WrapperInputTools>
             <TogglePassword togglePassword={togglePassword} isPasswordHidden={isPasswordHidden} />
-            <CharacterCounter characterCounter={passwordCharacterCounter} />
+            <CharacterCounter characterCounter={passwordCharacterCounter} characterlength="15" />
           </WrapperInputTools>
           {errors.registerPassword && <ErrorMessageInputField>{errors.registerPassword.message}</ErrorMessageInputField>}
           <Label htmlFor="registerPasswordCheck" activeFormField={activePasswordCheckFormField}>Confirm Password *</Label>
@@ -169,19 +180,21 @@ const FormRegister = () => {
             id="registerPasswordCheck"
             name="registerPasswordCheck"
             autoComplete="off"
+            maxLength="15"
             onFocus={activatePasswordCheckFormField}
             onBlur={disablePasswordCheckFocus}
+            onChange={getPasswordCheckChanges}
             ref={register({
               required: {
                 value: true,
                 message: "PASSWORD verification is required."
               },
-              validate: (value) => { return value === watch("registerPassword") || "The provided PASSWORDS do not match."}
+              validate: (value) => { return value === watch("registerPassword") || "PASSWORD fields do not match."}
             })}
           />
           {errors.registerPasswordCheck && <ErrorMessageInputField>{errors.registerPasswordCheck.message}</ErrorMessageInputField>}
         </WrapperForm>
-        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"Our librarians are registering your request on our Archives, please wait."} /> : <InputSubmit type="submit" value="register" />}
+        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <InputSubmit type="submit" value="register" />}
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
         </Form>
     </ContainerComponent>

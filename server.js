@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(publicPath));
 app.use("/user", require("./routes/user"));
 app.use("/achievement", require("./routes/achievement"));
+app.use("/contact", require("./routes/contact"));
 
 mongoose.set("useFindAndModify", false);
 mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, 
