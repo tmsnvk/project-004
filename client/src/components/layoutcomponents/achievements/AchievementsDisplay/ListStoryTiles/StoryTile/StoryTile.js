@@ -4,14 +4,14 @@ import { TileButton } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
-const ContainerComponent = styled(TileButton)`
+const ComponentContainer = styled(TileButton)`
   display: flex;
   flex-direction: row;
   font-weight: bold;
   align-items: center;
 
   &:hover {
-    background-color: ${({ available, theme: { backgroundColor } }) => available === "true" ? backgroundColor.secondary : backgroundColor.warning};
+    background-color: ${({ isAvailable, theme: { backgroundColor } }) => isAvailable === "true" ? backgroundColor.secondary : backgroundColor.warning};
     color: ${props => props.theme.fontColor.secondaryDark};
   }
 
@@ -20,12 +20,12 @@ const ContainerComponent = styled(TileButton)`
   }
 `;
 
-const StoryTile = ({ storyTitle, dataArc, dataCode, onClick, available }) => {
+const StoryTile = ({ storyTitle, dataArc, dataCode, onClick, isAvailable }) => {
   return (
-  <ContainerComponent data-arc={dataArc} data-code={dataCode} onClick={onClick} available={available}>
+  <ComponentContainer data-arc={dataArc} data-code={dataCode} onClick={onClick} isAvailable={isAvailable}>
     <IconYellow icon={iconList.trophy}></IconYellow>
     {storyTitle}
-  </ContainerComponent>
+  </ComponentContainer>
   );
 };
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { TileContainer } from "components/commoncomponents/adventure-related";
 import { MessageText, SpanBold } from "components/commoncomponents/general";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 2;
@@ -17,16 +17,16 @@ const ContainerComponent = styled.div`
 `;
 
 const WrapperStatistics = styled(TileContainer)`
-  width: fit-content;
   display: flex;
   flex-direction: column;
+  width: fit-content;
 `;
 
 const UserStatistics = () => {
   const { gameData } = useContext(UserContext);
 
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       <WrapperStatistics>
         <MessageText padding="0.5rem 1rem 0.5rem 1rem">
           Number of adventures started: <SpanBold padding="0 0 0 1rem">{gameData.gameStart}</SpanBold>
@@ -38,7 +38,7 @@ const UserStatistics = () => {
           Number of deaths: <SpanBold padding="0 0 0 1rem">{gameData.gameDeath}</SpanBold>
         </MessageText>
       </WrapperStatistics>
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

@@ -4,7 +4,7 @@ import { IconYellow } from "components/commoncomponents/styled-icons";
 import { adventuresMetaData } from "utilities";
 import { TileButton } from "components/commoncomponents/adventure-related";
 
-const ContainerArcTiles = styled.div`
+const ComponentContainer = styled.div`
   display: grid;
   grid-column-start: 1;
   grid-column-end: 5;
@@ -27,15 +27,15 @@ const ContainerArcTiles = styled.div`
   }
 `;
 
-const ArcTileButton = styled(TileButton)`
+const ArcTile = styled(TileButton)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.secondary : backgroundColor.mainDark};
-  color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.mainDark : backgroundColor.secondary};
+  background-color: ${({ isHighlighted, theme: { backgroundColor } }) => isHighlighted ? backgroundColor.secondary : backgroundColor.mainDark};
+  color: ${({ isHighlighted, theme: { backgroundColor } }) => isHighlighted ? backgroundColor.mainDark : backgroundColor.secondary};
 
   ${IconYellow} {
-    color: ${({ highlight, theme: { backgroundColor } }) => highlight ? backgroundColor.mainDark : backgroundColor.secondary};
+    color: ${({ isHighlighted, theme: { backgroundColor } }) => isHighlighted ? backgroundColor.mainDark : backgroundColor.secondary};
   }
 
   &:hover {
@@ -48,21 +48,21 @@ const ArcTileButton = styled(TileButton)`
   }
 `;
 
-const ListArcTiles = ({ displayArcTiles, chooseArcTile }) => {
+const ListArcTiles = ({ displayArcTiles, getArcTile }) => {
   const renderArcTitles = adventuresMetaData.map(({ id, arcIcon, arcTitle }, index) => {
-    const isActive = index === displayArcTiles ? true : false;
+    const isHighlighted = index === displayArcTiles ? true : false;
 
     return (
-      <ArcTileButton key={id} highlight={isActive} data-id={id} onClick={() => chooseArcTile(index)}>
+      <ArcTile key={id} isHighlighted={isHighlighted} data-id={id} onClick={() => getArcTile(index)}>
         <IconYellow icon={arcIcon}></IconYellow>{arcTitle}
-      </ArcTileButton>
+      </ArcTile>
     );
   });
 
   return (
-    <ContainerArcTiles>
+    <ComponentContainer>
       {renderArcTitles}
-    </ContainerArcTiles>
+    </ComponentContainer>
   );
 };
 

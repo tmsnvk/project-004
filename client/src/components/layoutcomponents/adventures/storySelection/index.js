@@ -1,5 +1,5 @@
-import AdventureTile from "./AdventureTile";
-import ContainerStoryTiles from "./ContainerStoryTiles";
-import PageTopText from "./PageTopText";
+import StoryTile from "./StoryTile";
+import PageInformation from "./PageInformation";
+import StoryTilesContainer from "./StoryTilesContainer";
 
-export { AdventureTile, ContainerStoryTiles, PageTopText };
+export { StoryTile, PageInformation, StoryTilesContainer };

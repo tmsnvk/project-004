@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import StoryTile from "./StoryTile";
 
-const ContainerStoryTiles = styled.div`
+const ComponentContainer = styled.div`
   display: grid;
   grid-column-start: 1;
   grid-column-end: 5;
@@ -26,7 +26,7 @@ const ContainerStoryTiles = styled.div`
   }
 `;
 
-const ContainerStoryTile = styled.div`
+const StoryTilesContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-weight: bold;
@@ -37,23 +37,23 @@ const ContainerStoryTile = styled.div`
   }
 `;
 
-const ListStoryTiles = ({ displayStoryTiles, chooseStoryTile }) => {
+const ListStoryTiles = ({ displayStoryTiles, getStoryTile }) => {
   const renderDisplayedStoryTiles = displayStoryTiles.map((element) => {
     if (element?.id === undefined) return null;
 
     return (
-      <ContainerStoryTile key={element?.id}>
-        {element.storyOne.title !== undefined ? <StoryTile dataArc={element?.storyOne.arc} dataCode={element?.storyOne.code} available={element?.storyOne.available} storyTitle={element?.storyOne.title} onClick={chooseStoryTile} /> : null}
-        {element.storyTwo.title !== undefined ? <StoryTile dataArc={element?.storyTwo.arc} dataCode={element?.storyTwo.code} available={element?.storyTwo.available} storyTitle={element?.storyTwo.title} onClick={chooseStoryTile} /> : null}
-        {element.storyThree.title !== undefined ? <StoryTile dataArc={element?.storyThree.arc} dataCode={element?.storyThree.code} available={element?.storyThree.available} storyTitle={element?.storyThree.title} onClick={chooseStoryTile} /> : null}
-      </ContainerStoryTile>
+      <StoryTilesContainer key={element?.id}>
+        {element.storyOne.title !== undefined ? <StoryTile dataArc={element?.storyOne.arc} dataCode={element?.storyOne.code} isAvailable={element?.storyOne.isAvailable} storyTitle={element?.storyOne.title} onClick={getStoryTile} /> : null}
+        {element.storyTwo.title !== undefined ? <StoryTile dataArc={element?.storyTwo.arc} dataCode={element?.storyTwo.code} isAvailable={element?.storyTwo.isAvailable} storyTitle={element?.storyTwo.title} onClick={getStoryTile} /> : null}
+        {element.storyThree.title !== undefined ? <StoryTile dataArc={element?.storyThree.arc} dataCode={element?.storyThree.code} isAvailable={element?.storyThree.isAvailable} storyTitle={element?.storyThree.title} onClick={getStoryTile} /> : null}
+      </StoryTilesContainer>
     );
   });
 
   return (
-    <ContainerStoryTiles>
+    <ComponentContainer>
     {renderDisplayedStoryTiles}
-    </ContainerStoryTiles>
+    </ComponentContainer>
   );
 };
 

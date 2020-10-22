@@ -5,7 +5,7 @@ import { HorizontalLine, LoadingSpinner } from "components/commoncomponents/gene
 import { IconBlack, IconYellow } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   display: grid;
   grid-column-start: 1;
   grid-column-end: 5;
@@ -15,7 +15,7 @@ const ContainerComponent = styled.div`
   flex-direction: column;
 `;
 
-const WrapperAchievements = styled.div`
+const AchievementsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +30,7 @@ const WrapperAchievements = styled.div`
   }
 `;
 
-const WrapperElement = styled.div`
+const ElementWrapper = styled.div`
   align-self: center;
   margin: 1rem 1rem 0 1rem;
 
@@ -88,7 +88,7 @@ const Description = styled(Title)`
 const ListAchievements = ({ dataSet, loadingSpinner, displayAchievements }) => {
   const renderAchievements = displayAchievements.map((element) => {
     return (
-      <WrapperElement key={element?.[1].id}>
+      <ElementWrapper key={element?.[1].id}>
         {element?.[1].state ?
         <Obtained>
           <Title>
@@ -118,18 +118,18 @@ const ListAchievements = ({ dataSet, loadingSpinner, displayAchievements }) => {
             Not yet unlocked.
           </Description>
         </Missing>}
-      </WrapperElement>
+      </ElementWrapper>
     );
   });
 
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       {loadingSpinner ? <LoadingSpinner message={"The caretakers of the Tower are retriving the requested data from the Archives."} /> : null}
       {loadingSpinner || dataSet.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
-      <WrapperAchievements>
+      <AchievementsWrapper>
         {loadingSpinner ? dataSet.arc === undefined : renderAchievements}
-      </WrapperAchievements>
-    </ContainerComponent>
+      </AchievementsWrapper>
+    </ComponentContainer>
   );
 };
 

@@ -6,7 +6,7 @@ import ListAchievements from "./ListAchievements";
 import ListStoryTiles from "./ListStoryTiles";
 import { adventuresMetaData } from "utilities";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   display: grid;
   grid-column-start: 1;
   grid-column-end: 5;
@@ -37,7 +37,7 @@ const AchievementsDisplay = () => {
         storyCode.forEach(async (element) => {
           if (dataSet.code === element) {
             const response = await axios.get(`/achievement/showcase/${element}`, { params: { _id: id }});
-            setTimeout(() => setLoadingSpinner(false), 1500);
+            setTimeout(() => setLoadingSpinner(false), 2000);
             setDisplayAchievements(Object.entries(response.data));
           }
         });
@@ -50,16 +50,16 @@ const AchievementsDisplay = () => {
     return () => setDisplayAchievements([]);
   }, [dataSet, setLoadingSpinner]);
 
-  const chooseArcTile = (index) => setDisplayArcTiles(index);
+  const getArcTile = (index) => setDisplayArcTiles(index);
 
-  const chooseStoryTile = (event) => setDataSet({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });
+  const getStoryTile = (event) => setDataSet({ arc: event.currentTarget.dataset.arc, code: event.currentTarget.dataset.code });
 
   return (
     <>
-      <ContainerComponent>
-        <ListArcTiles displayArcTiles={displayArcTiles} chooseArcTile={chooseArcTile} />
-        <ListStoryTiles displayStoryTiles={displayStoryTiles} chooseStoryTile={chooseStoryTile} />
-      </ContainerComponent>
+      <ComponentContainer>
+        <ListArcTiles displayArcTiles={displayArcTiles} getArcTile={getArcTile} />
+        <ListStoryTiles displayStoryTiles={displayStoryTiles} getStoryTile={getStoryTile} />
+      </ComponentContainer>
         <ListAchievements displayAchievements={displayAchievements} loadingSpinner={loadingSpinner} dataSet={dataSet} />
     </>
   );

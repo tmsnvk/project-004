@@ -5,14 +5,14 @@ import { TileButton } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
-const ContainerComponent = styled(TileButton)`
+const ComponentContainer = styled(TileButton)`
   display: flex;
   flex-direction: row;
   font-weight: bold;
   align-items: center;
 
   &:hover {
-    background-color: ${({ available, theme: { backgroundColor } }) => available === "true" ? backgroundColor.secondary : backgroundColor.warning};
+    background-color: ${({ isAvailable, theme: { backgroundColor } }) => isAvailable === "true" ? backgroundColor.secondary : backgroundColor.warning};
     color: ${props => props.theme.fontColor.secondaryDark};
   }
 
@@ -21,13 +21,13 @@ const ContainerComponent = styled(TileButton)`
   }
 `;
 
-const AdventureTile = ({ storyTitle, linkId, available }) => {
+const StoryTile = ({ storyTitle, linkId, isAvailable }) => {
   return (
-  <ContainerComponent as={Link} to={`/page/adventures/${linkId}`} available={available}>
+  <ComponentContainer as={Link} to={`/page/adventures/${linkId}`} available={isAvailable}>
     <IconYellow icon={iconList.sign}></IconYellow>
     {storyTitle}
-  </ContainerComponent>
+  </ComponentContainer>
   );
 };
 
-export default AdventureTile;
+export default StoryTile;

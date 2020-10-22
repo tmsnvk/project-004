@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { AdventureTile } from "components/layoutcomponents/adventures/storySelection";
+import { StoryTile } from "components/layoutcomponents/adventures/storySelection";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 3;
@@ -32,7 +32,7 @@ const ContainerComponent = styled.div`
   }
 `;
 
-const ContainerArc = styled.div`
+const ElementWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-weight: bold;
@@ -47,18 +47,18 @@ const DisplayedStories = ({ storyTitlesData }) => {
     if (element?.id === undefined) return null;
 
     return (
-      <ContainerArc key={element?.id}>
-        {element.storyOne.title !== undefined ? <AdventureTile available={element?.storyOne.available} storyTitle={element?.storyOne.title} linkId={element?.storyOne.link} /> : null}
-        {element.storyTwo.title !== undefined ? <AdventureTile available={element?.storyTwo.available} storyTitle={element?.storyTwo.title} linkId={element?.storyTwo.link} /> : null}
-        {element.storyThree.title !== undefined ? <AdventureTile available={element?.storyThree.available} storyTitle={element?.storyThree.title} linkId={element?.storyThree.link} /> : null}
-      </ContainerArc>
+      <ElementWrapper key={element?.id}>
+        {element.storyOne.title !== undefined ? <StoryTile storyTitle={element?.storyOne.title} linkId={element?.storyOne.link} available={element?.storyOne.isAvailable} /> : null}
+        {element.storyTwo.title !== undefined ? <StoryTile storyTitle={element?.storyTwo.title} linkId={element?.storyTwo.link} available={element?.storyTwo.isAvailable} /> : null}
+        {element.storyThree.title !== undefined ? <StoryTile storyTitle={element?.storyThree.title} linkId={element?.storyThree.link} available={element?.storyThree.isAvailable} /> : null}
+      </ElementWrapper>
     );
   });
 
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       {renderDisplayedStoryTiles}
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 
