@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ArcTile } from "components/commoncomponents/tile-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
+import DisplayedStories from "./DisplayedStories";
 import { adventuresMetaData } from "utilities";
 
 const ComponentContainer = styled.div`
   grid-column-start: 1;
   grid-column-end: 5;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
   display: flex;
   flex-direction: column;
-  width: fit-content;
   margin: 5rem auto 0;
+  width: fit-content;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     grid-column-start: 1;
@@ -26,22 +27,35 @@ const ComponentContainer = styled.div`
   }
 `;
 
-const ListArcTiles = ({ displayArcTiles, getArcTile }) => {
+const AdventureTilesContainer = () => {
+  const [displayArcTitles, setDisplayArcTitles] = useState(1);
+  const [storyTitlesData, setStoryTitlesData] = useState([undefined]);
+
+  useEffect(() => {
+    setStoryTitlesData([adventuresMetaData[displayArcTitles]]);
+
+  }, [displayArcTitles]);
+
+  const handleArcChoice = (index) => setDisplayArcTitles(index);
+
   const renderArcTiles = adventuresMetaData.map(({ id, arcIcon, arcTitle }, index) => {
-    const isHighlighted = index === displayArcTiles ? true : false;
+    const isHighlighted = index === displayArcTitles ? true : false;
 
     return (
-      <ArcTile key={id} isHighlighted={isHighlighted} data-id={id} onClick={() => getArcTile(index)}>
+      <ArcTile key={id} isHighlighted={isHighlighted} data-id={id} onClick={() => handleArcChoice(index)}>
         <IconYellow icon={arcIcon}></IconYellow>{arcTitle}
       </ArcTile>
     );
   });
 
   return (
-    <ComponentContainer>
-      {renderArcTiles}
-    </ComponentContainer>
+    <>
+      <ComponentContainer>
+        {renderArcTiles}
+      </ComponentContainer>
+      <DisplayedStories storyTitlesData={storyTitlesData} />
+    </>
   );
 };
 
-export default ListArcTiles;
+export default AdventureTilesContainer;

@@ -16,12 +16,7 @@ const ComponentContainer = styled.div`
     grid-column-end: 5;
     grid-row-start: 3;
     grid-row-end: 4;
-    align-items: center;
     margin: 5rem 0 0 0;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
-    align-items: flex-start;
   }
 `;
 

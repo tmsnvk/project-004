@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { TileButton } from "components/commoncomponents/tile-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
@@ -11,7 +12,7 @@ const ComponentContainer = styled(TileButton)`
   align-items: center;
 
   &:hover {
-    background-color: ${({ isAvailable, theme: { backgroundColor } }) => isAvailable === "true" ? backgroundColor.secondary : backgroundColor.warning};
+    background-color: ${({ available, theme: { backgroundColor } }) => available === "true" ? backgroundColor.secondary : backgroundColor.warning};
     color: ${props => props.theme.fontColor.secondaryDark};
   }
 
@@ -20,10 +21,10 @@ const ComponentContainer = styled(TileButton)`
   }
 `;
 
-const StoryTile = ({ storyTitle, dataArc, dataCode, onClick, isAvailable }) => {
+const StoryTile = ({ storyTitle, linkId, isAvailable }) => {
   return (
-  <ComponentContainer data-arc={dataArc} data-code={dataCode} onClick={onClick} isAvailable={isAvailable}>
-    <IconYellow icon={iconList.trophy}></IconYellow>
+  <ComponentContainer as={Link} to={`/page/adventures/${linkId}`} available={isAvailable}>
+    <IconYellow icon={iconList.sign}></IconYellow>
     {storyTitle}
   </ComponentContainer>
   );

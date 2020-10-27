@@ -1,3 +1,3 @@
 import PageInformation from "./PageInformation";
 
-export { PageInformation };
+export default PageInformation;

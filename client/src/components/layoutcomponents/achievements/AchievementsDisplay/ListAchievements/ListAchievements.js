@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { TileContainer } from "components/commoncomponents/adventure-related";
+import { TileContainer } from "components/commoncomponents/tile-related";
 import { HorizontalLine, LoadingSpinner } from "components/commoncomponents/general";
 import { IconBlack, IconYellow } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
@@ -45,6 +45,7 @@ const Obtained = styled(TileContainer)`
   color: ${props => props.theme.fontColor.secondaryDark};
   font-family: ${props => props.theme.fontFamily.secondary};
   font-weight: bolder;
+  padding: 1rem 0 1rem 1rem;
 
   &:hover {
     transform: scale(1.05);
@@ -85,6 +86,7 @@ const NotAvailable = styled(TileContainer)`
   margin: 0 auto;
   font-weight: bolder;
   font-size: ${props => props.theme.fontSize.default};
+  text-align: center;
   
   @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
     font-size: ${props => props.theme.fontSize.small};

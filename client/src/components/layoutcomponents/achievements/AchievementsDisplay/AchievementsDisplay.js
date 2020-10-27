@@ -38,8 +38,9 @@ const AchievementsDisplay = () => {
         storyCode.forEach(async (element) => {
           if (dataSet.code === element) {
             const response = await axios.get(`/achievement/showcase/${element}`, { params: { _id: id }});
-            setTimeout(() => setLoadingSpinner(false), 2000);
             setDisplayAchievements(Object.entries(response.data));
+            setLoadingSpinner(false);
+            // window.scrollTo({ top: 1000, left: 0, behavior: "smooth" });
           }
         });
       } catch (error) {

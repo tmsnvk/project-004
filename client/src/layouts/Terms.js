@@ -1,11 +1,11 @@
 import React from "react";
 import { LayoutContainer } from "components/commoncomponents/general";
-import { PageTopText } from "components/layoutcomponents/about";
+// import { PageTopText } from "components/layoutcomponents/about";
 
 const Terms = () => {
   return (
     <LayoutContainer>
-      <PageTopText />
+      {/* <PageTopText /> */}
       <div>Terms and Conditions</div>
       <div>Privacy Policy</div>
     </LayoutContainer>

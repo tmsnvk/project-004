@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, Input, Submit, Label } from "components/commoncomponents/form-related";
+import { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, Textarea } from "components/commoncomponents/form-related";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -22,102 +22,53 @@ const ContainerComponent = styled.div`
   }
 `;
 
-const WrapperForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  width: 25rem;
-`;
-
-const WrapperInputTools = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
-
-const Textarea = styled.textarea`
-  align-self: center;
-  width: 25rem;
-  background-color: ${props => props.theme.backgroundColor.mainDark};
-  font-family: inherit;
-  font-size: ${props => props.theme.fontSize.small};
-  color: ${props => props.theme.fontColor.main};
-  font-weight: bold;
-  border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
-  padding: 5rem 0.5rem 0 2rem;
-  border-radius: 0.5rem;
-  cursor: text;
-  line-height: 1.5;
-
-  &:hover {
-    border: 0.3rem ${props => props.theme.backgroundColor.secondary} solid;
-  }
-
-  &:focus {
-    outline: none;
-  }
-`;
-
 const ContactForm = () => {
   const { setUserData } = useContext(UserContext);
-  const { errors, handleSubmit, register, trigger } = useForm();
+  const { errors, formState, handleSubmit, register, trigger } = useForm();
+  const history = useHistory();
 
-  const [activeNameFormField, setActiveNameFormField] = useState(false);
-  const [activePasswordFormField, setActivePasswordFormField] = useState(false);
-  const [activePasswordCheckFormField, setActivePasswordCheckFormField] = useState(false);
+  const [isInputNameInFocus, setIsInputNameInFocus] = useState(false);
+  const [isInputEmailInFocus, setIsInputEmailInFocus] = useState(false);
+  const [isInputMessageInFocus, setIsInputMessageInFocus] = useState(false);
 
   const [usernameCharacterCounter, setUsernameCharacterCounter] = useState(0);
   const [textCharacterCounter, setTextCharacterCounter] = useState(0);
-  
-  const [loadingSpinner, setLoadingSpinner] = useState(false);
 
   const [formData, setFormData] = useState({ userName: undefined, email: undefined, message: undefined });
-  const [loginError, setLoginError] = useState(undefined);
+  const [responseError, setResponseError] = useState(undefined);
 
-  const history = useHistory();
-
-  const onSubmit = (data) => setFormData({ userName: data.contactUserName, email: data.contactEmail, message: data.contactTextarea });
+  const onSubmit = (data) => setFormData({ userName: data.contactName, email: data.contactEmail, message: data.contactTextarea });
 
   useEffect(() => {
     if (formData.userName === undefined || formData.email === undefined || formData.message === undefined) return;
 
     const handleFormSubmission = async () => {
       try {
-        // setLoadingSpinner(true);
-        const response = await axios.post("/contact/form-msg-to-evrallas", formData);
+        await axios.post("/contact/form-msg-to-evrallas", formData);
         await axios.post("/contact/form-msg-from-evrallas", formData);
-        // const response = await axios.post("/user/login", formData);
-        // setTimeout(() => setLoadingSpinner(false), 1500);
-        // setUserData({ token: response.data.token, user: response.data.user.userName, id: response.data.user.id });
-
-        // localStorage.setItem("auth-token", response.data.token);
-        // localStorage.setItem("auth-name", response.data.user.userName);
-        // localStorage.setItem("auth-id", response.data.user.id);
-        // history.push("/page/home");
-        // history.go();
+        history.push("/page/success");
+        history.go();
       } catch (error) {
-        console.log(error);
-        return setLoginError(error.response.data.message);
+        return setResponseError(error.response.data.message);
       }
     };
 
     handleFormSubmission();
     return () => setFormData({ userName: undefined, email: undefined, message: undefined });
-  }, [formData, setUserData, setLoadingSpinner, history]);
-  
-  const activateNameFormField = () => setActiveNameFormField(true);
-  const disableNameFocus = (event) => event.target.value === "" ? setActiveNameFormField(false) : null;
+  }, [formData, setUserData, history]);
 
-  const activatePasswordFormField = () => setActivePasswordFormField(true);
-  const disablePasswordFocus = (event) => event.target.value === "" ? setActivePasswordFormField(false) : null;
+  const focusInputName = () => setIsInputNameInFocus(true);
+  const blurInputName = (event) => event.target.value === "" ? setIsInputNameInFocus(false) : null;
 
-  const activatePasswordCheckFormField = () => setActivePasswordCheckFormField(true);
-  const disablePasswordCheckFocus = (event) => event.target.value === "" ? setActivePasswordCheckFormField(false) : null;
+  const focusInputEmail = () => setIsInputEmailInFocus(true);
+  const blurInputEmail = (event) => event.target.value === "" ? setIsInputEmailInFocus(false) : null;
+
+  const focusInputMessage = () => setIsInputMessageInFocus(true);
+  const blurInputMessage = (event) => event.target.value === "" ? setIsInputMessageInFocus(false) : null;
 
   const getUsernameChanges = (event) => {
     setUsernameCharacterCounter(event.target.value.length);
-    trigger("contactUserName");
+    trigger("contactName");
   };
 
   const getTextChanges = (event) => {
@@ -128,53 +79,49 @@ const ContactForm = () => {
   return (
     <ContainerComponent>
       <Form method="POST" action="/contact/form-msg-to-evrallas" id="contact" onSubmit={handleSubmit(onSubmit)}>
-        <WrapperForm>
-          <Label htmlFor="contact" activeFormField={activeNameFormField}>Username *</Label>
+        <FormWrapper>
+          <Label htmlFor="contactName" isInputInFocus={isInputNameInFocus}>Name *</Label>
           <Input 
             type="text"
-            id="contactUserName"
-            name="contactUserName"
+            id="contactName"
+            name="contactName"
             autoComplete="off"
-            maxLength="12"
-            onFocus={activateNameFormField}
-            onBlur={disableNameFocus}
+            maxLength="20"
+            onFocus={focusInputName}
+            onBlur={blurInputName}
             onChange={getUsernameChanges}
             ref={register({
               required: {
                 value: true,
-                message: "USERNAME is required. Use only letters or numbers between 5 and 12 characters."
+                message: "NAME is required. Use only letters or numbers and maximum 20 characters."
               },
               pattern: {
                 value: /^[A-Za-z0-9 ]+$/i,
                 message: "Use only letters or numbers."
               },
-              minLength: {
-                value: 5,
-                message: "USERNAME must be minimum 5 characters long."
-              },
               maxLength: {
-                value: 12,
-                message: "USERNAME must be maximum 12 characters long."
+                value: 20,
+                message: "NAME must be maximum 20 characters long."
               }
             })}
           />
-          <WrapperInputTools>
-            <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="12" />
-          </WrapperInputTools>
-          {errors.contactUserName && <ErrorMessageWrapper>{errors.contactUserName.message}</ErrorMessageWrapper>}
-          <Label htmlFor="contactEmail" activeFormField={activePasswordFormField}>Email *</Label>
+          <InputHelperWrapper>
+            <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="20" />
+          </InputHelperWrapper>
+          {errors.contactName && <ErrorMessageWrapper>{errors.contactName.message}</ErrorMessageWrapper>}
+          <Label htmlFor="contactEmail" isInputInFocus={isInputEmailInFocus}>Email *</Label>
           <Input 
             type="email"
             id="contactEmail"
             name="contactEmail"
             autoComplete="off"
-            onFocus={activatePasswordFormField}
-            onBlur={disablePasswordFocus}
+            onFocus={focusInputEmail}
+            onBlur={blurInputEmail}
             onChange={getTextChanges}
             ref={register({
               required: {
                 value: true,
-                message: "PASSWORD is required."
+                message: "EMAIL is required."
               },
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -183,15 +130,15 @@ const ContactForm = () => {
             })}
           />
           {errors.contactEmail && <ErrorMessageWrapper>{errors.contactEmail.message}</ErrorMessageWrapper>}
-          <Label htmlFor="contactTextarea" activeFormField={activePasswordCheckFormField}>Message *</Label>
+          <Label htmlFor="contactTextarea" isInputInFocus={isInputMessageInFocus}>Message *</Label>
           <Textarea
             id="contactTextarea"
             name="contactTextarea"
             autoComplete="off"
             maxLength="500"
-            rows="20"
-            onFocus={activatePasswordCheckFormField}
-            onBlur={disablePasswordCheckFocus}
+            rows="15"
+            onFocus={focusInputMessage}
+            onBlur={blurInputMessage}
             onChange={getTextChanges}
             ref={register({
               required: {
@@ -200,13 +147,13 @@ const ContactForm = () => {
               }
             })}
           />
-          <WrapperInputTools>
+          <InputHelperWrapper>
             <CharacterCounter characterCounter={textCharacterCounter} characterlength="500" />
-          </WrapperInputTools>
+          </InputHelperWrapper>
           {errors.contactTextarea && <ErrorMessageWrapper>{errors.contactTextarea.message}</ErrorMessageWrapper>}
-        </WrapperForm>
-        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="submit" />}
-        {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
+        </FormWrapper>
+        {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="submit" />}
+        {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}
       </Form>
     </ContainerComponent>
   );

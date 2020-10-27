@@ -1,4 +1,4 @@
 import GameMainPage from "./GameMainPage";
-import PageTopText from "./PageTopText";
+import PageInformation from "./PageInformation";
 
-export { GameMainPage, PageTopText };
+export { GameMainPage, PageInformation };

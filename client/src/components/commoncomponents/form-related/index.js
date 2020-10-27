@@ -7,6 +7,7 @@ import Input from "./Input";
 import InputHelperWrapper from "./InputHelperWrapper";
 import Label from "./Label";
 import Submit from "./Submit";
+import Textarea from "./Textarea";
 import TogglePassword from "./TogglePassword";
 
-export { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, TogglePassword };
+export { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, Textarea, TogglePassword };

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { TileButton } from "components/commoncomponents/adventure-related";
+import { TileButton } from "components/commoncomponents/tile-related";
 
 const ContainerComponent = styled.div`
   display: flex;

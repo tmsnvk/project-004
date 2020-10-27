@@ -1,4 +1,5 @@
 import ContactForm from "./ContactForm";
-import PageTopText from "./PageTopText";
+import LoggedOutInformation from "./LoggedOutInformation";
+import PageInformation from "./PageInformation";
 
-export { ContactForm, PageTopText };
+export { ContactForm, LoggedOutInformation, PageInformation };
