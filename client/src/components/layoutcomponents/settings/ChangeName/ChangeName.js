@@ -20,10 +20,10 @@ const ChangeName = () => {
   return (
     <ContainerComponent>
       <MessageTitle>
-        Change your account name
+        Change account name
       </MessageTitle>
       <MessageText>
-        Please enter your new name in the box below. You may change your account name as many times as you would like to.
+        Enter your new account name below. You may change your account name as many times as you would like to.
       </MessageText>
       <FormNameChange />
     </ContainerComponent>

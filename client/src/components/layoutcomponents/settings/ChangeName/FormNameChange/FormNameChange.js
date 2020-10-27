@@ -1,39 +1,22 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, Input, Submit, Label } from "components/commoncomponents/form-related";
-
-const WrapperForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  width: 25rem;
-`;
-
-const WrapperInputTools = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
+import { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label } from "components/commoncomponents/form-related";
 
 const FormNameChange = () => {
-  const { errors, handleSubmit, register, trigger } = useForm();
+  const { errors, formState, handleSubmit, register, trigger } = useForm();
+  const history = useHistory();
 
-  const [activeNameFormField, setActiveNameFormField] = useState(false);
+  const [isInputNameInFocus, setIsInputNameInFocus] = useState(false);
+
   const [usernameCharacterCounter, setUsernameCharacterCounter] = useState(0);
 
   const [formData, setFormData] = useState({ changedName: undefined });
-  const [loginError, setLoginError] = useState(undefined);
+  const [responseError, setResponseError] = useState(undefined);
 
-  const [loadingSpinner, setLoadingSpinner] = useState(false);
-
-  const history = useHistory();
-
-  const onSubmit = (data) => setFormData({ changedName: data.changeLoginName });
+  const onSubmit = (data) => setFormData({ changedName: data.changeUsername });
 
   useEffect(() => {
     if (formData.changedName === undefined) return;
@@ -42,38 +25,38 @@ const FormNameChange = () => {
       const id = localStorage.getItem("auth-id");
 
       try {
-        setLoadingSpinner(true);
         await axios.put("/user/change-name", { id, formData });
-        setTimeout(() => setLoadingSpinner(false), 1500);
         history.push("/page/success");
         history.go();
       } catch (error) {
-        return setLoginError(error.response.data.message);
+        return setResponseError(error.response.data.message);
       }
     };
 
     handleNameChange();
+    return () => setFormData({ changedName: undefined });
   }, [formData, history]);
 
-  const activateNameFormField = () => setActiveNameFormField(true);
-  const disableNameFocus = (event) => event.target.value === "" ? setActiveNameFormField(false) : null;
+  const focusInputName = () => setIsInputNameInFocus(true);
+  const blurInputName = (event) => event.target.value === "" ? setIsInputNameInFocus(false) : null;
+
   const getUsernameChanges = (event) => {
     setUsernameCharacterCounter(event.target.value.length);
-    trigger("changeUserName");
+    trigger("changeUsername");
   };
 
   return (
     <Form method="PUT" action="/user/change-name" id="user-changename" onSubmit={handleSubmit(onSubmit)}>
-      <WrapperForm>
-        <Label htmlFor="changeUserName" activeFormField={activeNameFormField}>Username *</Label>
+      <FormWrapper>
+        <Label htmlFor="changeUsername" isInputInFocus={isInputNameInFocus}>Username *</Label>
         <Input 
           type="text"
-          id="changeUserName"
-          name="changeUserName"
+          id="changeUsername"
+          name="changeUsername"
           autoComplete="off"
           maxLength="12"
-          onFocus={activateNameFormField}
-          onBlur={disableNameFocus}
+          onFocus={focusInputName}
+          onBlur={blurInputName}
           onChange={getUsernameChanges}
           ref={register({
             required: {
@@ -94,13 +77,13 @@ const FormNameChange = () => {
             }
           })}
         />
-        <WrapperInputTools>
+        <InputHelperWrapper>
           <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="12" />
-        </WrapperInputTools>
-        {errors.changeUserName && <ErrorMessageInputField>{errors.changeUserName.message}</ErrorMessageInputField>}
-        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="change" />}
-        {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
-      </WrapperForm>
+        </InputHelperWrapper>
+        {errors.changeUsername && <ErrorMessageWrapper>{errors.changeUsername.message}</ErrorMessageWrapper>}
+        {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="change" />}
+        {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}
+      </FormWrapper>
     </Form>
   );
 };

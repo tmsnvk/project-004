@@ -20,7 +20,7 @@ const DeleteAccount = () => {
   return (
     <ContainerComponent>
       <MessageTitle>
-        Delete your account
+        Delete account
       </MessageTitle>
       <MessageText>
         We are sorry to see you go. Please understand that by deleting your account you permanently delete all of its information. After clicking on the button you will be redirected to our home page.

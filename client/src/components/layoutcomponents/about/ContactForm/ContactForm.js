@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, Input, Submit, Label } from "components/commoncomponents/form-related";
+import { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, Input, Submit, Label } from "components/commoncomponents/form-related";
 
 const ContainerComponent = styled.div`
   grid-column-start: 1;
@@ -161,7 +161,7 @@ const ContactForm = () => {
           <WrapperInputTools>
             <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="12" />
           </WrapperInputTools>
-          {errors.contactUserName && <ErrorMessageInputField>{errors.contactUserName.message}</ErrorMessageInputField>}
+          {errors.contactUserName && <ErrorMessageWrapper>{errors.contactUserName.message}</ErrorMessageWrapper>}
           <Label htmlFor="contactEmail" activeFormField={activePasswordFormField}>Email *</Label>
           <Input 
             type="email"
@@ -182,7 +182,7 @@ const ContactForm = () => {
               }
             })}
           />
-          {errors.contactEmail && <ErrorMessageInputField>{errors.contactEmail.message}</ErrorMessageInputField>}
+          {errors.contactEmail && <ErrorMessageWrapper>{errors.contactEmail.message}</ErrorMessageWrapper>}
           <Label htmlFor="contactTextarea" activeFormField={activePasswordCheckFormField}>Message *</Label>
           <Textarea
             id="contactTextarea"
@@ -203,7 +203,7 @@ const ContactForm = () => {
           <WrapperInputTools>
             <CharacterCounter characterCounter={textCharacterCounter} characterlength="500" />
           </WrapperInputTools>
-          {errors.contactTextarea && <ErrorMessageInputField>{errors.contactTextarea.message}</ErrorMessageInputField>}
+          {errors.contactTextarea && <ErrorMessageWrapper>{errors.contactTextarea.message}</ErrorMessageWrapper>}
         </WrapperForm>
         {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="submit" />}
         {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}

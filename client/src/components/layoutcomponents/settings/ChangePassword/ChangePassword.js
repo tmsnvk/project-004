@@ -21,10 +21,10 @@ const ChangePassword = () => {
   return (
     <ContainerComponent>
       <MessageTitle>
-        Change your password
+        Change account password
       </MessageTitle>
       <MessageText>
-        Please enter your new password in the box below. You may change your password as often as you would like to.
+        Enter your new account password below. You may change your password as often as you would like to.
       </MessageText>
       <FormPasswordChange />
     </ContainerComponent>

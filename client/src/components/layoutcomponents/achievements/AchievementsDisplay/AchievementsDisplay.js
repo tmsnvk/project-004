@@ -15,11 +15,12 @@ const ComponentContainer = styled.div`
 `;
 
 const AchievementsDisplay = () => {
-  const [loadingSpinner, setLoadingSpinner] = useState(false);
   const [dataSet, setDataSet] = useState({ arc: undefined, code: undefined });
   const [displayArcTiles, setDisplayArcTiles] = useState(1);
   const [displayStoryTiles, setDisplayStoryTiles] = useState([undefined]);
   const [displayAchievements, setDisplayAchievements] = useState([]);
+
+  const [loadingSpinner, setLoadingSpinner] = useState(false);
 
   useEffect(() => {
     setDisplayStoryTiles([adventuresMetaData[displayArcTiles]]);

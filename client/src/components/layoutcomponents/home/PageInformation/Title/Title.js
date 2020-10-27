@@ -7,7 +7,7 @@ const Title = () => {
 
   return (
     <MessageTitle>
-      {!userData.user ? "Welcome at Evrallas, adventurer!" : `Welcome at Evrallas, ${userData.user.toUpperCase()}!`}
+      {userData.user ? `Welcome at Evrallas, ${userData.user.toUpperCase()}!` : "Welcome at Evrallas, adventurer!"}
     </MessageTitle>
   );
 };

@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { TileButton } from "components/commoncomponents/adventure-related";
 import { IconYellow } from "components/commoncomponents/styled-icons";
 import { adventuresMetaData } from "utilities";
-import { TileButton } from "components/commoncomponents/adventure-related";
 
 const ComponentContainer = styled.div`
-  display: grid;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 3;
   grid-row-end: 4;
+  width: fit-content;
+  margin: 5rem auto 0;
   display: flex;
   flex-direction: column;
-  margin: 5rem auto 0;
-  width: fit-content;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     grid-column-start: 1;
@@ -32,10 +31,10 @@ const ArcTile = styled(TileButton)`
   flex-direction: row;
   align-items: center;
   background-color: ${({ isHighlighted, theme: { backgroundColor } }) => isHighlighted ? backgroundColor.secondary : backgroundColor.mainDark};
-  color: ${({ isHighlighted, theme: { backgroundColor } }) => isHighlighted ? backgroundColor.mainDark : backgroundColor.secondary};
+  color: ${({ isHighlighted, theme: { fontColor } }) => isHighlighted ? fontColor.secondaryDark : fontColor.main};
 
   ${IconYellow} {
-    color: ${({ isHighlighted, theme: { backgroundColor } }) => isHighlighted ? backgroundColor.mainDark : backgroundColor.secondary};
+    color: ${({ isHighlighted, theme: { fontColor } }) => isHighlighted ? fontColor.secondaryDark : fontColor.main};
   }
 
   &:hover {
@@ -49,7 +48,7 @@ const ArcTile = styled(TileButton)`
 `;
 
 const ListArcTiles = ({ displayArcTiles, getArcTile }) => {
-  const renderArcTitles = adventuresMetaData.map(({ id, arcIcon, arcTitle }, index) => {
+  const renderArcTiles = adventuresMetaData.map(({ id, arcIcon, arcTitle }, index) => {
     const isHighlighted = index === displayArcTiles ? true : false;
 
     return (
@@ -61,7 +60,7 @@ const ListArcTiles = ({ displayArcTiles, getArcTile }) => {
 
   return (
     <ComponentContainer>
-      {renderArcTitles}
+      {renderArcTiles}
     </ComponentContainer>
   );
 };

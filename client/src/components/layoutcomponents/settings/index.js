@@ -1,6 +1,6 @@
 import ChangeName from "./ChangeName";
 import ChangePassword from "./ChangePassword";
 import DeleteAccount from "./DeleteAccount";
-import PageTopText from "./PageTopText";
+import PageInformation from "./PageInformation";
 
-export { ChangeName, ChangePassword, DeleteAccount, PageTopText };
+export { ChangeName, ChangePassword, DeleteAccount, PageInformation };

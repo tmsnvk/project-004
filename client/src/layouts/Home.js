@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <LayoutContainer>
       <PageInformation />
-      {!userData.user ? <><LoggedOutText /><LoginForm /></> : <LoggedInText />}
+      {userData.user ? <LoggedInText /> : <><LoggedOutText /><LoginForm /></>}
     </LayoutContainer>
   );
 };

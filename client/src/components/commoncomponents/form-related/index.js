@@ -1,6 +1,6 @@
 import CharacterCounter from "./CharacterCounter";
 import ErrorMessage from "./ErrorMessage";
-import ErrorMessageInputField from "./ErrorMessageInputField";
+import ErrorMessageWrapper from "./ErrorMessageWrapper";
 import Form from "./Form";
 import FormWrapper from "./FormWrapper";
 import Input from "./Input";
@@ -9,4 +9,4 @@ import Label from "./Label";
 import Submit from "./Submit";
 import TogglePassword from "./TogglePassword";
 
-export { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, TogglePassword };
+export { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, TogglePassword };

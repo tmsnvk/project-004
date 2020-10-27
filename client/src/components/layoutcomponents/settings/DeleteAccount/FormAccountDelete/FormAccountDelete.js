@@ -5,10 +5,10 @@ import axios from "axios";
 import { Form, Submit } from "components/commoncomponents/form-related";
 
 const FormAccountDelete = () => {
-  const [deleteAccount, SetDeleteAccount] = useState(false);
-
   const { handleSubmit } = useForm();
   const history = useHistory();
+  
+  const [deleteAccount, SetDeleteAccount] = useState(false);
 
   const onSubmit = (data) => SetDeleteAccount(true);
 
@@ -32,15 +32,13 @@ const FormAccountDelete = () => {
     };
 
     handleAccountDelete();
-    SetDeleteAccount(false);
+    return () => SetDeleteAccount(false);
   }, [deleteAccount, history, SetDeleteAccount]);
 
   return (
-    <>
-      <Form method="DELETE" action="/user/delete" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>
-        <Submit type="submit" value="delete" backgroundColor={props => props.theme.backgroundColor.warning} />
-      </Form>
-    </>
+    <Form method="DELETE" action="/user/delete" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>
+      <Submit type="submit" value="delete" backgroundColor={props => props.theme.backgroundColor.warning} />
+    </Form>
   );
 };
 

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, TogglePassword } from "components/commoncomponents/form-related";
+import { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, TogglePassword } from "components/commoncomponents/form-related";
 
 const ComponentContainer = styled.div`
   grid-column-start: 1;
@@ -126,7 +126,7 @@ const RegisterForm = () => {
           <InputHelperWrapper>
             <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="12" />
           </InputHelperWrapper>
-          {errors.registerUsername && <ErrorMessageInputField>{errors.registerUsername.message}</ErrorMessageInputField>}
+          {errors.registerUsername && <ErrorMessageWrapper>{errors.registerUsername.message}</ErrorMessageWrapper>}
           <Label htmlFor="registerPassword" isInputInFocus={isInputPasswordInFocus}>Password *</Label>
           <Input 
             type={isPasswordHidden ? "password" : "text"}
@@ -156,7 +156,7 @@ const RegisterForm = () => {
             <TogglePassword togglePassword={togglePassword} isPasswordHidden={isPasswordHidden} />
             <CharacterCounter characterCounter={passwordCharacterCounter} characterlength="15" />
           </InputHelperWrapper>
-          {errors.registerPassword && <ErrorMessageInputField>{errors.registerPassword.message}</ErrorMessageInputField>}
+          {errors.registerPassword && <ErrorMessageWrapper>{errors.registerPassword.message}</ErrorMessageWrapper>}
           <Label htmlFor="registerPasswordCheck" isInputInFocus={isInputPasswordCheckInFocus}>Confirm Password *</Label>
           <Input 
             type={isPasswordHidden ? "password" : "text"}
@@ -175,7 +175,7 @@ const RegisterForm = () => {
               validate: (value) => { return value === watch("registerPassword") || "PASSWORD inputs must match."}
             })}
           />
-          {errors.registerPasswordCheck && <ErrorMessageInputField>{errors.registerPasswordCheck.message}</ErrorMessageInputField>}
+          {errors.registerPasswordCheck && <ErrorMessageWrapper>{errors.registerPasswordCheck.message}</ErrorMessageWrapper>}
         </FormWrapper>
         {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is registering your credentials in our Archives, please wait."} /> : <Submit type="submit" value="register" />}
         {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}

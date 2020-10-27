@@ -10,7 +10,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const InputErrorMessage = styled.span`
+const ErrorMessageWrapper = styled.span`
   align-self: center;
   width: fit-content;
   color: ${props => props.theme.fontColor.warning};
@@ -21,4 +21,4 @@ const InputErrorMessage = styled.span`
   animation: 0.3s ${fadeIn} ease-in-out;
 `;
 
-export default InputErrorMessage;
+export default ErrorMessageWrapper;

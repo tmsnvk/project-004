@@ -1,42 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { CharacterCounter, ErrorMessage, ErrorMessageInputField, Form, Input, Submit, Label, TogglePassword } from "components/commoncomponents/form-related";
+import { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, TogglePassword } from "components/commoncomponents/form-related";
 
-const WrapperForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  width: 25rem;
-`;
+const FormPasswordChange = () => {
+  const { errors, formState, handleSubmit, register, trigger, watch } = useForm();
+  const history = useHistory();
 
-const WrapperInputTools = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
-
-const FormNameChange = () => {
-  const { errors, handleSubmit, register, trigger, watch } = useForm();
-
-  const [activePasswordCurrentFormField, setActivePasswordCurrentFormField] = useState(false);
-  const [activePasswordFormField, setActivePasswordFormField] = useState(false);
-  const [activePasswordCheckFormField, setActivePasswordCheckFormField] = useState(false);
+  const [isInputPasswordCurrentInFocus, setIsInputPasswordCurrentInFocus] = useState(false);
+  const [isInputPasswordInFocus, setIsInputPasswordInFocus] = useState(false);
+  const [isInputPasswordCheckInFocus, setIsInputPasswordCheckInFocus] = useState(false);
 
   const [passwordCharacterCounter, setPasswordCharacterCounter] = useState(0);
 
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
-  const [loadingSpinner, setLoadingSpinner] = useState(false);
-
   const [formData, setFormData] = useState({ currentPassword: undefined, newPassword: undefined, newPasswordCheck: undefined });
-  const [loginError, setLoginError] = useState(undefined);
-
-  const history = useHistory();
+  const [responseError, setResponseError] = useState(undefined);
 
   const onSubmit = (data) => setFormData({ currentPassword: data.currentPassword, newPassword: data.changePassword, newPasswordCheck: data.changePasswordCheck });
 
@@ -47,28 +29,26 @@ const FormNameChange = () => {
       const id = localStorage.getItem("auth-id");
 
       try {
-        setLoadingSpinner(true);
         await axios.put("/user/change-password", { id, formData });
-        setTimeout(() => setLoadingSpinner(false), 1500);
         history.push("/page/success");
         history.go();
       } catch (error) {
-        console.log(error);
-        return setLoginError(error.response.data.message);
+        return setResponseError(error.response.data.message);
       }
     };
 
     handlePasswordChange();
+    return () => setFormData({ currentPassword: undefined, newPassword: undefined, newPasswordCheck: undefined });
   }, [formData, history]);
 
-  const activatePasswordCurrentFormField = () => setActivePasswordCurrentFormField(true);
-  const disablePasswordCurrentFocus = (event) => event.target.value === "" ? setActivePasswordCurrentFormField(false) : null;
+  const focusPasswordCurrent = () => setIsInputPasswordCurrentInFocus(true);
+  const blurPasswordCurrent = (event) => event.target.value === "" ? setIsInputPasswordCurrentInFocus(false) : null;
 
-  const activatePasswordFormField = () => setActivePasswordFormField(true);
-  const disablePasswordFocus = (event) => event.target.value === "" ? setActivePasswordFormField(false) : null;
+  const focusPassword = () => setIsInputPasswordInFocus(true);
+  const blurPassword = (event) => event.target.value === "" ? setIsInputPasswordInFocus(false) : null;
 
-  const activatePasswordCheckFormField = () => setActivePasswordCheckFormField(true);
-  const disablePasswordCheckFocus = (event) => event.target.value === "" ? setActivePasswordCheckFormField(false) : null;
+  const focusPasswordCheck = () => setIsInputPasswordCheckInFocus(true);
+  const blurPasswordCheck = (event) => event.target.value === "" ? setIsInputPasswordCheckInFocus(false) : null;
 
   const togglePassword = () => setIsPasswordHidden(!isPasswordHidden);
 
@@ -82,33 +62,33 @@ const FormNameChange = () => {
   return (
     <>
       <Form method="PUT" action="/user/change-password" id="user-changepassword" onSubmit={handleSubmit(onSubmit)}>
-        <WrapperForm>
-          <Label htmlFor="changePassword" activeFormField={activePasswordCurrentFormField}>Password *</Label>
+        <FormWrapper>
+          <Label htmlFor="currentPassword" isInputInFocus={isInputPasswordCurrentInFocus}>Current Password *</Label>
           <Input
             type={isPasswordHidden ? "password" : "text"}
             id="currentPassword"
             name="currentPassword"
             autoComplete="off"
             maxLength="15"
-            onFocus={activatePasswordCurrentFormField}
-            onBlur={disablePasswordCurrentFocus}
+            onFocus={focusPasswordCurrent}
+            onBlur={blurPasswordCurrent}
             ref={register}
           />
-          {errors.currentPassword && <ErrorMessageInputField>{errors.currentPassword.message}</ErrorMessageInputField>}
-          <Label htmlFor="changePassword" activeFormField={activePasswordFormField}>New Password *</Label>
+          {errors.currentPassword && <ErrorMessageWrapper>{errors.currentPassword.message}</ErrorMessageWrapper>}
+          <Label htmlFor="changePassword" isInputInFocus={isInputPasswordInFocus}>New Password *</Label>
           <Input
             type={isPasswordHidden ? "password" : "text"}
             id="changePassword"
             name="changePassword"
             autoComplete="off"
             maxLength="15"
-            onFocus={activatePasswordFormField}
-            onBlur={disablePasswordFocus}
+            onFocus={focusPassword}
+            onBlur={blurPassword}
             onChange={getPasswordChanges}
             ref={register({
               required: {
                 value: true,
-                message: "PASSWORD is required."
+                message: "PASSWORD is required; minimum 6, maximum 15 characters long."
               },
               minLength: {
                 value: 6,
@@ -120,20 +100,20 @@ const FormNameChange = () => {
               }
             })}
           />
-          <WrapperInputTools>
+          <InputHelperWrapper>
             <TogglePassword togglePassword={togglePassword} isPasswordHidden={isPasswordHidden} />
             <CharacterCounter characterCounter={passwordCharacterCounter} characterlength="15" />
-          </WrapperInputTools>
-          {errors.changePassword && <ErrorMessageInputField>{errors.changePassword.message}</ErrorMessageInputField>}
-          <Label htmlFor="changePasswordCheck" activeFormField={activePasswordCheckFormField}>Confirm New Password *</Label>
+          </InputHelperWrapper>
+          {errors.changePassword && <ErrorMessageWrapper>{errors.changePassword.message}</ErrorMessageWrapper>}
+          <Label htmlFor="changePasswordCheck" isInputInFocus={isInputPasswordCheckInFocus}>Confirm New Password *</Label>
           <Input
             type={isPasswordHidden ? "password" : "text"}
             id="changePasswordCheck"
             name="changePasswordCheck"
             autoComplete="off"
             maxLength="15"
-            onFocus={activatePasswordCheckFormField}
-            onBlur={disablePasswordCheckFocus}
+            onFocus={focusPasswordCheck}
+            onBlur={blurPasswordCheck}
             onChange={getPasswordCheckChanges}
             ref={register({
               required: {
@@ -143,13 +123,13 @@ const FormNameChange = () => {
               validate: (value) => { return value === watch("changePassword") || "PASSWORD fields do not match."}
             })}
           />
-          {errors.changePasswordCheck && <ErrorMessageInputField>{errors.changePasswordCheck.message}</ErrorMessageInputField>}
-        </WrapperForm>
-        {loginError === undefined && loadingSpinner === true ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="change" />}
-        {loginError ? <ErrorMessage>{loginError}</ErrorMessage> : null}
+          {errors.changePasswordCheck && <ErrorMessageWrapper>{errors.changePasswordCheck.message}</ErrorMessageWrapper>}
+        </FormWrapper>
+        {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="change" />}
+        {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}
       </Form>
     </>
   );
 };
 
-export default FormNameChange;
+export default FormPasswordChange;

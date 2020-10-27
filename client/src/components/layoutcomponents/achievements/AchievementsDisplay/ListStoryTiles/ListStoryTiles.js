@@ -3,7 +3,6 @@ import styled from "styled-components";
 import StoryTile from "./StoryTile";
 
 const ComponentContainer = styled.div`
-  display: grid;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 4;
@@ -26,7 +25,7 @@ const ComponentContainer = styled.div`
   }
 `;
 
-const StoryTilesContainer = styled.div`
+const StoryTilesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-weight: bold;
@@ -38,21 +37,21 @@ const StoryTilesContainer = styled.div`
 `;
 
 const ListStoryTiles = ({ displayStoryTiles, getStoryTile }) => {
-  const renderDisplayedStoryTiles = displayStoryTiles.map((element) => {
+  const renderStoryTiles = displayStoryTiles.map((element) => {
     if (element?.id === undefined) return null;
 
     return (
-      <StoryTilesContainer key={element?.id}>
+      <StoryTilesWrapper key={element?.id}>
         {element.storyOne.title !== undefined ? <StoryTile dataArc={element?.storyOne.arc} dataCode={element?.storyOne.code} isAvailable={element?.storyOne.isAvailable} storyTitle={element?.storyOne.title} onClick={getStoryTile} /> : null}
         {element.storyTwo.title !== undefined ? <StoryTile dataArc={element?.storyTwo.arc} dataCode={element?.storyTwo.code} isAvailable={element?.storyTwo.isAvailable} storyTitle={element?.storyTwo.title} onClick={getStoryTile} /> : null}
         {element.storyThree.title !== undefined ? <StoryTile dataArc={element?.storyThree.arc} dataCode={element?.storyThree.code} isAvailable={element?.storyThree.isAvailable} storyTitle={element?.storyThree.title} onClick={getStoryTile} /> : null}
-      </StoryTilesContainer>
+      </StoryTilesWrapper>
     );
   });
 
   return (
     <ComponentContainer>
-    {renderDisplayedStoryTiles}
+    {renderStoryTiles}
     </ComponentContainer>
   );
 };

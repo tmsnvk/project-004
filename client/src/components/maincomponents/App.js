@@ -23,7 +23,7 @@ const theme = {
   backgroundColor: {
     mainDark: "#2d2d2d", // almost black
     mainLight: "#777c85", // medium gray
-    secondary: "#ffd479", // yellow
+    secondary: "#ffd479f5", // yellow
     alternate: "#6ab0f3", // blue
     warning: "#f2777a" // red
   },

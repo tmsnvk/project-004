@@ -40,7 +40,7 @@ const ElementWrapper = styled.div`
 `;
 
 const Obtained = styled(TileContainer)`
-  width: 20rem;
+  width: 25rem;
   background-color: ${props => props.theme.backgroundColor.secondary};
   color: ${props => props.theme.fontColor.secondaryDark};
   font-family: ${props => props.theme.fontFamily.secondary};
@@ -51,19 +51,11 @@ const Obtained = styled(TileContainer)`
     transition: transform 0.2s;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xSmall}) {
-    width: 25rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    width: 35rem;
-  }
-
   @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
     width: 30rem;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
     width: 40rem;
   }
 `;
@@ -77,17 +69,32 @@ const Title = styled.p`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: ${props => props.theme.fontSize.small};
+  font-size: ${props => props.theme.fontSize.default};
   padding: 0 0 2rem 0;
+
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+    font-size: ${props => props.theme.fontSize.small};
+  }
 `;
 
 const Description = styled(Title)`
   padding: 0;
 `;
 
+const NotAvailable = styled(TileContainer)`
+  margin: 0 auto;
+  font-weight: bolder;
+  font-size: ${props => props.theme.fontSize.default};
+  
+  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+    font-size: ${props => props.theme.fontSize.small};
+  }
+`;
+
 const ListAchievements = ({ dataSet, loadingSpinner, displayAchievements }) => {
   const renderAchievements = displayAchievements.map((element) => {
     return (
+      displayAchievements.length !== 1 ?
       <ElementWrapper key={element?.[1].id}>
         {element?.[1].state ?
         <Obtained>
@@ -103,7 +110,7 @@ const ListAchievements = ({ dataSet, loadingSpinner, displayAchievements }) => {
             <IconBlack icon={iconList.calendarUnlocked}></IconBlack>
             {new Date(element?.[1].date).toLocaleString("en-US", { year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: true })}
           </Description>
-        </Obtained> : 
+        </Obtained> :
         <Missing>
           <Title>
             <IconYellow icon={iconList.star}></IconYellow>
@@ -118,13 +125,14 @@ const ListAchievements = ({ dataSet, loadingSpinner, displayAchievements }) => {
             Not yet unlocked.
           </Description>
         </Missing>}
-      </ElementWrapper>
+      </ElementWrapper> :
+      <NotAvailable key={displayAchievements[0]?.[0]}>{displayAchievements[0]?.[1].message}</NotAvailable>
     );
   });
 
   return (
     <ComponentContainer>
-      {loadingSpinner ? <LoadingSpinner message={"The caretakers of the Tower are retriving the requested data from the Archives."} /> : null}
+      {loadingSpinner ? <LoadingSpinner message={"The Tower librarians are retriving the requested data from their Archives."} /> : null}
       {loadingSpinner || dataSet.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
       <AchievementsWrapper>
         {loadingSpinner ? dataSet.arc === undefined : renderAchievements}

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "context/UserContext";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
@@ -24,6 +25,7 @@ const ComponentContainer = styled.div`
 const LoginForm = () => {
   const { setUserData } = useContext(UserContext);
   const { formState, handleSubmit, register } = useForm();
+  const history = useHistory();
 
   const [isInputNameInFocus, setIsInputNameInFocus] = useState(false);
   const [isInputPasswordInFocus, setIsInputPasswordInFocus] = useState(false);
@@ -46,6 +48,7 @@ const LoginForm = () => {
         localStorage.setItem("auth-token", response.data.token);
         localStorage.setItem("auth-name", response.data.user.username);
         localStorage.setItem("auth-id", response.data.user.id);
+        history.go();
       } catch (error) {
         return setResponseError(error.response.data.message);
       }
@@ -56,7 +59,7 @@ const LoginForm = () => {
       setFormData({ username: undefined, password: undefined });
       setResponseError(undefined);
     };
-  }, [formData, setUserData]);
+  }, [formData, history, setUserData]);
 
   const focusInputName = () => setIsInputNameInFocus(true);
   const blurInputName = (event) => event.target.value === "" ? setIsInputNameInFocus(false) : null;

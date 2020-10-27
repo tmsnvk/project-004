@@ -22,10 +22,10 @@ const LoggedInText = () => {
         First timer? Try the <NavigationLink to="/page/adventures/tutorial">tutorial</NavigationLink> to get the feel of the game.
       </MessageText>
       <MessageText padding="2rem 0 0 0">
-        Start a new game <NavigationLink to="/page/adventures">here</NavigationLink> - replay the same story multiple times to discover the different outcomes & earn all the milestone achievements.
+        Start a new game <NavigationLink to="/page/adventures">here</NavigationLink> - replay the same story multiple times to discover the different outcomes & earn all milestone achievements.
       </MessageText>
       <MessageText padding="2rem 0 0 0">
-        Visit your account <NavigationLink to="/page/achievements">here</NavigationLink> & see which achievements you have unlocked so far.
+        Visit your account profile <NavigationLink to="/page/achievements">here</NavigationLink> & see which achievements you have unlocked so far.
       </MessageText>
     </ComponentContainer>
   );

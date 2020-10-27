@@ -9,6 +9,7 @@ const ComponentContainer = styled.div`
   grid-column-end: 5;
   grid-row-start: 2;
   grid-row-end: 3;
+  display: flex;
 
   @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
     grid-column-start: 2;
@@ -16,7 +17,7 @@ const ComponentContainer = styled.div`
   }
 `;
 
-const WrapperStatistics = styled(TileContainer)`
+const StatsWrapper = styled(TileContainer)`
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -27,7 +28,7 @@ const UserStatistics = () => {
 
   return (
     <ComponentContainer>
-      <WrapperStatistics>
+      <StatsWrapper>
         <MessageText padding="0.5rem 1rem 0.5rem 1rem">
           Number of adventures started: <SpanBold padding="0 0 0 1rem">{gameData.gameStart}</SpanBold>
         </MessageText>
@@ -37,7 +38,7 @@ const UserStatistics = () => {
         <MessageText padding="0.5rem 1rem 0.5rem 1rem">
           Number of deaths: <SpanBold padding="0 0 0 1rem">{gameData.gameDeath}</SpanBold>
         </MessageText>
-      </WrapperStatistics>
+      </StatsWrapper>
     </ComponentContainer>
   );
 };
