@@ -1,6 +1,5 @@
 {
-  "name": "evrallas",
-  "version": "0.1.0",
+  "name": "evrallas-front-end",
   "private": true,
   "description": "project-004 || tmsnvk",
   "proxy": "http://127.0.0.1:3003",

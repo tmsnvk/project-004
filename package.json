@@ -1,6 +1,5 @@
 {
-  "name": "project_backend",
-  "version": "0.3.0",
+  "name": "evrallas-back-end",
   "description": "project-004 || tmsnvk",
   "main": "server.js",
   "scripts": {
