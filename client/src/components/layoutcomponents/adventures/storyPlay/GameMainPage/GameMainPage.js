@@ -20,72 +20,40 @@ const ContainerComponent = styled.div`
   }
 `;
 
-const GameMainPage = ({ story }) => {
-  const [eventId, setEventId] = useState("ID0001");
-  const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined });
-  const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
-  const [eventAchievement, setEventAchievement] = useState({ code: undefined, storyCode: undefined, mongoCode: undefined, title: undefined });
-  const [showAchievementPanel, setShowAchievementPanel] = useState(false);
+const GameMainPage = ({ storyId }) => {
   const history = useHistory();
+  
+  const [nextPathId, setNextPathId] = useState("ID0001");
+  const [nextPathParagraphs, setNextPathParagraphs] = useState({ one: undefined, two: undefined, three: undefined, four: undefined });
+  const [nextPathOptions, setNextPathOptions] = useState([[undefined], [undefined], [undefined]]);
+  const [nextPathAchievement, setNextPathAchievement] = useState({ code: undefined, storyCode: undefined, mongoCode: undefined, title: undefined });
+
+  const [showAchievementPanel, setShowAchievementPanel] = useState(false);
 
   useEffect(() => {
-    const getEventPara = async () => {
+    const getData = async () => {
       try {
-        const response = await axios.get("/adventure/nextevent", { params: { _id: "arcOneStoryOne_master", event: eventId }});
-        console.log(response.data);
+        const { data } = await axios.get("/adventure/nextevent", { params: { _id: storyId, nextPathId: nextPathId }});
 
-        setEventParagraphs({ one: response.data.paragraphs[0]?.text, two: response.data.paragraphs[1]?.text, three: response.data.paragraphs[2]?.text });
-        setEventOptions([[response.data.options?.[0].text, response.data.options?.[0].nextEventId, response.data.options?.[0].visible], [response.data.options?.[1].text, response.data.options?.[1].nextEventId, response.data.options?.[1].visible], [response.data.options?.[2].text, response.data.options?.[2].nextEventId, response.data.options?.[2].visible]]);
-        setEventAchievement({ code: response.data.achievement?.code, storyCode: response.data.achievement?.storyCode, mongoCode: response.data.achievement?.mongoCode, title: response.data.achievement?.title });
-
+        setNextPathParagraphs({ one: data.paragraphs[0]?.text, two: data.paragraphs[1]?.text, three: data.paragraphs[2]?.text, four: data.paragraphs[3]?.text });
+        setNextPathOptions([[data.options[0]?.text, data.options[0]?.nextEventId, data.options[0]?.visible], [data.options[1]?.text, data.options[1]?.nextEventId, data.options[1]?.visible], [data.options[2]?.text, data.options[2]?.nextEventId, data.options[2]?.visible]]);
+        setNextPathAchievement({ code: data.achievement?.code, storyCode: data.achievement?.storyCode, mongoCode: data.achievement?.mongoCode, title: data.achievement?.title });
       } catch (error) {
         console.log(error);
       }
     };
 
-    getEventPara();
-  }, [eventId]);
-
-
-  // useEffect(() => {
-  //   const getEventParagraphs = (eventId, story) => {
-
-  //     const eventParagraphs = story.find(element => element.id === eventId);
-  //     setEventParagraphs({ one: eventParagraphs.paragraphs[0]?.text, two: eventParagraphs.paragraphs[1]?.text, three: eventParagraphs.paragraphs[2]?.text });
-  //   };
-
-  //   getEventParagraphs(eventId, story);
-  //   return () => setEventParagraphs({ one: undefined, two: undefined, three: undefined });
-  // }, [eventId, story]);
-
-  // useEffect(() => {
-  //   const getEventOptions = (eventId, story) => {
-  //     const eventOptions = story.find(element => element.id === eventId);
-  //     eventOptions.options.forEach((option, index, array) => setEventOptions([[array[0]?.text, array[0]?.nextEventId, array[0]?.visible], [array[1]?.text, array[1]?.nextEventId, array[1]?.visible], [array[2]?.text, array[2]?.nextEventId, array[2]?.visible]]));
-  //   };
-
-  //   getEventOptions(eventId, story);
-  //   return () => setEventOptions([[undefined], [undefined], [undefined]]);
-  // }, [eventId, story]);
-
-  // useEffect(() => {
-  //   const getEventAchievement = (eventId, story) => {
-  //     const eventAchievement = story.find(element => element.id === eventId);
-  //     setEventAchievement({ code: eventAchievement.achievement?.code, storyCode: eventAchievement.achievement?.storyCode, mongoCode: eventAchievement.achievement?.mongoCode, title: eventAchievement.achievement?.title });
-  //   };
-
-  //   getEventAchievement(eventId, story);
-  //   return () => setEventAchievement({ code: undefined, mongoCode: undefined, title: undefined });
-  // }, [eventId, story]);
+    getData();
+  }, [nextPathId]);
 
   useEffect(() => {
-    const triggerAchievement = async (eventId, eventAchievement) => {
-      if (eventId !== eventAchievement?.code) return;
+    const triggerAchievement = async (nextPathId, nextPathAchievement) => {
+      if (nextPathId !== nextPathAchievement?.code) return;
 
-      if (eventId === eventAchievement?.code) {
+      if (nextPathId === nextPathAchievement?.code) {
         try {
           const id = localStorage.getItem("auth-id");
-          const response = await axios.put("/achievement/trigger", { id, storyCode: eventAchievement.storyCode, code: eventAchievement.code });
+          const response = await axios.put("/achievement/trigger", { id, storyCode: nextPathAchievement.storyCode, code: nextPathAchievement.code });
           if (!response.data.message) setShowAchievementPanel(true);
         } catch (error) {
           console.log(error);
@@ -93,13 +61,13 @@ const GameMainPage = ({ story }) => {
       }
     };
 
-    triggerAchievement(eventId, eventAchievement);
+    triggerAchievement(nextPathId, nextPathAchievement);
     return () => setShowAchievementPanel(false);
-  }, [eventId, eventAchievement]);
+  }, [nextPathId, nextPathAchievement]);
 
   useEffect(() => {
-    const triggerGameOver = async (eventId) => {
-      if ((eventId) === "GAMEOVER") {
+    const triggerGameOver = async (nextPathId) => {
+      if ((nextPathId) === "GAMEOVER") {
         const id = localStorage.getItem("auth-id");
         await axios.put("/achievement/counter-death", { id });
         history.push("/page/adventures/results");
@@ -107,14 +75,14 @@ const GameMainPage = ({ story }) => {
       } 
     };
 
-    triggerGameOver(eventId);
-  }, [eventId, history]);
+    triggerGameOver(nextPathId);
+  }, [nextPathId, history]);
 
   return (
     <ContainerComponent>
-      <ListEventParagraphs eventParagraphs={eventParagraphs} />
-      <ListEventChoices eventOptions={eventOptions} setEventId={setEventId} />
-      <ListEventAchievement eventAchievement={eventAchievement} showAchievementPanel={showAchievementPanel} />
+      <ListEventParagraphs nextPathParagraphs={nextPathParagraphs} />
+      <ListEventChoices nextPathOptions={nextPathOptions} setNextPathId={setNextPathId} />
+      <ListEventAchievement nextPathAchievement={nextPathAchievement} showAchievementPanel={showAchievementPanel} />
     </ContainerComponent>
   );
 };

@@ -12,7 +12,7 @@ const ContainerComponent = styled.div`
   }
 `;
 
-const EventButton = styled(TileButton)`
+const PathButton = styled(TileButton)`
   visibility: ${props => props.visible ? "visible" : "hidden"};
   font-weight: bold;
 
@@ -35,13 +35,12 @@ const EventButton = styled(TileButton)`
   }
 `;
 
-const ListEventChoices = ({ eventOptions, setEventId }) => {
-  console.log(eventOptions);
-  const renderButton = eventOptions.map((option, index) => {
-    const getNewEvent = () => setEventId(option[1]);
+const ListEventChoices = ({ nextPathOptions, setNextPathId }) => {
+  const renderButton = nextPathOptions.map((option, index) => {
+    const getNextPath = () => setNextPathId(option[1]);
 
     return (
-      <EventButton key={index} visible={option[2]} onClick={getNewEvent}>{option[0]}</EventButton>
+      <PathButton key={index} visible={option[2]} onClick={getNextPath}>{option[0]}</PathButton>
     );
   });
 

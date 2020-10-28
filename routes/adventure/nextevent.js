@@ -1,20 +1,11 @@
-const { MongoClient } = require("mongodb");
-const client = new MongoClient(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+const db = require("../../mongodb/database.js");
 
 module.exports = async (request, response) => {
-  const { _id, event } = request.query;
-console.log(request.query);
+  const { _id, nextPathId } = request.query;
+
   try {
-    await client.connect();
-    const database = client.db("evrallas");
-    const collection = database.collection("adventures_database");
-
-    const query = { _id }
-
-    const one = await collection.findOne(query)
-    console.log(one.arcOneStoryOne[event]);
-    await client.close();
-    return response.json(one.arcOneStoryOne[event])
+    const getStory = await db.get().collection("adventures_database").findOne({ _id });
+    return response.json(getStory[_id][nextPathId])
   } catch (error) {
     console.log(error);
   }

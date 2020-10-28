@@ -6,7 +6,7 @@ module.exports = async (request, response) => {
   if (!request.body) return response.status(400).json({ message: "Our library caretakers haven't received any data." });
 
   if (storyCode === "a1s1") {
-    const achievementClientCode = [undefined, "AOSO8G", "AOSO5N_2"];
+    const achievementClientCode = [undefined, "ID0008G", "ID0005N_2"];
     const achievementStates = [undefined, "achievementsA1S1.keepPunching.state", "achievementsA1S1.hideSafely.state"];
     const achievementTimestamps = [undefined, "achievementsA1S1.keepPunching.date", "achievementsA1S1.hideSafely.date"];
     

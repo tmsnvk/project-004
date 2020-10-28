@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
-// const MongoClient = require('mongodb').MongoClient
+const db = require("./mongodb/database.js");
 
 require("dotenv").config();
 
@@ -16,6 +16,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(publicPath));
+
 app.use("/achievement", require("./routes/achievement"));
 app.use("/adventure", require("./routes/adventure"));
 app.use("/contact", require("./routes/contact"));
@@ -32,13 +33,6 @@ mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlP
   }
 );
 
-// MongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, (err, client) => {
-//   if (err) return console.error(err)
-//   console.log('Connected to your MongoDB database - mongodb')
-//   const db = client.db('evrallas');
-
-// })
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
   app.get('*', (request, response) => {
@@ -47,6 +41,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const port = process.env.PORT || 3003;
-app.listen(port, () => {
-  console.log(`evrallas project @ port ${port}!`);
+db.connect(() => {
+  app.listen(port, () => {
+    console.log(`evrallas project @ port ${port}!`);
+    console.log("connected to evrallas mongodb database!");
+  });
 });

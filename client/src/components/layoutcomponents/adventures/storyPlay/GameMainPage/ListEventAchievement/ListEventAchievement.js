@@ -30,10 +30,10 @@ const AchievementUnlocked = styled.div`
   border-radius: 0.5rem;
 `;
 
-const ListEventAchievement = ({ showAchievementPanel, eventAchievement }) => {
+const ListEventAchievement = ({ nextPathAchievement, showAchievementPanel }) => {
   return (
     <ContainerComponent>
-      {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {eventAchievement.title}</AchievementUnlocked> : null}
+      {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {nextPathAchievement.title}</AchievementUnlocked> : null}
     </ContainerComponent>
   );
 };

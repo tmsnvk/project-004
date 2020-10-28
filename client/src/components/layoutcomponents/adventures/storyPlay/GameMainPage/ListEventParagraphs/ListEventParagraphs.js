@@ -17,17 +17,17 @@ const Paragraph = styled.p`
   }
 `;
 
-const ListEventParagraphs = ({ eventParagraphs }) => {
+const ListEventParagraphs = ({ nextPathParagraphs }) => {
   return (
     <ContainerComponent>
       <Paragraph>
-        {eventParagraphs.one}
+        {nextPathParagraphs.one}
       </Paragraph>
       <Paragraph>
-        {eventParagraphs.two}
+        {nextPathParagraphs.two}
       </Paragraph>
       <Paragraph>
-        {eventParagraphs.three}
+        {nextPathParagraphs.three}
       </Paragraph>
     </ContainerComponent>
   );

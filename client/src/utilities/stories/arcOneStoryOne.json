@@ -1,6 +1,6 @@
 [
   {
-    "_id": "arcOneStoryOne_master",
+    "_id": "arcOneStoryOne",
     "arcOneStoryOne": {
       "ID0001": {
         "paragraphs": [
@@ -17,17 +17,17 @@
         "options": [
           {
             "text": "Your hungry eyes follow the girls' shapes.",
-            "nextEventId": "ID00O2E",
+            "nextEventId": "ID0002E",
             "visible": true
           },
           {
             "text": "You continue staring out from your head.",
-            "nextEventId": "ID00O2N",
+            "nextEventId": "ID0002N",
             "visible": true
           },
           {
             "text": "Your knightly noble instincts kick in - you decide to protect the two girls and tear at least one of the brutes a new one",
-            "nextEventId": "ID00O2G",
+            "nextEventId": "ID0002G",
             "visible": true
           }
         ]
@@ -47,12 +47,12 @@
         "options": [
           {
             "text": "You continue enjoying yourself in your stupor.",
-            "nextEventId": "ID00O3E",
+            "nextEventId": "ID0003E",
             "visible": true
           },
           {
             "text": "You quickly realise this is bad - and you decide to use your fists.",
-            "nextEventId": "ID00O3G",
+            "nextEventId": "ID0003G",
             "visible": true
           }
         ]
@@ -135,12 +135,12 @@
         "options": [
           {
             "text": "Follow them to their room.",
-            "nextEventId": "ID00O4N_1",
+            "nextEventId": "ID0004N_1",
             "visible": true
           },
           {
             "text": "Decide to sit at their table for a little bit to gather your thoughts.",
-            "nextEventId": "ID00O4N_2",
+            "nextEventId": "ID0004N_2",
             "visible": true
           }
         ]
@@ -154,12 +154,12 @@
         "options": [
           {
             "text": "You decide to withdraw but still keep pinning them into the corner.",
-            "nextEventId": "ID00O8N",
+            "nextEventId": "ID0008N",
             "visible": true
           },
           {
             "text": "You keep punching them in the face.",
-            "nextEventId": "ID00O8G",
+            "nextEventId": "ID0008G",
             "visible": true
           }
         ]
@@ -176,17 +176,17 @@
         "options": [
           {
             "text": "Rush into your companions' room.",
-            "nextEventId": "ID00O5N_1",
+            "nextEventId": "ID0005N_1",
             "visible": true
           },
           {
             "text": "Decide to hide somewhere else.",
-            "nextEventId": "ID00O5N_2",
+            "nextEventId": "ID0005N_2",
             "visible": true
           }
         ],
         "achievement": {
-          "code": "ID00O4N_1",
+          "code": "ID04N_1",
           "storyCode": "a1s1",
           "mongoCode": "followToRoom",
           "title": "Keep Punching 'em!"
@@ -204,12 +204,12 @@
         "options": [
           {
             "text": "Enter the room.",
-            "nextEventId": "ID00O7N_1",
+            "nextEventId": "ID0007N_1",
             "visible": true
           },
           {
             "text": "Hide somewhere safe.",
-            "nextEventId": "ID00O7N_2",
+            "nextEventId": "ID0007N_2",
             "visible": true
           }
         ]
@@ -249,17 +249,17 @@
         "options": [
           {
             "text": "You decide to go and check out the room.",
-            "nextEventId": "ID00O6N_1",
+            "nextEventId": "ID0006N_1",
             "visible": true
           },
           {
             "text": "You want to leave this place immediately, so you go down the stairs.",
-            "nextEventId": "ID00O6N_2",
+            "nextEventId": "ID0006N_2",
             "visible": true
           }
         ],
         "achievement": {
-          "code": "ID00O5N_2",
+          "code": "ID0005N_2",
           "storyCode": "a1s1",
           "mongoCode": "hideSafely",
           "title": "Keep Punching 'em!"
@@ -339,12 +339,12 @@
         "options": [
           {
             "text": "You decide to go and check out the room.",
-            "nextEventId": "ID00O6N_1",
+            "nextEventId": "ID0006N_1",
             "visible": true
           },
           {
             "text": "You want to leave this place immediately, so you go down the stairs.",
-            "nextEventId": "ID00O6N_2",
+            "nextEventId": "ID0006N_2",
             "visible": true
           }
         ]
@@ -364,12 +364,12 @@
         "options": [
           {
             "text": "Excuse and withdraw yourself.",
-            "nextEventId": "ID00O9N",
+            "nextEventId": "ID0009N",
             "visible": true
           },
           {
             "text": "You're thirsty and hungry, so there's no reason to turn the offer down.",
-            "nextEventId": "ID00O9G",
+            "nextEventId": "ID0009G",
             "visible": true
           }
         ]
@@ -386,17 +386,17 @@
         "options": [
           {
             "text": "Slowly sit up, once you came to your senses.",
-            "nextEventId": "ID0O13N_1",
+            "nextEventId": "ID0013N_1",
             "visible": true
           },
           {
             "text": "Jerk up and raise your fists in defence.",
-            "nextEventId": "ID0O13N_2",
+            "nextEventId": "ID0013N_2",
             "visible": true
           }
         ],
         "achievement": {
-          "code": "ID00O8G",
+          "code": "ID0008G",
           "storyCode": "a1s1",
           "mongoCode": "keepPunching",
           "title": "Keep Punching 'em!"
@@ -414,12 +414,12 @@
         "options": [
           {
             "text": "Make your way towards the staircase to enter the room.",
-            "nextEventId": "ID00O6N_1",
+            "nextEventId": "ID0006N_1",
             "visible": true
           },
           {
             "text": "Take a last look at the soldiers.",
-            "nextEventId": "ID0O10N",
+            "nextEventId": "ID0010N",
             "visible": true
           }
         ]
@@ -436,17 +436,17 @@
         "options": [
           {
             "text": "Listen to the soldiers' talk.",
-            "nextEventId": "ID0O11N_1",
+            "nextEventId": "ID0011N_1",
             "visible": true
           },
           {
             "text": "Contemplate on what has just happened.",
-            "nextEventId": "ID0O11N_2",
+            "nextEventId": "ID0011N_2",
             "visible": true
           },
           {
             "text": "Get up and make your way towards your acquaintances' room.",
-            "nextEventId": "ID0O11N_3",
+            "nextEventId": "ID0011N_3",
             "visible": true
           }
         ]
@@ -466,7 +466,7 @@
         "options": [
           {
             "text": "Climb the stairs and enter your acquaintances' room.",
-            "nextEventId": "ID00O6N_1",
+            "nextEventId": "ID0006N_1",
             "visible": true
           }
         ]
@@ -486,12 +486,12 @@
         "options": [
           {
             "text": "Listen to him, but refuse the note.",
-            "nextEventId": "ID0O12N",
+            "nextEventId": "ID0012N",
             "visible": true
           },
           {
             "text": "Listen to him and take the note.",
-            "nextEventId": "ID0O12G",
+            "nextEventId": "ID0012G",
             "visible": true
           }
         ]
@@ -508,12 +508,12 @@
         "options": [
           {
             "text": "Listen to him, but refuse the note.",
-            "nextEventId": "ID0O12N",
+            "nextEventId": "ID0012N",
             "visible": true
           },
           {
             "text": "Listen to him and take the note.",
-            "nextEventId": "ID0O12G",
+            "nextEventId": "ID0012G",
             "visible": true
           }
         ]
@@ -530,12 +530,12 @@
         "options": [
           {
             "text": "Listen to him, but refuse the note.",
-            "nextEventId": "ID0O12N",
+            "nextEventId": "ID0012N",
             "visible": true
           },
           {
             "text": "Listen to him and take the note.",
-            "nextEventId": "ID0O12G",
+            "nextEventId": "ID0012G",
             "visible": true
           }
         ]
@@ -552,7 +552,7 @@
         "options": [
           {
             "text": "Climb the stairs and enter your acquaintances' room.",
-            "nextEventId": "ID00O6N_1",
+            "nextEventId": "ID0006N_1",
             "visible": true
           }
         ]
@@ -569,7 +569,7 @@
         "options": [
           {
             "text": "Climb the stairs and enter your acquaintances' room.",
-            "nextEventId": "ID00O6N_1",
+            "nextEventId": "ID0006N_1",
             "visible": true
           }
         ]
@@ -589,17 +589,17 @@
         "options": [
           {
             "text": "Listen to the soldiers' talk.",
-            "nextEventId": "ID0O11N_1",
+            "nextEventId": "ID0011N_1",
             "visible": true
           },
           {
             "text": "Contemplate on what has just happened.",
-            "nextEventId": "ID0O11N_2",
+            "nextEventId": "ID0011N_2",
             "visible": true
           },
           {
             "text": "Get up and make your way towards your acquaintances' room.",
-            "nextEventId": "ID0O11N_3",
+            "nextEventId": "ID0011N_3",
             "visible": true
           }
         ]
@@ -616,7 +616,7 @@
         "options": [
           {
             "text": "Get up and make your way towards your acquaintances' room.",
-            "nextEventId": "ID0O11N_3",
+            "nextEventId": "ID0011N_3",
             "visible": true
           }
         ]
