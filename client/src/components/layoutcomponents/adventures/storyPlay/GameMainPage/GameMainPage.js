@@ -21,7 +21,7 @@ const ContainerComponent = styled.div`
 `;
 
 const GameMainPage = ({ story }) => {
-  const [eventId, setEventId] = useState("AOSO1");
+  const [eventId, setEventId] = useState("ID0001");
   const [eventParagraphs, setEventParagraphs] = useState({ one: undefined, two: undefined, three: undefined });
   const [eventOptions, setEventOptions] = useState([[undefined], [undefined], [undefined]]);
   const [eventAchievement, setEventAchievement] = useState({ code: undefined, storyCode: undefined, mongoCode: undefined, title: undefined });
@@ -29,34 +29,54 @@ const GameMainPage = ({ story }) => {
   const history = useHistory();
 
   useEffect(() => {
-    const getEventParagraphs = (eventId, story) => {
-      const eventParagraphs = story.find(element => element.id === eventId);
-      setEventParagraphs({ one: eventParagraphs.paragraphs[0]?.text, two: eventParagraphs.paragraphs[1]?.text, three: eventParagraphs.paragraphs[2]?.text });
+    const getEventPara = async () => {
+      try {
+        const response = await axios.get("/adventure/nextevent", { params: { _id: "arcOneStoryOne_master", event: eventId }});
+        console.log(response.data);
+
+        setEventParagraphs({ one: response.data.paragraphs[0]?.text, two: response.data.paragraphs[1]?.text, three: response.data.paragraphs[2]?.text });
+        setEventOptions([[response.data.options?.[0].text, response.data.options?.[0].nextEventId, response.data.options?.[0].visible], [response.data.options?.[1].text, response.data.options?.[1].nextEventId, response.data.options?.[1].visible], [response.data.options?.[2].text, response.data.options?.[2].nextEventId, response.data.options?.[2].visible]]);
+        setEventAchievement({ code: response.data.achievement?.code, storyCode: response.data.achievement?.storyCode, mongoCode: response.data.achievement?.mongoCode, title: response.data.achievement?.title });
+
+      } catch (error) {
+        console.log(error);
+      }
     };
 
-    getEventParagraphs(eventId, story);
-    return () => setEventParagraphs({ one: undefined, two: undefined, three: undefined });
-  }, [eventId, story]);
+    getEventPara();
+  }, [eventId]);
 
-  useEffect(() => {
-    const getEventOptions = (eventId, story) => {
-      const eventOptions = story.find(element => element.id === eventId);
-      eventOptions.options.forEach((option, index, array) => setEventOptions([[array[0]?.text, array[0]?.nextEventId, array[0]?.visible], [array[1]?.text, array[1]?.nextEventId, array[1]?.visible], [array[2]?.text, array[2]?.nextEventId, array[2]?.visible]]));
-    };
 
-    getEventOptions(eventId, story);
-    return () => setEventOptions([[undefined], [undefined], [undefined]]);
-  }, [eventId, story]);
+  // useEffect(() => {
+  //   const getEventParagraphs = (eventId, story) => {
 
-  useEffect(() => {
-    const getEventAchievement = (eventId, story) => {
-      const eventAchievement = story.find(element => element.id === eventId);
-      setEventAchievement({ code: eventAchievement.achievement?.code, storyCode: eventAchievement.achievement?.storyCode, mongoCode: eventAchievement.achievement?.mongoCode, title: eventAchievement.achievement?.title });
-    };
+  //     const eventParagraphs = story.find(element => element.id === eventId);
+  //     setEventParagraphs({ one: eventParagraphs.paragraphs[0]?.text, two: eventParagraphs.paragraphs[1]?.text, three: eventParagraphs.paragraphs[2]?.text });
+  //   };
 
-    getEventAchievement(eventId, story);
-    return () => setEventAchievement({ code: undefined, mongoCode: undefined, title: undefined });
-  }, [eventId, story]);
+  //   getEventParagraphs(eventId, story);
+  //   return () => setEventParagraphs({ one: undefined, two: undefined, three: undefined });
+  // }, [eventId, story]);
+
+  // useEffect(() => {
+  //   const getEventOptions = (eventId, story) => {
+  //     const eventOptions = story.find(element => element.id === eventId);
+  //     eventOptions.options.forEach((option, index, array) => setEventOptions([[array[0]?.text, array[0]?.nextEventId, array[0]?.visible], [array[1]?.text, array[1]?.nextEventId, array[1]?.visible], [array[2]?.text, array[2]?.nextEventId, array[2]?.visible]]));
+  //   };
+
+  //   getEventOptions(eventId, story);
+  //   return () => setEventOptions([[undefined], [undefined], [undefined]]);
+  // }, [eventId, story]);
+
+  // useEffect(() => {
+  //   const getEventAchievement = (eventId, story) => {
+  //     const eventAchievement = story.find(element => element.id === eventId);
+  //     setEventAchievement({ code: eventAchievement.achievement?.code, storyCode: eventAchievement.achievement?.storyCode, mongoCode: eventAchievement.achievement?.mongoCode, title: eventAchievement.achievement?.title });
+  //   };
+
+  //   getEventAchievement(eventId, story);
+  //   return () => setEventAchievement({ code: undefined, mongoCode: undefined, title: undefined });
+  // }, [eventId, story]);
 
   useEffect(() => {
     const triggerAchievement = async (eventId, eventAchievement) => {

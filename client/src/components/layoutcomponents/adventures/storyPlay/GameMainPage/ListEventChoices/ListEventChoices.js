@@ -36,6 +36,7 @@ const EventButton = styled(TileButton)`
 `;
 
 const ListEventChoices = ({ eventOptions, setEventId }) => {
+  console.log(eventOptions);
   const renderButton = eventOptions.map((option, index) => {
     const getNewEvent = () => setEventId(option[1]);
 

@@ -65,6 +65,6 @@ const userSchema = new mongoose.Schema({
       date: { type: Number, default: () => {return new Date().getTime()}, required: false }
     }
   }
-}, { collection: "evrallas_database" });
+}, { collection: "user_database" });
 
 module.exports = mongoose.model("userSchema", userSchema);
