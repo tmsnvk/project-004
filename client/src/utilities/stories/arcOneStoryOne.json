@@ -397,9 +397,9 @@
         ],
         "achievement": {
           "code": "ID0008G",
-          "storyCode": "a1s1",
-          "mongoCode": "keepPunching",
-          "title": "Keep Punching 'em!"
+          "title": "Keep Punching 'em!",
+          "achievementStateCode": "achievementsA1S1.keepPunching.state",
+          "achievementTimestampCode": "achievementsA1S1.keepPunching.date"
         }
       },
       "ID0009N": {

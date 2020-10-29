@@ -33,7 +33,7 @@ const AchievementUnlocked = styled.div`
 const ListEventAchievement = ({ nextPathAchievement, showAchievementPanel }) => {
   return (
     <ContainerComponent>
-      {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {nextPathAchievement.title}</AchievementUnlocked> : null}
+      {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {nextPathAchievement.achievementTitle}</AchievementUnlocked> : null}
     </ContainerComponent>
   );
 };
