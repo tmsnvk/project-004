@@ -14,26 +14,35 @@ const AdventuresGameStart = () => {
   const storyTitle = history.location.pathname;
 
   const [start, setStart] = useState(false);
+  const [firstEventId, setFirstEventId] = useState(undefined);
 
   let chosenStoryId;
 
   if (storyTitle.includes("tutorial")) {
-    chosenStoryId = "a0s1";
-  } else if (storyTitle.includes("to_one_last_new_beginning_a1s1")) {
-    chosenStoryId = "arcOneStoryOne";
+    chosenStoryId = "tutorial";
+  } else if (storyTitle.includes("A1S1")) {
+    chosenStoryId = "A1S1";
   } else {
     return <Redirect to={"/page/adventures/underconstruction"} />;
   }
 
-  const startStory = async () => {
+  const startNewStory = async () => {
     const id = localStorage.getItem("auth-id");
     await axios.put("/achievement/counter-start", { id });
+    setFirstEventId("ID0001");
+    setStart(true);
+  };
+
+  const startSavedStory = async () => {
+    const id = localStorage.getItem("auth-id");
+    const response = await axios.get("/adventure/savedgameid-get", { params: { id: id, chosenStoryId: chosenStoryId }});
+    setFirstEventId(response.data);
     setStart(true);
   };
 
   return (
     <LayoutContainerModified>
-      {start === false ? <PageInformation setStart={setStart} startStory={startStory} /> : <GameMainPage storyId={chosenStoryId} />}
+      {start === false ? <PageInformation setStart={setStart} startNewStory={startNewStory} startSavedStory={startSavedStory} /> : <GameMainPage storyId={chosenStoryId} firstEventId={firstEventId} />}
     </LayoutContainerModified>
   );
 };

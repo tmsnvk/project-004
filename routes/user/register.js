@@ -27,6 +27,9 @@ module.exports = async (request, response) => {
       numberOfGameStarts: 0,
       numberOfGameFinishes: 0,
       numberOfDeaths: 0,
+      savedGames: {
+        A1S1: { savedId: "ID0001" }
+      },
       achievementsA1S1: {
         followToRoom: { id: 1, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },
         keepPunching: { id: 2, state: false, name: "Keep 'em Punching!", description: "You kept the bastards punching until the soldiers have shown up.", date: Date.now() },

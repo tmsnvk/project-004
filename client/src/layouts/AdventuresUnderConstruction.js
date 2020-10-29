@@ -2,7 +2,7 @@ import React from "react";
 import { LayoutContainer } from "components/commoncomponents/general";
 import { PageInformation } from "components/layoutcomponents/underconstruction";
 
-const UnderConstruction = () => {
+const AdventuresUnderConstruction = () => {
   return (
     <LayoutContainer>
       <PageInformation />
@@ -10,4 +10,4 @@ const UnderConstruction = () => {
   );
 };
 
-export default UnderConstruction;
+export default AdventuresUnderConstruction;

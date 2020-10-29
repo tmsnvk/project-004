@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-d
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
-import { About, Achievements, AdventuresGameResult, AdventuresGameStart, AdventuresMainPage, Home, PageNotFound, Register, Settings, SuccessfulUpdate, Terms, UnderConstruction } from "layouts";
+import { About, Achievements, AdventuresGameResultLose, AdventuresGameResultWin, AdventuresGameStart, AdventuresMainPage, AdventuresUnderConstruction, Home, PageNotFound, Register, Settings, SuccessfulUpdate, Terms } from "layouts";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import ScrollToTop from "utilities/scrollToTop";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -152,8 +152,9 @@ const App = () => {
           <Route path="/page/home" component={Home} />
           <Route path="/page/register" component={Register} />
           <PrivateRoute exact path="/page/adventures" component={AdventuresMainPage} />
-          <PrivateRoute exact path="/page/adventures/results" component={AdventuresGameResult} />
-          <PrivateRoute exact path="/page/adventures/underconstruction" component={UnderConstruction} />
+          <PrivateRoute exact path="/page/adventures/result/win" component={AdventuresGameResultWin} />
+          <PrivateRoute exact path="/page/adventures/result/lose" component={AdventuresGameResultLose} />
+          <PrivateRoute exact path="/page/adventures/underconstruction" component={AdventuresUnderConstruction} />
           <PrivateRoute path="/page/adventures/:storytitle" component={AdventuresGameStart} />
           <PrivateRoute path="/page/achievements" component={Achievements} />
           <PrivateRoute path="/page/settings" component={Settings} />

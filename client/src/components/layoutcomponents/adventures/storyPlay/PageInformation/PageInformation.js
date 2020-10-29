@@ -28,14 +28,14 @@ const InitiateAdventureButton = styled(TileButton)`
   letter-spacing: 0.3rem;
 `;
 
-const PageTopText = ({ startStory }) => {
+const PageTopText = ({ startNewStory, startSavedStory }) => {
   return (
     <ContainerComponent>
       <Title />
       <HorizontalLine width="50%" margin="1.25rem auto 2.5rem 0" />
       <Message />
-      <InitiateAdventureButton onClick={startStory}>Start a new journey</InitiateAdventureButton>
-      <InitiateAdventureButton>Continue your saved journey</InitiateAdventureButton>
+      <InitiateAdventureButton onClick={startNewStory}>Start a new journey</InitiateAdventureButton>
+      <InitiateAdventureButton onClick={startSavedStory}>Continue your saved journey</InitiateAdventureButton>
     </ContainerComponent>
   );
 };

@@ -5,7 +5,7 @@ module.exports = async (request, response) => {
 
   if (!request.body) return response.status(400).json({ message: "The librarians haven't received any data." });
 
-  const getUser = await userSchema.findById(id).findOne({[achievementStateCode]:false});
+  const getUser = await userSchema.findById(id).findOne({ [achievementStateCode]: false });
 
   if (getUser === null) return response.status(200).json({ message: "Already unlocked this one." });
 

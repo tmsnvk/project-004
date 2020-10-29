@@ -20,24 +20,29 @@ const ContainerComponent = styled.div`
   }
 `;
 
-const GameMainPage = ({ storyId }) => {
+const GameMainPage = ({ storyId, firstEventId }) => {
   const history = useHistory();
 
-  const [nextPathId, setNextPathId] = useState("ID0001");
+  const [nextPathId, setNextPathId] = useState(firstEventId);
   const [nextPathParagraphs, setNextPathParagraphs] = useState({ one: undefined, two: undefined, three: undefined, four: undefined });
   const [nextPathOptions, setNextPathOptions] = useState([[undefined], [undefined], [undefined]]);
   const [nextPathAchievement, setNextPathAchievement] = useState({ achievementId: undefined, achievementTitle: undefined, achievementStateCode: undefined, achievementTimestampCode: undefined });
 
   const [showAchievementPanel, setShowAchievementPanel] = useState(false);
 
+  
   useEffect(() => {
     const getData = async () => {
       try {
+        const id = localStorage.getItem("auth-id");
+        await axios.put("/adventure/savedgameid-set", { id, savedId: nextPathId, storyId });
+
         const { data } = await axios.get("/adventure/nextevent", { params: { _id: storyId, nextPathId: nextPathId }});
 
         setNextPathParagraphs({ one: data.paragraphs[0]?.text, two: data.paragraphs[1]?.text, three: data.paragraphs[2]?.text, four: data.paragraphs[3]?.text });
         setNextPathOptions([[data.options[0]?.text, data.options[0]?.nextEventId, data.options[0]?.visible], [data.options[1]?.text, data.options[1]?.nextEventId, data.options[1]?.visible], [data.options[2]?.text, data.options[2]?.nextEventId, data.options[2]?.visible]]);
         setNextPathAchievement({ achievementId: data.achievement?.achievementId, achievementTitle: data.achievement?.achievementTitle, achievementStateCode: data.achievement?.achievementStateCode, achievementTimestampCode: data.achievement?.achievementTimestampCode });
+
       } catch (error) {
         console.log(error);
       }
@@ -69,8 +74,9 @@ const GameMainPage = ({ storyId }) => {
     const triggerGameOver = async (nextPathId) => {
       if ((nextPathId) === "GAMEOVER") {
         const id = localStorage.getItem("auth-id");
+        await axios.put("/adventure/savedgameid-set", { id, savedId: "ID0001", storyId });
         await axios.put("/achievement/counter-death", { id });
-        history.push("/page/adventures/results");
+        history.push("/page/adventures/result/lose");
         history.go();
       } 
     };
