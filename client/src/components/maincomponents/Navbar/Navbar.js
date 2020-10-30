@@ -10,17 +10,17 @@ const ComponentContainer = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 15rem;
-  background-color: ${props => props.theme.backgroundColor.mainLight};
-  color: ${props => props.theme.fontColor.main};
+  background-color: ${({ theme }) => theme.secondaryLight};
+  color: ${({ theme }) => theme.main};
   padding: 0 2.5rem 0 0;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.small}) {
     align-items: center;
     flex-direction: row;
     padding: 0 2.5rem 0 2.5rem;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     height: 7.5rem;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -30,9 +30,9 @@ const ComponentContainer = styled.div`
 `;
 
 const NavbarLinks = styled(Link)`
-align-self: flex-start;
+  align-self: flex-start;
   width: auto;
-  font-size: ${props => props.theme.fontSize.default};
+  font-size: ${({ theme }) => theme.fontSize.default};
   margin: auto 1rem;
   display: flex;
   flex-direction: row;
@@ -41,19 +41,23 @@ align-self: flex-start;
   text-decoration: none;
   cursor: pointer;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.small}) {
     width: auto;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     align-self: center;
     width: auto;
     margin: 0 0 0 1rem;
-    font-size: ${props => props.theme.fontSize.small};
+    font-size: ${({ theme }) => theme.fontSize.small};
   }
 `;
 
-const Navbar = () => {
+const Hitme = styled.button`
+
+`;
+
+const Navbar = ({ toggleTheme }) => {
   const { userData, setUserData } = useContext(UserContext);
 
   const handleLogout = () => {
@@ -73,6 +77,7 @@ const Navbar = () => {
         <NavbarLinks to="/page/settings"><IconYellow icon={iconList.wrench}></IconYellow>Settings</NavbarLinks>
         <NavbarLinks to="/page/about"><IconYellow icon={iconList.addressCard}></IconYellow>About</NavbarLinks>
         <NavbarLinks to="/page/home" onClick={handleLogout}><IconYellow icon={iconList.signOut}></IconYellow>Sign out</NavbarLinks>
+        <Hitme onClick={toggleTheme}>COLOR</Hitme>
       </> :
       <>
         <NavbarLinks to="/page/home"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>

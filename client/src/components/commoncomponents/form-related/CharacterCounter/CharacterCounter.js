@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const CounterSpan = styled.span`
   align-self: flex-end;
-  font-size: ${props => props.theme.fontSize.default};
+  font-size: ${({ theme }) => theme.fontSize.default};
   font-weight: bold;
 `;
 

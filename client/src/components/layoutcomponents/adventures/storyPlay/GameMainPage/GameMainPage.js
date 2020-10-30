@@ -14,7 +14,7 @@ const ContainerComponent = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.xLarge}) {
     grid-column-start: 2;
     grid-column-end: 5;
   }
@@ -26,11 +26,10 @@ const GameMainPage = ({ storyId, firstEventId }) => {
   const [nextPathId, setNextPathId] = useState(firstEventId);
   const [nextPathParagraphs, setNextPathParagraphs] = useState({ one: undefined, two: undefined, three: undefined, four: undefined });
   const [nextPathOptions, setNextPathOptions] = useState([[undefined], [undefined], [undefined]]);
-  const [nextPathAchievement, setNextPathAchievement] = useState({ achievementId: undefined, achievementTitle: undefined, achievementStateCode: undefined, achievementTimestampCode: undefined });
+  const [nextPathAchievement, setNextPathAchievement] = useState({ id: undefined, title: undefined, stateCode: undefined, timestampCode: undefined });
 
   const [showAchievementPanel, setShowAchievementPanel] = useState(false);
 
-  
   useEffect(() => {
     const getData = async () => {
       try {
@@ -41,7 +40,7 @@ const GameMainPage = ({ storyId, firstEventId }) => {
 
         setNextPathParagraphs({ one: data.paragraphs[0]?.text, two: data.paragraphs[1]?.text, three: data.paragraphs[2]?.text, four: data.paragraphs[3]?.text });
         setNextPathOptions([[data.options[0]?.text, data.options[0]?.nextEventId, data.options[0]?.visible], [data.options[1]?.text, data.options[1]?.nextEventId, data.options[1]?.visible], [data.options[2]?.text, data.options[2]?.nextEventId, data.options[2]?.visible]]);
-        setNextPathAchievement({ achievementId: data.achievement?.achievementId, achievementTitle: data.achievement?.achievementTitle, achievementStateCode: data.achievement?.achievementStateCode, achievementTimestampCode: data.achievement?.achievementTimestampCode });
+        setNextPathAchievement({ id: data.achievement?.id, title: data.achievement?.title, stateCode: data.achievement?.stateCode, timestampCode: data.achievement?.timestampCode });
 
       } catch (error) {
         console.log(error);
@@ -49,16 +48,16 @@ const GameMainPage = ({ storyId, firstEventId }) => {
     };
 
     getData();
-  }, [nextPathId]);
+  }, [nextPathId, storyId]);
 
   useEffect(() => {
     const triggerAchievement = async (nextPathId, nextPathAchievement) => {
-      if (nextPathId !== nextPathAchievement?.achievementId) return;
+      if (nextPathId !== nextPathAchievement?.id) return;
 
-      if (nextPathId === nextPathAchievement?.achievementId) {
+      if (nextPathId === nextPathAchievement?.id) {
         try {
           const id = localStorage.getItem("auth-id");
-          const response = await axios.put("/achievement/trigger", { id, achievementStateCode: nextPathAchievement.achievementStateCode, achievementTimestampCode: nextPathAchievement.achievementTimestampCode });
+          const response = await axios.put("/achievement/trigger", { id, stateCode: nextPathAchievement.stateCode, timestampCode: nextPathAchievement.timestampCode });
           if (!response.data.message) setShowAchievementPanel(true);
         } catch (error) {
           console.log(error);
@@ -82,7 +81,7 @@ const GameMainPage = ({ storyId, firstEventId }) => {
     };
 
     triggerGameOver(nextPathId);
-  }, [nextPathId, history]);
+  }, [history, nextPathId, storyId]);
 
   return (
     <ContainerComponent>

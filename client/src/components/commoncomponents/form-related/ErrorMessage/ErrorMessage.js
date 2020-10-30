@@ -3,8 +3,8 @@ import styled from "styled-components";
 const ErrorMessage = styled.div`
   align-self: center;
   width: fit-content;
-  color: ${props => props.theme.fontColor.warning};
-  font-size: ${props => props.theme.fontSize.small};
+  color: ${({ theme }) => theme.warning};
+  font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: bolder;
   padding: 2rem 0 0 0;
   text-align: center;
@@ -13,12 +13,12 @@ const ErrorMessage = styled.div`
     content: " ";
     display: block;
     padding: 0.5rem 0 0 0;
-    border-bottom: 2px solid ${props => props.theme.fontColor.warning};
+    border-bottom: 2px solid ${({ theme }) => theme.warning};
     width: 100%;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
-    font-size: ${props => props.theme.fontSize.medium};
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
+    font-size: ${({ theme }) => theme.fontSize.medium};
   }
 `;
 

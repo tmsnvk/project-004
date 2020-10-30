@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const Label = styled.label`
   align-self: center;
-  font-size: ${props => props.theme.fontSize.small};
-  font-family: ${props => props.theme.fontFamily.secondary};
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-weight: bold;
   letter-spacing: 0.2rem;
   position: relative;

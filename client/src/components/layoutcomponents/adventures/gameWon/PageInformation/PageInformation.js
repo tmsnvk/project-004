@@ -10,7 +10,7 @@ const ComponentContainer = styled.div`
   grid-row-start: 1;
   grid-row-end: 2;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.large}) {
     grid-column-start: 2;
     grid-column-end: 3;
   }

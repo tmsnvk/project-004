@@ -15,13 +15,13 @@ const ComponentContainer = styled.div`
   margin: 5rem auto 0;
   width: fit-content;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     grid-column-start: 1;
     grid-column-end: 3;
     margin: 5rem 0 0 0;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.xLarge}) {
     grid-column-start: 2;
     grid-column-end: 3;
   }

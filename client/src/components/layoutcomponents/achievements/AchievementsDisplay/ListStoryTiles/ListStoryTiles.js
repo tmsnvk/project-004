@@ -11,7 +11,7 @@ const ComponentContainer = styled.div`
   flex-direction: column;
   margin: 5rem auto 0;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     grid-column-start: 3;
     grid-column-end: 5;
     grid-row-start: 3;
@@ -26,7 +26,7 @@ const StoryTilesWrapper = styled.div`
   font-weight: bold;
   width: fit-content;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     width: 35rem;
   }
 `;

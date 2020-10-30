@@ -7,7 +7,7 @@ const ContainerComponent = styled.div`
   flex-direction: column;
   margin: 5rem 0 0 0;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     flex-direction: row;
   }
 `;
@@ -21,11 +21,11 @@ const PathButton = styled(TileButton)`
   }
 
   &:hover {
-    background-color: ${props => props.theme.backgroundColor.secondary};
-    color: ${props => props.theme.fontColor.secondaryDark};
+    background-color: ${({ theme }) => theme.main};
+    color: ${({ theme }) => theme.secondaryDark};
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     margin: 5rem 1rem 0 1rem;
     width: 30%;
 

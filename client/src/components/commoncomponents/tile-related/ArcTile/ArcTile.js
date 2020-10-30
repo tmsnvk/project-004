@@ -6,20 +6,20 @@ const ArcTile = styled(TileButton)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ isHighlighted, theme: { backgroundColor } }) => isHighlighted ? backgroundColor.secondary : backgroundColor.mainDark};
-  color: ${({ isHighlighted, theme: { fontColor } }) => isHighlighted ? fontColor.secondaryDark : fontColor.main};
+  background-color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.main : ({ theme }) => theme.secondaryDark};
+  color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.secondaryDark : ({ theme }) => theme.main};
 
   ${IconYellow} {
-    color: ${({ isHighlighted, theme: { fontColor } }) => isHighlighted ? fontColor.secondaryDark : fontColor.main};
+    color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.secondaryDark : ({ theme }) => theme.main};
   }
 
   &:hover {
-    background-color: ${props => props.theme.backgroundColor.secondary};
-    color: ${props => props.theme.fontColor.secondaryDark};
+    background-color: ${({ theme }) => theme.main};
+    color: ${({ theme }) => theme.secondaryDark};
   }
 
   &:hover ${IconYellow} {
-    color: ${props => props.theme.fontColor.secondaryDark};
+    color: ${({ theme }) => theme.secondaryDark};
   }
 `;
 

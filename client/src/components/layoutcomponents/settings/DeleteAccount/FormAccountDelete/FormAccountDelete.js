@@ -37,7 +37,7 @@ const FormAccountDelete = () => {
 
   return (
     <Form method="DELETE" action="/user/delete" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>
-      <Submit type="submit" value="delete" backgroundColor={props => props.theme.backgroundColor.warning} />
+      <Submit type="submit" value="delete" backgroundColor="warning" />
     </Form>
   );
 };

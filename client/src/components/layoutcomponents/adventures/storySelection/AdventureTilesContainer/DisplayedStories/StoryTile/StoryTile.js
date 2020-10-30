@@ -12,12 +12,12 @@ const ComponentContainer = styled(TileButton)`
   align-items: center;
 
   &:hover {
-    background-color: ${({ available, theme: { backgroundColor } }) => available === "true" ? backgroundColor.secondary : backgroundColor.warning};
-    color: ${props => props.theme.fontColor.secondaryDark};
+    background-color: ${({ available }) => available === "true" ? ({ theme }) => theme.main : ({ theme }) => theme.warning};
+    color: ${({ theme }) => theme.secondaryDark};
   }
 
   &:hover ${IconYellow} {
-    color: ${props => props.theme.fontColor.secondaryDark};
+    color: ${({ theme }) => theme.secondaryDark};
   }
 `;
 

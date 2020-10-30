@@ -8,12 +8,12 @@ const ContainerComponent = styled.div`
 
 const Paragraph = styled.p`
   padding: 1rem 0 1rem 0;
-  font-family: ${props => props.theme.fontFamily.secondary};
-  font-size: ${props => props.theme.fontSize.small};
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: bolder;
 
   &::first-letter {
-    font-size: ${props => props.theme.fontSize.xxLarge};
+    font-size: ${({ theme }) => theme.fontSize.xxLarge};
   }
 `;
 

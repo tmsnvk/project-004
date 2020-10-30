@@ -13,8 +13,8 @@ const fadeIn = keyframes`
 const ErrorMessageWrapper = styled.span`
   align-self: center;
   width: fit-content;
-  color: ${props => props.theme.fontColor.warning};
-  font-size: ${props => props.theme.fontSize.small};
+  color: ${({ theme }) => theme.warning};
+  font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: bolder;
   text-align: center;
   padding: 1rem 0 0 0;

@@ -396,10 +396,10 @@
           }
         ],
         "achievement": {
-          "code": "ID0008G",
+          "id": "ID0008G",
           "title": "Keep Punching 'em!",
-          "achievementStateCode": "achievementsA1S1.keepPunching.state",
-          "achievementTimestampCode": "achievementsA1S1.keepPunching.date"
+          "stateCode": "achievementsA1S1.keepPunching.state",
+          "timestampCode": "achievementsA1S1.keepPunching.date"
         }
       },
       "ID0009N": {

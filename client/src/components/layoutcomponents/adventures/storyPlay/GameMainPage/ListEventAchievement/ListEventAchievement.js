@@ -21,19 +21,19 @@ const AchievementUnlocked = styled.div`
   animation: 0.5s ${fadeIn} ease-out;
   width: fit-content;
   margin: 10rem 0 0 0;
-  background-color: ${props => props.theme.backgroundColor.secondary};
-  font-size: ${props => props.theme.fontSize.medium};
-  color: ${props => props.theme.fontColor.secondaryDark};
+  background-color: ${({ theme }) => theme.main};
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  color: ${({ theme }) => theme.secondaryDark};
   font-weight: bold;
   padding: 2rem 2rem 2rem 2rem;
-  border: 0.3rem ${props => props.theme.backgroundColor.mainLight} solid;
+  border: 0.3rem ${({ theme }) => theme.secondaryLight} solid;
   border-radius: 0.5rem;
 `;
 
 const ListEventAchievement = ({ nextPathAchievement, showAchievementPanel }) => {
   return (
     <ContainerComponent>
-      {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {nextPathAchievement.achievementTitle}</AchievementUnlocked> : null}
+      {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {nextPathAchievement.title}</AchievementUnlocked> : null}
     </ContainerComponent>
   );
 };

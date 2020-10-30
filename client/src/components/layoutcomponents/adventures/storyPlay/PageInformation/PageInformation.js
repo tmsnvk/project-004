@@ -13,7 +13,7 @@ const ContainerComponent = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.large}) {
     grid-column-start: 3;
     grid-column-end: 4;
   }
@@ -22,20 +22,20 @@ const ContainerComponent = styled.div`
 const InitiateAdventureButton = styled(TileButton)`
   width: fit-content;
   margin: 5rem 0 0 0;
-  font-size: ${props => props.theme.fontSize.medium};
+  font-size: ${({ theme }) => theme.fontSize.medium};
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.3rem;
 `;
 
-const PageTopText = ({ startNewStory, startSavedStory }) => {
+const PageTopText = ({ isGameSaved, startNewStory, startSavedStory }) => {
   return (
     <ContainerComponent>
       <Title />
       <HorizontalLine width="50%" margin="1.25rem auto 2.5rem 0" />
       <Message />
       <InitiateAdventureButton onClick={startNewStory}>Start a new journey</InitiateAdventureButton>
-      <InitiateAdventureButton onClick={startSavedStory}>Continue your saved journey</InitiateAdventureButton>
+      {isGameSaved ? <InitiateAdventureButton onClick={startSavedStory}>Continue your saved journey</InitiateAdventureButton> : null}
     </ContainerComponent>
   );
 };

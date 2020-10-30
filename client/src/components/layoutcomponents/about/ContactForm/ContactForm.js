@@ -16,7 +16,7 @@ const ContainerComponent = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.large}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.large}) {
     grid-column-start: 2;
     grid-column-end: 3;
   }

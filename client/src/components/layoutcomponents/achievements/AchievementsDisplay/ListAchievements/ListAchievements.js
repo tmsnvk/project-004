@@ -20,12 +20,12 @@ const AchievementsWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.xLarge}) {
     justify-content: flex-start;
   }
 `;
@@ -34,16 +34,16 @@ const ElementWrapper = styled.div`
   align-self: center;
   margin: 1rem 1rem 0 1rem;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     max-width: 50%;
   }
 `;
 
 const Obtained = styled(TileContainer)`
   width: 25rem;
-  background-color: ${props => props.theme.backgroundColor.secondary};
-  color: ${props => props.theme.fontColor.secondaryDark};
-  font-family: ${props => props.theme.fontFamily.secondary};
+  background-color: ${({ theme }) => theme.main};
+  color: ${({ theme }) => theme.secondaryDark};
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-weight: bolder;
   padding: 1rem 0 1rem 1rem;
 
@@ -52,29 +52,29 @@ const Obtained = styled(TileContainer)`
     transition: transform 0.2s;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.medium}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.medium}) {
     width: 30rem;
   }
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.xLarge}) {
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.xLarge}) {
     width: 40rem;
   }
 `;
 
 const Missing = styled(Obtained)`
-  background-color: ${props => props.theme.backgroundColor.mainDark};
-  color: ${props => props.theme.fontColor.main};
+  background-color: ${({ theme }) => theme.secondaryDark};
+  color: ${({ theme }) => theme.main};
 `;
 
 const Title = styled.p`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: ${props => props.theme.fontSize.default};
+  font-size: ${({ theme }) => theme.fontSize.default};
   padding: 0 0 2rem 0;
 
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    font-size: ${props => props.theme.fontSize.small};
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.small}) {
+    font-size: ${({ theme }) => theme.fontSize.small};
   }
 `;
 
@@ -85,11 +85,11 @@ const Description = styled(Title)`
 const NotAvailable = styled(TileContainer)`
   margin: 0 auto;
   font-weight: bolder;
-  font-size: ${props => props.theme.fontSize.default};
+  font-size: ${({ theme }) => theme.fontSize.default};
   text-align: center;
   
-  @media only screen and (min-width: ${props => props.theme.mediaQueries.small}) {
-    font-size: ${props => props.theme.fontSize.small};
+  @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.small}) {
+    font-size: ${({ theme }) => theme.fontSize.small};
   }
 `;
 
