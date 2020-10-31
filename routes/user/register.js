@@ -27,6 +27,7 @@ module.exports = async (request, response) => {
       numberOfGameStarts: 0,
       numberOfGameFinishes: 0,
       numberOfDeaths: 0,
+      colorTheme: "darkYellow",
       savedGames: {
         A1S1: { savedId: "ID0001" }
       },

@@ -50,11 +50,11 @@ const GlobalStyle = createGlobalStyle`
 // ReactGA.pageview("/");
 
 const App = () => {
-  const { setUserData, setGameData } = useContext(UserContext);
+  const { userColorTheme, setUserColorTheme, setGameData, setUserData } = useContext(UserContext);
   const [initialGlobalStateLoader, setInitialGlobalStateLoader] = useState(false);
-  const [themeMode, setThemeMode] = useState("darkTheme");
 
-  const activeColorTheme = colorTheme[themeMode];
+  const id = localStorage.getItem("auth-id");
+  const activeColorTheme = colorTheme[userColorTheme];
 
   useEffect(() => {
     const handleLogin = async () => {
@@ -80,7 +80,6 @@ const App = () => {
   }, [setInitialGlobalStateLoader, setUserData]);
 
   useEffect(() => {
-    const id = localStorage.getItem("auth-id");
     if (id === null || id === "") return;
 
     const source = axios.CancelToken.source();
@@ -105,7 +104,18 @@ const App = () => {
     } 
   }, [setGameData]);
 
-  const toggleTheme = () => themeMode === "dark" ? setThemeMode("darkTheme") : setThemeMode("lightTheme");
+  useEffect(() => {
+    const getColorTheme = async () => {
+      try {
+        const response = await axios.get("/user/theme-get", { params: { _id: id }});
+        setUserColorTheme(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getColorTheme();
+  }, []);
 
   return (
     <Router>
@@ -113,9 +123,9 @@ const App = () => {
         <ThemeProvider theme={propertyTheme}>
           <GlobalStyle />
           <ScrollToTop />
-          <Navbar toggleTheme={toggleTheme} />
+          <Navbar />
           <Switch>
-            {initialGlobalStateLoader ? <LoadingSpinner message="The caretakers are retriving the data from the archives..." /> : null}
+            {initialGlobalStateLoader ? <LoadingSpinner message="The librarians are retriving the data from The Tower's Archives..." /> : null}
             <Route path="/page/home" component={Home} />
             <Route path="/page/register" component={Register} />
             <PrivateRoute exact path="/page/adventures" component={AdventuresMainPage} />

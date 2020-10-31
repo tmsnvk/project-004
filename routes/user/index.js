@@ -3,6 +3,8 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 
 router.get("/", auth, require("./root"));
+router.get("/theme-get", require("./theme-get"));
+router.post("/theme-set", require("./theme-set"));
 router.post("/register", require("./register"));
 router.post("/login", require("./login"));
 router.post("/token-validity", require("./token-validity"));

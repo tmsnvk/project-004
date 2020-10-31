@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   numberOfGameStarts: { type: Number, default: 0, required: true },
   numberOfGameFinishes: { type: Number, default: 0, required: true },
   numberOfDeaths: { type: Number, default: 0, required: true },
+  colorTheme: { type: String, default: "", required: true },
   savedGames: {
     A1S1: {
       savedId: { type: String, default: "", required: true }

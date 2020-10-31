@@ -3,11 +3,11 @@ import styled from "styled-components";
 import FormNameChange from "./FormNameChange";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   grid-column-start: 1;
   grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
   margin: 5rem 0 0 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.large}) {
@@ -18,7 +18,7 @@ const ContainerComponent = styled.div`
 
 const ChangeName = () => {
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       <MessageTitle>
         Change account name
       </MessageTitle>
@@ -26,7 +26,7 @@ const ChangeName = () => {
         Enter your new account name below. You may change your account name as many times as you would like to.
       </MessageText>
       <FormNameChange />
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

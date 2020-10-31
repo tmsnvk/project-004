@@ -57,7 +57,7 @@ const Hitme = styled.button`
 
 `;
 
-const Navbar = ({ toggleTheme }) => {
+const Navbar = () => {
   const { userData, setUserData } = useContext(UserContext);
 
   const handleLogout = () => {
@@ -77,7 +77,6 @@ const Navbar = ({ toggleTheme }) => {
         <NavbarLinks to="/page/settings"><IconYellow icon={iconList.wrench}></IconYellow>Settings</NavbarLinks>
         <NavbarLinks to="/page/about"><IconYellow icon={iconList.addressCard}></IconYellow>About</NavbarLinks>
         <NavbarLinks to="/page/home" onClick={handleLogout}><IconYellow icon={iconList.signOut}></IconYellow>Sign out</NavbarLinks>
-        <Hitme onClick={toggleTheme}>COLOR</Hitme>
       </> :
       <>
         <NavbarLinks to="/page/home"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>

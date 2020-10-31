@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import FormAccountDelete from "./FormAccountDelete";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
+import ChangeTiles from "./ChangeTiles";
 
 const ComponentContainer = styled.div`
   grid-column-start: 1;
   grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 3;
   margin: 5rem 0 0 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.large}) {
@@ -16,18 +16,19 @@ const ComponentContainer = styled.div`
   }
 `;
 
-const DeleteAccount = () => {
+const ChangeColorTheme = () => {
+
   return (
     <ComponentContainer>
       <MessageTitle>
-        Delete account
+        Change page theme
       </MessageTitle>
       <MessageText>
-        We are sorry to see you go. Please understand that by deleting your account you permanently delete all of its information. After clicking on the button you will be redirected to our home page.
+        Change your page color theme. The active theme is highlighted.
       </MessageText>
-      <FormAccountDelete />
+      <ChangeTiles />
     </ComponentContainer>
   );
 };
 
-export default DeleteAccount;
+export default ChangeColorTheme;
