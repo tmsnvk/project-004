@@ -8,7 +8,7 @@ const ErrorMessage = styled.div`
   font-weight: bolder;
   padding: 2rem 0 0 0;
   text-align: center;
-  
+
   &:after {
     content: " ";
     display: block;

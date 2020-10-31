@@ -47,9 +47,8 @@ const ContactForm = () => {
         await axios.post("/contact/form-msg-to-evrallas", formData);
         await axios.post("/contact/form-msg-from-evrallas", formData);
         history.push("/page/success");
-        history.go();
       } catch (error) {
-        return setResponseError(error.response.data.message);
+        return setResponseError(error.message);
       }
     };
 
@@ -106,7 +105,7 @@ const ContactForm = () => {
             })}
           />
           <InputHelperWrapper>
-            <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="20" />
+            <CharacterCounter characterCounter={usernameCharacterCounter} characterLength="20" />
           </InputHelperWrapper>
           {errors.contactName && <ErrorMessageWrapper>{errors.contactName.message}</ErrorMessageWrapper>}
           <Label htmlFor="contactEmail" isInputInFocus={isInputEmailInFocus}>Email *</Label>
@@ -148,7 +147,7 @@ const ContactForm = () => {
             })}
           />
           <InputHelperWrapper>
-            <CharacterCounter characterCounter={textCharacterCounter} characterlength="500" />
+            <CharacterCounter characterCounter={textCharacterCounter} characterLength="500" />
           </InputHelperWrapper>
           {errors.contactTextarea && <ErrorMessageWrapper>{errors.contactTextarea.message}</ErrorMessageWrapper>}
         </FormWrapper>

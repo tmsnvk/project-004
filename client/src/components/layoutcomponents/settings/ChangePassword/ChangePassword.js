@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FormPasswordChange from "./FormPasswordChange";
+import PasswordChangeForm from "./PasswordChangeForm";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
 
 const ComponentContainer = styled.div`
@@ -26,7 +26,7 @@ const ChangePassword = () => {
       <MessageText>
         Enter your new account password below. You may change your password as often as you would like to.
       </MessageText>
-      <FormPasswordChange />
+      <PasswordChangeForm />
     </ComponentContainer>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ArcTile } from "components/commoncomponents/tile-related";
-import { IconYellow } from "components/commoncomponents/styled-icons";
+import { IconLight } from "components/commoncomponents/styled-icons";
 import { adventuresMetaData } from "utilities";
 
 const ComponentContainer = styled.div`
@@ -32,7 +32,7 @@ const ListArcTiles = ({ displayArcTiles, getArcTile }) => {
 
     return (
       <ArcTile key={id} isHighlighted={isHighlighted} data-id={id} onClick={() => getArcTile(index)}>
-        <IconYellow icon={arcIcon}></IconYellow>{arcTitle}
+        <IconLight icon={arcIcon}></IconLight>{arcTitle}
       </ArcTile>
     );
   });

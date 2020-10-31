@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const IconYellow = styled(FontAwesomeIcon)`
+const IconLight = styled(FontAwesomeIcon)`
   display: inline-block;
   color: ${({ theme }) => theme.main};
   font-size: ${({ theme }) => theme.fontSize.large};
   margin: 1rem 1rem 1rem 1rem;
 `;
 
-export default IconYellow;
+export default IconLight;

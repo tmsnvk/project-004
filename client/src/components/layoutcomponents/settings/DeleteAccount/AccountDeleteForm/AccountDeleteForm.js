@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "context/UserContext";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Form, Submit } from "components/commoncomponents/form-related";
 
-const FormAccountDelete = () => {
+const AccountDeleteForm = () => {  
+  const { setUserData } = useContext(UserContext);
   const { handleSubmit } = useForm();
   const history = useHistory();
-  
+
   const [deleteAccount, SetDeleteAccount] = useState(false);
 
   const onSubmit = (data) => SetDeleteAccount(true);
@@ -24,16 +26,16 @@ const FormAccountDelete = () => {
         localStorage.setItem("auth-token", "");
         localStorage.setItem("auth-name", "");
         localStorage.setItem("auth-id", "");
+        setUserData({ token: undefined, user: undefined, id: undefined, createdAt: undefined });
         history.push("/page/home");
-        history.go();
       } catch (error) {
-        return error.response.data.message;
+        console.log(error);
       }
     };
 
     handleAccountDelete();
     return () => SetDeleteAccount(false);
-  }, [deleteAccount, history, SetDeleteAccount]);
+  }, [deleteAccount, history, SetDeleteAccount, setUserData]);
 
   return (
     <Form method="DELETE" action="/user/delete" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>
@@ -42,4 +44,4 @@ const FormAccountDelete = () => {
   );
 };
 
-export default FormAccountDelete;
+export default AccountDeleteForm;

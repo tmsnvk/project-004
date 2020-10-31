@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FormNameChange from "./FormNameChange";
+import NameChangeForm from "./NameChangeForm";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
 
 const ComponentContainer = styled.div`
@@ -25,7 +25,7 @@ const ChangeName = () => {
       <MessageText>
         Enter your new account name below. You may change your account name as many times as you would like to.
       </MessageText>
-      <FormNameChange />
+      <NameChangeForm />
     </ComponentContainer>
   );
 };

@@ -17,7 +17,7 @@ const iconList = {
   sign: ["fas", "sign"],
   signOut: ["fas", "sign-out-alt"],
   skull: ["fas", "skull"],
-  spinner: ["fas", "cog"],
+  spinner: ["fas", "sync-alt"],
   star: ["fas", "star"],
   toriiGate: ["fas", "torii-gate"],
   trophy: ["fas", "trophy"],

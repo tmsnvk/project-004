@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ArcTile } from "components/commoncomponents/tile-related";
-import { IconYellow } from "components/commoncomponents/styled-icons";
+import { IconLight } from "components/commoncomponents/styled-icons";
 import DisplayedStories from "./DisplayedStories";
 import { adventuresMetaData } from "utilities";
 
@@ -43,7 +43,7 @@ const AdventureTilesContainer = () => {
 
     return (
       <ArcTile key={id} isHighlighted={isHighlighted} data-id={id} onClick={() => handleArcChoice(index)}>
-        <IconYellow icon={arcIcon}></IconYellow>{arcTitle}
+        <IconLight icon={arcIcon}></IconLight>{arcTitle}
       </ArcTile>
     );
   });

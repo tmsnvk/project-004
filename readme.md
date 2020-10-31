@@ -46,6 +46,64 @@ FRONTEND
     |- index.js
     |- COMPONENTS
       |- COMMONCOMPONENTS
+        |- FORM-RELATED
+          |- index.js
+          |- CHARACTERCOUNTER
+            |- CharacterCounter.js
+            |- index.js
+          |- ERRORMESSAGE
+            |- ErrorMessage.js
+            |- index.js
+          |- ERRORMESSAGEWRAPPER
+            |- ErrorMessageWrapper.js
+            |- index.js
+          |- FORM
+            |- Form.js
+            |- index.js
+          |- FORMWRAPPER
+            |- FormWrapper.js
+            |- index.js
+          |- INPUT
+            |- index.js
+            |- Input.js
+          |- INPUTHELPERWRAPPER
+            |- index.js
+            |- InputHelperWrapper.js
+          |- LABEL
+            |- index.js
+            |- Label.js
+          |- SUBMIT
+            |- index.js
+            |- Submit.js
+          |- TEXTAREA
+            |- index.js
+            |- Textarea.js
+          |- TOGGLEPASSWORD
+            |- index.js
+            |- TogglePassword.js
+        |- GENERAL
+          |- index.js
+          |- HORIZONTALLINE
+            |- HorizontalLine.js
+            |- index.js
+          |- LAYOUTCONTAINER
+            |- index.js
+            |- LayoutContainer.js
+          |- LOADINGSPINNER
+            |- index.js
+            |- LoadingSpinner.js
+          |- MESSAGETEXT
+            |- index.js
+            |- MessageText.js
+          |- MESSAGETITLE
+            |- index.js
+            |- MessageTitle.js
+          |- SPANBOLD
+            |- index.js
+            |- SpanBold.js
+        |- NAVIGATION-RELATED
+        |- STYLED-ICONS
+        |- TILE-RELATED
       |- LAYOUTCOMPONENTS
         |- HOME
           |- index.js
@@ -81,15 +139,18 @@ FRONTEND
     |- LAYOUTS
       |- About.js
       |- Achievements.js
-      |- Adventures.js
-      |- GamesResults.js
-      |- GameStart.js
+      |- AdventuresGameResultLose.js
+      |- AdventuresGameResultWin.js
+      |- AdventuresGameStart.js
+      |- AdventuresMainPage.js
       |- Home.js
       |- index.js
       |- PageNotFound.js
       |- Register.js
       |- Settings.js
+      |- SuccessfulUpdate.js
       |- UnderConstruction.js
+      |- Terms.js
     |- STORIES
       |- ARCFOUR
         |- storyOne.js
@@ -101,18 +162,56 @@ FRONTEND
       |- ARCTWO
         |- storyOne.js
     |- UTILITIES
+      |- index.js
+      |- ADVENTURESMETADATA
+        |- adventuresMetaData.js
+        |- index.js
       |- ICONLIST
         |- iconList.js
         |- index.js
       |- SCROLLTOTOP
         |- index.js
         |- scrollToTop.js
+      |- STORIES
+        |- arcOneStoryOne.json
+      |- THEME
+        |- colorTheme.js
+        |- index.js
+        |- propertyTheme.js
 |- MIDDLEWARE
   |- auth.js
 |- MODELS
   |- userModel.js
+|- MONGODB
+  |- database.js
 |- ROUTES
-  |- userRoute.js
+  |- ACHIEVEMENT
+    |- counter-death.js
+    |- counter-start.js
+    |- index.js
+    |- showcase.js
+    |- store.js
+    |- trigger.js
+  |- ADVENTURE
+    |- index.js
+    |- nextevent.js
+    |- savedgameid-get.js
+    |- savedgameid-set.js
+  |- CONTACT
+    |- form-msg-from-evrallas.js
+    |- form-msg-to-evrallas.js
+    |- index.js
+  |- USER
+    |- change-name.js
+    |- change-password.js
+    |- delete.js
+    |- index.js
+    |- login.js
+    |- register.js
+    |- root.js
+    |- theme-get.js
+    |- theme-set.js
+    |- token-validity.js
 ```
 
 #### screenshot

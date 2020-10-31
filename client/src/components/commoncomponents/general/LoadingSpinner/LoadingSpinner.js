@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { MessageText } from "components/commoncomponents/general";
-import { IconYellow } from "components/commoncomponents/styled-icons";
-import iconList from "utilities/iconList";
+import { IconLight } from "components/commoncomponents/styled-icons";
+import { iconList } from "utilities";
 
 const ComponentContainer = styled.div`
   grid-column-start: 1;
@@ -26,11 +26,11 @@ const LoadingSpinner = ({ message }) => {
   return (
     <ComponentContainer>
       <ContainerIcon>
-        <IconYellow icon={iconList.spinner} spin></IconYellow>
-        <IconYellow icon={iconList.peopleCarry}></IconYellow>
-        <IconYellow icon={iconList.archive}></IconYellow>
-        <IconYellow icon={iconList.peopleCarry}></IconYellow>
-        <IconYellow icon={iconList.spinner} spin></IconYellow>
+        <IconLight icon={iconList.spinner} spin></IconLight>
+        <IconLight icon={iconList.peopleCarry}></IconLight>
+        <IconLight icon={iconList.archive}></IconLight>
+        <IconLight icon={iconList.peopleCarry}></IconLight>
+        <IconLight icon={iconList.spinner} spin></IconLight>
       </ContainerIcon>
       <MessageText>{message}</MessageText>
     </ComponentContainer>

@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { UserContext } from "context/UserContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { IconYellow } from "components/commoncomponents/styled-icons";
-import iconList from "utilities/iconList";
+import { IconLight } from "components/commoncomponents/styled-icons";
+import { iconList } from "utilities";
 
 const ComponentContainer = styled.div`
   display: flex;
@@ -53,15 +53,12 @@ const NavbarLinks = styled(Link)`
   }
 `;
 
-const Hitme = styled.button`
-
-`;
-
 const Navbar = () => {
-  const { userData, setUserData } = useContext(UserContext);
+  const { userData, setUserData, setUserColorTheme } = useContext(UserContext);
 
   const handleLogout = () => {
     setUserData({ token: undefined, user: undefined, id: undefined });
+    setUserColorTheme("darkYellow");
     localStorage.setItem("auth-token", "");
     localStorage.setItem("auth-name", "");
     localStorage.setItem("auth-id", "");
@@ -71,17 +68,17 @@ const Navbar = () => {
     <ComponentContainer>
       {userData.token ?
       <>
-        <NavbarLinks to="/page/home"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>
-        <NavbarLinks to="/page/adventures"><IconYellow icon={iconList.mapSigns}></IconYellow>Adventures</NavbarLinks>
-        <NavbarLinks to="/page/achievements"><IconYellow icon={iconList.chessRook}></IconYellow>Achievements</NavbarLinks>
-        <NavbarLinks to="/page/settings"><IconYellow icon={iconList.wrench}></IconYellow>Settings</NavbarLinks>
-        <NavbarLinks to="/page/about"><IconYellow icon={iconList.addressCard}></IconYellow>About</NavbarLinks>
-        <NavbarLinks to="/page/home" onClick={handleLogout}><IconYellow icon={iconList.signOut}></IconYellow>Sign out</NavbarLinks>
+        <NavbarLinks to="/page/home"><IconLight icon={iconList.toriiGate}></IconLight>Home</NavbarLinks>
+        <NavbarLinks to="/page/adventures"><IconLight icon={iconList.mapSigns}></IconLight>Adventures</NavbarLinks>
+        <NavbarLinks to="/page/achievements"><IconLight icon={iconList.chessRook}></IconLight>Achievements</NavbarLinks>
+        <NavbarLinks to="/page/settings"><IconLight icon={iconList.wrench}></IconLight>Settings</NavbarLinks>
+        <NavbarLinks to="/page/about"><IconLight icon={iconList.addressCard}></IconLight>About</NavbarLinks>
+        <NavbarLinks to="/page/home" onClick={handleLogout}><IconLight icon={iconList.signOut}></IconLight>Sign out</NavbarLinks>
       </> :
       <>
-        <NavbarLinks to="/page/home"><IconYellow icon={iconList.toriiGate}></IconYellow>Home</NavbarLinks>
-        <NavbarLinks to="/page/register"><IconYellow icon={iconList.userTie}></IconYellow>Register</NavbarLinks>
-        <NavbarLinks to="/page/about"><IconYellow icon={iconList.addressCard}></IconYellow>About</NavbarLinks>
+        <NavbarLinks to="/page/home"><IconLight icon={iconList.toriiGate}></IconLight>Home</NavbarLinks>
+        <NavbarLinks to="/page/register"><IconLight icon={iconList.userTie}></IconLight>Register</NavbarLinks>
+        <NavbarLinks to="/page/about"><IconLight icon={iconList.addressCard}></IconLight>About</NavbarLinks>
       </>}
     </ComponentContainer>
   );

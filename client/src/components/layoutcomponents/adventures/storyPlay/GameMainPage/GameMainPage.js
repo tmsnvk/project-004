@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "context/UserContext";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
@@ -6,7 +7,7 @@ import ListEventParagraphs from "./ListEventParagraphs";
 import ListEventChoices from "./ListEventChoices";
 import ListEventAchievement from "./ListEventAchievement";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 1;
@@ -21,6 +22,7 @@ const ContainerComponent = styled.div`
 `;
 
 const GameMainPage = ({ storyId, firstEventId }) => {
+  const { setGameData } = useContext(UserContext);
   const history = useHistory();
 
   const [nextPathId, setNextPathId] = useState(firstEventId);
@@ -34,8 +36,8 @@ const GameMainPage = ({ storyId, firstEventId }) => {
     const getData = async () => {
       try {
         const id = localStorage.getItem("auth-id");
-        await axios.put("/adventure/savedgameid-set", { id, savedId: nextPathId, storyId });
 
+        await axios.put("/adventure/savedgameid-set", { id, savedId: nextPathId, storyId });
         const { data } = await axios.get("/adventure/nextevent", { params: { _id: storyId, nextPathId: nextPathId }});
 
         setNextPathParagraphs({ one: data.paragraphs[0]?.text, two: data.paragraphs[1]?.text, three: data.paragraphs[2]?.text, four: data.paragraphs[3]?.text });
@@ -75,20 +77,22 @@ const GameMainPage = ({ storyId, firstEventId }) => {
         const id = localStorage.getItem("auth-id");
         await axios.put("/adventure/savedgameid-set", { id, savedId: "ID0001", storyId });
         await axios.put("/achievement/counter-death", { id });
+        const response = await axios.get("/achievement/store", { params: { _id: id }});
+        setGameData({ gameStart: response.data.gameStart, gameFinish: response.data.gameFinish, gameDeath: response.data.gameDeath });
+
         history.push("/page/adventures/result/lose");
-        history.go();
       } 
     };
 
     triggerGameOver(nextPathId);
-  }, [history, nextPathId, storyId]);
+  }, [history, nextPathId, setGameData, storyId]);
 
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       <ListEventParagraphs nextPathParagraphs={nextPathParagraphs} />
       <ListEventChoices nextPathOptions={nextPathOptions} setNextPathId={setNextPathId} />
       <ListEventAchievement nextPathAchievement={nextPathAchievement} showAchievementPanel={showAchievementPanel} />
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

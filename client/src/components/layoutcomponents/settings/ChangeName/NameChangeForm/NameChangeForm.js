@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "context/UserContext";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
 import { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label } from "components/commoncomponents/form-related";
 
-const FormNameChange = () => {
+const NameChangeForm = () => {
+  const { setUserData } = useContext(UserContext);
   const { errors, formState, handleSubmit, register, trigger } = useForm();
   const history = useHistory();
 
@@ -23,19 +25,21 @@ const FormNameChange = () => {
 
     const handleNameChange = async () => {
       const id = localStorage.getItem("auth-id");
+      const token = localStorage.getItem("auth-token");
 
       try {
         await axios.put("/user/change-name", { id, formData });
+        const response = await axios.get("/user", { headers: { "x-auth-token": token }});
+        setUserData({ token, user: response.data.username, id: response.data.id, createdAt: response.data.createdAt });
         history.push("/page/success");
-        history.go();
       } catch (error) {
-        return setResponseError(error.response.data.message);
+        return setResponseError(error.message);
       }
     };
 
     handleNameChange();
     return () => setFormData({ changedName: undefined });
-  }, [formData, history]);
+  }, [formData, history, setUserData]);
 
   const focusInputName = () => setIsInputNameInFocus(true);
   const blurInputName = (event) => event.target.value === "" ? setIsInputNameInFocus(false) : null;
@@ -78,7 +82,7 @@ const FormNameChange = () => {
           })}
         />
         <InputHelperWrapper>
-          <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="12" />
+          <CharacterCounter characterCounter={usernameCharacterCounter} characterLength="12" />
         </InputHelperWrapper>
         {errors.changeUsername && <ErrorMessageWrapper>{errors.changeUsername.message}</ErrorMessageWrapper>}
         {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="change" />}
@@ -88,4 +92,4 @@ const FormNameChange = () => {
   );
 };
 
-export default FormNameChange;
+export default NameChangeForm;

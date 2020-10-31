@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { IconYellow } from "components/commoncomponents/styled-icons";
+import { IconLight } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
-const PasswordIcon = styled(IconYellow)`
+const PasswordIcon = styled(IconLight)`
   align-self: flex-end;
   margin: 1rem 1rem 0 0;
   cursor: pointer;

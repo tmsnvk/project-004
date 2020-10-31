@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { TileButton } from "components/commoncomponents/tile-related";
-import { IconYellow } from "components/commoncomponents/styled-icons";
+import { IconLight } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
 const ComponentContainer = styled(TileButton)`
@@ -16,7 +16,7 @@ const ComponentContainer = styled(TileButton)`
     color: ${({ theme }) => theme.secondaryDark};
   }
 
-  &:hover ${IconYellow} {
+  &:hover ${IconLight} {
     color: ${({ theme }) => theme.secondaryDark};
   }
 `;
@@ -24,7 +24,7 @@ const ComponentContainer = styled(TileButton)`
 const StoryTile = ({ storyTitle, linkId, isAvailable }) => {
   return (
   <ComponentContainer as={Link} to={`/page/adventures/${linkId}`} available={isAvailable}>
-    <IconYellow icon={iconList.sign}></IconYellow>
+    <IconLight icon={iconList.sign}></IconLight>
     {storyTitle}
   </ComponentContainer>
   );

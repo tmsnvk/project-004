@@ -7,10 +7,10 @@ const CounterSpan = styled.span`
   font-weight: bold;
 `;
 
-const CharacterCounter = ({ characterCounter, characterlength }) => {
+const CharacterCounter = ({ characterCounter, characterLength }) => {
   return (
     <CounterSpan characterCounter={characterCounter}>
-      {characterCounter} / {characterlength}
+      {characterCounter} / {characterLength}
     </CounterSpan>
   );
 };

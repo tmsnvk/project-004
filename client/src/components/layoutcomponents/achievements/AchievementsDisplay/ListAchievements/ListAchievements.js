@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TileContainer } from "components/commoncomponents/tile-related";
 import { HorizontalLine, LoadingSpinner } from "components/commoncomponents/general";
-import { IconBlack, IconYellow } from "components/commoncomponents/styled-icons";
+import { IconDark, IconLight } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
 const ComponentContainer = styled.div`
@@ -101,29 +101,29 @@ const ListAchievements = ({ dataSet, loadingSpinner, displayAchievements }) => {
         {element?.[1].state ?
         <Obtained>
           <Title>
-            <IconBlack icon={iconList.star}></IconBlack>
+            <IconDark icon={iconList.star}></IconDark>
             {element?.[1].name}
           </Title>
           <Description>
-            <IconBlack icon={iconList.scroll}></IconBlack>
+            <IconDark icon={iconList.scroll}></IconDark>
             {element?.[1].description}
           </Description>
           <Description>
-            <IconBlack icon={iconList.calendarUnlocked}></IconBlack>
+            <IconDark icon={iconList.calendarUnlocked}></IconDark>
             {new Date(element?.[1].date).toLocaleString("en-US", { year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: true })}
           </Description>
         </Obtained> :
         <Missing>
           <Title>
-            <IconYellow icon={iconList.star}></IconYellow>
+            <IconLight icon={iconList.star}></IconLight>
             {element?.[1].name}
           </Title>
           <Description>
-            <IconYellow icon={iconList.scroll}></IconYellow>
+            <IconLight icon={iconList.scroll}></IconLight>
             {element?.[1].description}
           </Description>
           <Description>
-            <IconYellow icon={iconList.calendarLocked}></IconYellow>
+            <IconLight icon={iconList.calendarLocked}></IconLight>
             Not yet unlocked.
           </Description>
         </Missing>}

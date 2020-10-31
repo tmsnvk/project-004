@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TileButton } from "components/commoncomponents/tile-related";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 5rem 0 0 0;
@@ -45,9 +45,9 @@ const ListEventChoices = ({ nextPathOptions, setNextPathId }) => {
   });
 
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       {renderButton}
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

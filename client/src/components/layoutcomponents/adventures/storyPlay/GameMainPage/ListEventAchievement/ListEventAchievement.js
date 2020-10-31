@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 5rem 0 0 0;
@@ -32,9 +32,9 @@ const AchievementUnlocked = styled.div`
 
 const ListEventAchievement = ({ nextPathAchievement, showAchievementPanel }) => {
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       {showAchievementPanel ? <AchievementUnlocked>Achievement Unlocked: {nextPathAchievement.title}</AchievementUnlocked> : null}
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "context/UserContext";
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import styled from "styled-components";
@@ -23,9 +22,8 @@ const ComponentContainer = styled.div`
 `;
 
 const LoginForm = () => {
-  const { setUserData } = useContext(UserContext);
+  const { setGameData, setUserColorTheme, setUserData } = useContext(UserContext);
   const { formState, handleSubmit, register } = useForm();
-  const history = useHistory();
 
   const [isInputNameInFocus, setIsInputNameInFocus] = useState(false);
   const [isInputPasswordInFocus, setIsInputPasswordInFocus] = useState(false);
@@ -39,27 +37,34 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (formData.username === undefined || formData.password === undefined) return;
-    
+
     const handleLogin = async () => {
       try {
-        const response = await axios.post("/user/login", formData);
-        setUserData({ token: response.data.token, user: response.data.user.username, id: response.data.user.id });
+        const userResponse = await axios.post("/user/login", formData);
+        setUserData({ token: userResponse.data.token, user: userResponse.data.user.username, id: userResponse.data.user.id });
 
-        localStorage.setItem("auth-token", response.data.token);
-        localStorage.setItem("auth-name", response.data.user.username);
-        localStorage.setItem("auth-id", response.data.user.id);
-        history.go();
+        localStorage.setItem("auth-token", userResponse.data.token);
+        localStorage.setItem("auth-name", userResponse.data.user.username);
+        localStorage.setItem("auth-id", userResponse.data.user.id);
+
+        const achievementResponse = await axios.get("/achievement/store", { params: { _id: userResponse.data.user.id }});
+        setGameData({ gameStart: achievementResponse.data.gameStart, gameFinish: achievementResponse.data.gameFinish, gameDeath: achievementResponse.data.gameDeath });
+
+        const themeResponse = await axios.get("/user/theme-get", { params: { _id: userResponse.data.user.id }});
+        setUserColorTheme(themeResponse.data);
       } catch (error) {
-        return setResponseError(error.response.data.message);
+        return setResponseError(error.message);
       }
     };
 
     handleLogin();
     return () => {
       setFormData({ username: undefined, password: undefined });
+      setGameData({ gameStart: 0, gameFinish: 0, gameDeath: 0 });
+      setUserColorTheme("darkYellow");
       setResponseError(undefined);
     };
-  }, [formData, history, setUserData]);
+  }, [formData, setGameData, setUserData, setUserColorTheme]);
 
   const focusInputName = () => setIsInputNameInFocus(true);
   const blurInputName = (event) => event.target.value === "" ? setIsInputNameInFocus(false) : null;

@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import { colorTheme, propertyTheme, ScrollToTop } from "utilities";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
 import { LoadingSpinner } from "components/commoncomponents/general";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import { About, Achievements, AdventuresGameResultLose, AdventuresGameResultWin, AdventuresGameStart, AdventuresMainPage, AdventuresUnderConstruction, Home, PageNotFound, Register, Settings, SuccessfulUpdate, Terms } from "layouts";
+import { colorTheme, propertyTheme, ScrollToTop } from "utilities";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faCog, faFireAlt, faInfinity, faLock, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faToriiGate, faTrophy, faUnlock, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faFireAlt, faInfinity, faLock, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faSyncAlt, faToriiGate, faTrophy, faUnlock, faUserTie, faWrench } from "@fortawesome/free-solid-svg-icons";
 import {  } from "@fortawesome/free-regular-svg-icons";
-library.add(faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faCog, faFireAlt, faInfinity, faLock, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faToriiGate, faTrophy, faUnlock, faUserTie, faWrench);
+library.add(faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faFireAlt, faInfinity, faLock, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faSyncAlt, faToriiGate, faTrophy, faUnlock, faUserTie, faWrench);
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -53,7 +53,6 @@ const App = () => {
   const { userColorTheme, setUserColorTheme, setGameData, setUserData } = useContext(UserContext);
   const [initialGlobalStateLoader, setInitialGlobalStateLoader] = useState(false);
 
-  const id = localStorage.getItem("auth-id");
   const activeColorTheme = colorTheme[userColorTheme];
 
   useEffect(() => {
@@ -64,58 +63,33 @@ const App = () => {
         localStorage.setItem("auth-token", "");
         token = "";
       }
+
       if (token === "") return;
 
       if (token !== "") setInitialGlobalStateLoader(true);
 
-      const response = await axios.post("/user/token-validity", null, { headers: {"x-auth-token": token }});
-      if (response.data.message.status) {
-        const userResponse = await axios.get("/user", { headers: { "x-auth-token": token }});
-        setUserData({ token, user: userResponse.data.username, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
-        setInitialGlobalStateLoader(false);
-      }
-    };
+      const tokenResponse = await axios.post("/user/token-validity", null, { headers: {"x-auth-token": token }});
 
-    handleLogin();
-  }, [setInitialGlobalStateLoader, setUserData]);
+      if (tokenResponse.data.message.status) {
+        try {
+          const userResponse = await axios.get("/user", { headers: { "x-auth-token": token }});
+          setUserData({ token, user: userResponse.data.username, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
 
-  useEffect(() => {
-    if (id === null || id === "") return;
+          const achievementResponse = await axios.get("/achievement/store", { params: { _id: userResponse.data.id }});
+          setGameData({ gameStart: achievementResponse.data.gameStart, gameFinish: achievementResponse.data.gameFinish, gameDeath: achievementResponse.data.gameDeath });
 
-    const source = axios.CancelToken.source();
+          const themeResponse = await axios.get("/user/theme-get", { params: { _id: userResponse.data.id }});
+          setUserColorTheme(themeResponse.data);
 
-    const getGlobalAchievements = async () => {
-      try {
-        const response = await axios.get("/achievement/store", { params: { _id: id }, cancelToken: source.token });
-        setGameData({ gameStart: response.data.gameStart, gameFinish: response.data.gameFinish, gameDeath: response.data.gameDeath });
-      } catch (error) {
-        if (axios.isCancel(error)) {
+          setInitialGlobalStateLoader(false);
+        } catch (error) {
           console.log(error);
-        } else {
-          throw error;
         }
       }
     };
 
-    getGlobalAchievements();
-    return () => {
-      source.cancel();
-      setGameData({ gameStart: 0, gameFinish: 0, gameDeath: 0 });
-    } 
-  }, [setGameData]);
-
-  useEffect(() => {
-    const getColorTheme = async () => {
-      try {
-        const response = await axios.get("/user/theme-get", { params: { _id: id }});
-        setUserColorTheme(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getColorTheme();
-  }, []);
+    handleLogin();
+  }, [setInitialGlobalStateLoader, setGameData, setUserColorTheme, setUserData]);
 
   return (
     <Router>

@@ -5,7 +5,7 @@ import Message from "./Message";
 import { HorizontalLine } from "components/commoncomponents/general";
 import { TileButton } from "components/commoncomponents/tile-related";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 1;
@@ -30,13 +30,13 @@ const InitiateAdventureButton = styled(TileButton)`
 
 const PageTopText = ({ isGameSaved, startNewStory, startSavedStory }) => {
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       <Title />
       <HorizontalLine width="50%" margin="1.25rem auto 2.5rem 0" />
       <Message />
       <InitiateAdventureButton onClick={startNewStory}>Start a new journey</InitiateAdventureButton>
       {isGameSaved ? <InitiateAdventureButton onClick={startSavedStory}>Continue your saved journey</InitiateAdventureButton> : null}
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

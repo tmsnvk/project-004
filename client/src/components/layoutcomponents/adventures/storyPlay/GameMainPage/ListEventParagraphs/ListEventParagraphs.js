@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -19,7 +19,7 @@ const Paragraph = styled.p`
 
 const ListEventParagraphs = ({ nextPathParagraphs }) => {
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       <Paragraph>
         {nextPathParagraphs.one}
       </Paragraph>
@@ -29,7 +29,7 @@ const ListEventParagraphs = ({ nextPathParagraphs }) => {
       <Paragraph>
         {nextPathParagraphs.three}
       </Paragraph>
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

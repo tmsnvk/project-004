@@ -54,9 +54,8 @@ const RegisterForm = () => {
         localStorage.setItem("auth-name", response.data.user.username);
         localStorage.setItem("auth-id", response.data.user.id);
         history.push("/page/home");
-        history.go();
       } catch (error) {
-        return setResponseError(error.response.data.message);
+        return setResponseError(error.message);
       }
     };
 
@@ -124,7 +123,7 @@ const RegisterForm = () => {
             })}
           />
           <InputHelperWrapper>
-            <CharacterCounter characterCounter={usernameCharacterCounter} characterlength="12" />
+            <CharacterCounter characterCounter={usernameCharacterCounter} characterLength="12" />
           </InputHelperWrapper>
           {errors.registerUsername && <ErrorMessageWrapper>{errors.registerUsername.message}</ErrorMessageWrapper>}
           <Label htmlFor="registerPassword" isInputInFocus={isInputPasswordInFocus}>Password *</Label>
@@ -154,7 +153,7 @@ const RegisterForm = () => {
           />
           <InputHelperWrapper>
             <TogglePassword togglePassword={togglePassword} isPasswordHidden={isPasswordHidden} />
-            <CharacterCounter characterCounter={passwordCharacterCounter} characterlength="15" />
+            <CharacterCounter characterCounter={passwordCharacterCounter} characterLength="15" />
           </InputHelperWrapper>
           {errors.registerPassword && <ErrorMessageWrapper>{errors.registerPassword.message}</ErrorMessageWrapper>}
           <Label htmlFor="registerPasswordCheck" isInputInFocus={isInputPasswordCheckInFocus}>Confirm Password *</Label>

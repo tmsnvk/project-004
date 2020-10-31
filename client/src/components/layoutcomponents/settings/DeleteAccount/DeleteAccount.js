@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FormAccountDelete from "./FormAccountDelete";
+import AccountDeleteForm from "./AccountDeleteForm";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
 
 const ComponentContainer = styled.div`
@@ -25,7 +25,7 @@ const DeleteAccount = () => {
       <MessageText>
         We are sorry to see you go. Please understand that by deleting your account you permanently delete all of its information. After clicking on the button you will be redirected to our home page.
       </MessageText>
-      <FormAccountDelete />
+      <AccountDeleteForm />
     </ComponentContainer>
   );
 };

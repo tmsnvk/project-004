@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { TileButton } from "components/commoncomponents/tile-related";
-import { IconYellow } from "components/commoncomponents/styled-icons";
+import { IconLight } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
 const ComponentContainer = styled(TileButton)`
@@ -15,7 +15,7 @@ const ComponentContainer = styled(TileButton)`
     color: ${({ theme }) => theme.secondaryDark};
   }
 
-  &:hover ${IconYellow} {
+  &:hover ${IconLight} {
     color: ${({ theme }) => theme.secondaryDark};
   }
 `;
@@ -23,7 +23,7 @@ const ComponentContainer = styled(TileButton)`
 const StoryTile = ({ storyTitle, dataArc, dataCode, onClick, isAvailable }) => {
   return (
   <ComponentContainer data-arc={dataArc} data-code={dataCode} onClick={onClick} isAvailable={isAvailable}>
-    <IconYellow icon={iconList.trophy}></IconYellow>
+    <IconLight icon={iconList.trophy}></IconLight>
     {storyTitle}
   </ComponentContainer>
   );

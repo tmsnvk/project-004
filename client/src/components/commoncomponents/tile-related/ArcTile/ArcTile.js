@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TileButton from "../TileButton";
-import { IconYellow } from "components/commoncomponents/styled-icons";
+import { IconLight } from "components/commoncomponents/styled-icons";
 
 const ArcTile = styled(TileButton)`
   display: flex;
@@ -9,7 +9,7 @@ const ArcTile = styled(TileButton)`
   background-color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.main : ({ theme }) => theme.secondaryDark};
   color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.secondaryDark : ({ theme }) => theme.main};
 
-  ${IconYellow} {
+  ${IconLight} {
     color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.secondaryDark : ({ theme }) => theme.main};
   }
 
@@ -18,7 +18,7 @@ const ArcTile = styled(TileButton)`
     color: ${({ theme }) => theme.secondaryDark};
   }
 
-  &:hover ${IconYellow} {
+  &:hover ${IconLight} {
     color: ${({ theme }) => theme.secondaryDark};
   }
 `;
