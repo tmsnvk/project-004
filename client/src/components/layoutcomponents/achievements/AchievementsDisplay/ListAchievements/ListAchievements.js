@@ -93,7 +93,7 @@ const NotAvailable = styled(TileContainer)`
   }
 `;
 
-const ListAchievements = ({ dataSet, loadingSpinner, displayAchievements }) => {
+const ListAchievements = ({ dataSet, displayAchievements, elapsedLoadingTime, loadingSpinner, showSpinnerIfGreaterThanTime }) => {
   const renderAchievements = displayAchievements.map((element) => {
     return (
       displayAchievements.length !== 1 ?
@@ -134,10 +134,10 @@ const ListAchievements = ({ dataSet, loadingSpinner, displayAchievements }) => {
 
   return (
     <ComponentContainer>
-      {loadingSpinner ? <LoadingSpinner message={"The Tower librarians are retriving the requested data from their Archives."} /> : null}
-      {loadingSpinner || dataSet.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
+      {loadingSpinner && elapsedLoadingTime > showSpinnerIfGreaterThanTime ? <LoadingSpinner message={"The Tower librarians are retriving the requested data from their Archives."} /> : null}
+      {dataSet.arc === undefined ? null : <HorizontalLine width="33%" margin="10rem auto 5rem" />}
       <AchievementsWrapper>
-        {loadingSpinner ? dataSet.arc === undefined : renderAchievements}
+        {dataSet.arc === undefined ? null : renderAchievements}
       </AchievementsWrapper>
     </ComponentContainer>
   );

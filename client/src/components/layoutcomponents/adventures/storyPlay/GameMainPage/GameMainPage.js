@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "context/UserContext";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import axios from "axios";
+import styled from "styled-components";
 import ListEventParagraphs from "./ListEventParagraphs";
 import ListEventChoices from "./ListEventChoices";
 import ListEventAchievement from "./ListEventAchievement";
@@ -50,6 +50,11 @@ const GameMainPage = ({ storyId, firstEventId }) => {
     };
 
     getData();
+    return () => {
+      setNextPathParagraphs({ one: undefined, two: undefined, three: undefined, four: undefined });
+      setNextPathOptions([[undefined], [undefined], [undefined]]);
+      setNextPathAchievement({ id: undefined, title: undefined, stateCode: undefined, timestampCode: undefined });
+    }
   }, [nextPathId, storyId]);
 
   useEffect(() => {

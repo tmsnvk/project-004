@@ -21,12 +21,14 @@ const AchievementsDisplay = () => {
   const [displayAchievements, setDisplayAchievements] = useState([]);
 
   const [loadingSpinner, setLoadingSpinner] = useState(false);
+  const [elapsedLoadingTime, setElapsedLoadingTime] = useState(0);
+  const showSpinnerIfGreaterThanTime = 500;
+  const incrementTime = 50;
 
   useEffect(() => {
     setDisplayStoryTiles([adventuresMetaData[displayArcTiles]]);
-
   }, [displayArcTiles]);
-
+  
   useEffect(() => {
     const getAchievements = () => {
       if (dataSet.arc === undefined) return;
@@ -35,6 +37,7 @@ const AchievementsDisplay = () => {
 
       try {
         setLoadingSpinner(true);
+        setInterval(() => setElapsedLoadingTime(prevElapsedLoadingTime => prevElapsedLoadingTime + incrementTime));
         storyCode.forEach(async (element) => {
           if (dataSet.code === element) {
             const response = await axios.get(`/achievement/showcase/${element}`, { params: { _id: id }});
@@ -49,8 +52,12 @@ const AchievementsDisplay = () => {
     };
 
     getAchievements();
-    return () => setDisplayAchievements([]);
-  }, [dataSet, setLoadingSpinner]);
+    return () => {
+      setDisplayAchievements([]);
+      setElapsedLoadingTime(0);
+      setLoadingSpinner(false);
+    }
+  }, [dataSet, incrementTime, setDisplayAchievements, setElapsedLoadingTime, setLoadingSpinner]);
 
   const getArcTile = (index) => setDisplayArcTiles(index);
 
@@ -62,7 +69,7 @@ const AchievementsDisplay = () => {
         <ListArcTiles displayArcTiles={displayArcTiles} getArcTile={getArcTile} />
         <ListStoryTiles displayStoryTiles={displayStoryTiles} getStoryTile={getStoryTile} />
       </ComponentContainer>
-        <ListAchievements displayAchievements={displayAchievements} loadingSpinner={loadingSpinner} dataSet={dataSet} />
+        <ListAchievements dataSet={dataSet} displayAchievements={displayAchievements} loadingSpinner={loadingSpinner} elapsedLoadingTime={elapsedLoadingTime} showSpinnerIfGreaterThanTime={showSpinnerIfGreaterThanTime} />
     </>
   );
 };

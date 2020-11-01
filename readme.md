@@ -1,6 +1,6 @@
 ### evrallas || project-004 || tmsnvk
 #### description
-
++
 
 #### used packages
 ```
@@ -13,6 +13,7 @@ BACKEND
 + helmet               - securing express.
 + jsonwebtoken
 + mongoose
++ mongodb
 
 FRONTEND
 + axios                - making api calls.
@@ -102,29 +103,163 @@ FRONTEND
             |- index.js
             |- SpanBold.js
         |- NAVIGATION-RELATED
-        |- STYLED-ICONS
-        |- TILE-RELATED
-      |- LAYOUTCOMPONENTS
-        |- HOME
           |- index.js
-          |- FORMLOGIN
+          |- NAVIGATIONLINK
             |- index.js
-            |- FormLogin.js
-          |- LOGGEDINTEXT
+            |- NavigationLink.js
+        |- STYLED-ICONS
+          |- index.js
+          |- ICONDARK
+            |- IconDark.js
             |- index.js
-            |- LoggedInText.js
-          |- LOGGEDOUTTEXT
+          |- ICONLIGHT
+            |- IconLight.js
             |- index.js
-            |- LoggedOutText.js
-          |- PAGETOPTEXT
+        |- TILE-RELATED
+          |- index.js
+          |- ARCTILE
+            |- ArcTile.js
+            |- index.js
+          |- TILEBUTTON
+            |- index.js
+            |- TileButton.js
+          |- TILECONTAINER
+            |- index.js
+            |- TileContainer.js
+      |- LAYOUTCOMPONENTS
+        |- ABOUT
+          |- index.js
+          |- CONTACTFORM
+            |- ContactForm.js
+            |- index.js
+          |- LOGGEDOUTINFORMATION
+            |- index.js
+            |- LoggedOutInformation.js
             |- MESSAGE
               |- index.js
               |- Message.js
             |- TITLE
               |- index.js
               |- Title.js
+          |- PAGEINFORMATION
             |- index.js
-            |- PageTopText.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
+        |- ACHIEVEMENTS
+          |- index.js
+          |- ACHIEVEMENTSDISPLAY
+            |- AchievementsDisplay.js
+            |- index.js
+            |- LISTACHIEVEMENTS
+              |- index.js
+              |- ListAchievements.js
+            |- LISTARCTILES
+              |- index.js
+              |- ListArcTiles.js
+            |- LISTSTORYTILES
+              |- index.js
+              |- ListStoryTiles.js
+              |- STORYTILE
+                |- index.js
+                |- StoryTile.js
+          |- PAGEINFORMATION
+            |- index.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
+          |- USERSTATISTICS
+            |- index.js
+            |- UserStatistics.js
+        |- ADVENTURES
+        |- HOME
+          |- index.js
+          |- LOGGEDINTEXT
+            |- index.js
+            |- LoggedInText.js
+          |- LOGGEDOUTTEXT
+            |- index.js
+            |- LoggedOutText.js
+          |- LOGINFORM
+            |- index.js
+            |- LoginForm.js
+          |- PAGEINFORMATION
+            |- index.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
+        |- REGISTER
+          |- index.js
+          |- PAGEINFORMATION
+            |- index.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
+          |- REGISTERFORM
+            |- index.js
+            |- RegisterForm.js
+        |- SETTINGS
+          |- index.js
+          |- CHANGECOLORTHEME
+            |- index.js
+            |- ChangeColorTheme.js
+            |- CHANGETILES
+              |- ChangeTiles.js
+              |- index.js
+          |- CHANGENAME
+            |- ChangeName.js
+            |- index.js
+            |- NAMECHANGEFORM
+              |- index.js
+              |- NameChangeForm.js
+          |- CHANGEPASSWORD
+            |- ChangePassword.js
+            |- index.js
+            |- PASSWORDCHANGEFORM
+              |- index.js
+              |- PasswordChangeForm.js
+          |- DELETEACCOUNT
+            |- DeleteAccount.js
+            |- index.js
+            |- ACCOUNTDELETEFORM
+              |- AccountDeleteForm.js
+              |- index.js
+          |- PAGEINFORMATION
+            |- index.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
+        |- UNDERCONSTRUCTION
+          |- index.js
+          |- PAGEINFORMATION
+            |- index.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
       |- MAINCOMPONENTS
         |- App.js
         |- index.js
@@ -151,16 +286,6 @@ FRONTEND
       |- SuccessfulUpdate.js
       |- UnderConstruction.js
       |- Terms.js
-    |- STORIES
-      |- ARCFOUR
-        |- storyOne.js
-      |- ARCONE
-        |- storyOne.js
-        |- storyTwo.js
-      |- ARCTHREE
-        |- storyOne.js
-      |- ARCTWO
-        |- storyOne.js
     |- UTILITIES
       |- index.js
       |- ADVENTURESMETADATA
@@ -174,6 +299,7 @@ FRONTEND
         |- scrollToTop.js
       |- STORIES
         |- arcOneStoryOne.json
+        |- index.js
       |- THEME
         |- colorTheme.js
         |- index.js

@@ -99,7 +99,7 @@ const App = () => {
           <ScrollToTop />
           <Navbar />
           <Switch>
-            {initialGlobalStateLoader ? <LoadingSpinner message="The librarians are retriving the data from The Tower's Archives..." /> : null}
+            {initialGlobalStateLoader ? <LoadingSpinner message="The librarians are retriving the data from The Tower Archives..." /> : null}
             <Route path="/page/home" component={Home} />
             <Route path="/page/register" component={Register} />
             <PrivateRoute exact path="/page/adventures" component={AdventuresMainPage} />

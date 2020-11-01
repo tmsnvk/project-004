@@ -176,7 +176,7 @@ const RegisterForm = () => {
           />
           {errors.registerPasswordCheck && <ErrorMessageWrapper>{errors.registerPasswordCheck.message}</ErrorMessageWrapper>}
         </FormWrapper>
-        {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is registering your credentials in our Archives, please wait."} /> : <Submit type="submit" value="register" />}
+        {formState.isSubmitting ? <LoadingSpinner message={"One of the Tower librarians is registering your credentials in their Archives, please wait."} /> : <Submit type="submit" value="register" />}
         {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}
       </Form>
     </ComponentContainer>
