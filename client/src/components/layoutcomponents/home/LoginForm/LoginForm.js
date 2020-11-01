@@ -41,7 +41,8 @@ const LoginForm = () => {
     const handleLogin = async () => {
       try {
         const userResponse = await axios.post("/user/login", formData);
-        setUserData({ token: userResponse.data.token, user: userResponse.data.user.username, id: userResponse.data.user.id });
+        setUserData({ token: userResponse.data.token, user: userResponse.data.user.username, id: userResponse.data.user.id, createdAt: userResponse.data.user.createdAt });
+        setUserColorTheme(userResponse.data.user.colorTheme);
 
         localStorage.setItem("auth-token", userResponse.data.token);
         localStorage.setItem("auth-name", userResponse.data.user.username);
@@ -49,9 +50,6 @@ const LoginForm = () => {
 
         const achievementResponse = await axios.get("/achievement/store", { params: { _id: userResponse.data.user.id }});
         setGameData({ gameStart: achievementResponse.data.gameStart, gameFinish: achievementResponse.data.gameFinish, gameDeath: achievementResponse.data.gameDeath });
-
-        const themeResponse = await axios.get("/user/theme-get", { params: { _id: userResponse.data.user.id }});
-        setUserColorTheme(themeResponse.data);
       } catch (error) {
         return setResponseError(error.message);
       }

@@ -5,10 +5,10 @@ module.exports = async (request, response) => {
     const { _id } = request.query;
   
     const getUser = await userSchema.findById(_id);
-    const storyCodes = ["tutorial", "a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
+    const storyCodes = ["a0s1", "a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
   
     if (request.url.includes(storyCodes[0])) {
-      return response.json(getUser.achievementsTUTORIAL);
+      return response.json(getUser.achievementsTutorial);
     } else if (request.url.includes(storyCodes[1])) {
       return response.json(getUser.achievementsA1S1);
     } else if (request.url.includes(storyCodes[2])) {

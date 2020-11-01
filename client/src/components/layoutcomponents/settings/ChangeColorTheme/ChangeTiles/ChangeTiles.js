@@ -20,6 +20,7 @@ const ColorTile = styled(TileButton)`
   color: ${({ active }) => active ? ({ theme }) => theme.secondaryDark : ({ theme }) => theme.main};
   margin: 1rem 0.5rem 1.5rem 0.5rem;
   width: 15rem;
+  transition: all 0.2s ease-in;
 `;
 
 const ChangeTiles = () => {

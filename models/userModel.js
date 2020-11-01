@@ -9,8 +9,20 @@ const userSchema = new mongoose.Schema({
   numberOfDeaths: { type: Number, default: 0, required: true },
   colorTheme: { type: String, default: "", required: true },
   savedGames: {
+    tutorial: {
+      savedId: { type: String, default: "", required: true }
+    },
     A1S1: {
       savedId: { type: String, default: "", required: true }
+    }
+  },
+  achievementsTutorial: {
+    firstAchievement: {
+      id: { type: Number, default: 1, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+      date: { type: Number, default: () => {return new Date().getTime()}, required: false }
     }
   },
   achievementsA1S1: {

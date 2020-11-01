@@ -5,7 +5,7 @@ module.exports = async (request, response) => {
     const { id, colorTheme } = request.body;
 
     await userSchema.findByIdAndUpdate(id, ({ "$set": { colorTheme }}));
-    return response.json({ message: "Color theme updated." });
+    return response.json({ message: `Color theme updated to - ${colorTheme}.` });
   } catch (error) {
     return response.status(500).json({ error: error.message });
   }

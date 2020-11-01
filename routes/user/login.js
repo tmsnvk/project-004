@@ -15,7 +15,7 @@ module.exports = async (request, response) => {
     if (!isMatch) return response.status(400).json({ message: "Please provide valid credentials!" });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    return response.json({ token, user: { id: user._id, username: user.username } });
+    return response.json({ token, user: { id: user._id, username: user.username, createdAt: user.createdAt, colorTheme: user.colorTheme } });
 
   } catch (error) {
     return response.status(500).json({ error: error.message });

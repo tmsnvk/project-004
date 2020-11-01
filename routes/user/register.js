@@ -29,7 +29,11 @@ module.exports = async (request, response) => {
       numberOfDeaths: 0,
       colorTheme: "darkYellow",
       savedGames: {
+        tutorial: { savedId: "ID0001" },
         A1S1: { savedId: "ID0001" }
+      },
+      achievementsTutorial: {
+        firstAchievement: { id: 1, state: false, name: "There's a first for everything!", description: "Your first tutorial achievement.", date: Date.now() },
       },
       achievementsA1S1: {
         followToRoom: { id: 1, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },

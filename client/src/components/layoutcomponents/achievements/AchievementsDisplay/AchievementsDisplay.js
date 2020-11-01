@@ -21,7 +21,7 @@ const AchievementsDisplay = () => {
   const [displayAchievements, setDisplayAchievements] = useState([]);
 
   const [loadingSpinner, setLoadingSpinner] = useState(false);
-  const [elapsedLoadingTime, setElapsedLoadingTime] = useState(0);
+  const [elapsedLoadingTime, setElapsedLoadingTime] = useState(undefined);
   const showSpinnerIfGreaterThanTime = 500;
   const incrementTime = 50;
 
@@ -33,7 +33,7 @@ const AchievementsDisplay = () => {
     const getAchievements = () => {
       if (dataSet.arc === undefined) return;
       const id = localStorage.getItem("auth-id");
-      const storyCode = ["a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
+      const storyCode = ["a0s1", "a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
 
       try {
         setLoadingSpinner(true);
@@ -54,7 +54,7 @@ const AchievementsDisplay = () => {
     getAchievements();
     return () => {
       setDisplayAchievements([]);
-      setElapsedLoadingTime(0);
+      setElapsedLoadingTime(undefined);
       setLoadingSpinner(false);
     }
   }, [dataSet, incrementTime, setDisplayAchievements, setElapsedLoadingTime, setLoadingSpinner]);
