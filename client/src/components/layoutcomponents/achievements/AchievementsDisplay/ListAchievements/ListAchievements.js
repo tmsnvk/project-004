@@ -94,7 +94,6 @@ const NotAvailable = styled(TileContainer)`
 `;
 
 const ListAchievements = ({ dataSet, displayAchievements, elapsedLoadingTime, loadingSpinner, showSpinnerIfGreaterThanTime }) => {
-  console.log(displayAchievements);
   const renderAchievements = displayAchievements.map((element) => {
     return (
       displayAchievements.length !== 1 ?

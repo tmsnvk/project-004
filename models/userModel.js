@@ -23,6 +23,20 @@ const userSchema = new mongoose.Schema({
       name: { type: String, required: true },
       description: { type: String, default: "", required: true },
       date: { type: Number, default: () => {return new Date().getTime()}, required: false }
+    },
+    waitBang: {
+      id: { type: Number, default: 2, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+      date: { type: Number, default: () => {return new Date().getTime()}, required: false }
+    },
+    tutorialFinished: {
+      id: { type: Number, default: 3, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+      date: { type: Number, default: () => {return new Date().getTime()}, required: false }
     }
   },
   achievementsA1S1: {

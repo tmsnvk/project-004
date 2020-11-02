@@ -34,6 +34,8 @@ module.exports = async (request, response) => {
       },
       achievementsTutorial: {
         firstAchievement: { id: 1, state: false, name: "There's a first for everything!", description: "Your first tutorial achievement.", date: Date.now() },
+        waitBang: { id: 1, state: false, name: "You made them bang at your door.", description: "You made them keep knocking at your door.", date: Date.now() },
+        tutorialFinished: { id: 1, state: false, name: "Finished the tutorial mini-story.", description: "You finished playing the tutorial mini-story.", date: Date.now() },
       },
       achievementsA1S1: {
         followToRoom: { id: 1, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },

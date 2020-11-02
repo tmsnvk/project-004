@@ -77,6 +77,22 @@ const GameMainPage = ({ storyId, firstEventId }) => {
   }, [nextPathId, nextPathAchievement]);
 
   useEffect(() => {
+    const triggerGameWon = async (nextPathId) => {
+      if ((nextPathId) === "GAMEWON") {
+        const id = localStorage.getItem("auth-id");
+        await axios.put("/adventure/savedgameid-set", { id, savedId: "ID0001", storyId });
+        await axios.put("/achievement/counter-finish", { id });
+        const response = await axios.get("/achievement/store", { params: { _id: id }});
+        setGameData({ gameStart: response.data.gameStart, gameFinish: response.data.gameFinish, gameDeath: response.data.gameDeath });
+
+        history.push("/page/adventures/result/win");
+      } 
+    };
+
+    triggerGameWon(nextPathId);
+  }, [history, nextPathId, setGameData, storyId]);
+
+  useEffect(() => {
     const triggerGameOver = async (nextPathId) => {
       if ((nextPathId) === "GAMEOVER") {
         const id = localStorage.getItem("auth-id");
