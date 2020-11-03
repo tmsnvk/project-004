@@ -5,7 +5,7 @@ import { IconLight } from "components/commoncomponents/styled-icons";
 import DisplayedStories from "./DisplayedStories";
 import { adventuresMetaData } from "utilities";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 2;
@@ -28,7 +28,7 @@ const ComponentContainer = styled.div`
 `;
 
 const AdventureTilesContainer = () => {
-  const [displayArcTitles, setDisplayArcTitles] = useState(1);
+  const [displayArcTitles, setDisplayArcTitles] = useState(0);
   const [storyTitlesData, setStoryTitlesData] = useState([undefined]);
 
   useEffect(() => {

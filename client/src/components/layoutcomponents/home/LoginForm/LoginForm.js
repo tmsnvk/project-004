@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { LoadingSpinner } from "components/commoncomponents/general";
 import { ErrorMessage, Form, FormWrapper, Input, InputHelperWrapper, Label, Submit, TogglePassword } from "components/commoncomponents/form-related";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 3;

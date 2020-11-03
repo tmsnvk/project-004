@@ -5,7 +5,7 @@ import Message from "./Message";
 import { HorizontalLine } from "components/commoncomponents/general";
 import { TileButton } from "components/commoncomponents/tile-related";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 1;

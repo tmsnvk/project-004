@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ErrorMessage = styled.div`
+const ErrorMessage = styled.p`
   align-self: center;
   width: fit-content;
   color: ${({ theme }) => theme.warning};

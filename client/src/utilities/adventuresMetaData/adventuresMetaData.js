@@ -5,15 +5,15 @@ const adventuresMetaData = [
     id: 0,
     arcTitle:"Tutorial",
     arcIcon: iconList.chessPawn,
-    storyOne: { title: "Tutorial", link: "tutorial", arc: "zero", code: "a0s1", isAvailable: "true" },
-    storyTwo: { title: undefined, link: undefined, arc: "zero", code: "a0s2", isAvailable: "false" },
-    storyThree: { title: undefined, link: undefined, arc: "zero", code: "a0s3", isAvailable: "false" }
+    storyOne: { title: "Tutorial", link: "tutorial01", arc: "zero", code: "a0s1", isAvailable: "true" },
+    storyTwo: { title: "Will's Dilemma", link: "tutorial02", arc: "zero", code: "a0s2", isAvailable: "true" },
+    storyThree: { title: "Rosie's Escape", link: "tutorial03", arc: "zero", code: "a0s3", isAvailable: "true" }
   },
   {
     id: 1,
     arcTitle:"Tales of the Eastern Fief",
     arcIcon: iconList.burn,
-    storyOne: { title: "To One Last New Beginning", link: "A1S1", arc: "one", code: "a1s1", isAvailable: "true" },
+    storyOne: { title: "To One Last New Beginning", link: "A1S1", arc: "one", code: "a1s1", isAvailable: "false" },
     storyTwo: { title: "A City to Burn", link: "A1S2", arc: "one", code: "a1s2", isAvailable: "false" },
     storyThree: { title: undefined, link: undefined, arc: "one", code: "a1s3", isAvailable: "false" }
   },

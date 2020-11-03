@@ -4,7 +4,7 @@ import { HorizontalLine } from "components/commoncomponents/general";
 import Message from "components/layoutcomponents/about/PageInformation/Message";
 import Title from "components/layoutcomponents/about/PageInformation/Title";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 1;
@@ -18,11 +18,11 @@ const ContainerComponent = styled.div`
 
 const PageInformation = () => {
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       <Title />
       <HorizontalLine width="50%" margin="1.25rem auto 2.5rem 0" />
       <Message />
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

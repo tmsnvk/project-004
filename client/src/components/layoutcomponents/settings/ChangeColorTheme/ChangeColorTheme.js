@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
 import ChangeTiles from "./ChangeTiles";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 2;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { TileContainer } from "components/commoncomponents/tile-related";
 import { MessageText, SpanBold } from "components/commoncomponents/general";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 2;

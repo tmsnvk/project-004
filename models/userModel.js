@@ -8,22 +8,34 @@ const userSchema = new mongoose.Schema({
   numberOfGameFinishes: { type: Number, default: 0, required: true },
   numberOfDeaths: { type: Number, default: 0, required: true },
   colorTheme: { type: String, default: "", required: true },
-  savedGames: {
-    tutorial: {
+  savedGames: [
+    {
+      name: { type: String, default: "", required: true },
       savedId: { type: String, default: "", required: true }
     },
-    A1S1: {
+    {
+      name: { type: String, default: "", required: true },
+      savedId: { type: String, default: "", required: true }
+    },
+    {
+      name: { type: String, default: "", required: true },
+      savedId: { type: String, default: "", required: true }
+    },
+    {
+      name: { type: String, default: "", required: true },
       savedId: { type: String, default: "", required: true }
     }
-  },
-  achievementsTutorial: {
+  ],
+  achievementsTutorial01: {
     firstAchievement: {
       id: { type: Number, default: 1, required: true },
       state: { type: Boolean, required: true },
       name: { type: String, required: true },
       description: { type: String, default: "", required: true },
       date: { type: Number, default: () => {return new Date().getTime()}, required: false }
-    },
+    }
+  },
+  achievementsTutorial02: {
     waitBang: {
       id: { type: Number, default: 2, required: true },
       state: { type: Boolean, required: true },

@@ -10,7 +10,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const ErrorMessageWrapper = styled.span`
+const ErrorMessageWrapper = styled.p`
   align-self: center;
   width: fit-content;
   color: ${({ theme }) => theme.warning};

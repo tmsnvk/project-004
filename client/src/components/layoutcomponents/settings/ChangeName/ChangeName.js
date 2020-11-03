@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NameChangeForm from "./NameChangeForm";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 3;

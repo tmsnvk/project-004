@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageText, SpanBold } from "components/commoncomponents/general";
+import { MessageText } from "components/commoncomponents/general";
 import { NavigationLink } from "components/commoncomponents/navigation-related";
 
 const Message = () => {

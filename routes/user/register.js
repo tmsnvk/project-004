@@ -28,12 +28,16 @@ module.exports = async (request, response) => {
       numberOfGameFinishes: 0,
       numberOfDeaths: 0,
       colorTheme: "darkYellow",
-      savedGames: {
-        tutorial: { savedId: "ID0001" },
-        A1S1: { savedId: "ID0001" }
+      savedGames: [
+        { name: "tutorial01", savedId: "ID0001" },
+        { name: "tutorial02", savedId: "ID0001" },
+        { name: "tutorial03", savedId: "ID0001" },
+        { name: "A1S1", savedId: "ID0001" }
+      ],
+      achievementsTutorial01: {
+        firstAchievement: { id: 1, state: false, name: "There's a first for everything!", description: "Your first tutorial achievement.", date: Date.now() }
       },
-      achievementsTutorial: {
-        firstAchievement: { id: 1, state: false, name: "There's a first for everything!", description: "Your first tutorial achievement.", date: Date.now() },
+      achievementsTutorial02: {
         waitBang: { id: 1, state: false, name: "You made them bang at your door.", description: "You made them keep knocking at your door.", date: Date.now() },
         tutorialFinished: { id: 1, state: false, name: "Finished the tutorial mini-story.", description: "You finished playing the tutorial mini-story.", date: Date.now() },
       },

@@ -4,7 +4,7 @@ import { HorizontalLine } from "components/commoncomponents/general";
 import Message from "components/layoutcomponents/adventures/storySelection/PageInformation/Message";
 import Title from "components/layoutcomponents/adventures/storySelection/PageInformation/Title";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 1;

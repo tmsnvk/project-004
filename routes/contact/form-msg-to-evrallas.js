@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 
 module.exports = (request, response) => {
-  console.log(request.body);
   try {
     const output = `
       <p>You have a new contact request</p>

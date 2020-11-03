@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MessageTitle = styled.p`
+const MessageTitle = styled.h1`
   font-size: ${({ theme }) => theme.fontSize.large};
   font-weight: bold;
 

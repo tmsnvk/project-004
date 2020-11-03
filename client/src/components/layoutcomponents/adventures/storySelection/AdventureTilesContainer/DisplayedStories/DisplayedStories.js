@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import StoryTile from "./StoryTile";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 3;

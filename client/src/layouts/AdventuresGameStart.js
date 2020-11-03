@@ -17,40 +17,41 @@ const AdventuresGameStart = () => {
   const [firstEventId, setFirstEventId] = useState(undefined);
   const [isGameSaved, setIsGameSaved] = useState(false);
 
+  const id = localStorage.getItem("auth-id");
+
   let chosenStoryId;
 
   useEffect(() => {
     const isGameSaved = async () => {
-      const id = localStorage.getItem("auth-id");
       const response = await axios.get("/adventure/savedgameid-get", { params: { id: id, chosenStoryId: chosenStoryId }});
       if (response.data !== "ID0001") setIsGameSaved(true);
     };
 
     isGameSaved();
     return () => setIsGameSaved(false);
-  }, [chosenStoryId]);
-
-  if (storyTitle.includes("tutorial")) {
-    chosenStoryId = "tutorial";
-  } else if (storyTitle.includes("A1S1")) {
-    chosenStoryId = "A1S1";
-  } else {
-    return <Redirect to={"/page/adventures/underconstruction"} />;
-  }
+  }, [chosenStoryId, id, setIsGameSaved]);
 
   const startNewStory = async () => {
-    const id = localStorage.getItem("auth-id");
     await axios.put("/achievement/counter-start", { id });
     setFirstEventId("ID0001");
     setStart(true);
   };
 
   const startSavedStory = async () => {
-    const id = localStorage.getItem("auth-id");
     const response = await axios.get("/adventure/savedgameid-get", { params: { id: id, chosenStoryId: chosenStoryId }});
     setFirstEventId(response.data);
     setStart(true);
   };
+
+  if (storyTitle.includes("tutorial01")) {
+    chosenStoryId = "tutorial01"
+  } else if (storyTitle.includes("tutorial02")) {
+    chosenStoryId = "tutorial02"
+  } else if (storyTitle.includes("tutorial03")) {
+    chosenStoryId = "tutorial03"
+  } else {
+    return <Redirect to={"/page/adventures/underconstruction"} />;
+  }
 
   return (
     <LayoutContainerModified>

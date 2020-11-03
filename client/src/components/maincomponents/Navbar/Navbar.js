@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { IconLight } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.nav`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

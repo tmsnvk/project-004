@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { LoadingSpinner } from "components/commoncomponents/general";
 import { CharacterCounter, ErrorMessage, ErrorMessageWrapper, Form, FormWrapper, Input, InputHelperWrapper, Submit, Label, Textarea } from "components/commoncomponents/form-related";
 
-const ContainerComponent = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 2;
@@ -76,7 +76,7 @@ const ContactForm = () => {
   };
 
   return (
-    <ContainerComponent>
+    <ComponentContainer>
       <Form method="POST" action="/contact/form-msg-to-evrallas" id="contact" onSubmit={handleSubmit(onSubmit)}>
         <FormWrapper>
           <Label htmlFor="contactName" isInputInFocus={isInputNameInFocus}>Name *</Label>
@@ -154,7 +154,7 @@ const ContactForm = () => {
         {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="submit" />}
         {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}
       </Form>
-    </ContainerComponent>
+    </ComponentContainer>
   );
 };
 

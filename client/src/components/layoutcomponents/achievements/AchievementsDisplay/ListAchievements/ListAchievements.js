@@ -5,7 +5,7 @@ import { HorizontalLine, LoadingSpinner } from "components/commoncomponents/gene
 import { IconDark, IconLight } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   display: grid;
   grid-column-start: 1;
   grid-column-end: 5;

@@ -7,7 +7,7 @@ import ListEventParagraphs from "./ListEventParagraphs";
 import ListEventChoices from "./ListEventChoices";
 import ListEventAchievement from "./ListEventAchievement";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 1;
@@ -77,7 +77,7 @@ const GameMainPage = ({ storyId, firstEventId }) => {
   }, [nextPathId, nextPathAchievement]);
 
   useEffect(() => {
-    const triggerGameWon = async (nextPathId) => {
+    const triggerGameWin = async (nextPathId) => {
       if ((nextPathId) === "GAMEWON") {
         const id = localStorage.getItem("auth-id");
         await axios.put("/adventure/savedgameid-set", { id, savedId: "ID0001", storyId });
@@ -89,7 +89,7 @@ const GameMainPage = ({ storyId, firstEventId }) => {
       } 
     };
 
-    triggerGameWon(nextPathId);
+    triggerGameWin(nextPathId);
   }, [history, nextPathId, setGameData, storyId]);
 
   useEffect(() => {

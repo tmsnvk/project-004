@@ -6,7 +6,7 @@ import ListAchievements from "./ListAchievements";
 import ListStoryTiles from "./ListStoryTiles";
 import { adventuresMetaData } from "utilities";
 
-const ComponentContainer = styled.div`
+const ComponentContainer = styled.section`
   display: grid;
   grid-column-start: 1;
   grid-column-end: 5;
