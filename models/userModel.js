@@ -33,18 +33,39 @@ const userSchema = new mongoose.Schema({
       name: { type: String, required: true },
       description: { type: String, default: "", required: true },
       date: { type: Number, default: () => {return new Date().getTime()}, required: false }
+    },
+    finishTutorial01: {
+      id: { type: Number, default: 2, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+      date: { type: Number, default: () => {return new Date().getTime()}, required: false }
     }
   },
   achievementsTutorial02: {
     waitBang: {
+      id: { type: Number, default: 1, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+      date: { type: Number, default: () => {return new Date().getTime()}, required: false }
+    },
+    avoidMillie: {
       id: { type: Number, default: 2, required: true },
       state: { type: Boolean, required: true },
       name: { type: String, required: true },
       description: { type: String, default: "", required: true },
       date: { type: Number, default: () => {return new Date().getTime()}, required: false }
     },
-    tutorialFinished: {
+    caughtByMillie: {
       id: { type: Number, default: 3, required: true },
+      state: { type: Boolean, required: true },
+      name: { type: String, required: true },
+      description: { type: String, default: "", required: true },
+      date: { type: Number, default: () => {return new Date().getTime()}, required: false }
+    },
+    tutorialWillFinished: {
+      id: { type: Number, default: 4, required: true },
       state: { type: Boolean, required: true },
       name: { type: String, required: true },
       description: { type: String, default: "", required: true },

@@ -96,7 +96,7 @@ const NotAvailable = styled(TileContainer)`
 const ListAchievements = ({ dataSet, displayAchievements, elapsedLoadingTime, loadingSpinner, showSpinnerIfGreaterThanTime }) => {
   const renderAchievements = displayAchievements.map((element) => {
     return (
-      displayAchievements.length !== 1 ?
+      displayAchievements.length > 1 ?
       <ElementWrapper key={element?.[1].id}>
         {element?.[1].state ?
         <Obtained>
@@ -128,7 +128,7 @@ const ListAchievements = ({ dataSet, displayAchievements, elapsedLoadingTime, lo
           </Description>
         </Missing>}
       </ElementWrapper> :
-      <NotAvailable key={displayAchievements[0]?.[0]}>{displayAchievements[0]?.[1].message}</NotAvailable>
+      <NotAvailable key={displayAchievements[0]?.[0]}>{displayAchievements[0]?.[1]}</NotAvailable>
     );
   });
 

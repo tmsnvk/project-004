@@ -6,8 +6,8 @@ import { MessageText, MessageTitle } from "components/commoncomponents/general";
 const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
   margin: 5rem 0 0 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.large}) {

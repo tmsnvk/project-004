@@ -11,7 +11,7 @@ module.exports = async (request, response) => {
 
   try {
     await getUser.updateOne({ "$set": { [stateCode]: true, [timestampCode]: Date.now() }});
-    return response.json({ message: "The Tower librarians have updated their Archives with your data input." });
+    return response.json({ status: true, message: "The Tower librarians have updated their Archives with your data input." });
   } catch (error) {
     return response.status(500).json({ error: error.message });
   }

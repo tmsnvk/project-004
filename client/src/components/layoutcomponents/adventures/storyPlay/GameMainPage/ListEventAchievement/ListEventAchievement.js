@@ -20,7 +20,7 @@ const fadeIn = keyframes`
 const AchievementUnlocked = styled.div`
   animation: 0.5s ${fadeIn} ease-out;
   width: fit-content;
-  margin: 10rem 0 0 0;
+  margin: 5rem 0 0 0;
   background-color: ${({ theme }) => theme.main};
   font-size: ${({ theme }) => theme.fontSize.medium};
   color: ${({ theme }) => theme.secondaryDark};

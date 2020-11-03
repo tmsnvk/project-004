@@ -140,10 +140,16 @@
         "options": [
           {
             "text": "You make your way to The Alabaster Inn.",
-            "nextEventId": "ID017",
+            "nextEventId": "ID011",
             "visible": true
           }
-        ]
+        ],
+        "achievement": {
+          "id": "ID0008",
+          "title": "Avoided Millie's anger.",
+          "stateCode": "achievementsTutorial02.avoidMillie.state",
+          "timestampCode": "achievementsTutorial02.avoidMillie.date"
+        }
       },
       "ID0009": {
         "paragraphs": [
@@ -163,10 +169,16 @@
         "options": [
           {
             "text": "You make your way to The Alabaster Inn.",
-            "nextEventId": "ID0017",
+            "nextEventId": "ID0011",
             "visible": true
           }
-        ]
+        ],
+        "achievement": {
+          "id": "ID0009",
+          "title": "Millie caught you.",
+          "stateCode": "achievementsTutorial02.caughtByMillie.state",
+          "timestampCode": "achievementsTutorial02.caughtByMillie.date"
+        }
       },
       "ID0003": {
         "paragraphs": [
@@ -193,7 +205,7 @@
           }
         ]
       },
-      "ID007": {
+      "ID0007": {
         "paragraphs": [
           {
             "text": "Ah yes, these days Neil preferred to be called the Marshall. His people liked the sound of it."
@@ -216,7 +228,7 @@
           }
         ]
       },
-      "ID0011": {
+      "ID0010": {
         "paragraphs": [
           {
             "text": "Reece's friends carry you down the steps and through the front hall. Millie immediately steps in front of your group. 'Are you going to that filthy pub again, Will? I thought you had more brain than that. Your uncle has been looking for you and you owe me rent.'"
@@ -234,12 +246,18 @@
         "options": [
           {
             "text": "You make your way to The Alabaster Inn.",
-            "nextEventId": "ID0017",
+            "nextEventId": "ID0011",
             "visible": true
           }
-        ]
+        ],
+        "achievement": {
+          "id": "ID0010",
+          "title": "Millie caught you.",
+          "stateCode": "achievementsTutorial02.caughtByMillie.state",
+          "timestampCode": "achievementsTutorial02.caughtByMillie.date"
+        }
       },
-      "ID0017": {
+      "ID0011": {
         "paragraphs": [
           {
             "text": "You sit uncomfortable at one of tables in The Alabaster Inn. The crowd is bigger than ever before and most of them already seemed to have finished a few mugs already. It seems that Neil has been able to convince more and more people to join his cause. You wonder if this crowd is going to attract the city guard."
@@ -254,17 +272,17 @@
         "options": [
           {
             "text": "Support Neil.",
-            "nextEventId": "ID0018",
+            "nextEventId": "ID0012",
             "visible": true
           },
           {
             "text": "Stand against Neil.",
-            "nextEventId": "ID0019",
+            "nextEventId": "ID0013",
             "visible": true
           }
         ]
       },
-      "ID0018": {
+      "ID0012": {
         "paragraphs": [
           {
             "text": "You decide to mingle in the crowd and have one too many mugs of ale. Neil's ideas start to make more and more sense as the evening progresses."
@@ -281,19 +299,19 @@
         ],
         "options": [
           {
-            "text": "Finish the story.",
+            "text": "Finish the adventure.",
             "nextEventId": "GAMEWON",
             "visible": true
           }
         ],
         "achievement": {
-          "id": "ID0018",
-          "title": "Finished the tutorial mini-story.",
-          "stateCode": "achievementsTutorial02.tutorialFinished.state",
-          "timestampCode": "achievementsTutorial02.tutorialFinished.date"
+          "id": "ID0012",
+          "title": "Finished Will's mini-story.",
+          "stateCode": "achievementsTutorial02.tutorialWillFinished.state",
+          "timestampCode": "achievementsTutorial02.tutorialWillFinished.date"
         }
       },
-      "ID0019": {
+      "ID0013": {
         "paragraphs": [
           {
             "text": "You decide to mingle in the crowd and try to convince some of the people that Neil's idea doesn't worth it."
@@ -310,16 +328,16 @@
         ],
         "options": [
           {
-            "text": "Finish the story.",
+            "text": "Finish the adventure.",
             "nextEventId": "GAMEWON",
             "visible": true
           }
         ],
         "achievement": {
-          "id": "ID0019",
-          "title": "Finished the tutorial mini-story.",
-          "stateCode": "achievementsTutorial02.tutorialFinished.state",
-          "timestampCode": "achievementsTutorial02.tutorialFinished.date"
+          "id": "ID0013",
+          "title": "Finished Will's mini-story.",
+          "stateCode": "achievementsTutorial02.tutorialWillFinished.state",
+          "timestampCode": "achievementsTutorial02.tutorialWillFinished.date"
         }
       }
     }

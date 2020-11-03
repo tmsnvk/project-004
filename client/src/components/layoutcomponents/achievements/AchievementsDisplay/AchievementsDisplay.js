@@ -16,7 +16,7 @@ const ComponentContainer = styled.section`
 
 const AchievementsDisplay = () => {
   const [dataSet, setDataSet] = useState({ arc: undefined, code: undefined });
-  const [displayArcTiles, setDisplayArcTiles] = useState(1);
+  const [displayArcTiles, setDisplayArcTiles] = useState(0);
   const [displayStoryTiles, setDisplayStoryTiles] = useState([undefined]);
   const [displayAchievements, setDisplayAchievements] = useState([]);
 
@@ -33,7 +33,7 @@ const AchievementsDisplay = () => {
     const getAchievements = () => {
       if (dataSet.arc === undefined) return;
       const id = localStorage.getItem("auth-id");
-      const storyCode = ["a0s1", "a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
+      const storyCode = ["a0s1", "a0s2", "a0s3", "a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
 
       try {
         setLoadingSpinner(true);

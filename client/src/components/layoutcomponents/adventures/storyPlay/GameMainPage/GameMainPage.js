@@ -66,7 +66,7 @@ const GameMainPage = ({ storyId, firstEventId }) => {
         try {
           const id = localStorage.getItem("auth-id");
           const response = await axios.put("/achievement/trigger", { id, stateCode: nextPathAchievement.stateCode, timestampCode: nextPathAchievement.timestampCode });
-          if (!response.data.message) setShowAchievementPanel(true);
+          if (response.data.status) setShowAchievementPanel(true);
         } catch (error) {
           console.log(error);
         }

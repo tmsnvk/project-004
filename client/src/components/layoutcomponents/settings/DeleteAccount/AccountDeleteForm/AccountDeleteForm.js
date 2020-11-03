@@ -10,9 +10,9 @@ const AccountDeleteForm = () => {
   const { handleSubmit } = useForm();
   const history = useHistory();
 
-  const [deleteAccount, SetDeleteAccount] = useState(false);
+  const [deleteAccount, setDeleteAccount] = useState(false);
 
-  const onSubmit = (data) => SetDeleteAccount(true);
+  const onSubmit = (data) => setDeleteAccount(true);
 
   useEffect(() => {
     if (!deleteAccount) return;
@@ -34,8 +34,8 @@ const AccountDeleteForm = () => {
     };
 
     handleAccountDelete();
-    return () => SetDeleteAccount(false);
-  }, [deleteAccount, history, SetDeleteAccount, setUserData]);
+    return () => setDeleteAccount(false);
+  }, [deleteAccount, history, setDeleteAccount, setUserData]);
 
   return (
     <Form method="DELETE" action="/user/delete" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>

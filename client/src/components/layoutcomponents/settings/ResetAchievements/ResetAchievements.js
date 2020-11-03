@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import AccountDeleteForm from "./AccountDeleteForm";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
+import ResetAchievementsForm from "./ResetAchievementsForm";
 
 const ComponentContainer = styled.section`
   grid-column-start: 1;
   grid-column-end: 4;
-  grid-row-start: 6;
-  grid-row-end: 7;
+  grid-row-start: 3;
+  grid-row-end: 4;
   margin: 5rem 0 0 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.large}) {
@@ -16,18 +16,18 @@ const ComponentContainer = styled.section`
   }
 `;
 
-const DeleteAccount = () => {
+const ResetAchievements = () => {
   return (
     <ComponentContainer>
       <MessageTitle>
-        Delete account
+        Reset account progress
       </MessageTitle>
       <MessageText>
-        We are sorry to see you go. Please understand that by deleting your account you permanently delete all of its information. After clicking on the button you will be redirected to our home page.
+        By clicking on the Reset button you may reset your achievement progress. Please understand that this is irrevokable. You may reset your progress as many times as you would like to.
       </MessageText>
-      <AccountDeleteForm />
+      <ResetAchievementsForm />
     </ComponentContainer>
   );
 };
 
-export default DeleteAccount;
+export default ResetAchievements;

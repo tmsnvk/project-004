@@ -35,11 +35,14 @@ module.exports = async (request, response) => {
         // { name: "A1S1", savedId: "ID0001" }
       ],
       achievementsTutorial01: {
-        firstAchievement: { id: 1, state: false, name: "There's a first for everything!", description: "Your first tutorial achievement.", date: Date.now() }
+        firstAchievement: { id: 1, state: false, name: "There's a first for everything!", description: "Your very first tutorial achievement.", date: Date.now() },
+        finishTutorial01: { id: 2, state: false, name: "Completed the first tutorial.", description: "Completed the first tutorial.", date: Date.now() }
       },
       achievementsTutorial02: {
-        waitBang: { id: 1, state: false, name: "You made them bang at your door.", description: "You made them keep knocking at your door.", date: Date.now() },
-        tutorialFinished: { id: 1, state: false, name: "Finished the tutorial mini-story.", description: "You finished playing the tutorial mini-story.", date: Date.now() },
+        waitBang: { id: 1, state: false, name: "You made Reece bang at your door.", description: "You made Reece keep knocking at your door.", date: Date.now() },
+        avoidMillie: { id: 2, state: false, name: "Avoided Millie's anger.", description: "You decided to avoid Millie.", date: Date.now() },
+        caughtByMillie: { id: 3, state: false, name: "Millie caught you.", description: "Millie saw you leave for the night.", date: Date.now() },
+        tutorialWillFinished: { id: 4, state: false, name: "Finished the tutorial mini-story.", description: "You finished playing the tutorial mini-story.", date: Date.now() },
       }
       // achievementsA1S1: {
       //   followToRoom: { id: 1, state: false, name: "placeholder_name", description: "add descr", date: Date.now() },
