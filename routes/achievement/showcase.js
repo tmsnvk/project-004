@@ -12,13 +12,13 @@ module.exports = async (request, response) => {
     } else if (request.url.includes(storyCodes[1])) {
       return response.json(getUser.achievementsA1S1);
     } else if (request.url.includes(storyCodes[2])) {
-      return response.json({ error: { message: "This story and its achievements are currently not available. Come & check back at a later time!" }});
+      return response.json({ error: "This adventure and its achievements are not yet available. Come & check back at a later time!" });
     } else if (request.url.includes(storyCodes[3])) {
-      return response.json({ error: { message: "This story and its achievements are currently not available. Come & check back at a later time!" }});
+      return response.json({ error: "This adventure and its achievements are not yet available. Come & check back at a later time!" });
     } else if (request.url.includes(storyCodes[4])) {
-      return response.json({ error: { message: "This story and its achievements are currently not available. Come & check back at a later time!" }});
+      return response.json({ error: "This adventure and its achievements are not yet available. Come & check back at a later time!" });
     } else if (request.url.includes(storyCodes[5])) {
-      return response.json({ error: { message: "This story and its achievements are currently not available. Come & check back at a later time!" }});
+      return response.json({ error: "This adventure and its achievements are not yet available. Come & check back at a later time!" });
     } else return null;
   } catch (error) {
     return response.status(500).json({ error: error.message });

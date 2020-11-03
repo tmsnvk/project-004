@@ -5,7 +5,7 @@ module.exports = async (request, response) => {
     const { id } = request.body;
 
     await userSchema.findByIdAndUpdate(id, ({ "$inc": { numberOfGameStarts: +1 }}));
-    return response.json("The librarians in the Tower have updated your data in their Archives!");
+    return response.json({ message: "The Tower librarians have updated their Archives with your data input." });
   } catch (error) {
     return response.status(500).json({ error: error.message });
   }

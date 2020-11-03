@@ -17,7 +17,7 @@ const ComponentContainer = styled.section`
 
   @media only screen and (min-width: ${({ theme }) => theme.mediaQuery.xLarge}) {
     grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-end: 4;
   }
 `;
 
@@ -39,6 +39,7 @@ const GameMainPage = ({ storyId, firstEventId }) => {
 
         await axios.put("/adventure/savedgameid-set", { id, savedId: nextPathId, storyId });
         const { data } = await axios.get("/adventure/nextevent", { params: { _id: storyId, nextPathId: nextPathId }});
+        console.log(data);
 
         setNextPathParagraphs({ one: data.paragraphs[0]?.text, two: data.paragraphs[1]?.text, three: data.paragraphs[2]?.text, four: data.paragraphs[3]?.text });
         setNextPathOptions([[data.options[0]?.text, data.options[0]?.nextEventId, data.options[0]?.visible], [data.options[1]?.text, data.options[1]?.nextEventId, data.options[1]?.visible], [data.options[2]?.text, data.options[2]?.nextEventId, data.options[2]?.visible]]);

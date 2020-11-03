@@ -34,13 +34,13 @@ const ContactForm = () => {
   const [usernameCharacterCounter, setUsernameCharacterCounter] = useState(0);
   const [textCharacterCounter, setTextCharacterCounter] = useState(0);
 
-  const [formData, setFormData] = useState({ userName: undefined, email: undefined, message: undefined });
+  const [formData, setFormData] = useState({ username: undefined, email: undefined, message: undefined });
   const [responseError, setResponseError] = useState(undefined);
 
-  const onSubmit = (data) => setFormData({ userName: data.contactName, email: data.contactEmail, message: data.contactTextarea });
+  const onSubmit = (data) => setFormData({ username: data.contactName, email: data.contactEmail, message: data.contactTextarea });
 
   useEffect(() => {
-    if (formData.userName === undefined || formData.email === undefined || formData.message === undefined) return;
+    if (formData.username === undefined || formData.email === undefined || formData.message === undefined) return;
 
     const handleFormSubmission = async () => {
       try {
@@ -48,7 +48,7 @@ const ContactForm = () => {
         await axios.post("/contact/form-msg-from-evrallas", formData);
         history.push("/page/success");
       } catch (error) {
-        return setResponseError(error.message);
+        return setResponseError(error.response.data.message);
       }
     };
 

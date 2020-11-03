@@ -3,7 +3,6 @@ const path = require("path");
 const cors = require("cors");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
-const db = require("./mongodb/database.js");
 
 require("dotenv").config();
 
@@ -28,7 +27,7 @@ mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlP
     if (error) {
       throw error;
     } else {
-      console.log("Connected to your MongoDB database - moongose");
+      console.log("Connected to your MongoDB database via Moongose.");
     }
   }
 );
@@ -41,9 +40,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const port = process.env.PORT || 3003;
-db.connect(() => {
-  app.listen(port, () => {
-    console.log(`evrallas project @ port ${port}!`);
-    console.log("connected to evrallas mongodb database!");
-  });
+app.listen(port, () => {
+  console.log(`evrallas project @ port ${port}!`);
 });

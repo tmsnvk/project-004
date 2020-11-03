@@ -55,7 +55,7 @@ const RegisterForm = () => {
         localStorage.setItem("auth-id", response.data.user.id);
         history.push("/page/home");
       } catch (error) {
-        return setResponseError(error.message);
+        return setResponseError(error.response.data.message);
       }
     };
 

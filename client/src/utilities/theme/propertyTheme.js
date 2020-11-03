@@ -4,12 +4,12 @@ const propertyTheme = {
     secondary: "Montserrat"
   },
   fontSize: {
-    default: "1rem", // 10px
-    small: "1.4rem", // 14px
-    medium: "1.6rem", // 16px
-    large: "2rem", // 20px
-    xLarge: "2.6rem", // 26px
-    xxLarge: "3rem" // 30px
+    default: "1rem",
+    small: "1.4rem",
+    medium: "1.6rem",
+    large: "2rem",
+    xLarge: "2.6rem",
+    xxLarge: "3rem"
   },
   mediaQuery: {
     xSmall: "320px",

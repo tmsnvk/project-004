@@ -3,14 +3,16 @@ const nodemailer = require('nodemailer');
 module.exports = (request, response) => {
   try {
     const output = `
-      <p>You have a new contact request</p>
-      <h3>Contact Details</h3>
-      <ul>  
-        <li>Name: ${request.body.userName}</li>
-        <li>Email: ${request.body.email}</li>
-      </ul>
-      <h3>Message</h3>
-      <p>${request.body.message}</p>
+      <main>
+        <h1>We have received a contact request message from this [${request.body.email}] email address.</h1>
+        <h2>Contact Details</h2>
+        <div>  
+          <p>Name: <span>${request.body.userName}</span></p>
+          <p>Email: <span>${request.body.email}</span></p>
+        </div>
+        <h2>Message</h2>
+        <p>${request.body.message}</p>
+      </main>
     `;
   
     let transporter = nodemailer.createTransport({
@@ -29,7 +31,7 @@ module.exports = (request, response) => {
     let mailOptions = {
         from: process.env.NODEMAILER_AUTH_USER,
         to: "evrallas@tamasnovak.net",
-        subject: "Contact Form Submission Notification",
+        subject: "Contact Form Submission Message",
         text: null,
         html: output
     };
@@ -42,7 +44,7 @@ module.exports = (request, response) => {
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     });
     
-    return response.json("DONE");
+    return response.json("The Tower librarians have archived your message in their Archives.");
   } catch (error) {
     return response.status(500).json({ error: error.message });
   }

@@ -33,7 +33,7 @@ const NameChangeForm = () => {
         setUserData({ token, user: response.data.username, id: response.data.id, createdAt: response.data.createdAt });
         history.push("/page/success");
       } catch (error) {
-        return setResponseError(error.message);
+        return setResponseError(error.response.data.message);
       }
     };
 

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
 import axios from "axios";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { LoadingSpinner } from "components/commoncomponents/general";
 import { Navbar, PrivateRoute } from "components/maincomponents";
 import { About, Achievements, AdventuresGameResultLose, AdventuresGameResultWin, AdventuresGameStart, AdventuresMainPage, AdventuresUnderConstruction, Home, PageNotFound, Register, Settings, SuccessfulUpdate, Terms } from "layouts";
@@ -99,7 +99,7 @@ const App = () => {
           <ScrollToTop />
           <Navbar />
           <Switch>
-            {initialGlobalStateLoader ? <LoadingSpinner message="The librarians are retriving the data from The Tower Archives..." /> : null}
+            {initialGlobalStateLoader ? <LoadingSpinner message="The librarians are retriving the requested data from The Tower Archives..." /> : null}
             <Route path="/page/home" component={Home} />
             <Route path="/page/register" component={Register} />
             <PrivateRoute exact path="/page/adventures" component={AdventuresMainPage} />

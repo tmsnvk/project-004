@@ -13,7 +13,6 @@ BACKEND
 + helmet               - securing express.
 + jsonwebtoken
 + mongoose
-+ mongodb
 
 FRONTEND
 + axios                - making api calls.
@@ -33,7 +32,11 @@ FRONTEND
 |- package-lock.json
 |- package.json
 |- readme.md
-|- screenshot.png
+|- screenshot_01.png
+|- screenshot_02.png
+|- screenshot_03.png
+|- screenshot_04.png
+|- screenshot_05.png
 |- server.js
 |- CLIENT
   |- .gitignore
@@ -180,6 +183,71 @@ FRONTEND
             |- index.js
             |- UserStatistics.js
         |- ADVENTURES
+          |- GAMELOST
+            |- index.js
+            |- PAGEINFORMATION
+              |- index.js
+              |- PageInformation.js
+              |- MESSAGE
+                |- index.js
+                |- Message.js
+              |- TITLE
+                |- index.js
+                |- Title.js
+          |- GAMEWON
+            |- index.js
+            |- PAGEINFORMATION
+              |- index.js
+              |- PageInformation.js
+              |- MESSAGE
+                |- index.js
+                |- Message.js
+              |- TITLE
+                |- index.js
+                |- Title.js
+          |- STORYPLAY
+            |- index.js
+            |- GAMEMAINPAGE
+              |- index.js
+              |- GameMainPage.js
+              |- LISTEVENTACHIEVEMENT
+                |- index.js
+                |- ListEventAchievement.js
+              |- LISTEVENTCHOICES
+                |- index.js
+                |- ListEventChoices.js
+              |- LISTEVENTPARAGRAPHS
+                |- index.js
+                |- ListEventParagraphs.js
+              |- PAGEINFORMATION
+                |- index.js
+                |- PageInformation.js
+                |- MESSAGE
+                  |- index.js
+                  |- Message.js
+                |- TITLE
+                  |- index.js
+                  |- Title.js
+          |- STORYSELECTION
+            |- index.js
+            |- ADVENTURETILECONTAINER
+              |- AdventureTileContainer.js
+              |- index.js
+              |- DISPLAYEDSTORIES
+                |- DisplayedStories.js
+                |- index.js
+                |- STORYTILE
+                  |- index.js
+                  |- StoryTile.js
+              |- PAGEINFORMATION
+                |- index.js
+                |- PageInformation.js
+                |- MESSAGE
+                  |- index.js
+                  |- Message.js
+                |- TITLE
+                  |- index.js
+                  |- Title.js
         |- HOME
           |- index.js
           |- LOGGEDINTEXT
@@ -191,6 +259,17 @@ FRONTEND
           |- LOGINFORM
             |- index.js
             |- LoginForm.js
+          |- PAGEINFORMATION
+            |- index.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
+        |- PAGENOTFOUND
+          |- index.js
           |- PAGEINFORMATION
             |- index.js
             |- PageInformation.js
@@ -249,6 +328,28 @@ FRONTEND
             |- TITLE
               |- index.js
               |- Title.js
+        |- SUCCESSFULUPDATE
+          |- index.js
+          |- PAGEINFORMATION
+            |- index.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
+        |- TERMS
+          |- index.js
+          |- PAGEINFORMATION
+            |- index.js
+            |- PageInformation.js
+            |- MESSAGE
+              |- index.js
+              |- Message.js
+            |- TITLE
+              |- index.js
+              |- Title.js
         |- UNDERCONSTRUCTION
           |- index.js
           |- PAGEINFORMATION
@@ -278,13 +379,13 @@ FRONTEND
       |- AdventuresGameResultWin.js
       |- AdventuresGameStart.js
       |- AdventuresMainPage.js
+      |- AdventuresUnderConstruction.js
       |- Home.js
       |- index.js
       |- PageNotFound.js
       |- Register.js
       |- Settings.js
       |- SuccessfulUpdate.js
-      |- UnderConstruction.js
       |- Terms.js
     |- UTILITIES
       |- index.js
@@ -298,21 +399,22 @@ FRONTEND
         |- index.js
         |- scrollToTop.js
       |- STORIES
-        |- arcOneStoryOne.json
-        |- index.js
+        |- a1s1.json
+        |- tutorial01.json
+        |- tutorial02.json
+        |- tutorial03.json
       |- THEME
         |- colorTheme.js
         |- index.js
         |- propertyTheme.js
 |- MIDDLEWARE
-  |- auth.js
+  |- authorization.js
 |- MODELS
   |- userModel.js
-|- MONGODB
-  |- database.js
 |- ROUTES
   |- ACHIEVEMENT
     |- counter-death.js
+    |- counter-finish.js
     |- counter-start.js
     |- index.js
     |- showcase.js

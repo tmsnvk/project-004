@@ -9,11 +9,11 @@ const ComponentContainer = styled.div`
 const Paragraph = styled.p`
   padding: 1rem 0 1rem 0;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-size: ${({ theme }) => theme.fontSize.small};
-  font-weight: bolder;
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-weight: 500;
 
   &::first-letter {
-    font-size: ${({ theme }) => theme.fontSize.xxLarge};
+    font-size: ${({ theme }) => theme.fontSize.xLarge};
   }
 `;
 

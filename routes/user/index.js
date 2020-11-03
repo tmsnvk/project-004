@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../../middleware/auth");
+const authorization = require("../../middleware/authorization");
 
-router.get("/", auth, require("./root"));
+router.get("/", authorization, require("./root"));
 router.get("/theme-get", require("./theme-get"));
 router.post("/theme-set", require("./theme-set"));
 router.post("/register", require("./register"));
@@ -10,6 +10,6 @@ router.post("/login", require("./login"));
 router.post("/token-validity", require("./token-validity"));
 router.put("/change-name", require("./change-name"));
 router.put("/change-password", require("./change-password"));
-router.delete("/delete", auth, require("./delete"));
+router.delete("/delete", authorization, require("./delete"));
 
 module.exports = router;

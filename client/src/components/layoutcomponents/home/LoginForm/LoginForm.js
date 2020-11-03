@@ -51,7 +51,7 @@ const LoginForm = () => {
         const achievementResponse = await axios.get("/achievement/store", { params: { _id: userResponse.data.user.id }});
         setGameData({ gameStart: achievementResponse.data.gameStart, gameFinish: achievementResponse.data.gameFinish, gameDeath: achievementResponse.data.gameDeath });
       } catch (error) {
-        return setResponseError(error.message);
+        return setResponseError(error.response.data.message);
       }
     };
 

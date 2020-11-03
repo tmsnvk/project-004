@@ -5,7 +5,7 @@ module.exports = async (request, response) => {
     const { id, savedId, storyId } = request.body;
 
     await userSchema.updateOne({ _id: id, "savedGames.name": storyId }, { "$set": { "savedGames.$.savedId": savedId }});
-    return response.json("The Tower librarians have updated your save game data in their Archives.");
+    return response.json("The Tower librarians have updated their Archives with your data input.");
   } catch (error) {
     return response.status(500).json({ error: error.message });
   }

@@ -1,0 +1,327 @@
+[
+  {
+    "_id": "tutorial03",
+    "tutorial03": {
+      "ID0001": {
+        "paragraphs": [
+          {
+            "text": "The loud knocking on the door snaps you out of your daydreaming."
+          },
+          {
+            "text": "Another day wasted because of your night-out and you are not even so sure anymore that your aim is to change the world."
+          },
+          {
+            "text": "The knocking won't stop."
+          }
+        ],
+        "options": [
+          {
+            "text": "Let them knock a little bit longer.",
+            "nextEventId": "ID0002",
+            "visible": true
+          },
+          {
+            "text": "Answer the door.",
+            "nextEventId": "ID0003",
+            "visible": true
+          }
+        ]
+      },
+      "ID0002": {
+        "paragraphs": [
+          {
+            "text": "You look around your room - dirty clothes thrown about, leftovers on the table and mess in every corner."
+          },
+          {
+            "text": "Not long ago you had everything a moderately comfortable life could offer. That was a last chance gift from your Uncle Roman - a job in his factory, this clean and dry room in his boarding house. At least you weren't kicked out of the room, yet."
+          },
+          {
+            "text": "The knocking now paired up with muffled noises still didn't stop."
+          }
+        ],
+        "options": [
+          {
+            "text": "Let them knock a little bit longer.",
+            "nextEventId": "ID0004",
+            "visible": true
+          },
+          {
+            "text": "Answer the door.",
+            "nextEventId": "ID0003",
+            "visible": true
+          }
+        ]
+      },
+      "ID0004": {
+        "paragraphs": [
+          {
+            "text": "But a job in your uncle's small workshop didn't seem to hold your interest for too long, though taking you in after your family's death should have been cherished. Not many get a chance to start again."
+          },
+          {
+            "text": "Then one night you met that Neil and his ideas of a revolution. That it was time for the rule of peasants and workers. Hah! As if peasants knew anything about ruling and leading people - was your first reaction but since then you have been swaying back and forth. Many have been actually content with how things were going lately in the Empire but he managed to gather a group of followers here in Hillford. Plus, he always reminded everyone around him that others have been doing the same in other cities in the Tarpont Hills region. From there it's just a matter of time to revolt everywhere in the Eastern Fief, he always says."
+          },
+          {
+            "text": "The knocking became turned into a banging and you were sure it won't stop unless you open the door."
+          }
+        ],
+        "options": [
+          {
+            "text": "Answer the door.",
+            "nextEventId": "ID0005",
+            "visible": true
+          }
+        ]
+      },
+      "ID0005": {
+        "paragraphs": [
+          {
+            "text": "And with that three men entered your room. 'Finally, Will! What has gotten into you? Why wouldn't you let us in?'"
+          },
+          {
+            "text": "'I was thinking whether I should, Reece. I'm not so sure about this whole thing anymore.'"
+          },
+          {
+            "text": "'Don't be silly! Come on, it's almost time for the Marshall to start tonight's speech. A free mug of ale and a plate of good food will do you good. We need you!'"
+          }
+        ],
+        "options": [
+          {
+            "text": "Agree to go with them.",
+            "nextEventId": "ID0006",
+            "visible": true
+          },
+          {
+            "text": "Refuse to go.",
+            "nextEventId": "ID0007",
+            "visible": true
+          }
+        ],
+        "achievement": {
+          "id": "ID0005",
+          "title": "You made them bang at your door.",
+          "stateCode": "achievementsTutorial02.waitBang.state",
+          "timestampCode": "achievementsTutorial02.waitBang.date"
+        }
+      },
+      "ID0006": {
+        "paragraphs": [
+          {
+            "text": "Ah yes, these days Neil preferred to be called the Marshall. His people liked the sound of it."
+          },
+          {
+            "text": "'You mean Neil needs me because of my uncle's workshop.'"
+          },
+          {
+            "text": "'The Marshall needs everyone,' Reece replied in a serious tone."
+          }
+        ],
+        "options": [
+          {
+            "text": "Leave through the backyard.",
+            "nextEventId": "ID0008",
+            "visible": true
+          },
+          {
+            "text": "Leave through the front door.",
+            "nextEventId": "ID0009",
+            "visible": true
+          }
+        ]
+      },
+      "ID0008": {
+        "paragraphs": [
+          {
+            "text": "'Great,' you said refusing to believe it. 'At least let's leave through the backyard, so Millie won't see that I'm going out tonight as well."
+          },
+          {
+            "text": "'Haha, you lead the way, chicken!' laughed Reece with his two acquaintances."
+          }
+        ],
+        "options": [
+          {
+            "text": "You make your way to The Alabaster Inn.",
+            "nextEventId": "ID017",
+            "visible": true
+          }
+        ]
+      },
+      "ID0009": {
+        "paragraphs": [
+          {
+            "text": "Will led the little group down the stairs and through the front hall. Millie immediately stepped in front of your group. 'Are you going to that filthy pub again, Will? I thought you had more brain than that. Your uncle has been looking for you and you owe me rent.'"
+          },
+          {
+            "text": "'Do not worry, Mrs. Wells,' said Reece. 'Will has an extremely important task to do this evening. I promise I'll deliver him home safe and sound.'"
+          },
+          {
+            "text": "'Reece, you pig, get out of my house! I'll talk with your uncle tonight, Will. We'll get your things straighten out, don't you worry, my boy.'"
+          },
+          {
+            "text": "'I promise I'll get home soon, Millie. Tomorrow morning I'm going to talk with my uncle. I promise,' you said while Reece was already opening the door for you to leave."
+          }
+        ],
+        "options": [
+          {
+            "text": "You make your way to The Alabaster Inn.",
+            "nextEventId": "ID0017",
+            "visible": true
+          }
+        ]
+      },
+      "ID0003": {
+        "paragraphs": [
+          {
+            "text": "And with that three men entered your room. 'Finally, Will!'"
+          },
+          {
+            "text": "'I'm not so sure about going tonight, Reece.'"
+          },
+          {
+            "text": "'Don't be silly! Come on, we can't be late for the big speech, you know how the Marshall is. He has been preparing for this night for weeks. Come on, a free mug of ale and a plate of good food will do you good. We need you!'"
+          }
+        ],
+        "options": [
+          {
+            "text": "Agree to go with them.",
+            "nextEventId": "ID0006",
+            "visible": true
+          },
+          {
+            "text": "Refuse to go.",
+            "nextEventId": "ID0007",
+            "visible": true
+          }
+        ]
+      },
+      "ID007": {
+        "paragraphs": [
+          {
+            "text": "Ah yes, these days Neil preferred to be called the Marshall. His people liked the sound of it."
+          },
+          {
+            "text": "'I'm not sure about going out tonight, Reece. I understand that Neil needs me because of my uncle's workshop but if I don't fix my matters with my uncle I won't have anything soon. I think tonight I'll stay in and pay him a visit early in the morning.'"
+          },
+          {
+            "text": "'Don't be stupid, Will,' Reece replied and signalled with his hand to his two buddies. They grabbed Will from both sides and started walking him out of his room."
+          },
+          {
+            "text": "'Help us out now and I'm confident the Marshall will make sure that you're running your uncle's workshop,' said Reece with a sly smile on his face."
+          }
+        ],
+        "options": [
+          {
+            "text": "Leave through the front door.",
+            "nextEventId": "ID0010",
+            "visible": true
+          }
+        ]
+      },
+      "ID0011": {
+        "paragraphs": [
+          {
+            "text": "Reece's friends carry you down the steps and through the front hall. Millie immediately steps in front of your group. 'Are you going to that filthy pub again, Will? I thought you had more brain than that. Your uncle has been looking for you and you owe me rent.'"
+          },
+          {
+            "text": "'Do not worry, Mrs. Wells,' said Reece. 'Will has an extremely important task to do this evening. I promise I'll deliver him home safe and sound.'"
+          },
+          {
+            "text": "'Reece, you pig, get out of my house! I'll talk with your uncle tonight, Will. We'll get your things straighten out, don't you worry, my boy.'"
+          },
+          {
+            "text": "'Thank you, Mrs. Wells. Have a great evening, Mrs. Wells,' replied Reece while opened the front door for his little group to leave."
+          }
+        ],
+        "options": [
+          {
+            "text": "You make your way to The Alabaster Inn.",
+            "nextEventId": "ID0017",
+            "visible": true
+          }
+        ]
+      },
+      "ID0017": {
+        "paragraphs": [
+          {
+            "text": "You sit uncomfortable at one of tables in The Alabaster Inn. The crowd is bigger than ever before and most of them already seemed to have finished a few mugs already. It seems that Neil has been able to convince more and more people to join his cause. You wonder if this crowd is going to attract the city guard."
+          },
+          {
+            "text": "Deep in your thoughts, you barely make out what Neil is talking about - social change, power to the people, justice. You grimace at hearing those words. The Empire is richer than ever. Not counting the Greenskins in the northern mountains we have been at peace for generations. Every last peasant has more than enough to offer for his family. What's there to change?"
+          },
+          {
+            "text": "Coming out of your reverie, you realise that it's not a game anymore. You start to feel that this is the point of no return. Support Neil and his cause or stand against it."
+          }
+        ],
+        "options": [
+          {
+            "text": "Support Neil.",
+            "nextEventId": "ID0018",
+            "visible": true
+          },
+          {
+            "text": "Stand against Neil.",
+            "nextEventId": "ID0019",
+            "visible": true
+          }
+        ]
+      },
+      "ID0018": {
+        "paragraphs": [
+          {
+            "text": "You decide to mingle in the crowd and have one too many mugs of ale. Neil's ideas start to make more and more sense as the evening progresses."
+          },
+          {
+            "text": "Suddenly you realise that everyone became silent and there's a wide open area around the tavern's entrance. There, a group of city guards announce that the tavern has been surrounded and it's time to go home and sleep out this nonsense."
+          },
+          {
+            "text": "Some of your comrades aren't swayed by their words and are drunk enough to decide to attack the guards. They are slain on the spot as more guards pour into the tavern."
+          },
+          {
+            "text": "Those that didn't resist are locked behind bars. Your only hope is that your uncle is going to get you out."
+          }
+        ],
+        "options": [
+          {
+            "text": "Finish the story.",
+            "nextEventId": "GAMEWON",
+            "visible": true
+          }
+        ],
+        "achievement": {
+          "id": "ID0018",
+          "title": "Finished the tutorial mini-story.",
+          "stateCode": "achievementsTutorial02.tutorialFinished.state",
+          "timestampCode": "achievementsTutorial02.tutorialFinished.date"
+        }
+      },
+      "ID0019": {
+        "paragraphs": [
+          {
+            "text": "You decide to mingle in the crowd and try to convince some of the people that Neil's idea doesn't worth it."
+          },
+          {
+            "text": "You aren't surprised that no one listens to you. When they are fed up with you, Neil orders two of them to grab and throw you out. When they push you towards the entrance, a group of city guards enter the tavern. They announce that the tavern has been surrounded and it's time to go home and sleep out this nonsense."
+          },
+          {
+            "text": "Some of your comrades aren't swayed by their words and are drunk enough to decide to attack the guards. They are slain on the spot as more guards pour into the tavern."
+          },
+          {
+            "text": "Those that didn't resist are locked behind bars. Your only hope is that your uncle is going to get you out."
+          }
+        ],
+        "options": [
+          {
+            "text": "Finish the story.",
+            "nextEventId": "GAMEWON",
+            "visible": true
+          }
+        ],
+        "achievement": {
+          "id": "ID0019",
+          "title": "Finished the tutorial mini-story.",
+          "stateCode": "achievementsTutorial02.tutorialFinished.state",
+          "timestampCode": "achievementsTutorial02.tutorialFinished.date"
+        }
+      }
+    }
+  }
+]

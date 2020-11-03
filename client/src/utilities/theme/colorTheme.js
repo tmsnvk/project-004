@@ -44,23 +44,3 @@ const colorTheme = {
 };
 
 export default colorTheme;
-
-// main - text color
-// secondaryDark - body background
-// secondaryLight - navbar background+tile border
-// alternate - link color
-// warning
-
-// Background	Darkest	#2d2d2d
-// Comment	Medium	#777c85
-// Foreground	Light	#b3b9c5
-// Function	Lightest	#ffffff
-// Variable	Red	#f2777a
-// Number	Orange	#fca369
-// Attribute	Yellow	#ffd479
-// Keyword	Light Yellow	#ffeea6
-// String	Green	#92d192
-// Class/Tag	Blue	#6AB0F3
-// Constant/Pseudo	Aqua	#76d4d6
-// Support	Purple	#e1a6f2
-// Operator	Beige	#ac8d58
