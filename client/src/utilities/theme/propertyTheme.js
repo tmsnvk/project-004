@@ -1,7 +1,7 @@
 const propertyTheme = {
   fontFamily: {
     main: `"Roboto", sans-serif`,
-    secondary: "Montserrat"
+    secondary: `"Montserrat", sans-serif`
   },
   fontSize: {
     default: "1rem",

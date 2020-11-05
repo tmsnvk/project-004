@@ -9,6 +9,7 @@ const ComponentContainer = styled(TileButton)`
   flex-direction: row;
   font-weight: bold;
   align-items: center;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
 
   &:hover {
     background-color: ${({ isAvailable }) => isAvailable === "true" ? ({ theme }) => theme.main : ({ theme }) => theme.warning};

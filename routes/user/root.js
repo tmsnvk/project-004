@@ -2,8 +2,10 @@ const userSchema = require("../../models/userModel");
 
 module.exports = async (request, response) => {
   try {
-    const user = await userSchema.findById(request.user);
-    return response.json({ username: user.username, id: user._id, createdAt: user.createdAt });
+    const userIdCookie = request.cookies.userId;
+
+    const getUser = await userSchema.findById(userIdCookie);
+    return response.json({ username: getUser.username, createdAt: getUser.createdAt });
   } catch (error) {
     return response.status(500).json({ error: error.message });
   }

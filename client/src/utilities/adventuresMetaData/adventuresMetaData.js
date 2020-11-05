@@ -7,7 +7,7 @@ const adventuresMetaData = [
     arcIcon: iconList.chessPawn,
     storyOne: { title: "Tutorial", link: "tutorial01", arc: "zero", code: "a0s1", isAvailable: "true" },
     storyTwo: { title: "Will's Dilemma", link: "tutorial02", arc: "zero", code: "a0s2", isAvailable: "true" },
-    storyThree: { title: "Rosie's Escape", link: "tutorial03", arc: "zero", code: "a0s3", isAvailable: "true" }
+    storyThree: { title: "Rosie's Escape", link: "tutorial03", arc: "zero", code: "a0s3", isAvailable: "false" }
   },
   {
     id: 1,

@@ -28,11 +28,10 @@ const AchievementsDisplay = () => {
   useEffect(() => {
     setDisplayStoryTiles([adventuresMetaData[displayArcTiles]]);
   }, [displayArcTiles]);
-  
+
   useEffect(() => {
     const getAchievements = () => {
       if (dataSet.arc === undefined) return;
-      const id = localStorage.getItem("auth-id");
       const storyCode = ["a0s1", "a0s2", "a0s3", "a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
 
       try {
@@ -40,10 +39,10 @@ const AchievementsDisplay = () => {
         setInterval(() => setElapsedLoadingTime(prevElapsedLoadingTime => prevElapsedLoadingTime + incrementTime));
         storyCode.forEach(async (element) => {
           if (dataSet.code === element) {
-            const response = await axios.get(`/achievement/showcase/${element}`, { params: { _id: id }});
+            const response = await axios.get(`/achievement/showcase/${element}`);
             setDisplayAchievements(Object.entries(response.data));
             setLoadingSpinner(false);
-            // window.scrollTo({ top: 1000, left: 0, behavior: "smooth" });
+            window.scrollTo({ top: 1000, left: 0, behavior: "smooth" });
           }
         });
       } catch (error) {

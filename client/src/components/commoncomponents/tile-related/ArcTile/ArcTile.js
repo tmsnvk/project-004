@@ -8,6 +8,7 @@ const ArcTile = styled(TileButton)`
   align-items: center;
   background-color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.main : ({ theme }) => theme.secondaryDark};
   color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.secondaryDark : ({ theme }) => theme.main};
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
 
   ${IconLight} {
     color: ${({ isHighlighted }) => isHighlighted ? ({ theme }) => theme.secondaryDark : ({ theme }) => theme.main};

@@ -45,7 +45,7 @@ const Obtained = styled(TileContainer)`
   color: ${({ theme }) => theme.secondaryDark};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-weight: bolder;
-  padding: 1rem 0 1rem 1rem;
+  padding: 1rem 1rem 1rem 1rem;
 
   &:hover {
     transform: scale(1.05);

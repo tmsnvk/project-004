@@ -16,11 +16,10 @@ const ResetAchievementsForm = () => {
     if (!resetAchievements) return;
 
     const handleAccountDelete = async () => {
-      const id = localStorage.getItem("auth-id");
-
       try {
-        await axios.put("/achievement/reset", { id });
+        await axios.put("/achievement/reset");
         history.push("/page/success");
+        history.go();
       } catch (error) {
         console.log(error);
       }

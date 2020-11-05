@@ -37,7 +37,7 @@ const RegisterForm = () => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const [formData, setFormData] = useState({ username: undefined, password: undefined, passwordCheck: undefined });
-  const [responseError, setResponseError] = useState(undefined);
+  const [responseError, setResponseError] = useState({ message: undefined });
 
   const onSubmit = (data) => setFormData({ username: data.registerUsername, password: data.registerPassword, passwordCheck: data.registerPasswordCheck });
 
@@ -47,15 +47,11 @@ const RegisterForm = () => {
     const handleRegister = async () => {
       try {
         await axios.post("/user/register", formData);
-        const response = await axios.post("/user/login", formData);
-        setUserData({ token: response.data.token, user: response.data.user.username, id: response.data.user.id });
-
-        localStorage.setItem("auth-token", response.data.token);
-        localStorage.setItem("auth-name", response.data.user.username);
-        localStorage.setItem("auth-id", response.data.user.id);
+        await axios.post("/user/login", formData);
         history.push("/page/home");
+        history.go();
       } catch (error) {
-        return setResponseError(error.response.data.message);
+        return setResponseError({ message: error.response.data.message });
       }
     };
 
@@ -177,7 +173,7 @@ const RegisterForm = () => {
           {errors.registerPasswordCheck && <ErrorMessageWrapper>{errors.registerPasswordCheck.message}</ErrorMessageWrapper>}
         </FormWrapper>
         {formState.isSubmitting ? <LoadingSpinner message={"One of the Tower librarians is registering your credentials in their Archives, please wait."} /> : <Submit type="submit" value="register" />}
-        {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}
+        {responseError.message !== undefined ? <ErrorMessage>{responseError.message}</ErrorMessage> : null}
       </Form>
     </ComponentContainer>
   );

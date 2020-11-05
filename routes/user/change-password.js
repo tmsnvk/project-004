@@ -3,11 +3,12 @@ const userSchema = require("../../models/userModel");
 
 module.exports = async (request, response) => {
   try {
-    const { id, formData } = request.body;
+    const { formData } = request.body;
+    const userIdCookie = request.cookies.userId;
 
     if (!formData.currentPassword || !formData.newPassword || !formData.newPasswordCheck) return response.status(400).json({ message: "Enter all fields." });
 
-    const getUser = await userSchema.findById(id);
+    const getUser = await userSchema.findById(userIdCookie);
     const isMatch = await bcrypt.compare(formData.currentPassword, getUser.password);
     if (!isMatch) return response.status(400).json({ message: "Provide valid credentials." });
 

@@ -30,10 +30,9 @@ const ChangeTiles = () => {
   const lightColorThemes = [{ id: "lightYellow", name: "Light Yellow" }, { id: "lightBlue", name: "Light Blue" }, { id: "lightGreen", name: "Light Green" }];
 
   const handleColorChange = async (element) => {
-    const id = localStorage.getItem("auth-id");
 
     try {
-      await axios.post("/user/theme-set", { id, colorTheme: element.id });
+      await axios.post("/user/theme-set", { colorTheme: element.id });
       setUserColorTheme(element.id);
     } catch (error) {
       console.log(error);

@@ -18,16 +18,11 @@ const AccountDeleteForm = () => {
     if (!deleteAccount) return;
 
     const handleAccountDelete = async () => {
-      const id = localStorage.getItem("auth-id");
-      const token = localStorage.getItem("auth-token");
-
       try {
-        await axios.delete("/user/delete", { params: { id: id }, headers: {"x-auth-token": token }});
-        localStorage.setItem("auth-token", "");
-        localStorage.setItem("auth-name", "");
-        localStorage.setItem("auth-id", "");
-        setUserData({ token: undefined, user: undefined, id: undefined, createdAt: undefined });
+        await axios.delete("/user/delete");
+        setUserData({ user: undefined, createdAt: undefined });
         history.push("/page/home");
+        history.go();
       } catch (error) {
         console.log(error);
       }

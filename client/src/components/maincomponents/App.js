@@ -57,28 +57,21 @@ const App = () => {
 
   useEffect(() => {
     const handleLogin = async () => {
-      let token = localStorage.getItem("auth-token");
+      const tokenResponse = await axios.post("/user/token-validity");
 
-      if (token === null) {
-        localStorage.setItem("auth-token", "");
-        token = "";
-      }
-
-      if (token === "") return;
-
-      if (token !== "") setInitialGlobalStateLoader(true);
-
-      const tokenResponse = await axios.post("/user/token-validity", null, { headers: {"x-auth-token": token }});
-
-      if (tokenResponse.data.message.status) {
+      if (!tokenResponse.data.message.status) {
+        return null;
+      } else {
         try {
-          const userResponse = await axios.get("/user", { headers: { "x-auth-token": token }});
-          setUserData({ token, user: userResponse.data.username, id: userResponse.data.id, createdAt: userResponse.data.createdAt });
+          setInitialGlobalStateLoader(true);
 
-          const achievementResponse = await axios.get("/achievement/store", { params: { _id: userResponse.data.id }});
+          const userResponse = await axios.get("/user");
+          setUserData({ user: userResponse.data.username, createdAt: userResponse.data.createdAt });
+
+          const achievementResponse = await axios.get("/achievement/store");
           setGameData({ gameStart: achievementResponse.data.gameStart, gameFinish: achievementResponse.data.gameFinish, gameDeath: achievementResponse.data.gameDeath });
 
-          const themeResponse = await axios.get("/user/theme-get", { params: { _id: userResponse.data.id }});
+          const themeResponse = await axios.get("/user/theme-get");
           setUserColorTheme(themeResponse.data);
 
           setInitialGlobalStateLoader(false);

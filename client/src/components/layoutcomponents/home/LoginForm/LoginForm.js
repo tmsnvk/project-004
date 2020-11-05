@@ -31,7 +31,7 @@ const LoginForm = () => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const [formData, setFormData] = useState({ username: undefined, password: undefined });
-  const [responseError, setResponseError] = useState(undefined);
+  const [responseError, setResponseError] = useState({ message: undefined });
 
   const onSubmit = (data) =>  setFormData({ username: data.loginUsername, password: data.loginPassword });
 
@@ -41,17 +41,13 @@ const LoginForm = () => {
     const handleLogin = async () => {
       try {
         const userResponse = await axios.post("/user/login", formData);
-        setUserData({ token: userResponse.data.token, user: userResponse.data.user.username, id: userResponse.data.user.id, createdAt: userResponse.data.user.createdAt });
-        setUserColorTheme(userResponse.data.user.colorTheme);
+        setUserData({ user: userResponse.data.username, createdAt: userResponse.data.createdAt });
+        setUserColorTheme(userResponse.data.colorTheme);
 
-        localStorage.setItem("auth-token", userResponse.data.token);
-        localStorage.setItem("auth-name", userResponse.data.user.username);
-        localStorage.setItem("auth-id", userResponse.data.user.id);
-
-        const achievementResponse = await axios.get("/achievement/store", { params: { _id: userResponse.data.user.id }});
+        const achievementResponse = await axios.get("/achievement/store");
         setGameData({ gameStart: achievementResponse.data.gameStart, gameFinish: achievementResponse.data.gameFinish, gameDeath: achievementResponse.data.gameDeath });
       } catch (error) {
-        return setResponseError(error.response.data.message);
+        return setResponseError({ message: error.response.data.message });
       }
     };
 
@@ -103,7 +99,7 @@ const LoginForm = () => {
           </InputHelperWrapper>
         </FormWrapper>
         {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is checking your credentials in our Archives, please wait."} /> : <Submit type="submit" value="log in" />}
-        {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}
+        {responseError.message !== undefined ? <ErrorMessage>{responseError.message}</ErrorMessage> : null}
       </Form>
     </ComponentContainer>
   );

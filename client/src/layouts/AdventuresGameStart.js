@@ -47,8 +47,6 @@ const AdventuresGameStart = () => {
     chosenStoryId = "tutorial01"
   } else if (storyTitle.includes("tutorial02")) {
     chosenStoryId = "tutorial02"
-  } else if (storyTitle.includes("tutorial03")) {
-    chosenStoryId = "tutorial03"
   } else {
     return <Redirect to={"/page/adventures/underconstruction"} />;
   }

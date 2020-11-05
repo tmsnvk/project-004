@@ -24,14 +24,12 @@ const NameChangeForm = () => {
     if (formData.changedName === undefined) return;
 
     const handleNameChange = async () => {
-      const id = localStorage.getItem("auth-id");
-      const token = localStorage.getItem("auth-token");
-
       try {
-        await axios.put("/user/change-name", { id, formData });
-        const response = await axios.get("/user", { headers: { "x-auth-token": token }});
-        setUserData({ token, user: response.data.username, id: response.data.id, createdAt: response.data.createdAt });
+        await axios.put("/user/change-name", { formData });
+        const response = await axios.get("/user");
+        setUserData({ user: response.data.username, createdAt: response.data.createdAt });
         history.push("/page/success");
+        history.go();
       } catch (error) {
         return setResponseError(error.response.data.message);
       }

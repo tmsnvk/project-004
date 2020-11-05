@@ -57,16 +57,13 @@ const Navbar = () => {
   const { userData, setUserData, setUserColorTheme } = useContext(UserContext);
 
   const handleLogout = () => {
-    setUserData({ token: undefined, user: undefined, id: undefined });
+    setUserData({ user: undefined, id: undefined });
     setUserColorTheme("darkYellow");
-    localStorage.setItem("auth-token", "");
-    localStorage.setItem("auth-name", "");
-    localStorage.setItem("auth-id", "");
   };
 
   return (
     <ComponentContainer>
-      {userData.token ?
+      {userData.user ?
       <>
         <NavbarLinks to="/page/home"><IconLight icon={iconList.toriiGate}></IconLight>Home</NavbarLinks>
         <NavbarLinks to="/page/adventures"><IconLight icon={iconList.mapSigns}></IconLight>Adventures</NavbarLinks>
