@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const userSchema = require("../../models/userModel");
+const createToken = require("../../utilities/helpers/createToken");
+const maxAge = require("../../utilities/helpers/maxAge");
 
 module.exports = async (request, response) => {
   try {
@@ -14,8 +15,7 @@ module.exports = async (request, response) => {
     const isMatch = await bcrypt.compare(password, getUser.password);
     if (!isMatch) return response.status(400).json({ message: "Provide valid credentials." });
 
-    const maxAge = 2 * 24 * 60 * 60 * 1000;
-    const token = jwt.sign({ id: getUser._id }, process.env.JWT_SECRET, { expiresIn: maxAge });
+    const token = createToken(getUser._id);
 
     response.cookie("jwt", token, { httpOnly: true, maxAge: maxAge });
     response.cookie("userId", getUser._id, { httpOnly: true, maxAge: maxAge });

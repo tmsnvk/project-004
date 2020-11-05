@@ -6,7 +6,7 @@ module.exports = async (request, response) => {
 
     const getUser = await userSchema.findById(userIdCookie);
     const storyCode = ["a0s1", "a0s2", "a0s3", "a1s1", "a1s2", "a2s1", "a3s1", "a4s1"];
-  
+
     if (request.url.includes(storyCode[0])) {
       return response.json(getUser.achievementsTutorial01);
     } else if (request.url.includes(storyCode[1])) {

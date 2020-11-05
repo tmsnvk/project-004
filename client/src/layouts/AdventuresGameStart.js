@@ -17,28 +17,26 @@ const AdventuresGameStart = () => {
   const [firstEventId, setFirstEventId] = useState(undefined);
   const [isGameSaved, setIsGameSaved] = useState(false);
 
-  const id = localStorage.getItem("auth-id");
-
   let chosenStoryId;
 
   useEffect(() => {
     const isGameSaved = async () => {
-      const response = await axios.get("/adventure/savedgameid-get", { params: { id: id, chosenStoryId: chosenStoryId }});
+      const response = await axios.get("/adventure/savedgameid-get", { params: { chosenStoryId: chosenStoryId }});
       if (response.data !== "ID0001") setIsGameSaved(true);
     };
 
     isGameSaved();
     return () => setIsGameSaved(false);
-  }, [chosenStoryId, id, setIsGameSaved]);
+  }, [chosenStoryId, setIsGameSaved]);
 
   const startNewStory = async () => {
-    await axios.put("/achievement/counter-start", { id });
+    await axios.put("/achievement/counter", { type: "numberOfGameStarts" });
     setFirstEventId("ID0001");
     setStart(true);
   };
 
   const startSavedStory = async () => {
-    const response = await axios.get("/adventure/savedgameid-get", { params: { id: id, chosenStoryId: chosenStoryId }});
+    const response = await axios.get("/adventure/savedgameid-get", { params: { chosenStoryId: chosenStoryId }});
     setFirstEventId(response.data);
     setStart(true);
   };

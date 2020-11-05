@@ -1,17 +1,16 @@
 const nodemailer = require('nodemailer');
+const { regexEmail, regexUsername } = require("../../utilities/helpers/regex");
 
 module.exports = (request, response) => {
   try {
     const { username, email, message } = request.body;
-    const regexpUsername = /^[A-Za-z0-9 ]+$/i;
-    const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!username || !email || !message) return response.status(400).json({ message: "Please fill out all fields!" });
 
-    if (!username.match(regexpUsername)) return response.status(400).json({ message: "Use only letters and numbers." });
+    if (!username.match(regexUsername)) return response.status(400).json({ message: "Use only letters and numbers." });
     if (username.length < 5 || username.length > 20) return response.status(400).json({ message: "NAME is required - use only letters and numbers; minimum 5, maximum 20 characters long." });
 
-    if (!email.match(regexpEmail)) return response.status(400).json({ message: "Provide a valid EMAIL." });
+    if (!email.match(regexEmail)) return response.status(400).json({ message: "Provide a valid EMAIL." });
 
     if (message.length > 500) return response.status(400).json({ message: "MESSAGE is required." });
 

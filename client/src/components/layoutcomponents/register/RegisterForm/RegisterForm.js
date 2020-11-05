@@ -51,7 +51,7 @@ const RegisterForm = () => {
         history.push("/page/home");
         history.go();
       } catch (error) {
-        return setResponseError({ message: error.response.data.message });
+        return setResponseError({ message: error.response.data?.message });
       }
     };
 

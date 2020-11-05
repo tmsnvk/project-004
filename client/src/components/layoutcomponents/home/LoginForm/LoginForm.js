@@ -47,7 +47,7 @@ const LoginForm = () => {
         const achievementResponse = await axios.get("/achievement/store");
         setGameData({ gameStart: achievementResponse.data.gameStart, gameFinish: achievementResponse.data.gameFinish, gameDeath: achievementResponse.data.gameDeath });
       } catch (error) {
-        return setResponseError({ message: error.response.data.message });
+        return setResponseError({ message: error.response.data?.message });
       }
     };
 

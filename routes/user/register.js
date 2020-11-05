@@ -1,14 +1,14 @@
 const bcrypt = require("bcryptjs");
 const userSchema = require("../../models/userModel");
+const regexUsername = require("../../utilities/helpers/regex");
 
 module.exports = async (request, response) => {
   try {
     const { username, password, passwordCheck } = request.body;
-    const regexpUsername = /^[A-Za-z0-9 ]+$/i;
 
     if (!username || !password || !passwordCheck) return response.status(400).json({ message: "Please fill out all fields!" });
 
-    if (!username.match(regexpUsername)) return response.status(400).json({ message: "Use only letters and numbers." });
+    if (!username.match(regexUsername)) return response.status(400).json({ message: "Use only letters and numbers." });
     if (username.length < 5 || username.length > 12) return response.status(400).json({ message: "USERNAME is required - use only letters and numbers; minimum 5, maximum 12 characters long." });
 
     if (password.length < 6|| username.length > 15) return response.status(400).json({ message: "PASSWORD is required; minimum 6, maximum 15 characters long." });

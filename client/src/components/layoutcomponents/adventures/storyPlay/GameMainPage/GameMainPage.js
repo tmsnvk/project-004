@@ -77,7 +77,7 @@ const GameMainPage = ({ storyId, firstEventId }) => {
     const triggerGameWin = async (nextPathId) => {
       if ((nextPathId) === "GAMEWON") {
         await axios.put("/adventure/savedgameid-set", { savedId: "ID0001", storyId });
-        await axios.put("/achievement/counter-finish");
+        await axios.put("/achievement/counter", { type: "numberOfGameFinishes" });
         const response = await axios.get("/achievement/store");
         setGameData({ gameStart: response.data.gameStart, gameFinish: response.data.gameFinish, gameDeath: response.data.gameDeath });
 
@@ -92,7 +92,7 @@ const GameMainPage = ({ storyId, firstEventId }) => {
     const triggerGameOver = async (nextPathId) => {
       if ((nextPathId) === "GAMEOVER") {
         await axios.put("/adventure/savedgameid-set", { savedId: "ID0001", storyId });
-        await axios.put("/achievement/counter-death");
+        await axios.put("/achievement/counter", { type: "numberOfDeaths" });
         const response = await axios.get("/achievement/store");
         setGameData({ gameStart: response.data.gameStart, gameFinish: response.data.gameFinish, gameDeath: response.data.gameDeath });
 
