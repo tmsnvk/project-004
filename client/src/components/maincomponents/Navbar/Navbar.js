@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "context/UserContext";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 import { IconLight } from "components/commoncomponents/styled-icons";
 import { iconList } from "utilities";
@@ -56,9 +57,14 @@ const NavbarLinks = styled(Link)`
 const Navbar = () => {
   const { userData, setUserData, setUserColorTheme } = useContext(UserContext);
 
-  const handleLogout = () => {
-    setUserData({ user: undefined, id: undefined });
-    setUserColorTheme("darkYellow");
+  const handleLogout = async () => {
+    try {
+      await axios.post("/user/logout");
+      setUserData({ user: undefined, id: undefined });
+      setUserColorTheme("darkYellow");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

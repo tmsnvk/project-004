@@ -14,7 +14,6 @@ const PasswordChangeForm = () => {
   const [isInputPasswordCurrentInFocus, setIsInputPasswordCurrentInFocus] = useState(false);
   const [isInputPasswordInFocus, setIsInputPasswordInFocus] = useState(false);
   const [isInputPasswordCheckInFocus, setIsInputPasswordCheckInFocus] = useState(false);
-
   const [passwordCharacterCounter, setPasswordCharacterCounter] = useState(0);
 
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
@@ -127,7 +126,7 @@ const PasswordChangeForm = () => {
           />
           {errors.changePasswordCheck && <ErrorMessageWrapper>{errors.changePasswordCheck.message}</ErrorMessageWrapper>}
         </FormWrapper>
-        {formState.isSubmitting ? <LoadingSpinner message={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="change" />}
+        {formState.isSubmitting ? <LoadingSpinner message={"The Tower librarians are registering your request in their Archives, please wait."} /> : <Submit type="submit" value="change" />}
         {responseError ? <ErrorMessage>{responseError}</ErrorMessage> : null}
       </Form>
     </>

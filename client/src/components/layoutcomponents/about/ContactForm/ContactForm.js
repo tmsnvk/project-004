@@ -53,7 +53,7 @@ const ContactForm = () => {
     };
 
     handleFormSubmission();
-    return () => setFormData({ userName: undefined, email: undefined, message: undefined });
+    return () => setFormData({ username: undefined, email: undefined, message: undefined });
   }, [formData, setUserData, history]);
 
   const focusInputName = () => setIsInputNameInFocus(true);

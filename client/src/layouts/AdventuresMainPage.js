@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { LayoutContainer } from "components/commoncomponents/general";
 import { AdventureTilesContainer, PageInformation } from "components/layoutcomponents/adventures/storySelection";
@@ -10,6 +11,9 @@ const LayoutContainerModified = styled(LayoutContainer)`
 const AdventuresMainPage = () => {
   return (
     <LayoutContainerModified>
+      <Helmet>
+        <title>Adventures</title>
+      </Helmet>
       <PageInformation />
       <AdventureTilesContainer />
     </LayoutContainerModified>

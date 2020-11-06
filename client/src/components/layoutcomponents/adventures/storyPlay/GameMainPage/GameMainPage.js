@@ -3,9 +3,9 @@ import { UserContext } from "context/UserContext";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import ListEventParagraphs from "./ListEventParagraphs";
-import ListEventChoices from "./ListEventChoices";
 import ListEventAchievement from "./ListEventAchievement";
+import ListEventChoices from "./ListEventChoices";
+import ListEventParagraphs from "./ListEventParagraphs";
 
 const ComponentContainer = styled.section`
   grid-column-start: 1;
@@ -57,8 +57,6 @@ const GameMainPage = ({ storyId, firstEventId }) => {
 
   useEffect(() => {
     const triggerAchievement = async (nextPathId, nextPathAchievement) => {
-      if (nextPathId !== nextPathAchievement?.id) return;
-
       if (nextPathId === nextPathAchievement?.id) {
         try {
           const response = await axios.put("/achievement/trigger", { stateCode: nextPathAchievement.stateCode, timestampCode: nextPathAchievement.timestampCode });

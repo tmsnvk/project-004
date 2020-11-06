@@ -24,7 +24,7 @@ const ChangeColorTheme = () => {
         Change page theme
       </MessageTitle>
       <MessageText>
-        Change your page color theme. The active theme is highlighted.
+        Change your page color theme. The currently active theme is highlighted.
       </MessageText>
       <ChangeTiles />
     </ComponentContainer>

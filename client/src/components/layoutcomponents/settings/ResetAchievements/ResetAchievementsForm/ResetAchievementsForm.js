@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -8,26 +8,17 @@ const ResetAchievementsForm = () => {
   const { handleSubmit } = useForm();
   const history = useHistory();
 
-  const [resetAchievements, setResetAchievements] = useState(false);
+  const onSubmit = (data) => handleAccountReset();
 
-  const onSubmit = (data) => setResetAchievements(true);
-
-  useEffect(() => {
-    if (!resetAchievements) return;
-
-    const handleAccountDelete = async () => {
-      try {
-        await axios.put("/achievement/reset");
-        history.push("/page/success");
-        history.go();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    handleAccountDelete();
-    return () => setResetAchievements(false);
-  }, [resetAchievements, history, setResetAchievements]);
+  const handleAccountReset = async () => {
+    try {
+      await axios.put("/achievement/reset");
+      history.push("/page/success");
+      history.go();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Form method="PUT" action="/achievement/reset" id="achivements-reset" onSubmit={handleSubmit(onSubmit)}>

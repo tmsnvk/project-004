@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import AccountDeleteForm from "./AccountDeleteForm";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
+import AccountDeleteForm from "./AccountDeleteForm";
 
 const ComponentContainer = styled.section`
   grid-column-start: 1;

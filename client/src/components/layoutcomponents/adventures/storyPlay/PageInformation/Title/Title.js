@@ -7,7 +7,7 @@ const Title = () => {
 
   return (
     <MessageTitle>
-      {!userData.user ? <></> : `You have choosen, ${userData.user.toUpperCase()}!`}
+      {userData.user ? `You have choosen, ${userData.user.toUpperCase()}!` : <></>}
     </MessageTitle>
   );
 };

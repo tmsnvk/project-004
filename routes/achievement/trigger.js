@@ -2,7 +2,7 @@ const userSchema = require("../../models/userModel");
 
 module.exports = async (request, response) => {
   try {
-    const { timestampCode, stateCode } = request.body;
+    const { stateCode, timestampCode } = request.body;
     const userIdCookie = request.cookies.userId;
 
     if (!request.body) return response.status(400).json({ message: "The Tower librarians haven't received any data." });

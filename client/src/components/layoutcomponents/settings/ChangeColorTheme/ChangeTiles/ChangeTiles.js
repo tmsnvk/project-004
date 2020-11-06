@@ -26,11 +26,10 @@ const ColorTile = styled(TileButton)`
 const ChangeTiles = () => {
   const { userColorTheme, setUserColorTheme } = useContext(UserContext);
 
-  const darkColorThemes = [{ id: "darkYellow", name: "Dark Yellow" }, { id: "darkBlue", name: "Dark Blue" }, { id: "darkGreen", name: "Dark Green" }];
-  const lightColorThemes = [{ id: "lightYellow", name: "Light Yellow" }, { id: "lightBlue", name: "Light Blue" }, { id: "lightGreen", name: "Light Green" }];
+  const darkColorThemes = [{ id: "darkYellow", name: "Dark/Yellow" }, { id: "darkBlue", name: "Dark/Blue" }, { id: "darkGreen", name: "Dark/Green" }];
+  const lightColorThemes = [{ id: "lightYellow", name: "Light/Yellow" }, { id: "lightBlue", name: "Light/Blue" }, { id: "lightGreen", name: "Light/Green" }];
 
   const handleColorChange = async (element) => {
-
     try {
       await axios.post("/user/theme-set", { colorTheme: element.id });
       setUserColorTheme(element.id);

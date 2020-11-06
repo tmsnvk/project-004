@@ -15,7 +15,7 @@ module.exports = async (request, response) => {
     const isMatch = await bcrypt.compare(password, getUser.password);
     if (!isMatch) return response.status(400).json({ message: "Provide valid credentials." });
 
-    const token = createToken(getUser._id);
+    const token = createToken(getUser._id, maxAge);
 
     response.cookie("jwt", token, { httpOnly: true, maxAge: maxAge });
     response.cookie("userId", getUser._id, { httpOnly: true, maxAge: maxAge });

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { UserContext } from "context/UserContext";
 import styled from "styled-components";
-import { TileContainer } from "components/commoncomponents/tile-related";
 import { MessageText, SpanBold } from "components/commoncomponents/general";
+import { TileContainer } from "components/commoncomponents/tile-related";
 
 const ComponentContainer = styled.section`
   grid-column-start: 1;

@@ -1,12 +1,12 @@
-const jwt = require("jsonwebtoken");
 const userSchema = require("../../models/userModel");
+const createToken = require("../../utilities/helpers/createToken");
 
 module.exports = async (request, response) => {
   try {
     const userIdCookie = request.cookies.userId;
 
     const getUser = await userSchema.findById(userIdCookie);
-    const token = jwt.sign({ id: getUser._id }, process.env.JWT_SECRET);
+    const token = createToken(getUser._id, maxAge = -1);
 
     response.cookie("jwt", token, { maxAge: -1 });
     response.cookie("userId", getUser._id, { maxAge: -1 });

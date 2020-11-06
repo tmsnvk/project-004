@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { HorizontalLine } from "components/commoncomponents/general";
 import Title from "./Title";
 import Message from "./Message";
-import { HorizontalLine } from "components/commoncomponents/general";
 
 const ComponentContainer = styled.section`
   grid-column-start: 1;

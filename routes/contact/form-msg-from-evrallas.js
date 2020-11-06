@@ -16,13 +16,14 @@ module.exports = (request, response) => {
 
     const output = `
       <main>
-        <h1>We have received a contact request message from this [${request.body.email}] email address.</h1>
-        <h2>Contact Details</h2>
+        <h1>Hi there, ${request.body.username}!</h1>
+        <h2>We have received a contact request message from this [${request.body.email}] email address.</h2>
+        <h3>Contact Details</h3>
         <div>  
-          <p>Name: <span>${request.body.userName}</span></p>
+          <p>Name: <span>${request.body.username}</span></p>
           <p>Email: <span>${request.body.email}</span></p>
         </div>
-        <h2>Message</h2>
+        <h3>Message</h3>
         <p>${request.body.message}</p>
         <br />
         <h3>Thank you for your message. We will get back to you as soon as possible!</h3>
@@ -43,19 +44,18 @@ module.exports = (request, response) => {
     });
 
     let mailOptions = {
-        from: process.env.NODEMAILER_AUTH_USER,
-        to: request.body.email,
-        subject: "Received Your Message",
-        text: null,
-        html: output
+      from: process.env.NODEMAILER_AUTH_USER,
+      to: request.body.email,
+      subject: "Received Your Message",
+      text: null,
+      html: output
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log("Message sent: %s", info.messageId);   
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      if (error) return console.log(error);
+
+      console.log("Message sent: %s", info.messageId);   
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     });
 
     return response.json({ message: "The Tower librarians have archived your message in their Archives." });

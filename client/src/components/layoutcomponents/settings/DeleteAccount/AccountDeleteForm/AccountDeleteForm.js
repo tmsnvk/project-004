@@ -10,27 +10,18 @@ const AccountDeleteForm = () => {
   const { handleSubmit } = useForm();
   const history = useHistory();
 
-  const [deleteAccount, setDeleteAccount] = useState(false);
+  const onSubmit = (data) => handleAccountDelete();
 
-  const onSubmit = (data) => setDeleteAccount(true);
-
-  useEffect(() => {
-    if (!deleteAccount) return;
-
-    const handleAccountDelete = async () => {
-      try {
-        await axios.delete("/user/delete");
-        setUserData({ user: undefined, createdAt: undefined });
-        history.push("/page/home");
-        history.go();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    handleAccountDelete();
-    return () => setDeleteAccount(false);
-  }, [deleteAccount, history, setDeleteAccount, setUserData]);
+  const handleAccountDelete = async () => {
+    try {
+      await axios.delete("/user/delete");
+      setUserData({ user: undefined, createdAt: undefined });
+      history.push("/page/home");
+      history.go();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Form method="DELETE" action="/user/delete" id="user-deleteaccount" onSubmit={handleSubmit(onSubmit)}>

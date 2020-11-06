@@ -5,23 +5,34 @@
 #### used packages
 ```
 BACKEND
-+ axios                - making api calls.
-+ bcryptjs             - .
++ axios                - http client.
++ bcryptjs             - passwords hashing.
++ cookie-parser        - cookie parsing middleware.
 + cors                 - cors enabling middleware.
-+ dotenv               - loading an .env variable to store not-public configuration data.
++ dotenv               - .env variable loader to store not-public configuration data.
 + express              - server framework.
-+ helmet               - securing express.
-+ jsonwebtoken
-+ mongoose
++ helmet               - express securing middleware.
++ jsonwebtoken         - jwt handling.
++ mongoose             - a schema-based solution for using mongodb data.
++ nodemailer           - email sending module.
++ react-ga             - google analytics package.
 
 FRONTEND
-+ axios                - making api calls.
-+ fontawesome          - .
++ axios                - http client.
++ fontawesome          - icon package.
 + react                - front-end framework.
-+ react-ga             - google analytics package.
++ react-helmet         - document head element handler.
++ react-hook-form      - form handler & form submission validator.
 + react-router-dom     - routing.
 + styled-components    - css-in-js styling.
 ```
+
+#### screenshot
+![Screenshot](screenshot_01.png)
+![Screenshot](screenshot_02.png)
+![Screenshot](screenshot_03.png)
+![Screenshot](screenshot_04.png)
+![Screenshot](screenshot_05.png)
 
 #### project structure
 ```
@@ -328,6 +339,12 @@ FRONTEND
             |- TITLE
               |- index.js
               |- Title.js
+          |- RESETACHIEVEMENTS
+            |- index.js
+            |- ResetAchievements.js
+            |- RESETACHIEVEMENTSFORM
+              |- index.js
+              |- ResetAchievementsForm.js
         |- SUCCESSFULUPDATE
           |- index.js
           |- PAGEINFORMATION
@@ -413,10 +430,9 @@ FRONTEND
   |- userModel.js
 |- ROUTES
   |- ACHIEVEMENT
-    |- counter-death.js
-    |- counter-finish.js
-    |- counter-start.js
+    |- counter.js
     |- index.js
+    |- reset.js
     |- showcase.js
     |- store.js
     |- trigger.js
@@ -435,12 +451,15 @@ FRONTEND
     |- delete.js
     |- index.js
     |- login.js
+    |- logout.js
     |- register.js
     |- root.js
     |- theme-get.js
     |- theme-set.js
     |- token-validity.js
+  |- UTILITIES
+    |- HELPERS
+      |- createToken.js
+      |- maxAge.js
+      |- regex.js
 ```
-
-#### screenshot
-![Screenshot](screenshot.png)

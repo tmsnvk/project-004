@@ -12,7 +12,6 @@ const NameChangeForm = () => {
   const history = useHistory();
 
   const [isInputNameInFocus, setIsInputNameInFocus] = useState(false);
-
   const [usernameCharacterCounter, setUsernameCharacterCounter] = useState(0);
 
   const [formData, setFormData] = useState({ changedName: undefined });

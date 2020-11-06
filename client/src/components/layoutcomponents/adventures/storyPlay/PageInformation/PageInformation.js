@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Title from "./Title";
-import Message from "./Message";
 import { HorizontalLine } from "components/commoncomponents/general";
 import { TileButton } from "components/commoncomponents/tile-related";
+import Title from "./Title";
+import Message from "./Message";
 
 const ComponentContainer = styled.section`
   grid-column-start: 1;

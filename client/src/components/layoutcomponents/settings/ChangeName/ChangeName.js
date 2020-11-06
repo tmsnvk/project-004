@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import NameChangeForm from "./NameChangeForm";
 import { MessageText, MessageTitle } from "components/commoncomponents/general";
+import NameChangeForm from "./NameChangeForm";
 
 const ComponentContainer = styled.section`
   grid-column-start: 1;

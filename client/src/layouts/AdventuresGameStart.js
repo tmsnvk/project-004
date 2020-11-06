@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useHistory, Redirect } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -51,6 +52,9 @@ const AdventuresGameStart = () => {
 
   return (
     <LayoutContainerModified>
+      <Helmet>
+        <title>Adventures</title>
+      </Helmet>
       {start === false ? <PageInformation setStart={setStart} startNewStory={startNewStory} startSavedStory={startSavedStory} isGameSaved={isGameSaved} /> : <GameMainPage storyId={chosenStoryId} firstEventId={firstEventId} />}
     </LayoutContainerModified>
   );

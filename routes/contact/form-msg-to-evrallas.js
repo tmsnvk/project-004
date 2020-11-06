@@ -19,7 +19,7 @@ module.exports = (request, response) => {
         <h1>We have received a contact request message from this [${request.body.email}] email address.</h1>
         <h2>Contact Details</h2>
         <div>  
-          <p>Name: <span>${request.body.userName}</span></p>
+          <p>Name: <span>${request.body.username}</span></p>
           <p>Email: <span>${request.body.email}</span></p>
         </div>
         <h2>Message</h2>
@@ -41,19 +41,18 @@ module.exports = (request, response) => {
     });
 
     let mailOptions = {
-        from: process.env.NODEMAILER_AUTH_USER,
-        to: "evrallas@tamasnovak.net",
-        subject: "Contact Form Submission Message",
-        text: null,
-        html: output
+      from: process.env.NODEMAILER_AUTH_USER,
+      to: "evrallas@tamasnovak.net",
+      subject: "Contact Form Submission Message",
+      text: null,
+      html: output
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log("Message sent: %s", info.messageId);   
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      if (error) return console.log(error);
+      
+      console.log("Message sent: %s", info.messageId);   
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     });
 
     return response.json({ message: "The Tower librarians have archived your message in their Archives." });

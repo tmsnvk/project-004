@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlP
     if (error) {
       throw error;
     } else {
-      console.log("Connected to your MongoDB database via Moongose.");
+      console.log("Connected to mongoDB database via moongose.");
     }
   }
 );
@@ -42,6 +42,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const port = process.env.PORT || 3003;
-app.listen(port, () => {
-  console.log(`evrallas project @ port ${port}!`);
-});
+app.listen(port, () => console.log(`Evrallas project listening @ port ${port}.`));

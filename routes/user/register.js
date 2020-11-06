@@ -59,7 +59,6 @@ module.exports = async (request, response) => {
     await newUser.save();
     return response.json({ message: "The Tower librarians have registered your data in their Archives. "});
   } catch (error) {
-    console.log(error);
     return response.status(500).json({ error: error.message });
   }
 };
