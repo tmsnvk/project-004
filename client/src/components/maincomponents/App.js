@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import axios from "axios";
+import ReactGA from "react-ga";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { LoadingSpinner } from "components/commoncomponents/general";
 import { Navbar, PrivateRoute } from "components/maincomponents";
@@ -46,8 +47,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-// ReactGA.initialize(process.env.REACT_APP_GA_KEY);
-// ReactGA.pageview("/");
+ReactGA.initialize(process.env.REACT_APP_GA_KEY);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const App = () => {
   const { userColorTheme, setUserColorTheme, setGameData, setUserData } = useContext(UserContext);
