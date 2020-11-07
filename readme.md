@@ -1,6 +1,10 @@
-### evrallas || project-004 || tmsnvk
+### evrallas || project-004
 #### description
-+
++ a Mongo/Express/React/Node application that incorporates a choose-your-own-adventure story game.
++ it includes multiple adventures to choose from, user statistics and achievements tracking with a possibility to reset account progress, 6 different colour themes and more.
++ to run the application:
+  + check the .env_sample file to see what is needed for the app to be fully functional.
+  + OR visit the live heroku deployed version [here](https://evrallas.herokuapp.com/).
 
 #### used packages
 ```
@@ -463,3 +467,9 @@ FRONTEND
       |- maxAge.js
       |- regex.js
 ```
+
+### latest changes
++ v0.2.20
+  + pushed to heroku;
+  + readme.md update;
+  + added screenshots;
