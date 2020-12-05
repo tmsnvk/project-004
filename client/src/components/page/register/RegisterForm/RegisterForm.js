@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "context/UserContext";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -23,7 +22,6 @@ const ComponentContainer = styled.section`
 `;
 
 const RegisterForm = () => {
-  const { setUserData } = useContext(UserContext);
   const { errors, formState, handleSubmit, register, trigger, watch } = useForm();
   const history = useHistory();
 
@@ -58,9 +56,9 @@ const RegisterForm = () => {
     handleRegister();
     return () => {
       setFormData({ username: undefined, password: undefined, passwordCheck: undefined });
-      setResponseError(undefined);
+      setResponseError({ message: undefined });
     } 
-  }, [formData, history, setUserData]);
+  }, [formData, history]);
 
   const focusInputName = () => setIsInputNameInFocus(true);
   const blurInputName = (event) => event.target.value === "" ? setIsInputNameInFocus(false) : null;
@@ -84,7 +82,7 @@ const RegisterForm = () => {
   };
 
   const getPasswordCheckChanges = () => trigger("registerPasswordCheck");
-
+  console.log(responseError.message);
   return (
     <ComponentContainer>
       <Form method="POST" action="/user/register" id="user-register" onSubmit={handleSubmit(onSubmit)}>
@@ -101,7 +99,7 @@ const RegisterForm = () => {
             onChange={getUsernameChanges}
             ref={register({
               required: { value: true, message: "USERNAME is required - use only letters and numbers; minimum 5, maximum 12 characters long." },
-              pattern: { value: /^[A-Za-z0-9 ]+$/i, message: "Use only letters and numbers." },
+              pattern: { value: /^[A-Za-z0-9]+$/i, message: "Use only letters and numbers." },
               minLength: { value: 5, message: "USERNAME must be minimum 5 characters long." },
               maxLength: { value: 12, message: "USERNAME must be maximum 12 characters long." }
             })}
@@ -149,7 +147,7 @@ const RegisterForm = () => {
           {errors.registerPasswordCheck && <ErrorMessageWrapper errorMessage={errors.registerPasswordCheck.message} />}
         </FormWrapper>
         {formState.isSubmitting ? <LoadingSpinner loadingMessage={"The Tower librarians is registering your credentials in their Archives, please wait."} /> : <Submit type="submit" value="register" />}
-        {responseError.message !== undefined ? <ErrorMessage errorMessage={responseError} /> : null}
+        {responseError.message !== undefined ? <ErrorMessage errorMessage={responseError.message} /> : null}
       </Form>
     </ComponentContainer>
   );

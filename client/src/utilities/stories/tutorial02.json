@@ -140,7 +140,7 @@
         "options": [
           {
             "text": "You make your way to The Alabaster Inn.",
-            "nextEventId": "ID011",
+            "nextEventId": "ID0011",
             "visible": true
           }
         ],

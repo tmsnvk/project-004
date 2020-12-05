@@ -19,7 +19,7 @@ const PasswordChangeForm = () => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const [formData, setFormData] = useState({ currentPassword: undefined, newPassword: undefined, newPasswordCheck: undefined });
-  const [responseError, setResponseError] = useState(undefined);
+  const [responseError, setResponseError] = useState({ message: undefined });
 
   const onSubmit = (data) => setFormData({ currentPassword: data.currentPassword, newPassword: data.changePassword, newPasswordCheck: data.changePasswordCheck });
 
@@ -32,14 +32,16 @@ const PasswordChangeForm = () => {
         const response = await axios.get("/user");
         setUserData({ user: response.data.username, createdAt: response.data.createdAt });
         history.push("/page/success");
-        history.go();
       } catch (error) {
         return setResponseError(error.response.data.message);
       }
     };
 
     handlePasswordChange();
-    return () => setFormData({ currentPassword: undefined, newPassword: undefined, newPasswordCheck: undefined });
+    return () => {
+      setFormData({ currentPassword: undefined, newPassword: undefined, newPasswordCheck: undefined });
+      setResponseError({ message: undefined });
+    } 
   }, [formData, history, setUserData]);
 
   const focusPasswordCurrent = () => setIsInputPasswordCurrentInFocus(true);
@@ -115,7 +117,7 @@ const PasswordChangeForm = () => {
           {errors.changePasswordCheck && <ErrorMessageWrapper errorMessage={errors.changePasswordCheck.message} />}
         </FormWrapper>
         {formState.isSubmitting ? <LoadingSpinner loadingMessage={"The Tower librarians are registering your request in their Archives, please wait."} /> : <Submit type="submit" value="change" />}
-        {responseError ? <ErrorMessage errorMessage={responseError} /> : null}
+        {responseError.message !== undefined ? <ErrorMessage errorMessage={responseError.message} /> : null}
       </Form>
     </>
   );

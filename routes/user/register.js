@@ -1,22 +1,22 @@
 const bcrypt = require("bcryptjs");
 const userSchema = require("../../models/userModel");
-const regexUsername = require("../../utilities/helpers/regex");
+const { regexUsername } = require("../../utilities/helpers/regex");
 
 module.exports = async (request, response) => {
   try {
     const { username, password, passwordCheck } = request.body;
 
     if (!username || !password || !passwordCheck) return response.status(400).json({ message: "Please fill out all fields!" });
-
+    
     if (!regexUsername.test(username)) return response.status(400).json({ message: "Use only letters and numbers." });
+    
+    const existingUser = await userSchema.findOne({ username: username });
+    if (existingUser) return response.status(400).json({ message: "An entry with such name already exists in our Archives." });
 
     if (username.length < 5 || username.length > 12) return response.status(400).json({ message: "USERNAME is required - use only letters and numbers; minimum 5, maximum 12 characters long." });
 
     if (password.length < 6|| username.length > 15) return response.status(400).json({ message: "PASSWORD is required; minimum 6, maximum 15 characters long." });
     if (password !== passwordCheck) return response.status(400).json({ message: "Please enter the same password twice for verification!" }); 
-
-    const existingUser = await userSchema.findOne({ username: username });
-    if (existingUser) return response.status(400).json({ message: "An entry with such name already exists in our Archives." });
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);

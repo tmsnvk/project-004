@@ -15,7 +15,7 @@ const Message = () => {
         Upon registering you will automatically be logged in to your user account.
       </MessageText>
       <MessageText padding="2.5rem 0 0 0">
-        By creating an account you agree to our <NavigationLink to="/page/terms">Terms and Conditions</NavigationLink> and <NavigationLink to="/page/terms">Privacy Policy</NavigationLink>.
+        By creating an account you agree to our <NavigationLink to="/page/terms">Terms & Conditions</NavigationLink> and <NavigationLink to="/page/terms">Privacy Policy</NavigationLink>.
       </MessageText>
     </>
   );

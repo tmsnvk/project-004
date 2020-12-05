@@ -15,7 +15,7 @@ const NameChangeForm = () => {
   const [usernameCharacterCounter, setUsernameCharacterCounter] = useState(0);
 
   const [formData, setFormData] = useState({ changedName: undefined });
-  const [responseError, setResponseError] = useState(undefined);
+  const [responseError, setResponseError] = useState({ message: undefined });
 
   const onSubmit = (data) => setFormData({ changedName: data.changeUsername });
 
@@ -28,14 +28,16 @@ const NameChangeForm = () => {
         const response = await axios.get("/user");
         setUserData({ user: response.data.username, createdAt: response.data.createdAt });
         history.push("/page/success");
-        history.go();
       } catch (error) {
         return setResponseError(error.response.data.message);
       }
     };
 
     handleNameChange();
-    return () => setFormData({ changedName: undefined });
+    return () => {
+      setFormData({ changedName: undefined });
+      setResponseError({ message: undefined });
+    } 
   }, [formData, history, setUserData]);
 
   const focusInputName = () => setIsInputNameInFocus(true);
@@ -71,7 +73,7 @@ const NameChangeForm = () => {
         </InputHelperWrapper>
         {errors.changeUsername && <ErrorMessageWrapper errorMessage={errors.changeUsername.message} />}
         {formState.isSubmitting ? <LoadingSpinner loadingMessage={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="change" />}
-        {responseError ? <ErrorMessage errorMessage={responseError} /> : null}
+        {responseError.message !== undefined ? <ErrorMessage errorMessage={responseError.message} /> : null}
       </FormWrapper>
     </Form>
   );

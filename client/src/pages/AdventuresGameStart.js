@@ -5,12 +5,15 @@ import axios from "axios";
 import styled from "styled-components";
 import { LayoutContainer } from "components/shared/general";
 import { GameMainPage, PageInformation } from "components/page/adventures/storyPlay";
+import { usePageTracking } from "utilities/analytics/analyticsTracking";
 
 const LayoutContainerModified = styled(LayoutContainer)`
   grid-template-columns: 10% 15% 50% 15% 10%;
 `;
 
 const AdventuresGameStart = () => {
+  usePageTracking("AdventuresGamestart");
+
   const history = useHistory();
   const storyTitle = history.location.pathname;
 

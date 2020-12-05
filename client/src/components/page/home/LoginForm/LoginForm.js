@@ -56,7 +56,7 @@ const LoginForm = () => {
       setFormData({ username: undefined, password: undefined });
       setGameData({ gameStart: 0, gameFinish: 0, gameDeath: 0 });
       setUserColorTheme("darkYellow");
-      setResponseError(undefined);
+      setResponseError({ message: undefined });
     };
   }, [formData, setGameData, setUserData, setUserColorTheme]);
 
@@ -99,7 +99,7 @@ const LoginForm = () => {
           </InputHelperWrapper>
         </FormWrapper>
         {formState.isSubmitting ? <LoadingSpinner loadingMessage={"One of our librarians is checking your credentials in our Archives, please wait."} /> : <Submit type="submit" value="log in" />}
-        {responseError.message !== undefined ? <ErrorMessage errorMessage={responseError} /> : null}
+        {responseError.message !== undefined ? <ErrorMessage errorMessage={responseError.message} /> : null}
       </Form>
     </ComponentContainer>
   );

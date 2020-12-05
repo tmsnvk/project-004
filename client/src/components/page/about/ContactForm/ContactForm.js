@@ -35,7 +35,7 @@ const ContactForm = () => {
   const [textCharacterCounter, setTextCharacterCounter] = useState(0);
 
   const [formData, setFormData] = useState({ username: undefined, email: undefined, message: undefined });
-  const [responseError, setResponseError] = useState(undefined);
+  const [responseError, setResponseError] = useState({ message: undefined });
 
   const onSubmit = (data) => setFormData({ username: data.contactName, email: data.contactEmail, message: data.contactTextarea });
 
@@ -52,7 +52,10 @@ const ContactForm = () => {
     };
 
     handleFormSubmission();
-    return () => setFormData({ username: undefined, email: undefined, message: undefined });
+    return () => {
+      setFormData({ username: undefined, email: undefined, message: undefined });
+      setResponseError({ message: undefined });
+    } 
   }, [formData, history, setUserData]);
 
   const focusInputName = () => setIsInputNameInFocus(true);
@@ -133,7 +136,7 @@ const ContactForm = () => {
           {errors.contactTextarea && <ErrorMessageWrapper errorMessage={errors.contactTextarea.message} />}
         </FormWrapper>
         {formState.isSubmitting ? <LoadingSpinner loadingMessage={"One of our librarians is registering your request in our Archives, please wait."} /> : <Submit type="submit" value="submit" />}
-        {responseError ? <ErrorMessage errorMessage={responseError} /> : null}
+        {responseError.message !== undefined ? <ErrorMessage errorMessage={responseError.message} /> : null}
       </Form>
     </ComponentContainer>
   );
