@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { UserContextProvider } from "context/UserContext";
 import { BrowserRouter } from "react-router-dom";
-import { App } from "./components/maincomponents";
+import { UserContextProvider } from "context/UserContext";
+import { App } from "./components/main";
 
 ReactDOM.render(
   <BrowserRouter>

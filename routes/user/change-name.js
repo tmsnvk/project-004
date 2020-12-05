@@ -8,7 +8,7 @@ module.exports = async (request, response) => {
 
     if (!formData.changedName) return response.status(400).json({ message: "Enter the new name of your account!" });
     if (formData.changedName.length < 5 || formData.changedName.length > 12) return response.status(400).json({ message: "USERNAME is required - use only letters and numbers; minimum 5, maximum 12 characters long." });
-    if (!formData.changedName.match(regexUsername)) return response.status(400).json({ message: "Use only letters and numbers." });
+    if (!regexUsername.test(formData.changedName)) return response.status(400).json({ message: "Use only letters and numbers." });
 
     const checkName = await userSchema.findOne({ username: formData.changedName });
     if (checkName) return response.status(400).json({ message: "There's already an account with this name in The Tower's Archives." });

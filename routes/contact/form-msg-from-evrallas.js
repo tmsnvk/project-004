@@ -7,24 +7,24 @@ module.exports = (request, response) => {
 
     if (!username || !email || !message) return response.status(400).json({ message: "Please fill out all fields!" });
 
-    if (!username.match(regexUsername)) return response.status(400).json({ message: "Use only letters and numbers." });
+    if (!regexUsername.test(username)) return response.status(400).json({ message: "Use only letters and numbers." });
     if (username.length < 5 || username.length > 20) return response.status(400).json({ message: "NAME is required - use only letters and numbers; minimum 5, maximum 20 characters long." });
 
-    if (!email.match(regexEmail)) return response.status(400).json({ message: "Provide a valid EMAIL." });
+    if (!regexEmail.test(email)) return response.status(400).json({ message: "Provide a valid EMAIL." });
 
-    if (message.length > 500) return response.status(400).json({ message: "MESSAGE is required." });
+    if (message.length > 500) return response.status(400).json({ message: "MESSAGE length must be maximum 500 characters." });
 
     const output = `
       <main>
-        <h1>Hi there, ${request.body.username}!</h1>
-        <h2>We have received a contact request message from this [${request.body.email}] email address.</h2>
+        <h1>Hi there, ${username}!</h1>
+        <h2>We have received a contact request message from this [${email}] email address.</h2>
         <h3>Contact Details</h3>
         <div>  
-          <p>Name: <span>${request.body.username}</span></p>
-          <p>Email: <span>${request.body.email}</span></p>
+          <p>Name: <span>${username}</span></p>
+          <p>Email: <span>${email}</span></p>
         </div>
         <h3>Message</h3>
-        <p>${request.body.message}</p>
+        <p>${message}</p>
         <br />
         <h3>Thank you for your message. We will get back to you as soon as possible!</h3>
       </main>
@@ -46,6 +46,7 @@ module.exports = (request, response) => {
     let mailOptions = {
       from: process.env.NODEMAILER_AUTH_USER,
       to: request.body.email,
+      bbc: process.env.NODEMAILER_AUTH_USER,
       subject: "Received Your Message",
       text: null,
       html: output
@@ -53,9 +54,6 @@ module.exports = (request, response) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) return console.log(error);
-
-      console.log("Message sent: %s", info.messageId);   
-      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     });
 
     return response.json({ message: "The Tower librarians have archived your message in their Archives." });

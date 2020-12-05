@@ -8,9 +8,8 @@ module.exports = async (request, response) => {
 
     if (!username || !password || !passwordCheck) return response.status(400).json({ message: "Please fill out all fields!" });
 
-    if (!username.match(regexUsername)) return response.status(400).json({ message: "Use only letters and numbers." });
-    console.log(request.body);
-    console.log(username.match(regexUsername));
+    if (!regexUsername.test(username)) return response.status(400).json({ message: "Use only letters and numbers." });
+
     if (username.length < 5 || username.length > 12) return response.status(400).json({ message: "USERNAME is required - use only letters and numbers; minimum 5, maximum 12 characters long." });
 
     if (password.length < 6|| username.length > 15) return response.status(400).json({ message: "PASSWORD is required; minimum 6, maximum 15 characters long." });
