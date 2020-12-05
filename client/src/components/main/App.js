@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "context/UserContext";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import { useNavigationTracking } from "utilities/analytics/analyticsTracking";
+// import { useNavigationTracking } from "utilities/analytics/analyticsTracking";
 import axios from "axios";
 import { ThemeProvider } from "styled-components";
 import { Navbar, PrivateRoute } from "components/main";
@@ -15,7 +15,7 @@ import {  } from "@fortawesome/free-regular-svg-icons";
 library.add(faAddressCard, faArchive, faCalendarCheck, faCalendarTimes, faChess, faChessKing, faChessPawn, faChessRook, faFireAlt, faInfinity, faLock, faMapSigns, faPeopleArrows, faPeopleCarry, faScroll, faSign, faSignOutAlt, faSkull, faStar, faSyncAlt, faToriiGate, faTrophy, faUnlock, faUserTie, faWrench);
 
 const App = () => {
-  useNavigationTracking();
+  // useNavigationTracking();
 
   const { userColorTheme, setUserColorTheme, setGameData, setUserData } = useContext(UserContext);
   const [initialGlobalStateLoader, setInitialGlobalStateLoader] = useState(false);
